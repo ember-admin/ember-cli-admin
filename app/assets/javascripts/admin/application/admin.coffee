@@ -12,4 +12,4 @@
 #= require_tree ./routes
 #= require_tree ./controllers
 
-window.Admin = Ember.Application.create({rootElement: "body"})
+window.Admin = Ember.Application.create()

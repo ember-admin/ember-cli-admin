@@ -3,5 +3,5 @@
 #= require handlebars
 #= require ember
 #= require ember-data
-#= require flat-ui
-#= require_tree ./admin
+#= require twbs/bootstrap
+#= require ./admin/application/admin

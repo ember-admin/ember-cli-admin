@@ -1,0 +1,10 @@
+.btn-group.pull-right
+  button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+    i.icon-user
+    |User
+    span.caret
+  ul.dropdown-menu
+    li
+      a href="#" Profile
+    li
+      a href="#" LogOut

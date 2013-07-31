@@ -32,5 +32,9 @@ module EmberRailsAdmin
       g.stylesheets = false
       g.javascripts = false
     end
+
+    config.handlebars.templates_root = [
+        "admin/application/templates"
+    ]
   end
 end

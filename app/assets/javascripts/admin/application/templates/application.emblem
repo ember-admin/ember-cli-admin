@@ -1,0 +1,4 @@
+.wrapper
+  == outlet "navigation"
+  == outlet "main"
+  == outlet "footer"
