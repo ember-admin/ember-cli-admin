@@ -49,6 +49,8 @@ gem 'emblem-rails'
 gem 'handlebars-source', ">= 1.0.0.rc4"
 gem "ember-source", "~> 1.0.0.rc"
 
+gem 'flatui-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
