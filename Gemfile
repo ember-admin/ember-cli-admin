@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', github: 'rails/rails'
 gem 'sprockets-rails', github: 'rails/sprockets-rails'
 
+gem 'jquery-rails'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
@@ -40,6 +42,12 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+#ember
+gem "ember-rails",  git: "git://github.com/emberjs/ember-rails.git"
+gem 'emblem-rails'
+gem 'handlebars-source', ">= 1.0.0.rc4"
+gem "ember-source", "~> 1.0.0.rc"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
