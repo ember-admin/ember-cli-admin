@@ -1,20 +1,3 @@
-/header.navbar
-/  .container
-/    a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
-/      span.icon-bar
-/      span.icon-bar
-/      span.icon-bar
-/    a.brand href="/" Site Name
-/    .nav-collapse.in.collapse
-/      /= AdminMenu.render(self)
-/      = partial "navigation/user"
-/
-//ul.breadcrumb
-/  li.resource_actions
-/    - action_items.each do |act|
-/      = action_link(act)
-/  = render 'admin/shared/breadcrumbs'
-/
 header.navbar
   a class="navbar-brand" href="#" Site Title
   /ul class="nav navbar-nav"
