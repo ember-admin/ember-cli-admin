@@ -36,6 +36,7 @@ group :test, :development do
   gem "capybara"
   gem "poltergeist"
   gem 'cucumber-rails', require: false, git:"git@github.com:dbruns/cucumber-rails.git"
+  gem 'qunit-rails'
 end
 
 group :doc do

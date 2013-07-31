@@ -217,6 +217,8 @@ GEM
     polyglot (0.3.3)
     puma (2.4.0)
       rack (>= 1.1, < 2.0)
+    qunit-rails (0.0.3)
+      railties (>= 3.2.3)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -277,6 +279,7 @@ DEPENDENCIES
   less-rails
   poltergeist
   puma
+  qunit-rails
   rails!
   rspec-core!
   rspec-expectations!
