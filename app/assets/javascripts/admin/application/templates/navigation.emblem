@@ -1,4 +1,4 @@
-header.navbar
+header.navbar.navbar-inverse.navbar-fixed-top
   a class="navbar-brand" href="#" Site Title
   /ul class="nav navbar-nav"
   /  li class="active"
