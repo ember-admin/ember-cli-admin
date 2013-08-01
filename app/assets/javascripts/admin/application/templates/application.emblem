@@ -2,8 +2,8 @@
   .row
     .col-12
       == outlet "navigation"
-  .row.main-content
-    .col-12
+  #container.row-fluid
+    .wrap_content.main-content
       == outlet "main"
   .row
     .col-12

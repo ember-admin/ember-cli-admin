@@ -48,5 +48,3 @@ test "returns route when not defined", ->
   navigation = Admin.DSL.Navigation.map ->
     @navigate "first menu link", translations: "first"
   equal(navigation[0].route, "first_menu_link", "first_menu_link")
-
-test "make root href", ->

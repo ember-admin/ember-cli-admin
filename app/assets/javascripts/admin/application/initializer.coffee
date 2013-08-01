@@ -12,4 +12,7 @@
 # navigation section
 #= require ./navigation
 
+#controllers
+#= require ./controllers/base/admin_base_controller
+
 

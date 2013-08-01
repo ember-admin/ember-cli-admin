@@ -1,5 +1,6 @@
 #= require_self
-#= require ./dsl/navigation
+#= require ./namespace
+#= require_tree ./dsl
 #= require ./initializer
 
 #= require_tree ./helpers
@@ -14,5 +15,3 @@
 #= require_tree ./controllers
 
 @Admin = Ember.Application.create()
-@Admin.DSL = Ember.Namespace.create()
-@Admin.Logics = Ember.Namespace.create()
