@@ -26,8 +26,8 @@ class Admin.DSL.Navigation
     @container
 
   _makeRoute: (options={}) ->
-    return if options.route
-    options.route = options.title.underscore()
+    if options.route == undefined
+      options.route = options.title.underscore()
 
   _makeUrl: (options={}) ->
     options.url = "#/%@".fmt(options.route) unless options.url

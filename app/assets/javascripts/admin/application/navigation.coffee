@@ -36,4 +36,4 @@ params:
 ###
 
 Admin.DSL.Navigation.map ->
-  @navigate "Dashboard", url: "/", route: ""
+  @navigate "Dashboard", route: ""
