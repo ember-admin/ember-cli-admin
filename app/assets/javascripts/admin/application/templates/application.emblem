@@ -1,4 +1,10 @@
 .wrapper
-  == outlet "navigation"
-  == outlet "main"
-  == outlet "footer"
+  .row
+    .col-12
+      == outlet "navigation"
+  .row.main-content
+    .col-12
+      == outlet "main"
+  .row
+    .col-12
+      == outlet "footer"

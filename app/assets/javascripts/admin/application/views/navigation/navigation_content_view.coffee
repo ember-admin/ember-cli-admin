@@ -1,4 +1,4 @@
-Admin.NavigationView = Ember.View.extend
+Admin.NavigationContentView = Ember.View.extend
   tagName: "li"
 
   classNameBindings: ["isActive:active"]

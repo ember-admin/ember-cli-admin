@@ -3,6 +3,6 @@ if navigation.divider
 if navigation.hasChildren
   = partial "navigation/collection"
 else
-  Admin.NavigationView contextBinding=navigation
+  Admin.NavigationContentView contextBinding=navigation
     a{{bindAttr href=navigation.url}}
       = navigation.title
