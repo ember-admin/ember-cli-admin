@@ -1,8 +1,8 @@
-.btn-group.pull-right
-  button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+li.dropdown
+  a.dropdown-toggle data-toggle="dropdown" href="#"
     i.icon-user
     |User
-    span.caret
+    span class="caret"
   ul.dropdown-menu
     li
       a href="#" Profile
