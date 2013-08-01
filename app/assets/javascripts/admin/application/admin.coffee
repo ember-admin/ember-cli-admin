@@ -15,3 +15,4 @@
 
 @Admin = Ember.Application.create()
 @Admin.DSL = Ember.Namespace.create()
+@Admin.Logics = Ember.Namespace.create()

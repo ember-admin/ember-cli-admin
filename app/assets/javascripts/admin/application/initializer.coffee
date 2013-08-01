@@ -5,7 +5,11 @@
 
 #= require ./routes/main_route
 
-#navigation section
+# config section
+
+#= require ./logics/config
+
+# navigation section
 #= require ./navigation
 
 
