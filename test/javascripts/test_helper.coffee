@@ -1,5 +1,11 @@
-#q= require application
-#= require admin/dsl/navigation_dsl
-#= require_tree .
+#= require jquery
+#= require jquery_ujs
+#= require handlebars
+#= require ember
+#= require ember-data
 #= require_self
+#= require admin/application/dsl/navigation
+#= require_tree .
 
+@Admin = Ember.Namespace.create()
+@Admin.DSL = Ember.Namespace.create()

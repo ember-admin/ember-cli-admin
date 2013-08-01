@@ -8,5 +8,4 @@ header.navbar.navbar-inverse.navbar-fixed-top
   /  li
   /    a href="#" Link
 
-
   = partial "navigation/user"
