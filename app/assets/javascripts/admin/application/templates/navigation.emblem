@@ -1,11 +1,7 @@
 header.navbar.navbar-inverse.navbar-fixed-top
   a class="navbar-brand" href="#" Site Title
-  /ul class="nav navbar-nav"
-  /  li class="active"
-  /    a href="#" Home
-  /  li
-  /    a href="#" Link
-  /  li
-  /    a href="#" Link
+  ul class="nav navbar-nav"
+    each navigation in controller
+      = partial "navigation/item"
 
   = partial "navigation/user"

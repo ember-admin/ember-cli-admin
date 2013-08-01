@@ -271,7 +271,7 @@ DEPENDENCIES
   cucumber-rails!
   database_cleaner (~> 1.0.0)
   ember-rails!
-  ember-source (~> 1.0.0.rc)
+  ember-source (~> 1.0.0.rc.6.1)
   emblem-rails
   handlebars-source (>= 1.0.0.rc4)
   jbuilder (~> 1.2)

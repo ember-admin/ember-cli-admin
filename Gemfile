@@ -48,7 +48,7 @@ end
 gem "ember-rails",  git: "git://github.com/emberjs/ember-rails.git"
 gem 'emblem-rails'
 gem 'handlebars-source', ">= 1.0.0.rc4"
-gem "ember-source", "~> 1.0.0.rc"
+gem "ember-source", "~> 1.0.0.rc.6.1"
 gem 'twitter-bootstrap-rails', git: 'git://github.com/diowa/twitter-bootstrap-rails.git', branch: "bootstrap-3.0.0"
 #gem "ember-bootstrap-rails", path: "/var/www/roundscope/ember-bootstrap-rails"
 

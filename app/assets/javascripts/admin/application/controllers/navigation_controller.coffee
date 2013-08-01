@@ -1,2 +1,4 @@
 Admin.NavigationController = Ember.ArrayController.extend
-  content: Admin.NavigationDSl
+  content: Admin.DSL.Navigation.content
+
+  activeMenu: "dashboard"

@@ -13,11 +13,11 @@ test "returns 2 object with params", ->
 
   equal(navigation.length, 2, "2 objects")
 
-  equal(navigation[0].options.translations, "first", "Translations in params")
-  equal(navigation[1].options.translations, "second", "Translations in params")
+  equal(navigation[0].translations, "first", "Translations in params")
+  equal(navigation[1].translations, "second", "Translations in params")
 
-  equal(navigation[0].options.route, "/1", "route in params")
-  equal(navigation[1].options.route, "/2", "route in params")
+  equal(navigation[0].route, "/1", "route in params")
+  equal(navigation[1].route, "/2", "route in params")
 
 test "returns nested navigation objects", ->
   navigation = Admin.DSL.Navigation.map ->
@@ -37,8 +37,16 @@ test "returns nested navigation objects with params", ->
       @navigate "sub second link", translations: "sub 2 translation", route: "/1/2"
     @navigate "second menu link", translations: "second", route:"/2"
 
-  equal(navigation[0].children[0].options.translations, "sub 1 translation", "Translations in params")
-  equal(navigation[0].children[1].options.translations, "sub 2 translation", "Translations in params")
+  equal(navigation[0].children[0].translations, "sub 1 translation", "Translations in params")
+  equal(navigation[0].children[1].translations, "sub 2 translation", "Translations in params")
 
-  equal(navigation[0].children[0].options.route, "/1/1", "route in params")
-  equal(navigation[0].children[1].options.route, "/1/2", "route in params")
+  equal(navigation[0].children[0].route, "/1/1", "route in params")
+  equal(navigation[0].children[1].route, "/1/2", "route in params")
+
+
+test "returns route when not defined", ->
+  navigation = Admin.DSL.Navigation.map ->
+    @navigate "first menu link", translations: "first"
+  equal(navigation[0].route, "first_menu_link", "first_menu_link")
+
+test "make root href", ->

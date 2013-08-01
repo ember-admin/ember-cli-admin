@@ -5,3 +5,7 @@
 
 #= require ./routes/main_route
 
+#navigation section
+#= require ./navigation
+
+
