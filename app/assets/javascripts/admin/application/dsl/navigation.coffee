@@ -17,11 +17,12 @@ class Admin.DSL.Navigation
       object =
         title: name
 
-    @container.push(object)
+    emberObject = Ember.Object.create(object)
+    @container.push(emberObject)
 
     if typeof options == 'function'
       callback = options
 
     if callback
-      callback.call(new Admin.DSL.Navigation(object.children))
+      callback.call(new Admin.DSL.Navigation(emberObject.get('children')))
     @container
