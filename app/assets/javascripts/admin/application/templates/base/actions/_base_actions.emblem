@@ -1,0 +1,4 @@
+td
+  each action in controller.actions
+    Admin.Base.Views.ActionView contextBinding="action" modelBinding=item
+      = action.title

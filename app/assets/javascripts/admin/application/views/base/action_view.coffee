@@ -7,4 +7,4 @@ Admin.Base.Views.ActionView = Ember.View.extend
   ).property('context')
 
   click: ->
-    console.log @get('context.action')
+    @get('controller').send(@get('context.action'), @get('model'))

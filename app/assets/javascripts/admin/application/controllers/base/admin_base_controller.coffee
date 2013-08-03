@@ -10,8 +10,17 @@
 ###
 Admin.BaseController = Ember.ArrayController.extend
   actions: (->
-    [{title: "create", class: "btn btn-small btn-success", action: "create"},
+    [{title: "create", class: "btn btn-small btn-success", action: "new"},
      {title: "edit", class: "btn btn-small btn-primary", action: "edit"},
-     {title: "delete", class: "btn btn-small btn-danger", action: "delete"}
+     {title: "delete", class: "btn btn-small btn-danger", action: "destroy"}
     ]
   ).property('')
+
+  new: () ->
+    console.log "new"
+
+  edit: (model) ->
+    console.log "edit"
+
+  destroy: (model) ->
+    console.log "destroy"

@@ -10,10 +10,5 @@ table.table.table-striped.table-hover
         each attributeName in controller.modelAttributes
           Admin.Base.Views.Table.TdView contextBinding=item attributeNameBinding=attributeName
             = view.value
-        td
-          each action in controller.actions
-            Admin.Base.Views.ActionView contextBinding="action" itemBinding=item
-              = action.title
-          each action in controller.additionalActions
-            Admin.Base.Views.ActionView class=action.class contextBinding="action" itemBinding=item
-              = action.title
+        = partial "base/actions/_base_actions"
+        = partial "base/actions/addition_actions"
