@@ -28,7 +28,7 @@ Admin.MainRoute = Ember.Route.extend
 
   _setActiveRoute: ->
     url = Ember.Location.create({implementation: 'hash'}).getURL()
-    @controllerFor("navigation").set('active', url)
+    @controllerFor("navigation").set('activeMenu', url)
 
   _modelName:(name) ->
     Admin.DSL.Attributes.singularize(name)

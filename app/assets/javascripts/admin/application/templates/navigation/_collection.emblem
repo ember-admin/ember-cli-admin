@@ -1,4 +1,4 @@
-li class="dropdown"
+Admin.NavigationContentView class="dropdown"
   a class="dropdown-toggle" data-toggle="dropdown" href="#"
     = navigation.title
     span class="caret"
