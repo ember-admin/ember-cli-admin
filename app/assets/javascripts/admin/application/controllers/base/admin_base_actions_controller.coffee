@@ -10,6 +10,9 @@
 
   use @@confirm property for show text in confirmation modal
   @@action - is an action in your controller which pass model param
+
+  #for batch actions you don't need save model, because save call automatic when all objects
+
 ###
 
 Admin.Base.Controllers.AdminBaseActionsController = Ember.Controller.extend
@@ -32,8 +35,17 @@ Admin.Base.Controllers.AdminBaseActionsController = Ember.Controller.extend
   edit: (model) ->
     console.log "edit"
 
-  destroy: (model) ->
+  destroy: (model, save=true) ->
+    model.deleteRecord()
+    model.get('store').commit() if save
     console.log "destroy"
 
   show: (model) ->
     console.log "show"
+
+  baseBatchAction: (action) ->
+    store = @get('batches.firstObject').get('store')
+    @get('batches').forEach (model) =>
+      @send(action, model)
+    store.commit()
+    @set('batches', [])

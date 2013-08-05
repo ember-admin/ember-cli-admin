@@ -14,7 +14,5 @@ Admin.Base.Views.BatchActionView = Admin.Base.Views.BaseActionView.extend
     @_super()
 
   _batchAction: ->
-    @get('controller.batches').forEach (model) =>
-      @get('controller').send(@get('context.action'), @get('model'))
-    @set('controller.batches', [])
+    @get('controller').send("baseBatchAction", @get('context.action'))
     Ember.View.views["select-all-batches"].set('checked', false)
