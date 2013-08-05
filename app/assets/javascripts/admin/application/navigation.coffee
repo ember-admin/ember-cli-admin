@@ -18,7 +18,7 @@
       @navigate "Managers"
 
   You can change url for menu when pass url params
-      @navigate "Dashboard", url: "/my_dashbaord", route: "my_dashbaord"
+      @navigate "Dashboard", url: "/my_dashboard", route: "my_dashboard"
 
 params:
   url
