@@ -11,9 +11,8 @@ Admin.NavigationContentView = Ember.View.extend
   ).property('context', 'controller.activeMenu')
 
   setActiveParent: (->
-    $(".nav.navbar-nav li").removeClass('active')
     if @get('isActive')
-      Ember.run.next =>
-        @$().addClass('active')
-        @$().parents("li:first").addClass('active')
+      @set('parentView.isActive', true) if @get('parentView.tagName') == "li"
+    else
+      @set('parentView.isActive', false) if @get('parentView.tagName') == "li"
   ).observes('isActive')
