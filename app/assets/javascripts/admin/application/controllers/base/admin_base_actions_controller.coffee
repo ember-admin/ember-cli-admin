@@ -12,9 +12,9 @@
 Admin.Base.Controllers.AdminBaseActionsController = Ember.Controller.extend
 
   actions: (->
-    [ {title: "create", class: "btn btn-small btn-success", action: "new"},
-      {title: "edit", class: "btn btn-small btn-primary", action: "edit"},
-      {title: "delete", class: "btn btn-small btn-danger", action: "destroy"}
+    [ {title: "edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "icon-pencil icon-white"},
+      {title: "show", class: "btn btn-small btn-success", action: "show", iconClass: "icon-info-sign icon-white"},
+      {title: "delete", confirm: "are you shure?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
     ]
   ).property('')
 
@@ -30,3 +30,6 @@ Admin.Base.Controllers.AdminBaseActionsController = Ember.Controller.extend
 
   destroy: (model) ->
     console.log "destroy"
+
+  show: (model) ->
+    console.log "show"
