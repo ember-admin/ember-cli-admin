@@ -1,8 +1,9 @@
 table.table-striped
+  = partial "base/actions/_batch_actions"
   thead
     tr
       th
-        = partial "base/actions/_batch_actions"
+        Admin.Base.Views.CheckboxBatchView selectAll=true elementId="select-all-batches"
       each attributeName in controller.modelAttributes
         th= attributeName
       th Actions
