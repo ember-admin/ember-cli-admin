@@ -1,4 +1,4 @@
-Ember.View class="modal fade" viewName="modalView"
+Ember.View class="modal fade"
   .modal-dialog
     .modal-content
       .modal-header

@@ -13,13 +13,15 @@ Admin.Base.Views.ActionView = Ember.View.extend
     else
       @get('controller').send(@get('context.action'), @get('model'))
 
-
   confirm: ->
     @get('controller').send(@get('context.action'), @get('model'))
     $('.modal').modal('hide')
 
   _showConfirmation: ->
-    modalView = @get('parentView')["modalView"]
+    modalView = Ember.View.views[@_modalId()]
     modalView.set('action', @get('context'))
     modalView.set('target', @)
     $('.modal').modal({})
+
+  _modalId: ->
+    $(".modal").attr('id')
