@@ -1,19 +1,27 @@
 Admin.Base.Views.CheckboxBatchView = Ember.Checkbox.extend
+  selectAll: false
 
-  click: ->
+  pushItem:(->
     return @_selectAllAction() if @get('selectAll')
-
     if @get('checked')
-      @get('controller.batches').pushObject(@get('context'))
+      @_addItem(@get('context'))
     else
       @get('controller.batches').removeObject(@get('context'))
+  ).observes('checked')
 
-  checked:(->
-    @get('controller.batches').indexOf(@get('context')) >= 0
-  ).property('controller.batches')
+  checkedObserve:(->
+    return if @get('selectAll')
+    if @get('controller.batches').indexOf(@get('context')) >= 0
+      @set('checked', true)
+    else
+      @set('checked', false)
+  ).observes('controller.batches.length')
 
   _selectAllAction: ->
     @set('controller.batches', [])
     if @get('checked')
       @get('controller.model').forEach (item) =>
-        @get('controller.batches').pushObject(item)
+        @_addItem(item)
+
+  _addItem: (item) ->
+    @get('controller.batches').pushObject(item) unless @get('controller.batches').indexOf(item) >= 0
