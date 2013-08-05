@@ -10,7 +10,7 @@ table.table-striped
     each item in controller.content
       tr
         td
-          Ember.Checkbox checkedBinding=item viewName="childViewInstance"
+          Admin.Base.Views.CheckboxBatchView contextBinding="item"
         each attributeName in controller.modelAttributes
           Admin.Base.Views.Table.TdView contextBinding=item attributeNameBinding=attributeName
             = view.value

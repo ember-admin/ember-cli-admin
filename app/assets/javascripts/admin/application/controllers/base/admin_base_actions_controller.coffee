@@ -13,6 +13,7 @@
 ###
 
 Admin.Base.Controllers.AdminBaseActionsController = Ember.Controller.extend
+  batches: []
 
   actions: (->
     [ {title: "edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "icon-pencil icon-white"},

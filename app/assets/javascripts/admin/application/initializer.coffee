@@ -12,6 +12,9 @@
 # navigation section
 #= require ./navigation
 
+#views
+#= require ./views/base/actions/base_action_view
+
 #controllers
 #= require ./controllers/base/admin_base_actions_controller
 #= require ./controllers/base/admin_base_controller
