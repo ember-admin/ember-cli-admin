@@ -13,6 +13,7 @@
 #= require ./navigation
 
 #controllers
+#= require ./controllers/base/admin_base_actions_controller
 #= require ./controllers/base/admin_base_controller
 
 

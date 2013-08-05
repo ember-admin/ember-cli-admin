@@ -1,0 +1,8 @@
+.btn-group
+  a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+    |batch actions
+    span class="caret"
+  ul.dropdown-menu
+    each action in controller.batchActions
+      Admin.Base.Views.BatchActionView contextBinding="action"
+        a href="#"= action.title

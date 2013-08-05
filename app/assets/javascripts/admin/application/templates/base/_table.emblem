@@ -1,14 +1,19 @@
-table.table.table-striped.table-hover
+table.table-striped
   thead
     tr
+      th
+        = partial "base/actions/_batch_actions"
       each attributeName in controller.modelAttributes
         th= attributeName
       th Actions
   tbody
     each item in controller.content
       tr
+        td
+          Ember.Checkbox checkedBinding=item viewName="childViewInstance"
         each attributeName in controller.modelAttributes
           Admin.Base.Views.Table.TdView contextBinding=item attributeNameBinding=attributeName
             = view.value
-        = partial "base/actions/_base_actions"
-        = partial "base/actions/addition_actions"
+        td
+          = partial "base/actions/_base_actions"
+          = partial "base/actions/_addition_actions"
