@@ -13,6 +13,7 @@ Admin.MainRoute = Ember.Route.extend
     if model
       controller.set('model', model)
       controller.set('modelAttributes', Admin.DSL.Attributes.detect(model.type))
+      controller.set('batches', [])
 
   renderTemplate: (controller, model) ->
     @_setActiveRoute()
