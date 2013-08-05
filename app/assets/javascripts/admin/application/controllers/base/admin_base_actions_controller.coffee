@@ -7,6 +7,9 @@
     additionalActions:(->
       [{title: "my action", class: "btn my-action-css", action: "my"}]
     ).property()
+
+  use @@confirm property for show text in confirmation modal
+  @@action - is an action in your controller which pass model param
 ###
 
 Admin.Base.Controllers.AdminBaseActionsController = Ember.Controller.extend
@@ -14,12 +17,12 @@ Admin.Base.Controllers.AdminBaseActionsController = Ember.Controller.extend
   actions: (->
     [ {title: "edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "icon-pencil icon-white"},
       {title: "show", class: "btn btn-small btn-success", action: "show", iconClass: "icon-info-sign icon-white"},
-      {title: "delete", confirm: "are you shure?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
+      {title: "delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
     ]
   ).property('')
 
   batchActions: (->
-    [{title: "delete", confirm: "Are you sure?", action: "destroy"}]
+    [{title: "delete", confirm: "Are you sure to delete this?", action: "destroy"}]
   ).property('')
 
   new: () ->
