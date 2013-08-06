@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/cucumber/cucumber-rails.git
+  revision: 9f63ec33da7e3ac633f1d0f0eb5df5bf45aa1149
+  branch: master_rails4_test
+  specs:
+    cucumber-rails (1.3.1)
+      capybara (>= 1.1.2)
+      cucumber (>= 1.2.0)
+      nokogiri (>= 1.5.0)
+      rails (>= 3.0.0)
+
+GIT
   remote: git://github.com/diowa/twitter-bootstrap-rails.git
   revision: eca6f7e7b45825cf5cddf9ba21ab7d08fbb67896
   branch: bootstrap-3.0.0
@@ -110,15 +121,6 @@ GIT
       rspec-core (= 3.0.0.pre)
       rspec-expectations (= 3.0.0.pre)
       rspec-mocks (= 3.0.0.pre)
-
-GIT
-  remote: git@github.com:dbruns/cucumber-rails.git
-  revision: ac4f437930db0cbf8c91c0594e623a95c711f4a2
-  specs:
-    cucumber-rails (1.3.0)
-      capybara (>= 1.1.2)
-      cucumber (>= 1.2.0)
-      nokogiri (>= 1.5.0)
 
 GIT
   remote: git@github.com:rspec/rspec-expectations.git

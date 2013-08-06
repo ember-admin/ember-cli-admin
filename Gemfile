@@ -35,7 +35,7 @@ group :test, :development do
   gem "rspec-mocks", git: "git@github.com:rspec/rspec-mocks.git"
   gem "capybara"
   gem "poltergeist"
-  gem 'cucumber-rails', require: false, git:"git@github.com:dbruns/cucumber-rails.git"
+  gem 'cucumber-rails', require: false, git:"git://github.com/cucumber/cucumber-rails.git", branch: "master_rails4_test"
   gem 'qunit-rails'
 end
 
