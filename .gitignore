@@ -17,6 +17,3 @@
 .idea/
 vendor/bundle
 .rvmrc
-app/assets/javascripts/admin/application/models/*.*
-app/assets/javascripts/admin/application/controllers/test/users_controller.coffee
-app/assets/javascripts/admin/application/routes/test/user_route.coffee

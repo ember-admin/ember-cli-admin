@@ -8,7 +8,7 @@
 #= require_tree ./templates
 
 #= require ./store
-#= require_tree ./models
+#qq= require_tree ./models
 
 #= require ./router
 #= require_tree ./routes
