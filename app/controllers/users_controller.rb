@@ -9,6 +9,18 @@ class UsersController < ActionController::Base
     render json: {users: collections.slice(start, count)}
   end
 
+  def destroy
+    render status: 204, nothing: true
+  end
+
+  def show
+
+  end
+
+  def update
+    
+  end
+
   private
 
   def collections
