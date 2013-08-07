@@ -18,7 +18,7 @@ class UsersController < ActionController::Base
   def generate
     @collections = []
     100.times do |i|
-      @collections.push({id: i, email: "email#{i}@example.com"})
+      @collections.push({id: i, email: Forgery(:internet).email_address})
     end
     @collections
   end
