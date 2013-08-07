@@ -7,11 +7,11 @@
     @options - hash
     @nestedMenu - function
 
-  If you wont use another main controller, you must set route param to ""
+  If you want use another main controller, you must set route param to ""
   for example:
     @navigate "MyDashboard", route: ""
 
-  When you wont use Menu group:
+  When you want use Menu group:
 
     @navigate "Users", ->
       @navigate "Admins"
