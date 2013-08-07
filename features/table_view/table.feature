@@ -25,7 +25,8 @@ Feature: Table View in page
 
   @javascript
   Scenario: Delete action with confirm window
-    When I click delete link in item "1"
+    When I wait for "1" seconds
+    And I click delete link in item "1"
     Then I should see confirm popup with "delete"
     And  I press "Confirm"
     Then I should not see "delete"
@@ -33,7 +34,8 @@ Feature: Table View in page
 
   @javascript
   Scenario: Tries to delete item
-    When I click delete link in item "1"
+    When I wait for "1" seconds
+    And I click delete link in item "1"
     Then I should see confirm popup with "delete"
     And  I press "Close"
     Then I should not see "delete"
@@ -41,7 +43,8 @@ Feature: Table View in page
 
   @javascript
   Scenario: Tries to delete items in batch actions
-    When I check 1 and 2 items
+    When I wait for "1" seconds
+    And I check 1 and 2 items
     Then I click link "batch actions"
     And  I click link "delete"
     Then I should see confirm popup with "delete"
@@ -64,7 +67,8 @@ Feature: Table View in page
 
   @javascript
   Scenario: Batch actions delete items
-    When I check 1 and 2 items
+    When I wait for "1" seconds
+    And I check 1 and 2 items
     Then I click link "batch actions"
     And  I click link "delete"
     Then I should see confirm popup with "delete"
