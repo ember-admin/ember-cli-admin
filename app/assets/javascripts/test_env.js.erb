@@ -6,7 +6,6 @@
             return [this.get('email')];
         }).property('email')
     });
-
     Admin.User.FIXTURES = [
         {
             id: 1,
@@ -49,7 +48,6 @@
             email: 'Fixture object 10'
         }
     ];
-
 }).call(this);
 (function () {
     Admin.Router.map(function () {
@@ -81,8 +79,12 @@
             return console.log("clone");
         }
     });
-
 }).call(this);
-
+    <% if Rails.env.test? %>
+        Admin.Store = DS.Store.extend({
+            revision: 11,
+            adapter: DS.FixtureAdapter.create()
+        });
+    <% end %>
 Ember.LOG_VERSION = false;
 <% end %>

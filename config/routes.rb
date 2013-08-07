@@ -8,5 +8,6 @@ EmberRailsAdmin::Application.routes.draw do
   namespace :admin do
     match "/dashboard" => "dashboard#index", via: :get
   end
+  resources :users
 
 end
