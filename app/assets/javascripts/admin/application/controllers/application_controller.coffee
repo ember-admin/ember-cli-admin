@@ -1,1 +1,1 @@
-Admin.ApplicationController = Ember.Controller.extend()
+Admin.ApplicationController = Admin.Base.Controllers.AdminBaseTableController.extend()

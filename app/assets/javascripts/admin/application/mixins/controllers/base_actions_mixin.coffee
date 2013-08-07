@@ -15,13 +15,14 @@
 
 ###
 
-Admin.Base.Controllers.AdminBaseActionsController = Ember.Controller.extend
+Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
+
   batches: []
 
   actions: (->
     [ {title: "edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "icon-pencil icon-white"},
-      {title: "show", class: "btn btn-small btn-success", action: "show", iconClass: "icon-info-sign icon-white"},
-      {title: "delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
+    {title: "show", class: "btn btn-small btn-success", action: "show", iconClass: "icon-info-sign icon-white"},
+    {title: "delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
     ]
   ).property('')
 

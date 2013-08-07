@@ -1,1 +1,0 @@
-Admin.BaseController = Admin.Base.Controllers.AdminBaseActionsController.extend()

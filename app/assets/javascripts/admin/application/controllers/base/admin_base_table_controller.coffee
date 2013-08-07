@@ -1,2 +1,2 @@
-Admin.Base.Controllers.AdminBaseTableController = Admin.BaseController.extend
+Admin.Base.Controllers.AdminBaseTableController = Ember.Controller.extend Admin.Base.Mixins.BaseActionsMixin,
   table: true

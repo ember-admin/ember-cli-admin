@@ -10,3 +10,6 @@
 
 #views
 @Admin.Base.Views.Table = Ember.Namespace.create()
+
+#mixins
+@Admin.Base.Mixins = Ember.Namespace.create()

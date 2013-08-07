@@ -1,6 +1,11 @@
 ###
   Require all base component for Application
 ###
+
+#mixins
+#= require_tree ./mixins
+
+
 # route section
 
 #= require ./routes/main_route
@@ -16,7 +21,7 @@
 #= require ./views/base/actions/base_action_view
 
 #controllers
-#= require ./controllers/base/admin_base_actions_controller
-#= require ./controllers/base/admin_base_controller
+#= require ./controllers/base/admin_base_table_controller.coffee
+
 
 
