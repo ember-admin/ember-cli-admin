@@ -19,4 +19,5 @@ table.table-striped
           = partial "base/actions/_base_actions"
           = partial "base/actions/_addition_actions"
 
+partial "base/_pagination"
 partial "base/actions/_modal"

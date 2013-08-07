@@ -1,0 +1,13 @@
+.btn-group
+  Admin.Base.Views.PaginationPerPageView count=25
+    | 25
+  Admin.Base.Views.PaginationPerPageView count=50
+    |50
+  Admin.Base.Views.PaginationPerPageView count=100
+    | 100
+
+ul class="pager"
+  li
+    a href="#" Previous
+  li
+    a href="#" Next
