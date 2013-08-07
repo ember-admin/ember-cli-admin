@@ -1,4 +1,4 @@
-<% if Rails.env.test? %>
+<% if Rails.env.test? || Rails.env.development? %>
 (function () {
     Admin.User = DS.Model.extend({
         email: DS.attr('string'),
@@ -6,6 +6,49 @@
             return [this.get('email')];
         }).property('email')
     });
+
+    Admin.User.FIXTURES = [
+        {
+            id: 1,
+            email: 'Fixture object 1'
+        },
+        {
+            id: 2,
+            email: 'Fixture object 2'
+        },
+        {
+            id: 3,
+            email: 'Fixture object 3'
+        },
+        {
+            id: 4,
+            email: 'Fixture object 4'
+        },
+        {
+            id: 5,
+            email: 'Fixture object 5'
+        },
+        {
+            id: 6,
+            email: 'Fixture object 6'
+        },
+        {
+            id: 7,
+            email: 'Fixture object 7'
+        },
+        {
+            id: 8,
+            email: 'Fixture object 8'
+        },
+        {
+            id: 9,
+            email: 'Fixture object 9'
+        },
+        {
+            id: 10,
+            email: 'Fixture object 10'
+        }
+    ];
 
 }).call(this);
 (function () {
@@ -16,57 +59,9 @@
         return this.route("users", {
             path: "/users"
         });
-    });
-
-}).call(this);
-
-(function () {
-    Admin.UsersRoute = Admin.MainRoute.extend({
-        model: function (options, transition) {
-            Admin.User.FIXTURES = [
-                {
-                    id: 1,
-                    email: 'Fixture object 1'
-                },
-                {
-                    id: 2,
-                    email: 'Fixture object 2'
-                },
-                {
-                    id: 3,
-                    email: 'Fixture object 3'
-                },
-                {
-                    id: 4,
-                    email: 'Fixture object 4'
-                },
-                {
-                    id: 5,
-                    email: 'Fixture object 5'
-                },
-                {
-                    id: 6,
-                    email: 'Fixture object 6'
-                },
-                {
-                    id: 7,
-                    email: 'Fixture object 7'
-                },
-                {
-                    id: 8,
-                    email: 'Fixture object 8'
-                },
-                {
-                    id: 9,
-                    email: 'Fixture object 9'
-                },
-                {
-                    id: 10,
-                    email: 'Fixture object 10'
-                }
-            ];
-            return this._super(options, transition);
-        }
+        return this.route("settings", {
+            path: "/settings"
+        });
     });
 
 }).call(this);

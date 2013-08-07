@@ -1,3 +1,4 @@
+#= require ./resolver
 #= require_self
 #= require ./namespace
 #= require_tree ./dsl
@@ -14,4 +15,6 @@
 #= require_tree ./routes
 #= require_tree ./controllers
 
-@Admin = Ember.Application.create()
+@Admin = Ember.Application.create(
+  resolver: Admin.Resolver.extend()
+)
