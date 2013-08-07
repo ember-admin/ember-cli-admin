@@ -38,6 +38,7 @@ group :test, :development do
   gem 'cucumber-rails', require: false, git:"git://github.com/cucumber/cucumber-rails.git", branch: "master_rails4_test"
   gem 'launchy'
   gem 'qunit-rails'
+  gem 'forgery'
 end
 
 group :doc do
