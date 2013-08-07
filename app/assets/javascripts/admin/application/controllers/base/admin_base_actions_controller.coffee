@@ -38,7 +38,6 @@ Admin.Base.Controllers.AdminBaseActionsController = Ember.Controller.extend
   destroy: (model, save=true) ->
     model.deleteRecord()
     model.get('store').commit() if save
-    console.log "destroy"
 
   show: (model) ->
     console.log "show"
