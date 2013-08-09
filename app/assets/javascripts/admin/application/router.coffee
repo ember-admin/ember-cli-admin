@@ -1,3 +1,5 @@
 Admin.Router.map () ->
   @route "dashboard", path: "/"
-  @route "users", path: "/users"
+
+Admin.MetaRoute.map () ->
+  @resources "users", path: "/users"

@@ -11,6 +11,7 @@
 #= require ./store
 #qq= require_tree ./models
 
+#= require ././meta_route
 #= require ./router
 #= require_tree ./routes
 #= require_tree ./controllers

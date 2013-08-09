@@ -4,10 +4,13 @@ Admin.MainRoute = Ember.Route.extend
     modelName = @_modelName(transition.targetName)
     modelType = @_modelType(modelName)
     if modelType
-      if Object.keys(options).length == 0
-        modelType.find()
+      if options.id == undefined
+        @pagination(modelType, "_page=1")
       else
-        modelType.find(options.id)
+        if @_checkPaginations(options.id)
+          @pagination(modelType, options.id)
+        else
+          modelType.find(options.id)
 
   setupController:(controller, model) ->
     if model
@@ -23,6 +26,9 @@ Admin.MainRoute = Ember.Route.extend
       controller: 'navigation'
     }
 
+  pagination: (modelType, param) ->
+    modelType.find({page: @_page(param)})
+
   _getControllerTemplate: (controller) ->
     name = controller._debugContainerKey.split(":")[1]
     if Ember.TEMPLATES[name] then name else "main"
@@ -36,3 +42,9 @@ Admin.MainRoute = Ember.Route.extend
 
   _modelType: (modelName) ->
     eval("Admin.%@".fmt(modelName.classify()))
+
+  _checkPaginations: (id) ->
+    /_page=\d+/.test id
+
+  _page: (id) ->
+    /_page=(\d+)/.exec(id)[1]
