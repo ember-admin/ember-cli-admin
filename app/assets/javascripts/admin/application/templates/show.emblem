@@ -1,4 +1,9 @@
-h2
-  |Show!
-  br
-  = model.email
+h2 Show
+
+table
+  tbody
+    each attributeName in controller.modelAttributes
+      tr
+        th = attributeName
+        Admin.Base.Views.Table.TdView contextBinding=model attributeNameBinding=attributeName
+          = view.value
