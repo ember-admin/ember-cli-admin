@@ -8,6 +8,7 @@ end
 
 Given /^(?:|I )go to '(.+)'$/ do |path|
   visit path
+  sleep 1
 end
 
 Given /^(?:|I )go to '(.+)' and wait$/ do |path|
@@ -28,7 +29,8 @@ When /^(?:|I )press "([^"]*)"(?: within "([^"]*)")?$/ do |title, selector|
 end
 
 When(/^(?:|I )press "(.*?)" and wait$/) do |title|
-  with_ajax { click_button(title) }
+   click_button(title)
+   sleep 1
 end
 
 When /^I fill in "(.*)" with "(.*)"$/ do |field, pystring|
@@ -40,7 +42,8 @@ When /^I click "(.*)"$/ do |element|
 end
 
 When /^I click "(.*)" and wait$/ do |selector|
-  with_ajax { find(selector).click() }
+   find(selector).click()
+   sleep 1
 end
 
 When /^I click link "(.*)"$/ do |title|

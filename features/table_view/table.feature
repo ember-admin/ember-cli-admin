@@ -3,13 +3,12 @@ Feature: Table View in page
     Given I go to '/#/users'
 
   @javascript
-  Scenario: Table view with 10 items
+  Scenario: Table view with 25 items
     Then I should see table view
     And I should see "Actions"
     And I should see "email"
     And I should see "id"
-    And I should see 10 items in table
-
+    And I should see 25 items in table
 
   @javascript
   Scenario: Base Actions in table view
@@ -25,31 +24,28 @@ Feature: Table View in page
 
   @javascript
   Scenario: Delete action with confirm window
-    When I wait for "1" seconds
     And I click delete link in item "1"
     Then I should see confirm popup with "delete"
     And  I press "Confirm"
     Then I should not see "delete"
-    And I should see 9 items in table
+    And I should see 24 items in table
 
   @javascript
   Scenario: Tries to delete item
-    When I wait for "1" seconds
     And I click delete link in item "1"
     Then I should see confirm popup with "delete"
     And  I press "Close"
     Then I should not see "delete"
-    And I should see 10 items in table
+    And I should see 25 items in table
 
   @javascript
   Scenario: Tries to delete items in batch actions
-    When I wait for "1" seconds
     And I check 1 and 2 items
     Then I click link "batch actions"
     And  I click link "delete"
     Then I should see confirm popup with "delete"
     And  I press "Close"
-    And I should see 10 items in table
+    And I should see 25 items in table
 
   @javascript
   Scenario: Popup don't show when items doesn't check for batch actions
@@ -67,13 +63,12 @@ Feature: Table View in page
 
   @javascript
   Scenario: Batch actions delete items
-    When I wait for "1" seconds
     And I check 1 and 2 items
     Then I click link "batch actions"
     And  I click link "delete"
     Then I should see confirm popup with "delete"
-    And  I press "Confirm"
-    And I should see 8 items in table
+    And  I press "Confirm" and wait
+    And I should see 23 items in table
 
   @javascript
   Scenario: Batch actions delete all
@@ -82,5 +77,5 @@ Feature: Table View in page
     And  I click link "delete"
     Then I should see confirm popup with "delete"
     And  I press "Confirm"
-    And I should see 0 items in table
+    And I should see empty view with spinner
 

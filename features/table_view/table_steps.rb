@@ -41,5 +41,10 @@ Then(/^I uncheck all items$/) do
   find("#select-all-batches").set(false)
 end
 
+Then(/^I should see empty view with spinner$/) do
+  page.all("table tr").count.should be 2
+  page.has_css?(".icon-spinner")
+end
+
 
 

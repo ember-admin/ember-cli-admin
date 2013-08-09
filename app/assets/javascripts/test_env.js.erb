@@ -6,61 +6,9 @@
             return [this.get('email')];
         }).property('email')
     });
-    Admin.User.FIXTURES = [
-        {
-            id: 1,
-            email: 'Fixture object 1'
-        },
-        {
-            id: 2,
-            email: 'Fixture object 2'
-        },
-        {
-            id: 3,
-            email: 'Fixture object 3'
-        },
-        {
-            id: 4,
-            email: 'Fixture object 4'
-        },
-        {
-            id: 5,
-            email: 'Fixture object 5'
-        },
-        {
-            id: 6,
-            email: 'Fixture object 6'
-        },
-        {
-            id: 7,
-            email: 'Fixture object 7'
-        },
-        {
-            id: 8,
-            email: 'Fixture object 8'
-        },
-        {
-            id: 9,
-            email: 'Fixture object 9'
-        },
-        {
-            id: 10,
-            email: 'Fixture object 10'
-        }
-    ];
 }).call(this);
 (function () {
-    Admin.Router.map(function () {
-        this.route("dashboard", {
-            path: "/"
-        });
-        return this.route("users", {
-            path: "/users"
-        });
-        return this.route("settings", {
-            path: "/settings"
-        });
-    });
+
 
 }).call(this);
 
@@ -80,11 +28,9 @@
         }
     });
 }).call(this);
+
     <% if Rails.env.test? %>
-        Admin.Store = DS.Store.extend({
-            revision: 11,
-            adapter: DS.FixtureAdapter.create()
-        });
+        Ember.LOG_VERSION = false;
+        window.console.log = function(){};
     <% end %>
-Ember.LOG_VERSION = false;
 <% end %>
