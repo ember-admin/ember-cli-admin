@@ -79,3 +79,9 @@ Feature: Table View in page
     And  I press "Confirm"
     And I should see 0 items in table
 
+  @javascript
+  Scenario: Transition to show page
+    When I click show link in item "1"
+    Then I should see "Show"
+    And I should see "id"
+    And I should see "email"
