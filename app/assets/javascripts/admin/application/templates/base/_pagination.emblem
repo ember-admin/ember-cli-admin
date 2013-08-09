@@ -8,6 +8,8 @@
 
 ul class="pager"
   li
-    a href="#" Previous
+    Admin.PaginationLinkView type="prev"
+      |Previous
   li
-    a href="#" Next
+    Admin.PaginationLinkView type="next"
+      |Next

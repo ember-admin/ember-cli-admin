@@ -2,6 +2,8 @@ Admin.MainRoute = Ember.Route.extend
 
   model: (options, transition) ->
     @action = undefined
+    @page = undefined
+
     modelName = @_modelName(transition.targetName)
     modelType = @_modelType(modelName)
     @_setAction(options.action) if options.action
@@ -15,6 +17,7 @@ Admin.MainRoute = Ember.Route.extend
           modelType.find(options.id)
 
   setupController:(controller, model) ->
+    @_setupPaginationInfo(controller)
     if model
       type = (model.type || model.get('_reference').type)
       controller.set('model', model)
@@ -33,11 +36,14 @@ Admin.MainRoute = Ember.Route.extend
     modelType.find({page: @_page(param)})
 
   _getControllerTemplate: (controller) ->
-    name = controller._debugContainerKey.split(":")[1]
+    name = @_controllerName(controller)
     if Ember.TEMPLATES[name]
       name
     else
       if @action then @action else "main"
+
+  _controllerName: (controller) ->
+    controller._debugContainerKey.split(":")[1]
 
   _setActiveRoute: ->
     url = Ember.Location.create({implementation: 'hash'}).getURL()
@@ -54,7 +60,20 @@ Admin.MainRoute = Ember.Route.extend
     /_page=\d+/.test id
 
   _page: (id) ->
-    /_page=(\d+)/.exec(id)[1]
+    @page = parseInt(/_page=(\d+)/.exec(id)[1])
+    @page
 
   _setAction: (action) ->
     @action = action
+
+  _setupPaginationInfo: (controller) ->
+    controller.set('page', @page)
+    controller.set('name', @_controllerName(controller))
+    if @page
+      nextPage = @page + 1
+      prevPage = if @page - 1 < 1 then 1 else @page - 1
+      controller.set('nextPage', nextPage)
+      controller.set('prevPage', prevPage)
+    else
+      controller.set('nextPage', undefined)
+      controller.set('prevPage', undefined)

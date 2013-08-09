@@ -6,7 +6,7 @@ class UsersController < ActionController::Base
     count = page * per_page
     start = 0
     start = (page - 1) * per_page if page > 1
-    render json: {users: collections.slice(start, count)}
+    render json: {users: collections[start..count]}
   end
 
   def destroy
