@@ -1,6 +1,7 @@
 Admin.MainRoute = Ember.Route.extend
 
   model: (options, transition) ->
+    @action = undefined
     modelName = @_modelName(transition.targetName)
     modelType = @_modelType(modelName)
     @_setAction(options.action) if options.action
