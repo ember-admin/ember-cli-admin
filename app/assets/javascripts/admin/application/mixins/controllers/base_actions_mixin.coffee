@@ -42,7 +42,8 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
     model.get('store').commit() if save
 
   show: (model) ->
-    @transitionToRoute("users/#{model.id}/show")
+    locationObject = Ember.Location.create({implementation: 'hash'})
+    locationObject.setURL("/users/#{model.id}/show")
 
   baseBatchAction: (action) ->
     store = @get('batches.firstObject').get('store')

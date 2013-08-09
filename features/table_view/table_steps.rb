@@ -1,5 +1,5 @@
-When(/^I click delete link in item "(.*?)"$/) do |id|
-  page.all("table tr")[id.to_i].find("a[title='delete']").click
+When(/^I click (.*?) link in item "(.*?)"$/) do |action, id|
+  page.all("table tr")[id.to_i].find("a[title='#{action}']").click
 end
 
 When(/^I check (\d+) and (\d+) items$/) do |id1, id2|
