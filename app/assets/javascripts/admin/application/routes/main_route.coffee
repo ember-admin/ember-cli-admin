@@ -14,8 +14,8 @@ Admin.MainRoute = Ember.Route.extend
           modelType.find(options.id)
 
   setupController:(controller, model) ->
-    type = (model.type || model.get('_reference').type)
     if model
+      type = (model.type || model.get('_reference').type)
       controller.set('model', model)
       controller.set('modelAttributes', Admin.DSL.Attributes.detect(type))
       controller.set('batches', [])
