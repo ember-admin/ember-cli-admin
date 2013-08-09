@@ -77,5 +77,5 @@ Feature: Table View in page
     And  I click link "delete"
     Then I should see confirm popup with "delete"
     And  I press "Confirm"
-    And I should see empty view with spinner
+    And I should see 0 items in table
 
