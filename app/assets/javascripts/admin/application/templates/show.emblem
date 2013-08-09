@@ -1,0 +1,4 @@
+h2
+  |Show!
+  br
+  = model.email

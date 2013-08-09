@@ -6,11 +6,11 @@ class Admin.MetaRoute
     self = @
     Admin.Router.map () ->
       @route name, path: "/#{name}"
-      @route name, path: self._edit_path(name)
-      @route name, path: self._show_path(name)
+      @route "#{name}.edit", path: self._edit_path(name)
+      @route "#{name}.show", path: self._show_path(name)
 
   _edit_path: (name) ->
-    "/#{name}/:id/edit"
+    "/#{name}/:id/:action"
 
   _show_path: (name) ->
-    "/#{name}/:id"
+    "/#{name}/:id/:action"

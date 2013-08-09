@@ -14,7 +14,7 @@ class UsersController < ActionController::Base
   end
 
   def show
-
+    render json: {user: collections[params[:id].to_i]}
   end
 
   def update

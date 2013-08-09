@@ -3,6 +3,7 @@ Admin.MainRoute = Ember.Route.extend
   model: (options, transition) ->
     modelName = @_modelName(transition.targetName)
     modelType = @_modelType(modelName)
+    @_setAction(options.action) if options.action
     if modelType
       if options.id == undefined
         @pagination(modelType, "_page=1")
@@ -13,9 +14,10 @@ Admin.MainRoute = Ember.Route.extend
           modelType.find(options.id)
 
   setupController:(controller, model) ->
+    type = (model.type || model.get('_reference').type)
     if model
       controller.set('model', model)
-      controller.set('modelAttributes', Admin.DSL.Attributes.detect(model.type))
+      controller.set('modelAttributes', Admin.DSL.Attributes.detect(type))
       controller.set('batches', [])
 
   renderTemplate: (controller, model) ->
@@ -31,13 +33,17 @@ Admin.MainRoute = Ember.Route.extend
 
   _getControllerTemplate: (controller) ->
     name = controller._debugContainerKey.split(":")[1]
-    if Ember.TEMPLATES[name] then name else "main"
+    if Ember.TEMPLATES[name]
+      name
+    else
+      if @action then @action else "main"
 
   _setActiveRoute: ->
     url = Ember.Location.create({implementation: 'hash'}).getURL()
     @controllerFor("navigation").set('activeMenu', url)
 
   _modelName:(name) ->
+    if /\./.test(name) then name = name.split(".")[0]
     Admin.DSL.Attributes.singularize(name)
 
   _modelType: (modelName) ->
@@ -48,3 +54,6 @@ Admin.MainRoute = Ember.Route.extend
 
   _page: (id) ->
     /_page=(\d+)/.exec(id)[1]
+
+  _setAction: (action) ->
+    @action = action
