@@ -4,5 +4,6 @@
 #= require ember
 #= require ember-data
 #= require twbs/bootstrap
+#= require ./jquery.cookie
 #= require ./admin/application/admin
 #= require test_env

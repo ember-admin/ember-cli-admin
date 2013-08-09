@@ -33,7 +33,8 @@ Admin.MainRoute = Ember.Route.extend
     }
 
   pagination: (modelType, param) ->
-    modelType.find({page: @_page(param)})
+    perPage = ($.cookie('perPage') || 25)
+    modelType.find({page: @_page(param), per_page: perPage})
 
   _getControllerTemplate: (controller) ->
     name = @_controllerName(controller)
