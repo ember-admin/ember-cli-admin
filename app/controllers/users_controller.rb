@@ -18,7 +18,8 @@ class UsersController < ActionController::Base
   end
 
   def update
-    
+    collections[params[:id].to_i][:email] = params[:user][:email]
+    render json: {user: collections[params[:id].to_i]}
   end
 
   private

@@ -85,3 +85,8 @@ Feature: Table View in page
     Then I should see "Show"
     And I should see "id"
     And I should see "email"
+
+  @javascript
+  Scenario: Transition to edit page
+    When I click edit link in item "1"
+    Then I should see "Edit"

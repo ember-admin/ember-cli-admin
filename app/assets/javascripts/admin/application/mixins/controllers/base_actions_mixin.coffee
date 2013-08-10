@@ -34,7 +34,11 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
     console.log "new"
 
   edit: (model) ->
-    console.log "edit"
+    locationObject = Ember.Location.create({implementation: 'hash'})
+    locationObject.setURL("/#{@get('name')}/#{model.id}/edit")
+
+  update: (model)->
+    model.get('store').commit()
 
   destroy: (model, save=true) ->
     model.deleteRecord()
@@ -43,7 +47,7 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
 
   show: (model) ->
     locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL("/users/#{model.id}/show")
+    locationObject.setURL("/#{@get('name')}/#{model.id}/show")
 
   baseBatchAction: (action) ->
     store = @get('batches.firstObject').get('store')
