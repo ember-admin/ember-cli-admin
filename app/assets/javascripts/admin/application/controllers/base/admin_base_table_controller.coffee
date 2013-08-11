@@ -19,4 +19,4 @@ Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend 
   submit: ->
     @get('model').save()
     locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL("/users")
+    locationObject.setURL(@get('name'))

@@ -48,7 +48,7 @@ Admin.MainRoute = Ember.Route.extend
       if @action then @action else "main"
 
   _controllerName: (controller) ->
-    controller._debugContainerKey.split(":")[1]
+    controller._debugContainerKey.split(":")[1].replace(/[Show|Edit]/g, '')
 
   _setActiveRoute: ->
     url = Ember.Location.create({implementation: 'hash'}).getURL()
