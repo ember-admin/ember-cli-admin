@@ -1,6 +1,6 @@
 h1 Edit
 
 = formFor controller.model wrapper="twitter-bootstrap"
-  = input email
   each attribute in controller.formAttributes
-    = boundInput attribute.name context=model
+    = boundInput attribute.name
+  = submit

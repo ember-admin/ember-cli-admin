@@ -8,7 +8,7 @@ table.table-striped
         th= attributeName
       th Actions
   tbody
-    each item in controller.content
+    each item in controller.model.items
       tr
         td
           Admin.Base.Views.CheckboxBatchView contextBinding="item"

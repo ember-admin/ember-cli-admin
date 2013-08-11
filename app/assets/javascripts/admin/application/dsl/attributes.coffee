@@ -1,7 +1,15 @@
 class Admin.DSL.Attributes
 
   @detect: (modelType) ->
-    attributes = ["id"]
+    @withId(modelType)
+
+  @withId: (modelType) ->
+    attrs = @withoutId(modelType)
+    attrs.unshift("id")
+    attrs
+
+  @withoutId: (modelType)->
+    attributes = []
     modelType.eachComputedProperty (attribute, meta) =>
       attributes.push(attribute) if meta.isAttribute
     attributes

@@ -12,6 +12,11 @@ Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend 
   ).observes('perPage')
 
   formAttributes:(->
-    @get('modelAttributes').map (item) =>
-      {name: item}
+    Admin.DSL.Attributes.withoutId(@get("model._reference").type).map (attr) =>
+      {name: attr}
   ).property('modelAttributes.@each')
+
+  submit: ->
+    @get('model').save()
+    locationObject = Ember.Location.create({implementation: 'hash'})
+    locationObject.setURL("/users")

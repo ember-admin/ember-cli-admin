@@ -1,9 +1,14 @@
 // Last commit: ce0709a (2013-05-16 17:09:31 +0100)
 
 
+
+
+// Last commit: bbb9ad3 (2013-05-30 21:02:34 -0400)
+
+
 (function() {
     Ember.EasyForm = Ember.Namespace.create({
-        VERSION: '0.3.1'
+        VERSION: '0.3.2'
     });
 
 })();
@@ -57,8 +62,9 @@
 
 
 (function() {
-    Ember.Handlebars.registerBoundHelper('formFor', function(object, options) {
-        return Ember.Handlebars.helpers.view.call(object, Ember.EasyForm.Form, options);
+    Ember.Handlebars.registerHelper('formFor', function(object, options) {
+        options.hash.contentBinding = object;
+        return Ember.Handlebars.helpers.view.call(this, Ember.EasyForm.Form, options);
     });
 
 })();
@@ -73,17 +79,17 @@
     });
 })();
 
-
-
-(function() {
-    Ember.Handlebars.registerHelper('input', function(property, options) {
+(function(){
+    Ember.Handlebars.registerBoundHelper("boundInput", function(property, options){
         options.hash.inputOptions = Ember.copy(options.hash);
         options.hash.property = property;
         options.hash.isBlock = !!(options.fn);
         return Ember.Handlebars.helpers.view.call(this, Ember.EasyForm.Input, options);
     });
+})();
 
-    Ember.Handlebars.registerBoundHelper("boundInput", function(property, options){
+(function() {
+    Ember.Handlebars.registerHelper('input', function(property, options) {
         options.hash.inputOptions = Ember.copy(options.hash);
         options.hash.property = property;
         options.hash.isBlock = !!(options.fn);
@@ -96,7 +102,6 @@
 
 (function() {
     Ember.Handlebars.registerHelper('inputField', function(property, options) {
-
         var context = this,
             propertyType = function(property) {
                 try {
@@ -105,6 +110,7 @@
                     return null;
                 }
             };
+
         options.hash.valueBinding = property;
         options.hash.viewName = 'inputField-'+options.data.view.elementId;
 
@@ -160,8 +166,7 @@
 
                 options.hash.type = options.hash.as;
             }
-            console.log(options);
-            return Ember.Handlebars.helpers.view.call((context.get('content') || context), Ember.EasyForm.TextField, options);
+            return Ember.Handlebars.helpers.view.call(context, Ember.EasyForm.TextField, options);
         }
     });
 
@@ -358,6 +363,7 @@
             }
 
             options.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+
             return '{{inputField '+this.property+' '+options+'}}';
         },
         errorField: function() {
@@ -438,7 +444,7 @@
 
 
 (function() {
-    Ember.EasyForm.TextArea = Ember.TextArea.extend({});
+    Ember.EasyForm.TextArea = Ember.TextArea.extend();
 
 })();
 
@@ -483,3 +489,6 @@
 (function() {
 
 })();
+
+
+
