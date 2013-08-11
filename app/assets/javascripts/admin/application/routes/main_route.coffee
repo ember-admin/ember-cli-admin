@@ -17,10 +17,10 @@ Admin.MainRoute = Ember.Route.extend
           modelType.find(options.id)
 
   setupController:(controller, model) ->
-    @_setupPaginationInfo(controller)
     if model
       type = (model.type || model.get('_reference').type)
       controller.set('model', model)
+      @_setupPaginationInfo(controller)
       controller.set('modelAttributes', Admin.DSL.Attributes.detect(type))
       controller.set('batches', [])
 

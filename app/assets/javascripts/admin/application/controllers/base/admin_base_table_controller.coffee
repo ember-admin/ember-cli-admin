@@ -1,4 +1,4 @@
-Admin.Base.Controllers.AdminBaseTableController = Ember.Controller.extend Admin.Base.Mixins.BaseActionsMixin,
+Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend Admin.Base.Mixins.BaseActionsMixin,
   perPage: (parseInt($.cookie('perPage')) || 25)
   table: true
 
@@ -10,3 +10,8 @@ Admin.Base.Controllers.AdminBaseTableController = Ember.Controller.extend Admin.
     collection = @get('model.type').find({per_page: @get('perPage'), page: (@get('page') || 1)})
     @set('model', collection)
   ).observes('perPage')
+
+  formAttributes:(->
+    @get('modelAttributes').map (item) =>
+      {name: item}
+  ).property('modelAttributes.@each')
