@@ -1,10 +1,6 @@
 h1 Edit
 
-form
-  each attributeName in controller.modelAttributes
-    .form-group
-      label for=attributeName = attributeName
-      Admin.Base.Views.TextInputView contextBinding=model attributeNameBinding=attributeName
-
-  Admin.Base.Views.ButtonView action="update" contextBinding=model
-    |Update
+= formFor controller.model wrapper="twitter-bootstrap"
+  = input email
+  each attribute in controller.formAttributes
+    = boundInput attribute.name context=model

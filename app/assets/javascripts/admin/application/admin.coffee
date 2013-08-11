@@ -16,6 +16,8 @@
 #= require_tree ./routes
 #= require_tree ./controllers
 
+#= require ./form_config
+
 @Admin = Ember.Application.create(
   resolver: Admin.Resolver.extend()
 )
