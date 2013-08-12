@@ -2,8 +2,8 @@ h2 Show
 
 table
   tbody
-    each attributeName in controller.modelAttributes
+    each attribute in controller.formAttributes
       tr
-        th = attributeName
-        Admin.Base.Views.Table.TdView contextBinding=model attributeNameBinding=attributeName
+        th = attribute.name
+        Admin.Base.Views.Table.TdView contextBinding=model attributeNameBinding=attribute.name
           = view.value
