@@ -91,3 +91,29 @@ Feature: Table View in page
   Scenario: Transition to edit page
     When I click edit link in item "1"
     Then I should see "Edit"
+
+  @javascript
+  Scenario: Edit item
+    And I click edit link in item "1"
+    When I fill in "Email" with "foo@bar.com"
+    And I fill in "Name" with "Foo Bar"
+    And I press "Submit"
+    And I wait for "3" seconds
+    Then I should see table view
+    And I should see "foo@bar.com"
+    And I should see "Foo Bar"
+
+  @javascript
+  Scenario: Transition to new page
+    When I press "New"
+    Then I should see "New"
+
+  @javascript
+  Scenario: Create new item
+    And I press "New"
+    When I fill in "Email" with "foo@bar.com"
+    And I fill in "Name" with "Foo Bar"
+    And I press "Submit"
+    Then I should see table view
+    And I should see "foo@bar.com"
+    And I should see "Foo Bar"
