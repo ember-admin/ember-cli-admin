@@ -4,7 +4,7 @@
 #= require_tree ./dsl
 #= require ./initializer
 
-#= require_tree ./helpers
+#q= require_tree ./helpers
 #= require_tree ./views
 #= require_tree ./templates
 
