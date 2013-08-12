@@ -1,20 +1,16 @@
 Admin.MainRoute = Ember.Route.extend
 
   model: (options, transition) ->
+
     @action = undefined
     @page = undefined
 
     modelName = @_modelName(transition.targetName)
     modelType = @_modelType(modelName)
+    @_checkNewAction(options, transition.targetName)
     @_setAction(options.action) if options.action
     if modelType
-      if options.id == undefined
-        @pagination(modelType, "_page=1")
-      else
-        if @_checkPaginations(options.id)
-          @pagination(modelType, options.id)
-        else
-          modelType.find(options.id)
+      @_find_model(modelType, options)
 
   setupController:(controller, model) ->
     if model
@@ -22,7 +18,6 @@ Admin.MainRoute = Ember.Route.extend
         controller.set('model', Ember.Object.create(items:  model))
       else
         controller.set('model', model)
-
       type = (model.type || model.get('_reference').type)
       @_setupPaginationInfo(controller)
       controller.set('modelAttributes', Admin.DSL.Attributes.detect(type))
@@ -45,6 +40,12 @@ Admin.MainRoute = Ember.Route.extend
     perPage = ($.cookie('perPage') || 25)
     modelType.find({page: @_page(param), per_page: perPage})
 
+  _find_model: (modelType, options) ->
+    return @pagination(modelType, "_page=1") unless options.id
+    return @pagination(modelType, options.id) if @_checkPaginations(options.id)
+    return modelType.createRecord() if options.id == "new"
+    modelType.find(options.id)
+
   _getControllerTemplate: (controller) ->
     name = @_controllerName(controller)
     if Ember.TEMPLATES[name]
@@ -53,7 +54,7 @@ Admin.MainRoute = Ember.Route.extend
       if @action then @action else "main"
 
   _controllerName: (controller) ->
-    controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)/, '')
+    controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)/, '')
 
   _setActiveRoute: ->
     url = Ember.Location.create({implementation: 'hash'}).getURL()
@@ -76,6 +77,11 @@ Admin.MainRoute = Ember.Route.extend
 
   _setAction: (action) ->
     @action = action
+
+  _checkNewAction: (options, target) ->
+    if /\./.test(target)
+      target = target.split(".")[1]
+      options.action = "new" if target == "new"
 
   _setupBreadscrumbs: (controller, model)->
     content = []
