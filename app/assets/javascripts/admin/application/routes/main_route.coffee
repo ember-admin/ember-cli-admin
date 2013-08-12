@@ -19,7 +19,7 @@ Admin.MainRoute = Ember.Route.extend
   setupController:(controller, model) ->
     if model
       if model.type
-        controller.set('model', Ember.Object.create(items:  model.toArray()))
+        controller.set('model', Ember.Object.create(items:  model))
       else
         controller.set('model', model)
 

@@ -20,7 +20,7 @@ Admin.Base.Views.CheckboxBatchView = Ember.Checkbox.extend
   _selectAllAction: ->
     @set('controller.batches', [])
     if @get('checked')
-      @get('controller.model').forEach (item) =>
+      @get('controller.model.items').forEach (item) =>
         @_addItem(item)
 
   _addItem: (item) ->
