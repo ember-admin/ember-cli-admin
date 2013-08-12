@@ -2,6 +2,9 @@
   .row
     .col-12
       == outlet "navigation"
+  .row.breadcrumbs
+    .col-12
+      == outlet "breadcrumbs"
   #container.row-fluid
     .wrap_content.main-content
       == outlet "main"

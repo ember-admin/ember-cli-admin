@@ -1,0 +1,8 @@
+ul.breadcrumb
+  each action in controller.content
+    if action.active
+      li.active
+        = action.name
+    else
+      li
+        a{{bindAttr href=action.url}}= action.name

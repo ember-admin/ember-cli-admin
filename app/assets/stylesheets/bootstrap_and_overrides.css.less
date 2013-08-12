@@ -31,5 +31,30 @@
  * @link-color: #ff0000;
  */
 .main-content{
+  margin-top: 20px;
+}
+.breadcrumbs{
   margin-top: 55px;
+}
+
+.breadcrumb {
+  padding: 8px 15px;
+  margin-bottom: @line-height-computed;
+  list-style: none;
+  background-color: @breadcrumb-bg;
+  border-radius: @border-radius-base;
+}
+
+.breadcrumb li{
+  display: inline-block;
+}
+
+.breadcrumb > li:last-of-type:before{
+  content: "/\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+  padding: 0 5px;
+  color: @breadcrumb-color;
+}
+
+.breadcrumb li.active{
+  color: @breadcrumb-active-color;
 }
