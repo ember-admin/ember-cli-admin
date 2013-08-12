@@ -6,7 +6,7 @@ class UsersController < ActionController::Base
     count = page * per_page
     start = 0
     start = (page - 1) * per_page if page > 1
-    render json: {users: User.all()[start...count]}
+    render json: {users: User.order('id desc').all()[start...count]}
   end
 
   def destroy
@@ -19,14 +19,19 @@ class UsersController < ActionController::Base
   end
 
   def create
-    user = User.create!(params[:user])
+    user = User.create!(permit_params)
     render json: {user: user}
   end
 
   def update
     user = User.find(params[:id])
-    user.update_attributes(params[:user])
+    user.update_attributes(permit_params)
     render json: {user: user}
+  end
+
+  private
+  def permit_params
+    params.require(:user).permit(:name, :email)
   end
 
 end
