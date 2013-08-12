@@ -20,9 +20,10 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
   batches: []
 
   actions: (->
-    [ {title: "edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "icon-pencil icon-white"},
-    {title: "show", class: "btn btn-small btn-success", action: "show", iconClass: "icon-info-sign icon-white"},
-    {title: "delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
+    [
+      {title: "edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "icon-pencil icon-white"},
+      {title: "show", class: "btn btn-small btn-success", action: "show", iconClass: "icon-info-sign icon-white"},
+      {title: "delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
     ]
   ).property('')
 
@@ -36,11 +37,11 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
 
   new: () ->
     locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL("/#{@get('name')}/new")
+    locationObject.setURL("/#{@get('__controller_name')}/new")
 
   edit: (model) ->
     locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL("/#{@get('name')}/#{model.id}/edit")
+    locationObject.setURL("/#{@get('__controller_name')}/#{model.id}/edit")
 
   update: (model)->
     model.get('store').commit()
@@ -53,7 +54,7 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
 
   show: (model) ->
     locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL("/#{@get('name')}/#{model.id}/show")
+    locationObject.setURL("/#{@get('__controller_name')}/#{model.id}/show")
 
   baseBatchAction: (action) ->
     store = @get('batches.firstObject').get('store')

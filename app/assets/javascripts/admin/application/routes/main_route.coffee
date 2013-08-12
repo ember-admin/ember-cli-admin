@@ -89,7 +89,7 @@ Admin.MainRoute = Ember.Route.extend
     content = []
     obj = Ember.Object.create({name: "dashboard", url: "/#/", active: false})
     content.pushObject(obj)
-    obj = Ember.Object.create({name: controller.get('name'), url: "/#/#{controller.get('name')}", active: true})
+    obj = Ember.Object.create({name: controller.get('__controller_name'), url: "/#/#{controller.get('__controller_name')}", active: true})
     if @action
       obj.set('active', false)
       content.pushObject(obj)
@@ -102,7 +102,7 @@ Admin.MainRoute = Ember.Route.extend
 
   _setupPaginationInfo: (controller) ->
     controller.set('page', @page)
-    controller.set('name', @_controllerName(controller))
+    controller.set('__controller_name', @_controllerName(controller))
     if @page
       nextPage = @page + 1
       prevPage = if @page - 1 < 1 then 1 else @page - 1

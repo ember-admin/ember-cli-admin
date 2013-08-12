@@ -6,39 +6,27 @@ class UsersController < ActionController::Base
     count = page * per_page
     start = 0
     start = (page - 1) * per_page if page > 1
-    render json: {users: collections[start...count]}
+    render json: {users: User.all()[start...count]}
   end
 
   def destroy
+    User.find(params[:id]).destroy()
     render status: 204, nothing: true
   end
 
   def show
-    render json: {user: collections[params[:id].to_i]}
+    render json: {user: User.find(params[:id])}
   end
 
   def create
-    collections[params[:id].to_i][:email] = params[:user][:email]
-    render json: {user: collections[params[:id].to_i]}
+    user = User.create!(params[:user])
+    render json: {user: user}
   end
 
   def update
-    collections[params[:id].to_i][:email] = params[:user][:email]
-    render json: {user: collections[params[:id].to_i]}
-  end
-
-  private
-
-  def collections
-    @collections ||= generate()
-  end
-
-  def generate
-    @collections = []
-    100.times do |i|
-      @collections.push({id: i, email: Forgery(:internet).email_address})
-    end
-    @collections
+    user = User.find(params[:id])
+    user.update_attributes(params[:user])
+    render json: {user: user}
   end
 
 end
