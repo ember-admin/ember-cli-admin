@@ -84,7 +84,11 @@ Admin.MainRoute = Ember.Route.extend
     obj = Ember.Object.create({name: controller.get('name'), url: "/#/#{controller.get('name')}", active: true})
     if @action
       obj.set('active', false)
-    content.pushObject(obj)
+      content.pushObject(obj)
+      obj = Ember.Object.create({name: model.get('id'), active: true})
+      content.pushObject(obj)
+    else
+      content.pushObject(obj)
     @controllerFor("breadcrumbs").set('content', content)
 
   _setupPaginationInfo: (controller) ->
