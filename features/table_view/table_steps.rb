@@ -5,7 +5,7 @@ Given(/^some users (\d+) in db$/) do |count|
 end
 
 When(/^I click (.*?) link in item "(.*?)"$/) do |action, id|
-  page.all("table tr")[id.to_i].find("a[title='#{action}']").click
+  page.all("table tr")[id.to_i].find("button[title='#{action}']").click
 end
 
 When(/^I check (\d+) and (\d+) items$/) do |id1, id2|
@@ -27,12 +27,12 @@ end
 
 Then(/^I should see base actions links/) do
   %w(edit show delete).each do |action|
-    page.has_css?("a[title='#{action}']").should   be true
+    page.has_css?("button[title='#{action}']").should   be true
   end
 end
 
 Then(/^I should see additions actions links$/) do
-  page.has_css?("a[title='clone']").should   be true
+  page.has_css?("button[title='clone']").should   be true
 end
 
 Then(/^I should see confirm popup with "(.*)"$/) do |title|

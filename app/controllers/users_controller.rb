@@ -10,7 +10,7 @@ class UsersController < ActionController::Base
   end
 
   def destroy
-    User.find_by_id(params[:id]).try(:destroy)
+    #User.find_by_id(params[:id]).try(:destroy)
     render status: 204, nothing: true
   end
 
