@@ -52,6 +52,7 @@ Admin.MainRoute = Ember.Route.extend
 
   _setActiveRoute: ->
     url = Ember.Location.create({implementation: 'hash'}).getURL()
+    url = "/" + url.split("/")[1]
     @controllerFor("navigation").set('activeMenu', url)
 
   _modelName:(name) ->
