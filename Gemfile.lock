@@ -182,6 +182,11 @@ GEM
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     faye-websocket (0.4.7)
       eventmachine (>= 0.12.0)
     forgery (0.5.0)
@@ -279,6 +284,8 @@ DEPENDENCIES
   ember-rails!
   ember-source (~> 1.0.0.rc.6.1)
   emblem-rails
+  factory_girl (>= 4.0.0)
+  factory_girl_rails (>= 3.3.0)
   forgery
   handlebars-source (>= 1.0.0.rc4)
   jbuilder (~> 1.2)

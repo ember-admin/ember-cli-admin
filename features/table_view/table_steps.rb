@@ -1,3 +1,9 @@
+Given(/^some users (\d+) in db$/) do |count|
+  5.times do
+    FactoryGirl.create(:user)
+  end
+end
+
 When(/^I click (.*?) link in item "(.*?)"$/) do |action, id|
   page.all("table tr")[id.to_i].find("a[title='#{action}']").click
 end

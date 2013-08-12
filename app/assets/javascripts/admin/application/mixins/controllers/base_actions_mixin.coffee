@@ -49,8 +49,9 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
   destroy: (model, save=true) ->
     model.deleteRecord()
     @get('model.items').removeReference(model.get('_reference'))
-    @get('batches').removeObject(model)
-    model.get('store').commit() if save
+    if save
+      @get('batches').removeObject(model)
+      model.get('store').commit()
 
   show: (model) ->
     locationObject = Ember.Location.create({implementation: 'hash'})
@@ -58,7 +59,8 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
 
   baseBatchAction: (action) ->
     store = @get('batches.firstObject').get('store')
+    console.log @get('batches').toArray().length
     @get('batches').forEach (model) =>
-      @send(action, model)
+      @send(action, model, false)
     store.commit()
     @set('batches', [])

@@ -1,5 +1,6 @@
 Feature: Table View in page
   Background:
+    Given some users 5 in db
     Given I go to '/#/users'
 
   @javascript
@@ -8,7 +9,7 @@ Feature: Table View in page
     And I should see "Actions"
     And I should see "email"
     And I should see "id"
-    And I should see 25 items in table
+    And I should see 5 items in table
 
   @javascript
   Scenario: Base Actions in table view
@@ -28,7 +29,7 @@ Feature: Table View in page
     Then I should see confirm popup with "delete"
     And  I press "Confirm"
     Then I should not see "delete"
-    And I should see 24 items in table
+    And I should see 4 items in table
 
   @javascript
   Scenario: Tries to delete item
@@ -36,7 +37,7 @@ Feature: Table View in page
     Then I should see confirm popup with "delete"
     And  I press "Close"
     Then I should not see "delete"
-    And I should see 25 items in table
+    And I should see 5 items in table
 
   @javascript
   Scenario: Tries to delete items in batch actions
@@ -45,7 +46,7 @@ Feature: Table View in page
     And  I click link "delete"
     Then I should see confirm popup with "delete"
     And  I press "Close"
-    And I should see 25 items in table
+    And I should see 5 items in table
 
   @javascript
   Scenario: Popup don't show when items doesn't check for batch actions
@@ -68,7 +69,7 @@ Feature: Table View in page
     And  I click link "delete"
     Then I should see confirm popup with "delete"
     And  I press "Confirm" and wait
-    And I should see 23 items in table
+    And I should see 3 items in table
 
   @javascript
   Scenario: Batch actions delete all
@@ -83,8 +84,8 @@ Feature: Table View in page
   Scenario: Transition to show page
     When I click show link in item "1"
     Then I should see "Show"
-    And I should see "id"
     And I should see "email"
+    And I should see "name"
 
   @javascript
   Scenario: Transition to edit page

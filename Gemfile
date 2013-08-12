@@ -39,6 +39,8 @@ group :test, :development do
   gem 'launchy'
   gem 'qunit-rails'
   gem 'forgery'
+  gem "factory_girl_rails", ">= 3.3.0"
+  gem "factory_girl", '>=4.0.0'
 end
 
 group :doc do

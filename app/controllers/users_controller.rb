@@ -10,7 +10,7 @@ class UsersController < ActionController::Base
   end
 
   def destroy
-    User.find(params[:id]).destroy()
+    User.find_by_id(params[:id]).try(:destroy)
     render status: 204, nothing: true
   end
 
@@ -33,5 +33,4 @@ class UsersController < ActionController::Base
   def permit_params
     params.require(:user).permit(:name, :email)
   end
-
 end
