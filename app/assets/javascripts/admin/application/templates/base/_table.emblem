@@ -1,5 +1,7 @@
 table.table-striped
   = partial "base/actions/_batch_actions"
+  Admin.Base.Views.ActionView tagName="a" href="#" contextBinding=controller.actionNew titleBinding="new"
+    |New
   thead
     tr
       th

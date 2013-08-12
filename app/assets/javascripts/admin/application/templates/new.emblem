@@ -1,2 +1,3 @@
-h2
-  |hi I am new
+h2 New
+
+= partial "base/_form"

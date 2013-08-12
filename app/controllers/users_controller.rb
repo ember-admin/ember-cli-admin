@@ -17,6 +17,11 @@ class UsersController < ActionController::Base
     render json: {user: collections[params[:id].to_i]}
   end
 
+  def create
+    collections[params[:id].to_i][:email] = params[:user][:email]
+    render json: {user: collections[params[:id].to_i]}
+  end
+
   def update
     collections[params[:id].to_i][:email] = params[:user][:email]
     render json: {user: collections[params[:id].to_i]}
