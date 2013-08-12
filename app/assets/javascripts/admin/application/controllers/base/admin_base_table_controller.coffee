@@ -7,8 +7,8 @@ Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend 
     @set('perPage', perPage)
 
   reloadTable: (->
-    collection = @get('model.type').find({per_page: @get('perPage'), page: (@get('page') || 1)})
-    @set('model', collection)
+    collection = @get('model.items.type').find({per_page: @get('perPage'), page: (@get('page') || 1)})
+    @set('model.items', collection)
   ).observes('perPage')
 
   formAttributes:(->
