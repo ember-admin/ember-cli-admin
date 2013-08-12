@@ -26,12 +26,17 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
     ]
   ).property('')
 
+  actionNew:(->
+    {title: "new", class: "btn btn-success", action: "new", iconClass: "icon-plus icon-white"}
+  ).property('')
+
   batchActions: (->
     [{title: "delete", confirm: "Are you sure to delete this?", action: "destroy"}]
   ).property('')
 
   new: () ->
-    console.log "new"
+    locationObject = Ember.Location.create({implementation: 'hash'})
+    locationObject.setURL("/#{@get('name')}/new")
 
   edit: (model) ->
     locationObject = Ember.Location.create({implementation: 'hash'})
