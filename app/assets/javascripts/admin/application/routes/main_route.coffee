@@ -1,12 +1,12 @@
 Admin.MainRoute = Ember.Route.extend
 
   model: (options, transition) ->
-
     @action = undefined
     @page = undefined
 
     modelName = @_modelName(transition.targetName)
     modelType = @_modelType(modelName)
+
     @_checkNewAction(options, transition.targetName)
     @_setAction(options.action) if options.action
     if modelType
@@ -14,10 +14,7 @@ Admin.MainRoute = Ember.Route.extend
 
   setupController:(controller, model) ->
     if model
-      if model.type
-        controller.set('model', Ember.Object.create(items:  model))
-      else
-        controller.set('model', model)
+      @_setModel(controller, model)
       type = (model.type || model.get('_reference').type)
       @_setupPaginationInfo(controller)
       controller.set('modelAttributes', Admin.DSL.Attributes.detect(type))
@@ -60,6 +57,11 @@ Admin.MainRoute = Ember.Route.extend
     url = Ember.Location.create({implementation: 'hash'}).getURL()
     url = "/" + url.split("/")[1]
     @controllerFor("navigation").set('activeMenu', url)
+
+  _setModel: (controller, model) ->
+    return unless model
+    return controller.set('model', Ember.Object.create(items:  model)) if model.type
+    controller.set('model', model)
 
   _modelName:(name) ->
     if /\./.test(name) then name = name.split(".")[0]
