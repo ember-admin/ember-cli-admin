@@ -41,9 +41,9 @@ Admin.MainRoute = Ember.Route.extend
     modelType.find({page: @_page(param), per_page: perPage})
 
   _find_model: (modelType, options) ->
+    return modelType.createRecord() if options.action == "new"
     return @pagination(modelType, "_page=1") unless options.id
     return @pagination(modelType, options.id) if @_checkPaginations(options.id)
-    return modelType.createRecord() if options.id == "new"
     modelType.find(options.id)
 
   _getControllerTemplate: (controller) ->
@@ -91,7 +91,8 @@ Admin.MainRoute = Ember.Route.extend
     if @action
       obj.set('active', false)
       content.pushObject(obj)
-      obj = Ember.Object.create({name: model.get('id'), active: true})
+      name = (model.get('id') || @action)
+      obj = Ember.Object.create({name: name, active: true})
       content.pushObject(obj)
     else
       content.pushObject(obj)
