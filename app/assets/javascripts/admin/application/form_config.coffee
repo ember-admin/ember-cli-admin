@@ -1,9 +1,9 @@
 Ember.EasyForm.Config.registerWrapper 'twitter-bootstrap',
   formClass: 'form-horizontal',
-  fieldErrorClass: 'error',
+  fieldErrorClass: 'has-error',
   errorClass: 'help-inline',
   hintClass: 'help-block',
   labelClass: 'control-label',
-  inputClass: 'control-group',
+  inputClass: 'form-group',
   wrapControls: true,
   controlsWrapperClass: 'controls'
