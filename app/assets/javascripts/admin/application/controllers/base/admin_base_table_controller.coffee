@@ -1,15 +1,15 @@
 Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend Admin.Base.Mixins.BaseActionsMixin,
-  perPage: (parseInt($.cookie('perPage')) || 25)
+  __perPage: (parseInt($.cookie('perPage')) || 25)
   table: true
 
   changePerPage: (perPage) ->
     $.cookie('perPage', perPage)
-    @set('perPage', perPage)
+    @set('__perPage', perPage)
 
   reloadTable: (->
-    collection = @get('model.items.type').find({per_page: @get('perPage'), page: (@get('page') || 1)})
+    collection = @get('model.items.type').find({per_page: @get('__perPage'), page: (@get('__page') || 1)})
     @set('model.items', collection)
-  ).observes('perPage')
+  ).observes('__perPage')
 
   formAttributes:(->
     Admin.DSL.Attributes.withoutId(@get("model._reference").type).map (attr) =>

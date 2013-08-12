@@ -9,5 +9,5 @@ Admin.Base.Views.PaginationPerPageView = Ember.View.extend
       @get('controller').send("changePerPage", @get('count'))
 
   isActive:(->
-    @get('controller.perPage') == @get('count')
-  ).property('controller.perPage')
+    @get('controller.__perPage') == @get('count')
+  ).property('controller.__perPage')

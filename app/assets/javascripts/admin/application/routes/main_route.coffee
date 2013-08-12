@@ -101,13 +101,13 @@ Admin.MainRoute = Ember.Route.extend
     @controllerFor("breadcrumbs").set('content', content)
 
   _setupPaginationInfo: (controller) ->
-    controller.set('page', @page)
+    controller.set('__page', @page)
     controller.set('__controller_name', @_controllerName(controller))
     if @page
       nextPage = @page + 1
       prevPage = if @page - 1 < 1 then 1 else @page - 1
-      controller.set('nextPage', nextPage)
-      controller.set('prevPage', prevPage)
+      controller.set('__nextPage', nextPage)
+      controller.set('__prevPage', prevPage)
     else
-      controller.set('nextPage', undefined)
-      controller.set('prevPage', undefined)
+      controller.set('__nextPage', undefined)
+      controller.set('__prevPage', undefined)
