@@ -1,6 +1,3 @@
 h1 Edit
 
-= formFor controller.model wrapper="twitter-bootstrap"
-  each attribute in controller.formAttributes
-    = boundInput attribute.name inputConfig='class:form-control'
-  = submit
+= partial "base/_form"
