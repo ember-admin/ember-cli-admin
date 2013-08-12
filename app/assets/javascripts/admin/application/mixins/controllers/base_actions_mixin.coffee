@@ -43,6 +43,7 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
   destroy: (model, save=true) ->
     model.deleteRecord()
     @get('model.items').removeReference(model.get('_reference'))
+    @get('batches').removeObject(model)
     model.get('store').commit() if save
 
   show: (model) ->
