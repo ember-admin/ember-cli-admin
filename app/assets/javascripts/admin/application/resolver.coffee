@@ -23,12 +23,15 @@ Admin.Resolver = Ember.DefaultResolver.extend
     ["route:application", "route:basic", "route:loading"].indexOf(name) >= 0
 
   _checkResourceController: (name) ->
-    /(Show)|(Edit)|(New)/.test(name)
+    @_pattern().test(name)
 
   _replaceForResource:(name) ->
-    name.replace(/(Show)|(Edit)|(New)/, '')
+    name.replace(@_pattern(), '')
 
   _setNames:(parsedName) ->
     parsedName.fullName = @_replaceForResource(parsedName.fullName)
     parsedName.fullNameWithoutType = @_replaceForResource(parsedName.fullNameWithoutType)
     parsedName.name = @_replaceForResource(parsedName.name)
+
+  _pattern: ->
+    /(Show)|(Edit)|(New)/
