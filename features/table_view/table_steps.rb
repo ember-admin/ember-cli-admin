@@ -1,5 +1,5 @@
 Given(/^some users (\d+) in db$/) do |count|
-  5.times do
+  count.to_i.times do
     FactoryGirl.create(:user)
   end
 end
@@ -50,6 +50,10 @@ end
 Then(/^I should see empty view with spinner$/) do
   page.all("table tr").count.should be 2
   page.has_css?(".icon-spinner")
+end
+
+When(/^I change per page to (\d+)$/) do |per_page|
+  click_button(per_page)
 end
 
 
