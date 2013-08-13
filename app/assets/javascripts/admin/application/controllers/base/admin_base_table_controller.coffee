@@ -22,6 +22,9 @@ Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend 
     else
       @_createModel()
 
+  cancel: ->
+    @get('model').rollback() if @get('model.isDirty')
+    @_redirectToTable()
 
   _redirectToTable: ->
     locationObject = Ember.Location.create({implementation: 'hash'})
