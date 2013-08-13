@@ -103,6 +103,16 @@ Feature: Table View in page
     And I should see "Foo Bar"
 
   @javascript
+  Scenario: Cancel editing item
+    And I click edit link in item "1"
+    When I fill in "Email" with "foo@bar.com"
+    And I fill in "Name" with "Foo Bar"
+    And I press "Cancel"
+    Then I should see table view
+    And I should not see "foo@bar.com"
+    And I should not see "Foo Bar"
+
+  @javascript
   Scenario: Transition to new page
     When I press "New"
     Then I should see "New"
