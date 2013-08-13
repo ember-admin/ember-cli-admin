@@ -98,7 +98,6 @@ Feature: Table View in page
     When I fill in "Email" with "foo@bar.com"
     And I fill in "Name" with "Foo Bar"
     And I press "Submit"
-    And I wait for "3" seconds
     Then I should see table view
     And I should see "foo@bar.com"
     And I should see "Foo Bar"
