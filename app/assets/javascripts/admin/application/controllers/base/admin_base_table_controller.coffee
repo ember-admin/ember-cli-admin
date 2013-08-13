@@ -17,6 +17,22 @@ Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend 
   ).property('modelAttributes.@each')
 
   submit: ->
-    @get('model').save()
+    if @get('model.id')
+      @_updateModel()
+    else
+      @_createModel()
+
+
+  _redirectToTable: ->
     locationObject = Ember.Location.create({implementation: 'hash'})
     locationObject.setURL(@get('__controller_name'))
+
+  _updateModel: ->
+    @get('model').save()
+    @get('model').one 'didUpdate', =>
+      @_redirectToTable()
+
+  _createModel: ->
+    @get('model').save()
+    @get('model').one 'didCreate', =>
+      @_redirectToTable()
