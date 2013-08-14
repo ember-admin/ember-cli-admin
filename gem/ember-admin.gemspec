@@ -11,16 +11,14 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Ember Admin}
   spec.homepage      = "http://roundscope.com"
 
-  spec.files         = Dir["app/assets/javascript/ember-admin/**/*", "lib/**/*"]
-  #spec.files         = ["lib/ember_admin.rb"] + Dir["app/assets/javascript/admin/**/*"] + ["ember-admin.gemspec"]
-  #spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  #spec.require_paths = ["lib"]
+  spec.files         = Dir["app/assets/**/*", "lib/**/*", "Gemfile", "ember-admin.gemspec"]
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "ember-rails"
-  spec.add_development_dependency 'emblem-rails'
-  spec.add_development_dependency 'handlebars-source', ">= 1.0.0.rc4"
-  spec.add_development_dependency "ember-source", "~> 1.0.0.rc.6.1"
-  spec.add_development_dependency 'twitter-bootstrap-rails'
+  spec.add_dependency "bundler", "~> 1.3"
+  spec.add_dependency "rake"
+  spec.add_dependency "ember-rails"
+  spec.add_dependency 'emblem-rails'
+  spec.add_dependency 'handlebars-source', ">= 1.0.0.rc4"
+  spec.add_dependency "ember-source", ">= 1.0.0.rc.6.1"
+  spec.add_dependency "less-rails"
+  spec.add_dependency 'therubyracer'
 end
