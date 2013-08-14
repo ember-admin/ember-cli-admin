@@ -34,10 +34,16 @@ Admin.MainRoute = Ember.Route.extend
       outlet: 'breadcrumbs'
       controller: 'breadcrumbs'
     }
+<<<<<<< Updated upstream
     if @action && (@action == "edit" || @action == "new")
       @render @_getForm(controller), {
         into: @action
         outlet: 'form'
+=======
+    if model
+      @render 'actions',{
+        outlet: 'actions'
+>>>>>>> Stashed changes
         controller: controller
       }
 
