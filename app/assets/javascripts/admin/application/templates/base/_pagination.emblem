@@ -1,4 +1,4 @@
-.btn-group
+.btn-group.per-page
   Admin.Base.Views.PaginationPerPageView count=25
     |25
   Admin.Base.Views.PaginationPerPageView count=50

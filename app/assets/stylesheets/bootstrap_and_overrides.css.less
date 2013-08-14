@@ -89,9 +89,10 @@ form{
 
 .table-striped {
   width: 100%;
+  margin-top: 20px;
   
   thead {
-    border-left: 1px solid #cdcdcd;
+    border-left: 1px solid #cdcdcd;    
   }
   
   th {
@@ -118,9 +119,35 @@ form{
   
 }
 
+.batch-actions .btn {
+  margin-bottom: -2px;
+  padding: 4px 12px;
+  .caret {
+    margin-left: 5px;
+  }
+}
+
 .navbar-inverse .navbar-nav > li > a {
   color: #fff;
   &:hover {
     text-decoration: underline;
   }
+}
+
+.per-page {
+  float: right;
+  margin: 15px 15px 0 0;
+  button {
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: normal;
+  }
+}
+
+.pager {
+  margin: 10px 0;
+  li {
+    margin-right: 10px;
+  }
+
 }
