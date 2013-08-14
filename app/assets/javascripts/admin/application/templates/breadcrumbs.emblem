@@ -1,8 +1,8 @@
 ul.breadcrumb
   each action in controller.content
     if action.active
-      li.active
+      li{{bindAttr class=action.class}}
         = action.name
     else
-      li
+      li{{bindAttr class=action.class}}
         a{{bindAttr href=action.url}}= action.name
