@@ -1,4 +1,4 @@
 Admin.Logics.Config = Ember.Object.extend
-  siteTitle: "Rails Ember Admin"
+  siteTitle: "Ember Admin"
 
 Admin.Logics.Config = Admin.Logics.Config.create({})

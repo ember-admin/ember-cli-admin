@@ -1,5 +1,5 @@
 .navbar.navbar-inverse.navbar-fixed-top
-  a class="navbar-brand" href="/"= Admin.Logics.Config.siteTitle
+  a class="navbar-brand" href="/#/"= Admin.Logics.Config.siteTitle
   ul class="nav navbar-nav"
     each navigation in controller
       = partial "navigation/item"
