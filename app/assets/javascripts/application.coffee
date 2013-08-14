@@ -4,5 +4,5 @@
 #= require ember
 #= require ember-data
 #= require twbs/bootstrap
-#= require ./admin/main
+#= require ./ember-admin/main
 #= require test_env

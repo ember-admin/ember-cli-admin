@@ -19,6 +19,13 @@ Admin.Resolver = Ember.DefaultResolver.extend
       unless @_checkRouteName(parsedName.fullName)
         Admin.MainRoute
 
+  resolveTemplate: (parsedName) ->
+    resolvedTemplate = this._super(parsedName)
+    return resolvedTemplate if resolvedTemplate
+    namespaceTemplate = Ember.TEMPLATES["ember-admin/%@".fmt(parsedName.name)]
+    return namespaceTemplate if namespaceTemplate
+    Ember.TEMPLATES['not_found']
+
   _checkRouteName: (name)->
     ["route:application", "route:basic", "route:loading"].indexOf(name) >= 0
 

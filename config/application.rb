@@ -34,7 +34,7 @@ module EmberRailsAdmin
     end
 
     config.handlebars.templates_root = [
-        "admin/application/templates"
+        "ember-admin/application/templates"
     ]
   end
 end
