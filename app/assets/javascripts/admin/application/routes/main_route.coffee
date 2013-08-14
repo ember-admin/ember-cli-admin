@@ -105,10 +105,7 @@ Admin.MainRoute = Ember.Route.extend
     controller.set('__type', type.toString().replace("Admin.", ""))
 
   _setSiteTitle: (controller, model) ->
-    if @action
-      document.title = "%@ - %@ - %@".fmt(@_controllerName(controller), model.get('id'), @action)
-    else
-      document.title = "%@ - list".fmt(@_controllerName(controller))
+    Admin.Logics.SiteTile.setup(@_controllerName(controller), model, @action)
 
   _renderNavigation:(controller, model) ->
     @render 'navigation', {
