@@ -4,6 +4,7 @@
       == outlet "navigation"
   .row.breadcrumbs
     .col-12
+      == outlet "actions"
       == outlet "breadcrumbs"
   #container.row-fluid
     .wrap_content.main-content

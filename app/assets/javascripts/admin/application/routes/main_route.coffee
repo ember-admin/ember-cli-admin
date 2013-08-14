@@ -32,6 +32,10 @@ Admin.MainRoute = Ember.Route.extend
       outlet: 'breadcrumbs'
       controller: 'breadcrumbs'
     }
+    @render 'actions',{
+      outlet: 'actions'
+      controller: controller
+    }
 
   pagination: (modelType, param) ->
     perPage = ($.cookie('perPage') || 25)
