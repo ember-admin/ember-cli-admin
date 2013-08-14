@@ -26,26 +26,12 @@ Admin.MainRoute = Ember.Route.extend
     @_setActiveRoute()
     @_setupBreadscrumbs(controller, model)
     @render @_getControllerTemplate(controller), {outlet: "main", controller: controller}
-    @render 'navigation', {
-      outlet: 'navigation'
-      controller: 'navigation'
-    }
-    @render 'breadcrumbs',{
-      outlet: 'breadcrumbs'
-      controller: 'breadcrumbs'
-    }
-<<<<<<< Updated upstream
-    if @action && (@action == "edit" || @action == "new")
-      @render @_getForm(controller), {
-        into: @action
-        outlet: 'form'
-=======
-    if model
-      @render 'actions',{
-        outlet: 'actions'
->>>>>>> Stashed changes
-        controller: controller
-      }
+
+    @_renderNavigation(controller, model)
+    @_renderBreadcrumbs(controller, model)
+    @_renderForm(controller, model)
+    @_renderActions(controller, model)
+
 
   pagination: (modelType, param) ->
     perPage = ($.cookie('perPage') || 25)
@@ -108,14 +94,15 @@ Admin.MainRoute = Ember.Route.extend
 
   _setupBreadscrumbs: (controller, model)->
     content = []
-    obj = Ember.Object.create({name: "dashboard", url: "/#/", active: false})
+    obj = Ember.Object.create({name: "dashboard", url: "/#/", class: "first", active: false})
     content.pushObject(obj)
-    obj = Ember.Object.create({name: controller.get('__controller_name'), url: "/#/#{controller.get('__controller_name')}", active: true})
+    obj = Ember.Object.create({name: controller.get('__controller_name'), url: "/#/#{controller.get('__controller_name')}", class: "active", active: true})
     if @action
+      obj.set('class', "")
       obj.set('active', false)
       content.pushObject(obj)
       name = (model.get('id') || @action)
-      obj = Ember.Object.create({name: name, active: true})
+      obj = Ember.Object.create({name: name, class: "active", active: true})
       content.pushObject(obj)
     else
       content.pushObject(obj)
@@ -141,3 +128,29 @@ Admin.MainRoute = Ember.Route.extend
       document.title = "%@ - %@ - %@".fmt(@_controllerName(controller), model.get('id'), @action)
     else
       document.title = "%@ - list".fmt(@_controllerName(controller))
+
+  _renderNavigation:(controller, model) ->
+    @render 'navigation', {
+      outlet: 'navigation'
+      controller: 'navigation'
+    }
+
+  _renderBreadcrumbs:(controller, model) ->
+    @render 'breadcrumbs',{
+      outlet: 'breadcrumbs'
+      controller: 'breadcrumbs'
+    }
+
+  _renderActions: (controller, model) ->
+    if model
+      @render 'actions',{
+        outlet: 'actions'
+        controller: controller
+      }
+
+  _renderForm: (controller, form) ->
+    if @action && (@action == "edit" || @action == "new")
+      @render @_getForm(controller), {
+        into: @action
+        outlet: 'form'
+      }

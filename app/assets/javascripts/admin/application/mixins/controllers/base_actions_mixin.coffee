@@ -28,7 +28,7 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
   ).property('')
 
   actionNew:(->
-    {title: "new", class: "btn btn-success", action: "new", iconClass: "icon-plus icon-white"}
+    {title: "new", class: "btn btn-primary", action: "new", iconClass: "icon-plus icon-white"}
   ).property('')
 
   batchActions: (->
