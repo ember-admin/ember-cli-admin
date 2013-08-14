@@ -99,14 +99,7 @@ Admin.MainRoute = Ember.Route.extend
   _setupPaginationInfo: (controller) ->
     controller.set('__page', @page)
     controller.set('__controller_name', @_controllerName(controller))
-    if @page
-      nextPage = @page + 1
-      prevPage = if @page - 1 < 1 then 1 else @page - 1
-      controller.set('__nextPage', nextPage)
-      controller.set('__prevPage', prevPage)
-    else
-      controller.set('__nextPage', undefined)
-      controller.set('__prevPage', undefined)
+    Admin.Logics.Pagination.setup(controller, @page)
 
   _setType: (controller, type) ->
     controller.set('__type', type.toString().replace("Admin.", ""))
