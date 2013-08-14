@@ -13,6 +13,7 @@ Admin.MainRoute = Ember.Route.extend
       @_find_model(modelType, options)
 
   setupController:(controller, model) ->
+    @_setSiteTitle(controller, model)
     if model
       @_setModel(controller, model)
       type = (model.type || model.get('_reference').type)
@@ -128,3 +129,9 @@ Admin.MainRoute = Ember.Route.extend
 
   _setType: (controller, type) ->
     controller.set('__type', type.toString().replace("Admin.", ""))
+
+  _setSiteTitle: (controller, model) ->
+    if @action
+      document.title = "%@ - %@ - %@".fmt(@_controllerName(controller), model.get('id'), @action)
+    else
+      document.title = "%@ - list".fmt(@_controllerName(controller))
