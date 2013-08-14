@@ -1,3 +1,5 @@
-h2 New
+h2
+  | New
+  = controller.__type
 
 == outlet "form"

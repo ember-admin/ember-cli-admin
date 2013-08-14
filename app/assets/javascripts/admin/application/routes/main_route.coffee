@@ -16,6 +16,7 @@ Admin.MainRoute = Ember.Route.extend
     if model
       @_setModel(controller, model)
       type = (model.type || model.get('_reference').type)
+      @_setType(controller, type)
       @_setupPaginationInfo(controller)
       controller.set('modelAttributes', Admin.DSL.Attributes.detect(type))
       controller.set('batches', [])
@@ -124,3 +125,6 @@ Admin.MainRoute = Ember.Route.extend
     else
       controller.set('__nextPage', undefined)
       controller.set('__prevPage', undefined)
+
+  _setType: (controller, type) ->
+    controller.set('__type', type.toString().replace("Admin.", ""))
