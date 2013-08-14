@@ -1,6 +1,6 @@
 h2 Show
 
-table
+table.show-details
   tbody
     each attribute in controller.formAttributes
       tr

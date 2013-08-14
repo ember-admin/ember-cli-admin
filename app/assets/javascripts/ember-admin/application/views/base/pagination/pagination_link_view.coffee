@@ -2,7 +2,7 @@ Admin.PaginationLinkView = Ember.View.extend
 
   attributeBindings: ["href"]
   tagName: "a"
-
+  
   href: (->
     if @get('type') == "next"
       @_nextPage()

@@ -1,4 +1,4 @@
-.btn-group
+.btn-group.per-page
   Admin.Base.Views.PaginationPerPageView count=25
     |25
   Admin.Base.Views.PaginationPerPageView count=50
@@ -13,3 +13,5 @@ ul class="pager"
   li
     Admin.PaginationLinkView type="next"
       |Next
+      
+.page-number Page 1
