@@ -13,3 +13,5 @@ ul class="pager"
   li
     Admin.PaginationLinkView type="next"
       |Next
+      
+.page-number Page 1
