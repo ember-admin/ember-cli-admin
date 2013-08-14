@@ -32,10 +32,23 @@ Admin.MainRoute = Ember.Route.extend
       outlet: 'breadcrumbs'
       controller: 'breadcrumbs'
     }
+    if @action && (@action == "edit" || @action == "new")
+      @render @_getForm(controller), {
+        into: @action
+        outlet: 'form'
+        controller: controller
+      }
 
   pagination: (modelType, param) ->
     perPage = ($.cookie('perPage') || 25)
     modelType.find({page: @_page(param), per_page: perPage})
+
+  _getForm:(controller) ->
+    form = "%@_form".fmt(@_controllerName(controller).decamelize())
+    if  Ember.TEMPLATES[form]
+      form
+    else
+      "form"
 
   _find_model: (modelType, options) ->
     return modelType.createRecord() if options.action == "new"
