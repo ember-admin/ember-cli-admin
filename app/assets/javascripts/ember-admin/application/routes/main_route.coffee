@@ -53,7 +53,7 @@ Admin.MainRoute = Ember.Route.extend
 
   _getControllerTemplate: (controller) ->
     name = @_controllerName(controller)
-    if Ember.TEMPLATES[name]
+    if Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]
       name
     else
       if @action then @action else "main"
