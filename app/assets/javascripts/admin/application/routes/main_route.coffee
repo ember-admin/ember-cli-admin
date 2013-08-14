@@ -25,12 +25,13 @@ Admin.MainRoute = Ember.Route.extend
   renderTemplate: (controller, model) ->
     @_setActiveRoute()
     @_setupBreadscrumbs(controller, model)
+
     @render @_getControllerTemplate(controller), {outlet: "main", controller: controller}
 
     @_renderNavigation(controller, model)
     @_renderBreadcrumbs(controller, model)
-    @_renderForm(controller, model)
     @_renderActions(controller, model)
+    @_renderForm(controller, model)
 
 
   pagination: (modelType, param) ->
@@ -93,20 +94,7 @@ Admin.MainRoute = Ember.Route.extend
       options.action = "new" if target == "new"
 
   _setupBreadscrumbs: (controller, model)->
-    content = []
-    obj = Ember.Object.create({name: "dashboard", url: "/#/", class: "first", active: false})
-    content.pushObject(obj)
-    obj = Ember.Object.create({name: controller.get('__controller_name'), url: "/#/#{controller.get('__controller_name')}", class: "active", active: true})
-    if @action
-      obj.set('class', "")
-      obj.set('active', false)
-      content.pushObject(obj)
-      name = (model.get('id') || @action)
-      obj = Ember.Object.create({name: name, class: "active", active: true})
-      content.pushObject(obj)
-    else
-      content.pushObject(obj)
-    @controllerFor("breadcrumbs").set('content', content)
+    Admin.Logics.Breadcrumbs.setup(@action, controller, model, @controllerFor('breadcrumbs'))
 
   _setupPaginationInfo: (controller) ->
     controller.set('__page', @page)
@@ -148,9 +136,10 @@ Admin.MainRoute = Ember.Route.extend
         controller: controller
       }
 
-  _renderForm: (controller, form) ->
+  _renderForm: (controller, model) ->
     if @action && (@action == "edit" || @action == "new")
       @render @_getForm(controller), {
         into: @action
         outlet: 'form'
+        controller: controller
       }

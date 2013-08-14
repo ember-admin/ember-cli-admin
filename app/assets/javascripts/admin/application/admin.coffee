@@ -16,6 +16,8 @@
 #= require_tree ./routes
 #= require_tree ./controllers
 
+#=require_tree ./logics
+
 #= require ./form_config
 
 @Admin = Ember.Application.create(
