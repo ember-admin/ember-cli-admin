@@ -1,2 +1,5 @@
+Admin.Base.Views.ActionView tagName="button" href="#" contextBinding=controller.actionNew titleBinding="new"
+  |New
+
 if controller.table
   partial "base/_table"
