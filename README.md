@@ -2,6 +2,7 @@ ember-admin
 =================
 Try Admin into your app:
 * `gem "ember-admin", git: "git@github.com:roundscope/ember-admin.git"`
+
 Or use `development` application
 
 #add bootstrap
