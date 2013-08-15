@@ -1,7 +1,8 @@
 ember-admin
 =================
-Try Admin:
+Try Admin into your app:
 * `gem "ember-admin", git: "git@github.com:roundscope/ember-admin.git"`
+Or use `development` application
 
 #add bootstrap
 * `gem 'twitter-bootstrap-rails', git: 'git://github.com/diowa/twitter-bootstrap-rails.git', branch: "bootstrap-3.0.0"`
