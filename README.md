@@ -18,9 +18,10 @@ Modify for application.js
 #= require handlebars
 #= require ember
 #= require ember-data
+
+
 #= require twbs/bootstrap
 #= require ember-admin/main
-#= require_tree ./admin
 ```
 
 and run it =)
