@@ -12,8 +12,15 @@ Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend 
   ).observes('__perPage')
 
   formAttributes:(->
-    Admin.DSL.Attributes.withoutId(@get("model._reference").type).map (attr) =>
+    attrs = Admin.DSL.Attributes.withoutId(@get("model._reference").type)
+    if @get('model.formFields')
+      attrs =  @get('model.formFields')
+    attrs.map (attr) =>
       {name: attr}
+  ).property('modelAttributes.@each')
+
+  tableAttributes:(->
+    @get('modelAttributes')
   ).property('modelAttributes.@each')
 
   submit: ->

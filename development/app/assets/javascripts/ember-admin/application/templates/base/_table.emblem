@@ -4,7 +4,7 @@ table.table-striped
     tr
       th
         Admin.Base.Views.CheckboxBatchView selectAll=true elementId="select-all-batches"
-      each attributeName in controller.modelAttributes
+      each attributeName in controller.tableAttributes
         th= attributeName
       th Actions
   tbody
@@ -12,7 +12,7 @@ table.table-striped
       tr
         td
           Admin.Base.Views.CheckboxBatchView contextBinding="item"
-        each attributeName in controller.modelAttributes
+        each attributeName in controller.tableAttributes
           Admin.Base.Views.Table.TdView contextBinding=item attributeNameBinding=attributeName
             = view.value
         td.actions
