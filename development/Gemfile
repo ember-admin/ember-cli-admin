@@ -57,6 +57,8 @@ gem 'twitter-bootstrap-rails', git: 'git://github.com/diowa/twitter-bootstrap-ra
 
 
 
+gem 'will_paginate', '>= 3.0.3'
+
 gem "less-rails"
 gem 'therubyracer'
 
