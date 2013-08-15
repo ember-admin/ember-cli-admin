@@ -10,7 +10,9 @@ Try Admin:
 
 
 Modify for application.css
+
 `*= require ember-admin/admin`
+
 Modify for application.js
 ```
 #= require jquery
