@@ -1,7 +1,7 @@
-ember-rails-admin
+ember-admin
 =================
 Try Admin:
-* `gem "ember-rails-admin", git: "git@github.com:roundscope/ember-rails-admin.git"`
+* `gem "ember-admin", git: "git@github.com:roundscope/ember-admin.git"`
 
 #add bootstrap
 * `gem 'twitter-bootstrap-rails', git: 'git://github.com/diowa/twitter-bootstrap-rails.git', branch: "bootstrap-3.0.0"`
