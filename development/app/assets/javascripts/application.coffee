@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require handlebars
 #= require ember
+#= require test_logs
 #= require ember-data
 #= require twbs/bootstrap
 #= require ./ember-admin/main

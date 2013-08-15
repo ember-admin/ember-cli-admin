@@ -1,4 +1,5 @@
 <% if Rails.env.test? || Rails.env.development? %>
+
 (function () {
     Admin.User = DS.Model.extend({
         email: DS.attr('string'),
@@ -39,6 +40,6 @@
 
     <% if Rails.env.test? %>
         Ember.LOG_VERSION = false;
-        window.console.log = function(){};
+        Ember.ENV.LOG_VERSION = false;
     <% end %>
 <% end %>
