@@ -14,4 +14,6 @@ ul class="pager"
     Admin.PaginationLinkView type="next"
       |Next
       
-.page-number Page 1
+.page-number
+  |Page&nbsp;
+  = controller.__page
