@@ -12,7 +12,7 @@
 
 # config section
 
-#= require ./logics/config
+#= require ./config
 
 # navigation section
 #= require ./navigation

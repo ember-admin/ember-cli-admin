@@ -59,7 +59,6 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
 
   baseBatchAction: (action) ->
     store = @get('batches.firstObject').get('store')
-    console.log @get('batches').toArray().length
     @get('batches').forEach (model) =>
       @send(action, model, false)
     store.commit()
