@@ -28,4 +28,6 @@ Modify for application.js
 #= require ember-admin/main
 ```
 
-and run it =)
+##For run install generator
+`rails g ember_admin:install`
+
