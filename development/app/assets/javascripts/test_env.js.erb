@@ -1,22 +1,4 @@
 <% if Rails.env.test? || Rails.env.development? %>
-(function () {
-    Admin.UsersController = Admin.Base.Controllers.AdminBaseTableController.extend({
-        additionalActions: [
-            {
-                title: "clone",
-                "class": "btn btn-small btn-warning",
-                action: "clone",
-                iconClass: "icon-plus icon-white",
-                confirm: "Are you sure clone this???"
-            }
-        ],
-        clone: function (model) {
-            model.set('name', "xyi");
-            return console.log("clone");
-        }
-    });
-}).call(this);
-
     <% if Rails.env.test? %>
         Ember.LOG_VERSION = false;
         Ember.ENV.LOG_VERSION = false;

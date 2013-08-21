@@ -7,4 +7,5 @@
 #= require twbs/bootstrap
 #= require ./ember-admin/main
 #= require_tree ./models
+#= require_tree ./controllers
 #= require test_env
