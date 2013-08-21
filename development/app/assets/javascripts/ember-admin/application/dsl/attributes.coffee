@@ -12,7 +12,12 @@ class Admin.DSL.Attributes
     attributes = []
     modelType.eachComputedProperty (attribute, meta) =>
       attributes.push(attribute) if meta.isAttribute
+    @relations(modelType, attributes)
     attributes
+
+  @relations: (modelType, attrs=[]) ->
+    modelType.eachRelationship (attribute, meta) =>
+      attrs.push(attribute)
 
   @singularize: (name) ->
     if name.lastIndexOf('s') == name.length - 1
