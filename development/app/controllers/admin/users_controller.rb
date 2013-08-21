@@ -1,4 +1,4 @@
-class UsersController < ActionController::Base
+class Admin::UsersController < ActionController::Base
 
   def index
     render json: {users: User.paginate(page: params[:page], per_page: params[:per_page]).order('id desc')}

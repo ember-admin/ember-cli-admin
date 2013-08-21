@@ -1,26 +1,4 @@
 <% if Rails.env.test? || Rails.env.development? %>
-
-(function () {
-    Admin.User = DS.Model.extend({
-        email: DS.attr('string'),
-        name: DS.attr('string'),
-        updated_at: DS.attr('string'),
-        created_at: DS.attr('string'),
-
-        formFields: (function(){
-            return ["email", "name"];
-        }).property(),
-
-        emails: (function () {
-            return [this.get('email')];
-        }).property('email')
-    });
-}).call(this);
-(function () {
-
-
-}).call(this);
-
 (function () {
     Admin.UsersController = Admin.Base.Controllers.AdminBaseTableController.extend({
         additionalActions: [
