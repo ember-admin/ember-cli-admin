@@ -19,7 +19,9 @@ table.table-striped
           = partial "base/actions/_base_actions"
           = partial "base/actions/_addition_actions"
     else
-      unless controller.model.items.isLoaded
+      if controller.model.items.isLoaded
+        tr: td: i.icon-exclamation-sign.icon-3x: |Empty
+      else
         tr: td: i.icon-spinner.icon-spin.icon-2x
 
 partial "base/_pagination"
