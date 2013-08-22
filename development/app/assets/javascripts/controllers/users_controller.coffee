@@ -4,7 +4,7 @@ Admin.UsersController = Admin.Base.Controllers.AdminTableController.extend
       title: "clone",
       "class": "btn btn-small btn-warning",
       action: "clone",
-      iconClass: "icon-plus icon-white",
+      iconClass: "glyphicon glyphicon-plus",
       confirm: "Are you sure clone this???"
     }
   ]

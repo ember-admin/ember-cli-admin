@@ -23,14 +23,14 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
 
   actions: (->
     [
-      {title: "Edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "icon-pencil icon-white"},
-      {title: "Show", class: "btn btn-small btn-success", action: "show", iconClass: "icon-info-sign icon-white"},
-      {title: "Delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
+      {title: "Edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "glyphicon glyphicon-pencil"},
+      {title: "Show", class: "btn btn-small btn-success", action: "show", iconClass: "glyphicon glyphicon-info-sign"},
+      {title: "Delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "glyphicon glyphicon-trash"}
     ]
   ).property('model')
 
   actionNew:(->
-    {title: "New", class: "btn btn-primary", action: "new", iconClass: "icon-plus icon-white"}
+    {title: "New", class: "btn btn-primary", action: "new", iconClass: "glyphicon glyphicon-plus"}
   ).property('model')
 
   breadcrumbsActions: (->

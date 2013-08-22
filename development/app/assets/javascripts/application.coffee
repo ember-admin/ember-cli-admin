@@ -4,7 +4,6 @@
 #= require ember
 #= require test_logs
 #= require ember-data
-#= require twbs/bootstrap
 #= require ./ember-admin/main
 #= require_tree ./models
 #= require_tree ./controllers

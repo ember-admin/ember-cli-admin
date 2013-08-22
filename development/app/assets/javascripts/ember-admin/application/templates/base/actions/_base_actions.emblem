@@ -1,3 +1,3 @@
 each action in controller.actions
   Admin.Base.Views.ActionView tagName="button" href="#" contextBinding="action" modelBinding=item titleBinding=action.title
-    i{{bindAttr class=action.iconClass}}
+    span{{bindAttr class=action.iconClass}}
