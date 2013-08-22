@@ -1,7 +1,13 @@
 Given(/^some users (\d+) in db$/) do |count|
-  count.to_i.times do
-    FactoryGirl.create(:user)
+  5.times do
+    Address.create!(title: Forgery::Name.title)
   end
+
+  count.to_i.times do
+    FactoryGirl.create(:user, address_id: Address.all.sample.id)
+  end
+
+  Address.create!(title: "test_address")
 end
 
 When(/^I click (.*?) link in item "(.*?)"$/) do |action, id|
@@ -56,5 +62,6 @@ When(/^I change per page to (\d+)$/) do |per_page|
   click_button(per_page)
 end
 
-
-
+Then(/^I select "(.*?)"$/) do |text|
+  select(text)
+end
