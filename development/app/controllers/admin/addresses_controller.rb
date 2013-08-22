@@ -1,7 +1,7 @@
 class Admin::AddressesController < ActionController::Base
 
   def index
-    render json: {users: Address.paginate(page: params[:page], per_page: params[:per_page]).order('id desc')}
+    render json: {addresses: Address.paginate(page: params[:page], per_page: params[:per_page]).order('id desc')}
   end
 
   def destroy

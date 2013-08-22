@@ -26,6 +26,6 @@ class Admin::UsersController < ActionController::Base
 
   private
   def permit_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :address_id)
   end
 end

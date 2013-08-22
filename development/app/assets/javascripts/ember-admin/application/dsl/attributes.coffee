@@ -18,6 +18,7 @@ class Admin.DSL.Attributes
   @relations: (modelType, attrs=[]) ->
     modelType.eachRelationship (attribute, meta) =>
       attrs.push(attribute)
+    attrs
 
   @singularize: (name) ->
     if name.lastIndexOf('s') == name.length - 1
@@ -27,3 +28,10 @@ class Admin.DSL.Attributes
 
   @pluralize: (name) ->
     name + "s"
+
+  @relationForType: (modelType, relation) ->
+    type = undefined
+    modelType.eachRelationship (attribute, meta) =>
+      if meta.key == relation
+        type = meta.type
+    type

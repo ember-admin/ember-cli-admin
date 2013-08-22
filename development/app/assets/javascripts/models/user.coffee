@@ -7,7 +7,7 @@ Admin.User = DS.Model.extend
   created_at: DS.attr('string')
 
   formFields: (->
-    ["email", "name"]
+    ["email", "name", "address"]
   ).property()
 
   emails: (->

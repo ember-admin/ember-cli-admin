@@ -21,7 +21,8 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
     "context.%@".fmt(@get('attributeName'))
 
   relation: (record) ->
-    record.get('title') || record.get('name') || record.get('id')
+    if record
+      record.get('title') || record.get('name') || record.get('id')
 
   _defineValueProperty: (name, property) ->
     Ember.defineProperty(this, name, Ember.computed(->

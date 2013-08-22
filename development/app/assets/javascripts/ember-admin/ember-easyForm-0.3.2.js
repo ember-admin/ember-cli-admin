@@ -1,8 +1,3 @@
-// Last commit: ce0709a (2013-05-16 17:09:31 +0100)
-
-
-
-
 // Last commit: bbb9ad3 (2013-05-30 21:02:34 -0400)
 
 
@@ -82,6 +77,9 @@
 (function(){
     Ember.Handlebars.registerBoundHelper("boundInput", function(property, options){
         options.hash.inputOptions = Ember.copy(options.hash);
+        if(typeof(options.contexts[0].get(property)) == "object"){
+            options.hash.as = "select"
+        }
         options.hash.property = property;
         options.hash.isBlock = !!(options.fn);
         return Ember.Handlebars.helpers.view.call(this, Ember.EasyForm.Input, options);
@@ -128,9 +126,21 @@
         } else if (options.hash.as === 'select') {
             delete(options.hash.valueBinding);
 
-            options.hash.contentBinding   = options.hash.collection;
-            options.hash.selectionBinding = options.hash.selection;
-            options.hash.valueBinding     = options.hash.value;
+            type = context.get('_reference.type');
+
+            if(Admin.DSL.Attributes.relations(type).indexOf(property) >= 0){
+                options.hash.attribute = property;
+                options.hash.content  = Admin.DSL.Attributes.relationForType(type, property).find();
+                options.hash.selection = context.get(property);
+                options.hash.optionValuePath  = "context.id";
+                options.hash.optionLabelPath  = "context.title";
+                options.hash.prompt = "Place select %@".fmt(property);
+            }
+            else {
+                options.hash.contentBinding   = options.hash.collection;
+                options.hash.selectionBinding = options.hash.selection;
+                options.hash.valueBinding     = options.hash.value;
+            }
 
             return Ember.Handlebars.helpers.view.call(context, Ember.EasyForm.Select, options);
         } else {
@@ -417,10 +427,14 @@
 
 
 (function() {
-    Ember.EasyForm.Select = Ember.Select.extend();
-
+    Ember.EasyForm.Select = Ember.Select.extend({
+        attributeBindings: ["attribute"],
+        change: function(){
+            path = 'context.%@'.fmt(this.get('attribute'));
+            this.set(path, this.get('selection'));
+        }
+    });
 })();
-
 
 
 (function() {
