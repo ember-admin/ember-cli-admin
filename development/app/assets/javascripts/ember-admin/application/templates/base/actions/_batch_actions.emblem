@@ -1,5 +1,5 @@
 .btn-group.batch-actions
-  a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+  a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
     |batch actions
     span class="caret"
   ul.dropdown-menu
