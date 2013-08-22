@@ -24,11 +24,11 @@ Admin.Base.Views.ActionView = Admin.Base.Views.BaseActionView.extend
         when "new"
           @get('controller.actionNew')
         when "edit"
-          @_findAction('edit')
+          @_findAction('Edit')
         when "destroy"
-          @_findAction('delete')
+          @_findAction('Delete')
         when "show"
-          @_findAction('show')
+          @_findAction('Show')
         else ""
     else
       @get('context')
