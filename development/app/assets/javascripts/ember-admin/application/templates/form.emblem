@@ -2,10 +2,4 @@
   each attribute in controller.formAttributes
     = boundInput attribute.name inputConfig='class:form-control'
 
-  = submit class="btn btn-default"
-
-  button.btn.btn-primary click="submit false"
-    | Save and edit
-
-  button.btn.btn-warning click="cancel"
-    | Cancel
+  = partial "form_buttons"
