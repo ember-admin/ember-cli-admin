@@ -68,7 +68,7 @@ Admin.MainRoute = Ember.Route.extend
 
   _setModel: (controller, model) ->
     return unless model
-    return controller.set('model', Ember.Object.create(items:  model)) if model.type
+    return controller.set('model', Ember.Object.create(items:  model, __list: true)) if model.type
     controller.set('model', model)
 
   _modelName:(name) ->
@@ -91,7 +91,7 @@ Admin.MainRoute = Ember.Route.extend
   _checkNewAction: (options, target) ->
     if /\./.test(target)
       target = target.split(".")[1]
-      options.action = "new" if target == "new"
+      options.action = target if target
 
   _setupBreadscrumbs: (controller, model)->
     Admin.Logics.Breadcrumbs.setup(@action, controller, model, @controllerFor('breadcrumbs'))

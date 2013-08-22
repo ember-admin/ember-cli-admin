@@ -16,9 +16,39 @@ Admin.Logics.Breadcrumbs.reopenClass
     else
       content.pushObject(obj)
     breadcrumbs_controller.set('content', content)
+    @_actions(action, controller)
 
   _url: (url) ->
     if Admin.Logics.Config.get('namescpace')
       "/%@%@".fmt(Admin.Logics.Config.get('namescpace'), url)
     else
       url
+
+  _actions: (action, controller) ->
+    actions = []
+    if action == "edit"
+      actions.push(@_createAction())
+      actions.push(@_showAction())
+      actions.push(@_destroyAction())
+    if action == "show"
+      actions.push(@_createAction())
+      actions.push(@_editAction())
+      actions.push(@_destroyAction())
+    if action == "new"
+      actions.push(@_createAction())
+    unless action
+      actions.push(@_createAction())
+
+    controller.set("__breadcrumbsActionsArray", actions)
+
+  _createAction: ->
+    "new"
+
+  _editAction: ->
+    "edit"
+
+  _destroyAction: ->
+    "destroy"
+
+  _showAction: ->
+    "show"

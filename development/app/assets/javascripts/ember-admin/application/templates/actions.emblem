@@ -1,2 +1,4 @@
-Admin.Base.Views.ActionView tagName="button" href="#" contextBinding=controller.actionNew titleBinding="new"
-  |New
+each action in controller.breadcrumbsActions
+  Admin.Base.Views.ActionView tagName="button" href="#" breadcrumbActionBinding=action
+    = view.title
+partial "base/actions/_modal"

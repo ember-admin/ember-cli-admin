@@ -32,7 +32,7 @@ Then(/^I should see (\d+) items in table$/) do |count|
 end
 
 Then(/^I should see base actions links/) do
-  %w(edit show delete).each do |action|
+  %w(Edit Show Delete).each do |action|
     page.has_css?("button[title='#{action}']").should   be true
   end
 end

@@ -13,6 +13,8 @@
 
   #for batch actions you don't need save model, because save call automatic when all objects
 
+  # for custom breadcrumbs actions you need override
+   breadcrumbsActions property and add action title, then add this action into additionalActions property
 ###
 
 Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
@@ -21,41 +23,48 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
 
   actions: (->
     [
-      {title: "edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "icon-pencil icon-white"},
-      {title: "show", class: "btn btn-small btn-success", action: "show", iconClass: "icon-info-sign icon-white"},
-      {title: "delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
+      {title: "Edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "icon-pencil icon-white"},
+      {title: "Show", class: "btn btn-small btn-success", action: "show", iconClass: "icon-info-sign icon-white"},
+      {title: "Delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "icon-trash icon-white"}
     ]
-  ).property('')
+  ).property('model')
 
   actionNew:(->
-    {title: "new", class: "btn btn-primary", action: "new", iconClass: "icon-plus icon-white"}
-  ).property('')
+    {title: "New", class: "btn btn-primary", action: "new", iconClass: "icon-plus icon-white"}
+  ).property('model')
+
+  breadcrumbsActions: (->
+    @get('__breadcrumbsActionsArray')
+  ).property('__breadcrumbsActionsArray')
 
   batchActions: (->
     [{title: "delete", confirm: "Are you sure to delete this?", action: "destroy"}]
-  ).property('')
+  ).property('model')
 
   new: () ->
     locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL("/#{@get('__controller_name')}/new")
+    locationObject.setURL(@_path("new"))
 
   edit: (model) ->
     locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL("/#{@get('__controller_name')}/#{model.id}/edit")
+    locationObject.setURL(@_path(model, "edit"))
 
   update: (model)->
     model.get('store').commit()
 
   destroy: (model, save=true) ->
-    model.deleteRecord()
-    @get('model.items').removeReference(model.get('_reference'))
-    if save
-      @get('batches').removeObject(model)
-      model.get('store').commit()
+    if @get('model.__list')
+      model.deleteRecord()
+      @get('model.items').removeReference(model.get('_reference'))
+      if save
+        @get('batches').removeObject(model)
+        model.get('store').commit()
+    else
+      @_destroyItem(model)
 
   show: (model) ->
     locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL("/#{@get('__controller_name')}/#{model.id}/show")
+    locationObject.setURL(@_path(model, "show"))
 
   baseBatchAction: (action) ->
     store = @get('batches.firstObject').get('store')
@@ -63,3 +72,17 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
       @send(action, model, false)
     store.commit()
     @set('batches', [])
+
+  _destroyItem: (model)->
+    model.deleteRecord()
+    model.get('store').commit()
+    model.on 'didDelete', =>
+      locationObject = Ember.Location.create({implementation: 'hash'})
+      locationObject.setURL(@get('__controller_name'))
+
+  _path: (model, type)->
+    if type
+      "/%@/%@/%@".fmt(@get('__controller_name'), model.id, type)
+    else
+      "/%@/%@".fmt(@get('__controller_name'), model)
+

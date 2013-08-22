@@ -25,7 +25,7 @@ Feature: Table View in page
 
   @javascript
   Scenario: Delete action with confirm window
-    And I click delete link in item "1"
+    And I click Delete link in item "1"
     Then I should see confirm popup with "delete"
     And  I press "Confirm"
     Then I should not see "delete"
@@ -33,7 +33,7 @@ Feature: Table View in page
 
   @javascript
   Scenario: Tries to delete item
-    And I click delete link in item "1"
+    And I click Delete link in item "1"
     Then I should see confirm popup with "delete"
     And  I press "Close"
     Then I should not see "delete"
@@ -82,19 +82,19 @@ Feature: Table View in page
 
   @javascript
   Scenario: Transition to show page
-    When I click show link in item "1"
+    When I click Show link in item "1"
     Then I should see "Show"
     And I should see "email"
     And I should see "name"
 
   @javascript
   Scenario: Transition to edit page
-    When I click edit link in item "1"
+    When I click Edit link in item "1"
     Then I should see "Edit"
 
   @javascript
   Scenario: Edit item
-    And I click edit link in item "1"
+    And I click Edit link in item "1"
     When I fill in "Email" with "foo@bar.com"
     And I fill in "Name" with "Foo Bar"
     And I press "Submit"
@@ -104,7 +104,7 @@ Feature: Table View in page
 
   @javascript
   Scenario: Cancel editing item
-    And I click edit link in item "1"
+    And I click Edit link in item "1"
     When I fill in "Email" with "foo@bar.com"
     And I fill in "Name" with "Foo Bar"
     And I press "Cancel"

@@ -5,7 +5,7 @@ Feature: Edit Relations
 
   @javascript
   Scenario: Edit belongsTo relation
-    When  I click edit link in item "1"
+    When  I click Edit link in item "1"
     Then I fill in "Email" with "foo@bar.com"
     And I fill in "Name" with "Foo Bar"
     And I select "test_address"

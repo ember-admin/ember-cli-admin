@@ -23,4 +23,3 @@ table.table-striped
         tr: td: i.icon-spinner.icon-spin.icon-2x
 
 partial "base/_pagination"
-partial "base/actions/_modal"
