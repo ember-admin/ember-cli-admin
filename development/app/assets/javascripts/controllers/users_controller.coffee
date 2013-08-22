@@ -1,4 +1,4 @@
-Admin.UsersController = Admin.Base.Controllers.AdminBaseTableController.extend
+Admin.UsersController = Admin.Base.Controllers.AdminTableController.extend
   additionalActions: [
     {
       title: "clone",

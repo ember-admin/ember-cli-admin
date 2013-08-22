@@ -1,6 +1,7 @@
-Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend Admin.Base.Mixins.BaseActionsMixin,
+Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admin.Base.Mixins.BaseActionsMixin,
   __perPage: (parseInt($.cookie('perPage')) || 25)
-  table: true
+
+  __table: true
 
   changePerPage: (perPage) ->
     $.cookie('perPage', perPage)

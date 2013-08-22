@@ -21,7 +21,7 @@
 #= require ./views/base/actions/base_action_view
 
 #controllers
-#= require ./controllers/base/admin_base_table_controller.coffee
+#= require ./controllers/base/admin_table_controller.coffee
 
 
 

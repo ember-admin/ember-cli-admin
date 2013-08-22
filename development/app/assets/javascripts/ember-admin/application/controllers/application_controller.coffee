@@ -1,1 +1,1 @@
-Admin.ApplicationController = Admin.Base.Controllers.AdminBaseTableController.extend()
+Admin.ApplicationController = Admin.Base.Controllers.AdminTableController.extend()
