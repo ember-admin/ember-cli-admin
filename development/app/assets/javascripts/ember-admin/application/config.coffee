@@ -1,5 +1,4 @@
-Admin.Logics.Config = Ember.Object.extend
-  siteTitle: "Ember Admin"
-#  namescpace: "admin"
+Admin.Logics.Config = Ember.Object.create({})
 
-Admin.Logics.Config = Admin.Logics.Config.create({})
+Admin.Logics.Config.set 'siteTitle', "Ember Admin"
+Admin.Logics.Config.set 'namescpace', "admin"
