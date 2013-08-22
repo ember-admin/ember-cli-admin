@@ -21,11 +21,11 @@ Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend 
     @get('modelAttributes')
   ).property('modelAttributes.@each')
 
-  submit: ->
+  submit: (redirect=true)->
     if @get('model.id')
-      @_updateModel()
+      @_updateModel(redirect)
     else
-      @_createModel()
+      @_createModel(redirect)
 
   cancel: ->
     @get('model').rollback() if @get('model.isDirty')
@@ -35,12 +35,17 @@ Admin.Base.Controllers.AdminBaseTableController = Ember.ObjectController.extend 
     locationObject = Ember.Location.create({implementation: 'hash'})
     locationObject.setURL(@get('__controller_name'))
 
-  _updateModel: ->
+  _updateModel: (redirect)->
     @get('model').save()
-    @get('model').one 'didUpdate', =>
-      @_redirectToTable()
+    if redirect
+      @get('model').one 'didUpdate', =>
+        @_redirectToTable()
 
-  _createModel: ->
+  _createModel: (redirect) ->
     @get('model').save()
     @get('model').one 'didCreate', =>
-      @_redirectToTable()
+      if redirect
+        @_redirectToTable()
+      else
+        Ember.run.next =>
+          @edit(@get('model'))
