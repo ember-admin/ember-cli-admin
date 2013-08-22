@@ -19,6 +19,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'emblem-rails'
   spec.add_dependency 'handlebars-source', ">= 1.0.0.rc4"
   spec.add_dependency "ember-source", ">= 1.0.0.rc.6.1"
-  spec.add_dependency "less-rails"
-  spec.add_dependency 'therubyracer'
 end
