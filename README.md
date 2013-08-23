@@ -9,20 +9,27 @@ Modify for application.css
 
 Modify for application.js
 ```
-#= require jquery
-#= require jquery_ujs
-#= require handlebars
-#= require ember
-#= require ember-data
+//Deafault rails js with jquery
 
-#= require ember-admin/main
+//= require jquery
+//= require jquery_ujs
+
+//Defaults ember files
+
+//= require handlebars
+//= require ember
+//= require ember-data
+
+//Admin section
+//= require ember-admin/main
 ```
 
 Run install generator
 `rails g ember_admin:install`
 
-Then add generated folder in app
-`#= require_tree ./admin`
+Then add generated folder in application.js in Admin section after main file
+
+`//= require_tree ./admin`
 
 #Use development app
 * `git clone git@github.com:roundscope/ember-admin.git && cd ember-admin/development`
