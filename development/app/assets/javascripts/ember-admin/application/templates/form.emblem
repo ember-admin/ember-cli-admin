@@ -2,4 +2,6 @@
   each attribute in controller.formAttributes
     = boundInput attribute.name inputConfig='class:form-control'
 
+  = fileupload "avatar"
+
   = partial "form_buttons"
