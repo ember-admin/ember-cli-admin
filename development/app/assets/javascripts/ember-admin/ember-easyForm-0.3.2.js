@@ -77,6 +77,10 @@
 (function(){
     Ember.Handlebars.registerBoundHelper("boundInput", function(property, options){
         options.hash.inputOptions = Ember.copy(options.hash);
+        if (options.contexts[0].get('fileuploads') != undefined && options.contexts[0].get('fileuploads').indexOf(property) >= 0){
+            return;
+        }
+
         if(typeof(options.contexts[0].get(property)) == "object"){
             options.hash.as = "select"
         }
@@ -89,6 +93,13 @@
 (function() {
     Ember.Handlebars.registerHelper('input', function(property, options) {
         options.hash.inputOptions = Ember.copy(options.hash);
+        if (options.contexts[0].get('fileuploads') != undefined && options.contexts[0].get('fileuploads').indexOf(property) >= 0){
+            return;
+        }
+
+        if(typeof(options.contexts[0].get(property)) == "object"){
+            options.hash.as = "select"
+        }
         options.hash.property = property;
         options.hash.isBlock = !!(options.fn);
         return Ember.Handlebars.helpers.view.call(this, Ember.EasyForm.Input, options);
