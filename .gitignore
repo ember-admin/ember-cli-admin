@@ -20,4 +20,5 @@ development/vendor/bundle
 development/tmp
 development/.idea/
 development/log/*.log
+development/public/uploads
 .rvmrc

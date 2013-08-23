@@ -56,6 +56,10 @@ gem "ember-source", "~> 1.0.0.rc.6.1"
 
 gem 'will_paginate', '>= 3.0.3'
 
+#upload
+gem "carrierwave"
+gem 'mini_magick'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

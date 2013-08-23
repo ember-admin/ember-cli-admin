@@ -11,13 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821114235) do
+ActiveRecord::Schema.define(version: 20130823142233) do
 
   create_table "addresses", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "assets", force: true do |t|
+    t.string   "data",                      null: false
+    t.integer  "assetable_id",              null: false
+    t.string   "assetable_type", limit: 30, null: false
+    t.string   "type",           limit: 30
+    t.string   "guid",           limit: 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assets", ["assetable_type", "type", "assetable_id"], name: "index_assets_on_assetable_type_and_type_and_assetable_id"
+  add_index "assets", ["guid"], name: "index_assets_on_guid"
 
   create_table "cars", force: true do |t|
     t.string   "title",       null: false
