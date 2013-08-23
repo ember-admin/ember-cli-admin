@@ -11,7 +11,7 @@ class Admin.DSL.Attributes
   @withoutId: (modelType)->
     attributes = []
     modelType.eachComputedProperty (attribute, meta) =>
-      attributes.push(attribute) if meta.isAttribute
+      attributes.push(attribute) if meta.isAttribute && @systemAttrs().indexOf(attribute) < 0
     @relations(modelType, attributes)
     attributes
 
@@ -26,3 +26,6 @@ class Admin.DSL.Attributes
       if meta.key == relation
         type = meta.type
     type
+
+  @systemAttrs: ->
+    ["created_at", "updated_at"]
