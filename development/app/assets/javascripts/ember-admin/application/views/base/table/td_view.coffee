@@ -1,4 +1,5 @@
 Admin.Base.Views.Table.TdView = Ember.View.extend
+  attributeBindings: ["style"]
 
   tagName: "td"
 
@@ -6,6 +7,9 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
     property = @path()
     @_defineValueObserver()
     @_defineValueProperty("_value", property)
+
+    return @get("color") if @get('attributeName').match /color/
+
     @get("_value")
   ).property("_value")
 
@@ -15,7 +19,12 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
 
   boolean:(->
     #implement for bool attrs metaForProperty user this fo find meta information about property
-  ).property('context', 'attributeName')
+  ).property('_value')
+
+  color: (->
+    @set('style', "color: #{@get('_value')};")
+    @get("_value")
+  ).property('_value')
 
   path: ->
     "context.%@".fmt(@get('attributeName'))
