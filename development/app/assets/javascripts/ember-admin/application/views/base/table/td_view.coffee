@@ -7,9 +7,8 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
     property = @path()
     @_defineValueObserver()
     @_defineValueProperty("_value", property)
-
-    return @get("color") if @get('attributeName').match /color/
-
+    @get("color") if @get('attributeName').match /color/
+    return @get('image') if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >=0
     @get("_value")
   ).property("_value")
 
@@ -21,9 +20,13 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
     #implement for bool attrs metaForProperty user this fo find meta information about property
   ).property('_value')
 
+  image: (->
+    url = "context.#{@get('attributeName')}.thumb_url"
+    "<image src='#{@get(url)}'>"
+  ).property('value')
+
   color: (->
     @set('style', "color: #{@get('_value')};")
-    @get("_value")
   ).property('_value')
 
   path: ->
@@ -31,7 +34,7 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
 
   relation: (record) ->
     if record
-      record.get('title') || record.get('name') || record.get('id')
+      record.get('title') || record.get('name') || record.get('thumb_url') || record.get('id')
 
   _defineValueProperty: (name, property) ->
     Ember.defineProperty(this, name, Ember.computed(->
