@@ -1,4 +1,4 @@
-li.dropdown
+/li.dropdown
   a.dropdown-toggle data-toggle="dropdown" href="#"
     i.icon-user
     |User
