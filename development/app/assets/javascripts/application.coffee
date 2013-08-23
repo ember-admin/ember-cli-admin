@@ -8,3 +8,6 @@
 #= require_tree ./models
 #= require_tree ./controllers
 #= require test_env
+#= require ./store
+#= require ./navigation
+#= require ./router

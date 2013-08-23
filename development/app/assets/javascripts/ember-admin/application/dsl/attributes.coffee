@@ -20,15 +20,6 @@ class Admin.DSL.Attributes
       attrs.push(attribute)
     attrs
 
-  @singularize: (name) ->
-    if name.lastIndexOf('s') == name.length - 1
-      name.substring(0, name.length - 1)
-    else
-      name
-
-  @pluralize: (name) ->
-    name + "s"
-
   @relationForType: (modelType, relation) ->
     type = undefined
     modelType.eachRelationship (attribute, meta) =>

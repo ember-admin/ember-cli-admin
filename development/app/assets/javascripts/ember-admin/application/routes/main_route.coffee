@@ -3,7 +3,6 @@ Admin.MainRoute = Ember.Route.extend
   model: (options, transition) ->
     @action = undefined
     @page = undefined
-
     modelName = @_modelName(transition.targetName)
     modelType = @_modelType(modelName)
 
@@ -73,7 +72,7 @@ Admin.MainRoute = Ember.Route.extend
 
   _modelName:(name) ->
     if /\./.test(name) then name = name.split(".")[0]
-    Admin.DSL.Attributes.singularize(name)
+    @get('store.adapter').serializer.singularize(name)
 
   _modelType: (modelName) ->
     eval("Admin.%@".fmt(modelName.classify()))
