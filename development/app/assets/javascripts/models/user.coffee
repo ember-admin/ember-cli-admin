@@ -8,7 +8,7 @@ Admin.User = DS.Model.extend
   avatar: DS.belongsTo('Admin.Avatar')
 
   formFields: (->
-    ["email", "name", "address"]
+    ["email", "name", "address", "avatar"]
   ).property()
 
   emails: (->
