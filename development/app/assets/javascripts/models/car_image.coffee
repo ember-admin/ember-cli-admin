@@ -1,0 +1,1 @@
+Admin.CarImage = Admin.Asset.extend()
