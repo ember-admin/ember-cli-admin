@@ -27,7 +27,7 @@ Modify for application.js
 Run install generator
 `rails g ember_admin:install`
 
-Then add generated folder in application.js in Admin section after main file
+Then add generated folder in application.js in Admin section after `//= require ember-admin/main`
 
 `//= require_tree ./admin`
 
