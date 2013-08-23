@@ -28,6 +28,9 @@ Then(/^I should see table view$/) do
 end
 
 Then(/^I should see (\d+) items in table$/) do |count|
+  if count.to_i == 0
+    count = 1
+  end
   page.all("table tr").count.should be (count.to_i + 1)
 end
 
