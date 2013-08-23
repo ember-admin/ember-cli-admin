@@ -5,7 +5,7 @@ Try Admin into your app:
 
 Modify for application.css
 
-`*= require ember-admin/admin`
+* `*= require ember-admin/admin`
 
 Modify for application.js
 ```
@@ -25,11 +25,10 @@ Modify for application.js
 ```
 
 Run install generator
-`rails g ember_admin:install`
+* `rails g ember_admin:install`
 
 Then add generated folder in application.js in Admin section after `//= require ember-admin/main`
-
-`//= require_tree ./admin`
+* `//= require_tree ./admin`
 
 #Use development app
 * `git clone git@github.com:roundscope/ember-admin.git && cd ember-admin/development`
