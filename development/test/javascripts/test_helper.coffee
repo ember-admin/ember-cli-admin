@@ -4,8 +4,8 @@
 #= require ember
 #= require ember-data
 #= require_self
-#= require admin/application/dsl/attributes
-#= require admin/application/dsl/navigation
+#= require ember-admin/application/dsl/attributes
+#= require ember-admin/application/dsl/navigation
 #= require_tree .
 
 @Admin = Ember.Namespace.create()

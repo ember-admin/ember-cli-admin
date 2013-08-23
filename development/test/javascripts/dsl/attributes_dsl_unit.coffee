@@ -14,9 +14,3 @@ test "returns with user defined property", ->
     ).property('email')
   attributes = Admin.DSL.Attributes.detect(Admin.User)
   equal(attributes.length, 2)
-
-test "singularize", ->
-  equal(Admin.DSL.Attributes.singularize("users"), "user")
-
-test "pluralize", ->
-  equal(Admin.DSL.Attributes.pluralize("user"), "users")
