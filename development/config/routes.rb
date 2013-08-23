@@ -9,6 +9,7 @@ EmberRailsAdmin::Application.routes.draw do
     match "/dashboard" => "dashboard#index", via: :get
     resources :users
     resources :addresses
+    resources :cars
   end
 
 

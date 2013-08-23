@@ -22,7 +22,6 @@ Admin.NavigationContentView = Ember.View.extend
 
   _clearAll: ->
     unless @get('state') == "inBuffer"
-#    if @get('state')
       if @get('parentView.tagName') == "li"
         @get('parentView').$().siblings("li").removeClass('active')
         @get('parentView').$().addClass('active')

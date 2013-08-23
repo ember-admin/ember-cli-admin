@@ -3,3 +3,4 @@ Admin.DSL.Navigation.map ->
   @navigate "System", ->
     @navigate "Users"
     @navigate "Addresses"
+    @navigate "Cars"
