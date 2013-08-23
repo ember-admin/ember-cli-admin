@@ -11,8 +11,20 @@ Admin.NavigationContentView = Ember.View.extend
   ).property('context', 'controller.activeMenu')
 
   setActiveParent: (->
-    if @get('isActive')
-      @set('parentView.isActive', true) if @get('parentView.tagName') == "li"
+    if @get('parentView.tagName') == "li"
+      if @get('isActive')
+        @_clearAll()
+        @set('parentView.isActive', true)
     else
-      @set('parentView.isActive', false) if @get('parentView.tagName') == "li"
+      if @get('isActive')
+        @_clearAll()
   ).observes('isActive')
+
+  _clearAll: ->
+    unless @get('state') == "inBuffer"
+#    if @get('state')
+      if @get('parentView.tagName') == "li"
+        @get('parentView').$().siblings("li").removeClass('active')
+        @get('parentView').$().addClass('active')
+      else
+        @$().siblings("li").removeClass('active')
