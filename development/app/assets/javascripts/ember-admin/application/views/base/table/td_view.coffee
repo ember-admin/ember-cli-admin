@@ -21,8 +21,9 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
   ).property('_value')
 
   image: (->
-    url = "context.#{@get('attributeName')}.thumb_url"
-    "<image src='#{@get(url)}'>"
+    path = "context.#{@get('attributeName')}.thumb_url"
+    if @get(path)
+      "<image src='#{@get(path)}'>"
   ).property('value')
 
   color: (->
