@@ -1,7 +1,7 @@
 class Admin::AddressesController < ActionController::Base
 
   def index
-    render json: {addresses: Address.paginate(page: params[:page], per_page: params[:per_page]).order('id desc')}
+    render json: Address.paginate(page: params[:page], per_page: params[:per_page]).order('id desc')
   end
 
   def destroy
@@ -10,18 +10,18 @@ class Admin::AddressesController < ActionController::Base
   end
 
   def show
-    render json: {address: Address.find(params[:id])}
+    render json: Address.find(params[:id])
   end
 
   def create
     address = Address.create!(permit_params)
-    render json: {address: address}
+    render json: address
   end
 
   def update
     address = Address.find(params[:id])
     address.update_attributes(permit_params)
-    render json: {address: address}
+    render json: address
   end
 
   private

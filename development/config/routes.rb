@@ -10,7 +10,8 @@ EmberRailsAdmin::Application.routes.draw do
     resources :users
     resources :addresses
     resources :cars
+    resources :avatars
+    resources :car_images
   end
-
 
 end
