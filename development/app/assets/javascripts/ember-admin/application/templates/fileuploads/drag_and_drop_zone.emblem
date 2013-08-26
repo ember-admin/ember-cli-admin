@@ -1,0 +1,7 @@
+if view.single
+  if view.asset
+    Admin.Fileupload.AssetView templateNameBinding=view.assetTemplate assetBinding=view.asset
+  input{{action selectFile target="view" on="change"}} type="file"
+else
+  each asset in view.assets
+    Admin.Fileupload.AssetView templateNameBinding=view.assetTemplate assetBinding=asset

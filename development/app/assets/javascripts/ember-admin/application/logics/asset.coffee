@@ -6,4 +6,4 @@ Admin.Asset = DS.Model.extend
   assetable_type: DS.attr('string')
   thumb_url: DS.attr('string')
   url: DS.attr('string')
-  type: DS.attr('string')
+  type: DS.attr('string', {defaultValue: "Asset"})

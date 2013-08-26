@@ -13,3 +13,8 @@
 
 #mixins
 @Admin.Base.Mixins = Ember.Namespace.create()
+
+#fileuploads
+@Admin.Fileupload  = Ember.Namespace.create()
+
+@Admin.Adapters = Ember.Namespace.create()

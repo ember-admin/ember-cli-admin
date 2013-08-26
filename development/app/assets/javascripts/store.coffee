@@ -7,5 +7,7 @@ DS.RESTAdapter.configure("plurals", {
 });
 
 Admin.Store = DS.Store.extend
-  revision: 11
+  revision: 13
   adapter: DS.RESTAdapter.create()
+
+Admin.Store.registerAdapter('Admin.Avatar', Admin.Adapters.FileuploadAdapter.extend())

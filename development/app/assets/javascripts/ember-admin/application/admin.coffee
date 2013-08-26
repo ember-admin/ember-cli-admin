@@ -1,6 +1,7 @@
 #= require ./resolver
 #= require_self
 #= require ./namespace
+#= require_tree ./adapters
 #= require_tree ./dsl
 #= require ./initializer
 

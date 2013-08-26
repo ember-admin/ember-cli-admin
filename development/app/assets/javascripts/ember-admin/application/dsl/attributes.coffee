@@ -20,6 +20,13 @@ class Admin.DSL.Attributes
       attrs.push(attribute)
     attrs
 
+  @isBelongsTo: (modelType, property) ->
+    _belongsTo = false
+    modelType.eachRelationship (attribute, meta) =>
+      if meta.key == property && meta.kind == "belongsTo"
+        _belongsTo = true
+    _belongsTo
+
   @relationForType: (modelType, relation) ->
     type = undefined
     modelType.eachRelationship (attribute, meta) =>
