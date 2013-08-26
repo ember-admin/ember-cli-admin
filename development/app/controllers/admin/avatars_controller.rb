@@ -1,4 +1,7 @@
+require_relative "../../../lib/utils/file_string_io"
+
 class Admin::AvatarsController < ActionController::Base
+
 
   def index
     render json: Avatar.paginate(page: params[:page], per_page: params[:per_page]).order('id desc')
@@ -14,7 +17,10 @@ class Admin::AvatarsController < ActionController::Base
   end
 
   def create
-    avatar = Avatar.create!(permit_params)
+    avatar = Avatar.new(fetch_params)
+    file = ::Utils::FileStringIO.new(request.raw_post, params[:original_filename])
+    avatar.data = file
+    avatar.save!
     render json: avatar
   end
 
@@ -31,4 +37,13 @@ class Admin::AvatarsController < ActionController::Base
     options.delete(:data) unless options[:data].present?
     options
   end
+
+  def fetch_params
+    options = {}
+    [:assetable_id, :assetable_type, :guid, :type].each do |param|
+      options[param] = params[param]
+    end
+    options
+  end
+
 end
