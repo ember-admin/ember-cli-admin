@@ -20,8 +20,8 @@ table.table-striped
           = partial "base/actions/_addition_actions"
     else
       if controller.model.items.isLoaded
-        tr: td: i.icon-exclamation-sign.icon-3x: |Empty
+        tr: td: span.glyphicon.glyphicon-exclamation-sign: |Empty
       else
-        tr: td: i.icon-spinner.icon-spin.icon-2x
+        tr: td: span.glyphicon.glyphicon-refresh.glyphicon-refresh
 
 partial "base/_pagination"
