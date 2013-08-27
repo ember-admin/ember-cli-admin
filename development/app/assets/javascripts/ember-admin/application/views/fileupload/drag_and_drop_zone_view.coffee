@@ -28,6 +28,7 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
       @createAsset(file)
 
   createAsset: (file) ->
+    @set('creating', true)
     if @get('single')
       if @get('context.id')
         params =
@@ -52,6 +53,7 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     asset.set('file', file)
     asset.get('store').commit()
     asset.one 'didCreate', =>
+      @set('creating', false)
       @_clearInput()
       if @get('single')
         @_createBelongsTo(asset)

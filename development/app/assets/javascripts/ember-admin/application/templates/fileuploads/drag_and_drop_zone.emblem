@@ -7,4 +7,4 @@ else
     Admin.Fileupload.AssetView templateNameBinding=view.assetTemplate assetBinding=asset
 
 if view.creating
-  |'a'
+  span.glyphicon.glyphicon-refresh.glyphicon-refresh
