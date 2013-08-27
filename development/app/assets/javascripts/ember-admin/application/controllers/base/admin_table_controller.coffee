@@ -29,6 +29,8 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
   ).property('model.fileuploads')
 
   submit: (redirect=true)->
+    unless @get('model.isDirty')
+      return @_redirectToTable()
     if @get('model.id')
       @_updateModel(redirect)
     else
