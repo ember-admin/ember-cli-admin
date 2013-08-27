@@ -14,7 +14,7 @@ Admin.Adapters.FileuploadAdapter = DS.RESTAdapter.extend
     request.onreadystatechange =  =>
       if request.readyState == 4 && (request.status == 201 || request.status == 200)
         data = JSON.parse(request.response)
-        adapter.didCreateRecord(store, type, record, $.extend(json, data))
+        adapter.didCreateRecord(store, type, record, data)
     request.send(record.get('file'))
 
   _excludeParams: (obj) ->

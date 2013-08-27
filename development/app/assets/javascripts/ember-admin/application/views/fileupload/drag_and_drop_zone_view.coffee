@@ -51,6 +51,21 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     asset = assetType.createRecord(params)
     asset.set('file', file)
     asset.get('store').commit()
+    asset.one 'didCreate', =>
+      @_clearInput()
+      if @get('single')
+        @_createBelongsTo(asset)
+      else
+        @_createHasMany()
+
+  _createBelongsTo: (asset) ->
+    @set("asset", asset)
+
+  _createHasMany: (asset) ->
+
+
+  _clearInput: ->
+    @$().find("input[type=file]").val('')
 
   s4: ->
     Math.floor((1 + Math.random()) * 0x10000)
