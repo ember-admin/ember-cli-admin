@@ -30,6 +30,10 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
   createAsset: (file) ->
     @set('creating', true)
     if @get('single')
+      if @get("controller.model.#{@get('property')}")
+        @get("controller.model.#{@get('property')}").deleteRecord()
+        @get("controller.model.#{@get('property')}.store").commit()
+
       if @get('context.id')
         params =
           assetable_type: @get('controller.__type')
@@ -66,7 +70,7 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
 
   _createBelongsTo: (asset) ->
     @get("context.model").set("#{@get('property')}", asset)
-    unless @get('context.model.isDirty')
+    if @get('context.model.isDirty')
       state = DS.RootState.loaded
       @get("context.model").set('currentState', state.saved)
     @set("asset", asset)
