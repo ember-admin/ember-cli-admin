@@ -1,3 +1,5 @@
+require_relative "../../../lib/utils/file_string_io"
+
 class Admin::CarImagesController < ActionController::Base
 
   def index
@@ -14,7 +16,10 @@ class Admin::CarImagesController < ActionController::Base
   end
 
   def create
-    car_image = CarImage.create!(permit_params)
+    car_image = CarImage.new(fetch_params)
+    file = ::Utils::FileStringIO.new(request.raw_post, params[:original_filename])
+    car_image.data = file
+    car_image.save!
     render json: car_image
   end
 
@@ -29,6 +34,14 @@ class Admin::CarImagesController < ActionController::Base
   def permit_params
     options = params.require(:car_image).permit(:id, :assetable_id, :assetable_type, :guid, :type, :data)
     options.delete(:data) unless options[:data].present?
+    options
+  end
+
+  def fetch_params
+    options = {}
+    [:assetable_id, :assetable_type, :guid, :type].each do |param|
+      options[param] = params[param]
+    end
     options
   end
 end
