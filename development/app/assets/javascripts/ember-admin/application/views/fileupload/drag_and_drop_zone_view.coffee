@@ -51,7 +51,11 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     assetType = Admin.DSL.Attributes.relationForType(type, @get('property'))
     asset = assetType.createRecord(params)
     asset.set('file', file)
-    asset.get('store').commit()
+
+    transaction = asset.get('store').transaction()
+    transaction.add asset
+    transaction.commit()
+
     asset.one 'didCreate', =>
       @set('creating', false)
       @_clearInput()

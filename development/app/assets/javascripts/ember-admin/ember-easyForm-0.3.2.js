@@ -77,7 +77,7 @@
 (function(){
     Ember.Handlebars.registerBoundHelper("boundInput", function(property, options){
         options.hash.inputOptions = Ember.copy(options.hash);
-        if (options.contexts[0].get('fileuploads') != undefined && options.contexts[0].get('fileuploads').indexOf(property) >= 0){
+        if (options.contexts[0].get('fileuploads') != undefined && options.contexts[0].get('fileuploads').getEach('name').indexOf(property) >= 0){
             return;
         }
 
@@ -93,7 +93,7 @@
 (function() {
     Ember.Handlebars.registerHelper('input', function(property, options) {
         options.hash.inputOptions = Ember.copy(options.hash);
-        if (options.contexts[0].get('fileuploads') != undefined && options.contexts[0].get('fileuploads').indexOf(property) >= 0){
+        if (options.contexts[0].get('fileuploads') != undefined && options.contexts[0].get('fileuploads').getEach('name').indexOf(property) >= 0){
             return;
         }
 
