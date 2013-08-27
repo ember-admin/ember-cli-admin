@@ -18,6 +18,10 @@ Admin.Fileupload.AssetView = Admin.Base.Views.BaseActionView.extend
 
   _deleteBelongsTo: ->
     @get('asset').one 'didDelete', =>
+      @get("context.model").set("#{@get('property')}", null)
+      unless @get('controller.model.isDirty')
+        state = DS.RootState.loaded
+        @get("controller.model").set('currentState', state.saved)
       @set("parentView.asset", null)
 
   _deleteHasMany: ->

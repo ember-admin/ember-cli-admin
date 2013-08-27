@@ -56,7 +56,7 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     transaction.add asset
     transaction.commit()
 
-    asset.one 'didCreate', =>
+    asset.addObserver 'id', (sender, key, value, context, rev) =>
       @set('creating', false)
       @_clearInput()
       if @get('single')
@@ -65,6 +65,10 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
         @_createHasMany()
 
   _createBelongsTo: (asset) ->
+    @get("context.model").set("#{@get('property')}", asset)
+    unless @get('context.model.isDirty')
+      state = DS.RootState.loaded
+      @get("context.model").set('currentState', state.saved)
     @set("asset", asset)
 
   _createHasMany: (asset) ->
