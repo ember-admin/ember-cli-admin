@@ -22,6 +22,12 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
     @get('modelAttributes')
   ).property('modelAttributes.@each')
 
+  fileuploads:(->
+    if @get('model.fileuploads')
+      @get('model.fileuploads').map (attr) ->
+        {name: attr}
+  ).property('model.fileuploads')
+
   submit: (redirect=true)->
     if @get('model.id')
       @_updateModel(redirect)
