@@ -39,7 +39,7 @@ class Admin::CarImagesController < ActionController::Base
 
   def fetch_params
     options = {}
-    [:assetable_id, :assetable_type, :guid, :type].each do |param|
+    [:assetable_id, :assetable_type, :guid, :type, :is_main].each do |param|
       options[param] = params[param]
     end
     options

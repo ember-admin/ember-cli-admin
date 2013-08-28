@@ -7,3 +7,4 @@ Admin.Asset = DS.Model.extend
   thumb_url: DS.attr('string')
   url: DS.attr('string')
   type: DS.attr('string', {defaultValue: "Asset"})
+  is_main: DS.attr('boolean', {defaultValue: false})

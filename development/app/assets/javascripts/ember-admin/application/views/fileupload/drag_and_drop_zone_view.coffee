@@ -40,12 +40,14 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
           assetable_id: @get('context.id')
           content_type: file.type
           original_filename: file.name
+          is_main: true
       else
         params =
           assetable_type: @get('controller.__type')
           guid: @guid()
           content_type: file.type
           original_filename: file.name
+          is_main: true
 
       @_createAsset(params, file)
     else

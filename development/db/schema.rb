@@ -20,11 +20,13 @@ ActiveRecord::Schema.define(version: 20130823142233) do
   end
 
   create_table "assets", force: true do |t|
-    t.string   "data",                      null: false
+    t.string   "data",                                      null: false
     t.integer  "assetable_id"
-    t.string   "assetable_type", limit: 30, null: false
+    t.string   "assetable_type", limit: 30,                 null: false
     t.string   "type",           limit: 30
     t.string   "guid",           limit: 50
+    t.boolean  "is_main",                   default: false
+    t.integer  "position",                  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

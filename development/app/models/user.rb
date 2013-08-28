@@ -4,5 +4,5 @@ class User < ActiveRecord::Base
 
   belongs_to :address
 
-  has_one :avatar, :as => :assetable, dependent: :destroy
+  has_one :avatar, -> { where is_main: true }, :as => :assetable, dependent: :destroy
 end
