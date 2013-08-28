@@ -15,6 +15,7 @@ class Admin::UsersController < ActionController::Base
 
   def create
     user = User.create!(permit_params)
+    set_attachment_id(user.id)
     render json: user
   end
 
@@ -27,5 +28,14 @@ class Admin::UsersController < ActionController::Base
   private
   def permit_params
     params.require(:user).permit(:name, :email, :address_id)
+  end
+
+  def attachment
+    params.require(:user).permit(:avatar_id, :avatar_ids)
+  end
+
+  def set_attachment_id(id)
+    Avatar.find(attachment[:avatar_id]).update_attributes({assetable_id: id}) if attachment[:avatar_id]
+    Avatar.find(attachment[:avatar_ids]).each {|avatar| avatar.assetable_id = id; avatar.save()} if attachment[:avatar_ids]
   end
 end

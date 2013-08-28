@@ -65,18 +65,18 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
       content_type: file.type
       original_filename: file.name
       is_main: true
-    if @get('context.id')
-      params.assetable_id = @get('context.id')
-    else
-      params.guid = @guid()
+
+    params.assetable_id = @get('context.id') if @get('context.id')
+
     params.is_main = false unless @get('single')
     params
 
   _createBelongsTo: (asset) ->
     @get("context.model").set("#{@get('property')}", asset)
     if @get('context.model.isDirty')
-      state = DS.RootState.loaded
-      @get("context.model").set('currentState', state.saved)
+      if @get('context.model.id')
+        state = DS.RootState.loaded.saved
+        @get("context.model").set('currentState', state)
     @set("asset", asset)
 
   _createHasMany: (asset) ->
@@ -84,11 +84,3 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
 
   _clearInput: ->
     @$().find("input[type=file]").val('')
-
-  s4: ->
-    Math.floor((1 + Math.random()) * 0x10000)
-    .toString(16)
-    .substring(1)
-
-  guid: ->
-    @s4() + @s4() + '-' + @s4() + '-' + @s4() + '-' + @s4() + '-' + @s4() + @s4() + @s4()
