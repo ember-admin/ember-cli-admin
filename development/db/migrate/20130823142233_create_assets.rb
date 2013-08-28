@@ -7,6 +7,8 @@ class CreateAssets < ActiveRecord::Migration
       t.string  :assetable_type, limit: 30, null: false
       t.string  :type, limit: 30
       t.string  :guid, limit: 50
+      t.boolean :is_main, default: false
+      t.integer :position, default: 0
 
       t.timestamps
     end
