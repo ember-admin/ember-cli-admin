@@ -6,6 +6,7 @@ Admin.User = DS.Model.extend
   updated_at: DS.attr('string')
   created_at: DS.attr('string')
   avatar: DS.belongsTo('Admin.Avatar')
+  avatars: DS.hasMany('Admin.Avatar')
 
 #  formFields: (->
 #    ["email", "name", "address", "avatar"]
@@ -15,4 +16,4 @@ Admin.User = DS.Model.extend
    [this.get('email')]
   ).property('email')
 
-  fileuploads: ["avatar"]
+  fileuploads: ["avatar", "avatars"]

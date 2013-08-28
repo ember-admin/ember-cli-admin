@@ -13,7 +13,11 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
   ).property('context')
 
   assets:(->
-  ).property()
+    Ember.defineProperty(this, "_assets", Ember.computed( ->
+      @get("context.#{@get('property')}")
+    ).property("context.#{@get('property')}.@each.isLoaded"))
+    @get('_assets')
+  ).property('_assets')
 
   asset:(->
     Ember.defineProperty(this, "_asset", Ember.computed( ->
@@ -33,24 +37,9 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
       if @get("controller.model.#{@get('property')}")
         @get("controller.model.#{@get('property')}").deleteRecord()
         @get("controller.model.#{@get('property')}.store").commit()
-
-      if @get('context.id')
-        params =
-          assetable_type: @get('controller.__type')
-          assetable_id: @get('context.id')
-          content_type: file.type
-          original_filename: file.name
-          is_main: true
-      else
-        params =
-          assetable_type: @get('controller.__type')
-          guid: @guid()
-          content_type: file.type
-          original_filename: file.name
-          is_main: true
-
-      @_createAsset(params, file)
+      @_createAsset(@_params(file), file)
     else
+      @_createAsset(@_params(file), file)
 
   _createAsset: (params, file) ->
     type = @get('context._reference').type
@@ -68,7 +57,20 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
       if @get('single')
         @_createBelongsTo(asset)
       else
-        @_createHasMany()
+        @_createHasMany(asset)
+
+  _params: (file)->
+    params =
+      assetable_type: @get('controller.__type')
+      content_type: file.type
+      original_filename: file.name
+      is_main: true
+    if @get('context.id')
+      params.assetable_id = @get('context.id')
+    else
+      params.guid = @guid()
+    params.is_main = false unless @get('single')
+    params
 
   _createBelongsTo: (asset) ->
     @get("context.model").set("#{@get('property')}", asset)
@@ -78,7 +80,7 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     @set("asset", asset)
 
   _createHasMany: (asset) ->
-
+    @get("context.model.#{@get('property')}").pushObject(asset)
 
   _clearInput: ->
     @$().find("input[type=file]").val('')
