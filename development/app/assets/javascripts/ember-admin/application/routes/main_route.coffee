@@ -119,6 +119,7 @@ Admin.MainRoute = Ember.Route.extend
     }
 
   _renderActions: (controller, model) ->
+    window.c =  controller
     if model
       @render 'actions',{
         outlet: 'actions'

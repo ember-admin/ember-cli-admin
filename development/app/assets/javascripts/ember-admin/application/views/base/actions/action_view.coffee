@@ -39,9 +39,9 @@ Admin.Base.Views.ActionView = Admin.Base.Views.BaseActionView.extend
   ).property('action')
 
   _findAction: (title) ->
-    @get('controller.actions').find (action) =>
+    @get('controller.__actions').find (action) =>
       action.title == title
 
   _findAdditionalActions: (title) ->
-    @get('controller.additionalActions').find (action) =>
+    @get('controller.__additionalActions').find (action) =>
       action.title == title

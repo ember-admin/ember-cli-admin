@@ -40,6 +40,15 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
     @get('model').rollback() if @get('model.isDirty')
     @_redirectToTable()
 
+  __batches: []
+
+  __actions: (->
+    [{title: "Edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "glyphicon glyphicon-pencil"},
+    {title: "Show", class: "btn btn-small btn-success", action: "show", iconClass: "glyphicon glyphicon-info-sign"},
+    {title: "Delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "glyphicon glyphicon-trash"}
+    ]
+  ).property('model')
+
   _redirectToTable: ->
     locationObject = Ember.Location.create({implementation: 'hash'})
     locationObject.setURL(@get('__controller_name'))
