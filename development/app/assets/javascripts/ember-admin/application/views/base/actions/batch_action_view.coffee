@@ -9,9 +9,10 @@ Admin.Base.Views.BatchActionView = Admin.Base.Views.BaseActionView.extend
     else
       @_batchAction()
 
-  confirm: ->
-    @_batchAction()
-    @_super()
+  actions:
+    confirm: ->
+      @_batchAction()
+      @_super()
 
   _batchAction: ->
     @get('controller').send("baseBatchAction", @get('context.action'))

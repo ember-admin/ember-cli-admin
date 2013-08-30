@@ -31,44 +31,45 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
     [{title: "delete", confirm: "Are you sure to delete this?", action: "destroy"}]
   ).property('model')
 
-  new: () ->
-    locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL(@_path("new"))
-
-  edit: (model) ->
-    locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL(@_path(model, "edit"))
-
-  update: (model)->
-    model.get('store').commit()
-
-  destroy: (model, save=true) ->
-    if @get('model.__list')
-      model.deleteRecord()
-      @get('model.items').removeReference(model.get('_reference'))
-      if save
-        @get('batches').removeObject(model)
-        model.get('store').commit()
-    else
-      @_destroyItem(model)
-
-  show: (model) ->
-    locationObject = Ember.Location.create({implementation: 'hash'})
-    locationObject.setURL(@_path(model, "show"))
-
-  baseBatchAction: (action) ->
-    store = @get('batches.firstObject').get('store')
-    @get('batches').forEach (model) =>
-      @send(action, model, false)
-    store.commit()
-    @set('batches', [])
-
-  _destroyItem: (model)->
-    model.deleteRecord()
-    model.get('store').commit()
-    model.on 'didDelete', =>
+  actions:
+    new: () ->
       locationObject = Ember.Location.create({implementation: 'hash'})
-      locationObject.setURL(@get('__controller_name'))
+      locationObject.setURL(@_path("new"))
+
+    edit: (model) ->
+      locationObject = Ember.Location.create({implementation: 'hash'})
+      locationObject.setURL(@_path(model, "edit"))
+
+    update: (model)->
+      model.get('store').commit()
+
+    destroy: (model, save=true) ->
+      if @get('model.__list')
+        model.deleteRecord()
+        @get('model.items').removeReference(model.get('_reference'))
+        if save
+          @get('batches').removeObject(model)
+          model.get('store').commit()
+      else
+        @_destroyItem(model)
+
+    show: (model) ->
+      locationObject = Ember.Location.create({implementation: 'hash'})
+      locationObject.setURL(@_path(model, "show"))
+
+    baseBatchAction: (action) ->
+      store = @get('batches.firstObject').get('store')
+      @get('batches').forEach (model) =>
+        @send(action, model, false)
+      store.commit()
+      @set('batches', [])
+
+    _destroyItem: (model)->
+      model.deleteRecord()
+      model.get('store').commit()
+      model.on 'didDelete', =>
+        locationObject = Ember.Location.create({implementation: 'hash'})
+        locationObject.setURL(@get('__controller_name'))
 
   _path: (model, type)->
     if type
