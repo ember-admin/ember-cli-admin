@@ -9,5 +9,7 @@ Admin.UsersController = Admin.Base.Controllers.AdminTableController.extend
     }
   ]
 
-  clone: (model) ->
-    console.log("clone")
+  actions:
+
+    clone: (model) ->
+      console.log("clone")
