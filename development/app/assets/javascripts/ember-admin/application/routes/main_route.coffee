@@ -55,10 +55,10 @@ Admin.MainRoute = Ember.Route.extend
     if Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]
       name
     else
-      if @action then @action else "main"
+      if @action and @action isnt "index" and @action isnt "page" then @action else "main"
 
   _controllerName: (controller) ->
-    controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)/, '')
+    controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Index)|(Page)/, '')
 
   _setActiveRoute: ->
     url = Ember.Location.create({implementation: 'hash'}).getURL()
