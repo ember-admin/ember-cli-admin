@@ -13,10 +13,12 @@ Admin.Base.Views.ActionView = Admin.Base.Views.BaseActionView.extend
     else
       @get('controller').send(@get('action.action'), model)
 
-  confirm: ->
-    model = (@get('model') || @get('controller.model'))
-    @get('controller').send(@get('action.action'), model)
-    @_super()
+  actions:
+
+    confirm: ->
+      model = (@get('model') || @get('controller.model'))
+      @get('controller').send(@get('action.action'), model)
+      @_super()
 
   action:(->
     if @get('breadcrumbAction')

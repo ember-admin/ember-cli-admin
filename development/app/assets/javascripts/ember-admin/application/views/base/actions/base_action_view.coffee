@@ -1,7 +1,9 @@
 Admin.Base.Views.BaseActionView = Ember.View.extend
 
-  confirm: ->
-    $('.modal').modal('hide')
+  actions:
+
+    confirm: ->
+      $('.modal').modal('hide')
 
   _showConfirmation: ->
     action =  @get('action') || @get('context')
