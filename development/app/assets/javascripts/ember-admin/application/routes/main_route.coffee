@@ -22,7 +22,7 @@ Admin.MainRoute = Ember.Route.extend
       controller.set('batches', [])
 
   renderTemplate: (controller, model) ->
-    @_setActiveRoute()
+    @_setActiveRoute(controller)
     @_setupBreadscrumbs(controller, model)
 
     @render @_getControllerTemplate(controller), {outlet: "main", controller: controller}
@@ -60,9 +60,11 @@ Admin.MainRoute = Ember.Route.extend
   _controllerName: (controller) ->
     controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)/, '')
 
-  _setActiveRoute: ->
+  _setActiveRoute: (controller)->
     url = Ember.Location.create({implementation: 'hash'}).getURL()
     url = "/" + url.split("/")[1]
+    unless url == "/"
+      url = "/" + @_controllerName(controller)
     @controllerFor("navigation").set('activeMenu', url)
 
   _setModel: (controller, model) ->
