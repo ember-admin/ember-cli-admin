@@ -7,7 +7,7 @@ Admin.MainRoute = Ember.Route.extend
     modelType = @_modelType(modelName)
 
     @_checkNewAction(options, transition.targetName)
-    @_setAction(options.action) if options.action
+    @_setAction(options.action) if options.action and ['index', 'page'].indexOf(options.action) < 0
     if modelType
       @_find_model(modelType, options)
 
@@ -55,7 +55,7 @@ Admin.MainRoute = Ember.Route.extend
     if Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]
       name
     else
-      if @action and @action isnt "index" and @action isnt "page" then @action else "main"
+      if @action then @action else "main"
 
   _controllerName: (controller) ->
     controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Index)|(Page)/, '')
