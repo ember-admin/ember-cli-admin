@@ -29,6 +29,7 @@ Admin.MainRoute = Ember.Route.extend
     @render @_getControllerTemplate(controller), {outlet: "main", controller: controller}
 
     @_renderNavigation(controller, model)
+    @controllerFor('breadcrumbs').set('resource', model)
     @_renderBreadcrumbs(controller, model)
     @_renderActions(controller, model)
     @_renderForm(controller, model)
