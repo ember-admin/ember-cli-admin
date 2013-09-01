@@ -51,8 +51,8 @@ end
 #ember
 gem "ember-rails",  git: "git://github.com/emberjs/ember-rails.git"
 gem 'emblem-rails'
-gem 'handlebars-source', ">= 1.0.0.rc4"
-gem "ember-source", "~> 1.0.0.rc.6.1"
+gem 'handlebars-source', ">= 1.0.0.rc8"
+gem "ember-source", "~> 1.0.0.rc.8"
 
 gem 'will_paginate', '>= 3.0.3'
 

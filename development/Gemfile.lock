@@ -164,7 +164,7 @@ GEM
     diff-lcs (1.2.4)
     ember-data-source (0.13)
       ember-source
-    ember-source (1.0.0.rc6.4)
+    ember-source (1.0.0)
       handlebars-source (= 1.0.12)
     emblem-rails (0.1.1)
       barber-emblem (~> 0.1.1)
@@ -269,12 +269,12 @@ DEPENDENCIES
   cucumber-rails!
   database_cleaner (~> 1.0.0)
   ember-rails!
-  ember-source (~> 1.0.0.rc.6.1)
+  ember-source (~> 1.0.0.rc.8)
   emblem-rails
   factory_girl (>= 4.0.0)
   factory_girl_rails (>= 3.3.0)
   forgery
-  handlebars-source (>= 1.0.0.rc4)
+  handlebars-source (>= 1.0.0.rc8)
   jbuilder (~> 1.2)
   jquery-rails
   launchy
