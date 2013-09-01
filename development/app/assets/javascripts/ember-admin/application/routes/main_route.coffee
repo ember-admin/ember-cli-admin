@@ -6,8 +6,9 @@ Admin.MainRoute = Ember.Route.extend
     modelName = @_modelName(transition.targetName)
     modelType = @_modelType(modelName)
 
-    @_checkNewAction(options, transition.targetName)
+    @_checkAction(options, transition.targetName)
     @_setAction(options.action) if options.action
+    @_setPage(options.page)
     if modelType
       @_find_model(modelType, options)
 
@@ -35,7 +36,7 @@ Admin.MainRoute = Ember.Route.extend
 
   pagination: (modelType, param) ->
     perPage = ($.cookie('perPage') || 25)
-    modelType.find({page: @_page(param), per_page: perPage})
+    modelType.find({page: @page, per_page: perPage})
 
   _getForm:(controller) ->
     form = "%@_form".fmt(@_controllerName(controller).decamelize())
@@ -55,10 +56,10 @@ Admin.MainRoute = Ember.Route.extend
     if Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]
       name
     else
-      if @action then @action else "main"
+      if @action && @action != "page" then @action else "main"
 
   _controllerName: (controller) ->
-    controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)/, '')
+    controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Page)/, '')
 
   _setActiveRoute: ->
     url = Ember.Location.create({implementation: 'hash'}).getURL()
@@ -78,16 +79,15 @@ Admin.MainRoute = Ember.Route.extend
     eval("Admin.%@".fmt(modelName.classify()))
 
   _checkPaginations: (id) ->
-    /_page=\d+/.test id
+    @action == "page"
 
-  _page: (id) ->
-    @page = parseInt(/_page=(\d+)/.exec(id)[1])
-    @page
+  _setPage: (page) ->
+    @page = parseInt(page) || 1
 
   _setAction: (action) ->
     @action = action
 
-  _checkNewAction: (options, target) ->
+  _checkAction: (options, target) ->
     if /\./.test(target)
       target = target.split(".")[1]
       options.action = target if target

@@ -11,7 +11,7 @@ Admin.PaginationLinkView = Ember.View.extend
   ).property('controller.__page')
 
   _nextPage: ->
-    "#/#{@get('controller.__controller_name')}/_page=#{@get('controller.__nextPage')}"
+    "#/#{@get('controller.__controller_name')}/page/#{@get('controller.__nextPage')}"
 
   _prevPage: ->
-    "#/#{@get('controller.__controller_name')}/_page=#{@get('controller.__prevPage')}"
+    "#/#{@get('controller.__controller_name')}/page/#{@get('controller.__prevPage')}"
