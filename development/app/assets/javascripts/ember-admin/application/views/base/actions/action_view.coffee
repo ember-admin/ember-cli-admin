@@ -13,10 +13,12 @@ Admin.Base.Views.ActionView = Admin.Base.Views.BaseActionView.extend
     else
       @get('controller').send(@get('action.action'), model)
 
-  confirm: ->
-    model = (@get('model') || @get('controller.model'))
-    @get('controller').send(@get('action.action'), model)
-    @_super()
+  actions:
+
+    confirm: ->
+      model = (@get('model') || @get('controller.model'))
+      @get('controller').send(@get('action.action'), model)
+      @_super()
 
   action:(->
     if @get('breadcrumbAction')
@@ -39,9 +41,9 @@ Admin.Base.Views.ActionView = Admin.Base.Views.BaseActionView.extend
   ).property('action')
 
   _findAction: (title) ->
-    @get('controller.actions').find (action) =>
+    @get('controller.__actions').find (action) =>
       action.title == title
 
   _findAdditionalActions: (title) ->
-    @get('controller.additionalActions').find (action) =>
+    @get('controller.__additionalActions').find (action) =>
       action.title == title

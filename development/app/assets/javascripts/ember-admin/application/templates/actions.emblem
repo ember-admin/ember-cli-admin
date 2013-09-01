@@ -1,4 +1,4 @@
 each action in controller.breadcrumbsActions
-  Admin.Base.Views.ActionView tagName="button" href="#" breadcrumbActionBinding=action
+  Admin.Base.Views.ActionView tagName="button" href="#" breadcrumbActionBinding=action controllerBinding=controller
     = view.title
 partial "base/actions/_modal"

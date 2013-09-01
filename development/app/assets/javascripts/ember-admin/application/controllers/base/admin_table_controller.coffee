@@ -3,9 +3,7 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
 
   __table: true
 
-  changePerPage: (perPage) ->
-    $.cookie('perPage', perPage)
-    @set('__perPage', perPage)
+  __batches: []
 
   reloadTable: (->
     collection = @get('model.items.type').find({per_page: @get('__perPage'), page: (@get('__page') || 1)})
@@ -28,17 +26,30 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
         {name: attr}
   ).property('model.fileuploads')
 
-  submit: (redirect=true)->
-    unless @get('model.isDirty')
-      return @_redirectToTable()
-    if @get('model.id')
-      @_updateModel(redirect)
-    else
-      @_createModel(redirect)
+  __actions: (->
+    [{title: "Edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "glyphicon glyphicon-pencil"},
+    {title: "Show", class: "btn btn-small btn-success", action: "show", iconClass: "glyphicon glyphicon-info-sign"},
+    {title: "Delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger", action: "destroy", iconClass: "glyphicon glyphicon-trash"}
+    ]
+  ).property('model')
 
-  cancel: ->
-    @get('model').rollback() if @get('model.isDirty')
-    @_redirectToTable()
+  actions:
+
+    submit: (redirect=true)->
+      unless @get('model.isDirty')
+        return @_redirectToTable()
+      if @get('model.id')
+        @_updateModel(redirect)
+      else
+        @_createModel(redirect)
+
+    cancel: ->
+      @get('model').rollback() if @get('model.isDirty')
+      @_redirectToTable()
+
+    changePerPage: (perPage) ->
+      $.cookie('perPage', perPage)
+      @set('__perPage', perPage)
 
   _redirectToTable: ->
     locationObject = Ember.Location.create({implementation: 'hash'})

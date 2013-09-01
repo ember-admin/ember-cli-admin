@@ -63,6 +63,7 @@ end
 
 When(/^I change per page to (\d+)$/) do |per_page|
   click_button(per_page)
+  sleep 1
 end
 
 Then(/^I select "(.*?)"$/) do |text|

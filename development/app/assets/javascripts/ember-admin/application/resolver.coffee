@@ -41,4 +41,4 @@ Admin.Resolver = Ember.DefaultResolver.extend
     parsedName.name = @_replaceForResource(parsedName.name)
 
   _pattern: ->
-    /(Show)|(Edit)|(New)/
+    /(Show)|(Edit)|(New)|(Page)/

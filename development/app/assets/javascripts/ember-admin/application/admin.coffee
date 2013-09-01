@@ -19,5 +19,5 @@
 #= require ./form_config
 
 @Admin = Ember.Application.create(
-  resolver: Admin.Resolver.extend()
+  Resolver: Admin.Resolver.extend()
 )

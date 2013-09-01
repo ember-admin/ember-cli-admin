@@ -8,6 +8,7 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
   didInsertElement: ->
     @get('single')
 
+
   single:(->
     Admin.DSL.Attributes.isBelongsTo(@get("context.model._reference").type, @get('property'))
   ).property('context')
