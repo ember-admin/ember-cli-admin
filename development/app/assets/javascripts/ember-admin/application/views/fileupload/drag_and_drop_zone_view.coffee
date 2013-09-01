@@ -8,19 +8,19 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
   didInsertElement: ->
     @get('single')
 
-  single:(->
-    Admin.DSL.Attributes.isBelongsTo(@get("context.model._reference").type, @get('property'))
+  single: (->
+      Admin.DSL.Attributes.isBelongsTo(@get("context.model._reference").type, @get('property'))
   ).property('context')
 
-  assets:(->
-    Ember.defineProperty(this, "_assets", Ember.computed( ->
+  assets: (->
+    Ember.defineProperty(this, "_assets", Ember.computed(->
       @get("context.#{@get('property')}")
     ).property("context.#{@get('property')}.@each.isLoaded"))
     @get('_assets')
   ).property('_assets')
 
-  asset:(->
-    Ember.defineProperty(this, "_asset", Ember.computed( ->
+  asset: (->
+    Ember.defineProperty(this, "_asset", Ember.computed(->
       @get("context.#{@get('property')}")
     ).property("context.#{@get('property')}"))
     @get('_asset')
@@ -32,6 +32,27 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
       for file in files
         @createAsset(file)
 
+  drop: (e) ->
+    e.stopPropagation()
+    e.preventDefault()
+
+    files = e.dataTransfer.files
+    for file in files
+      @createAsset(file)
+
+  dragOver: (e) ->
+    e.stopPropagation()
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'copy'
+
+  dragLeave: (e) ->
+    e.stopPropagation()
+    e.preventDefault()
+
+  dragEnter: (e) ->
+    e.stopPropagation()
+    e.preventDefault()
+    
   createAsset: (file) ->
     @set('creating', true)
     if @get('single')
