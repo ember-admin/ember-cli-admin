@@ -53,4 +53,4 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
         @_redirectToTable()
       else
         Ember.run.next =>
-          @edit(@get('model'))
+          @send('edit', @get('model'))
