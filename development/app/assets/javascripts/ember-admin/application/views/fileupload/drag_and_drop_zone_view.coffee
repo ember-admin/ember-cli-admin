@@ -8,7 +8,6 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
   didInsertElement: ->
     @get('single')
 
-
   single:(->
     Admin.DSL.Attributes.isBelongsTo(@get("context.model._reference").type, @get('property'))
   ).property('context')
@@ -27,10 +26,11 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     @get('_asset')
   ).property('_asset')
 
-  selectFile: ->
-    files = event.target.files
-    for file in files
-      @createAsset(file)
+  actions:
+    selectFile: () ->
+      files = event.target.files
+      for file in files
+        @createAsset(file)
 
   createAsset: (file) ->
     @set('creating', true)
@@ -47,18 +47,7 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     assetType = Admin.DSL.Attributes.relationForType(type, @get('property'))
     asset = assetType.createRecord(params)
     asset.set('file', file)
-
-    transaction = asset.get('store').transaction()
-    transaction.add asset
-    transaction.commit()
-
-    asset.addObserver 'id', (sender, key, value, context, rev) =>
-      @set('creating', false)
-      @_clearInput()
-      if @get('single')
-        @_createBelongsTo(asset)
-      else
-        @_createHasMany(asset)
+    @get('controller').send("createAsset", asset, @get('property'), @)
 
   _params: (file)->
     params =
@@ -72,16 +61,5 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     params.is_main = false unless @get('single')
     params
 
-  _createBelongsTo: (asset) ->
-    @get("context.model").set("#{@get('property')}", asset)
-    if @get('context.model.isDirty')
-      if @get('context.model.id')
-        state = DS.RootState.loaded.saved
-        @get("context.model").set('currentState', state)
-    @set("asset", asset)
-
-  _createHasMany: (asset) ->
-    @get("context.model.#{@get('property')}").pushObject(asset)
-
-  _clearInput: ->
+  clearInput: ->
     @$().find("input[type=file]").val('')
