@@ -43,13 +43,12 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
     update: (model)->
       model.get('store').commit()
 
-    destroy: (model, save=true) ->
+    destroy: (model) ->
       if @get('model.__list')
         model.deleteRecord()
-        @get('model.items').removeReference(model.constructor)
-        if save
-          @get('batches').removeObject(model)
-          model.get('store').commit()
+        @get('model.items').removeObject(model)
+        @get('__batches').removeObject(model)
+        model.save()
       else
         @_destroyItem(model)
 
@@ -58,18 +57,15 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
       locationObject.setURL(@_path(model, "show"))
 
     baseBatchAction: (action) ->
-      store = @get('batches.firstObject').get('store')
-      @get('batches').forEach (model) =>
-        @send(action, model, false)
-      store.commit()
-      @set('batches', [])
+      @get('__batches').forEach (model) =>
+        @send(action, model)
+      @set('__batches', [])
 
-    _destroyItem: (model)->
-      model.deleteRecord()
-      model.get('store').commit()
-      model.on 'didDelete', =>
-        locationObject = Ember.Location.create({implementation: 'hash'})
-        locationObject.setURL(@get('__controller_name'))
+  _destroyItem: (model)->
+    model.deleteRecord()
+    model.save().then =>
+      locationObject = Ember.Location.create({implementation: 'hash'})
+      locationObject.setURL(@get('__controller_name'))
 
   _path: (model, type)->
     if type
