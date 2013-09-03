@@ -60,7 +60,7 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
       @get('__batches').forEach (model) =>
         @send(action, model, true)
       @set('__batches', [])
-      
+
   _destroyItem: (model)->
     model.deleteRecord()
     model.save().then =>
