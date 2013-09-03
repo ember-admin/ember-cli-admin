@@ -43,11 +43,11 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
     update: (model)->
       model.get('store').commit()
 
-    destroy: (model) ->
+    destroy: (model, batch=false) ->
       if @get('model.__list')
         model.deleteRecord()
         @get('model.items').removeObject(model)
-        @get('__batches').removeObject(model)
+        @get('__batches').removeObject(model) unless batch
         model.save()
       else
         @_destroyItem(model)
@@ -58,9 +58,9 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
 
     baseBatchAction: (action) ->
       @get('__batches').forEach (model) =>
-        @send(action, model)
+        @send(action, model, true)
       @set('__batches', [])
-
+      
   _destroyItem: (model)->
     model.deleteRecord()
     model.save().then =>
