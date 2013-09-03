@@ -1,4 +1,5 @@
 Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admin.Base.Mixins.BaseActionsMixin,
+  Admin.Base.Mixins.FileUploadMixin, Admin.Base.Mixins.AttributesMixin,
   __perPage: (parseInt($.cookie('perPage')) || 25)
 
   __table: true
@@ -9,22 +10,6 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
     collection = @get('model.items.type').find({per_page: @get('__perPage'), page: (@get('__page') || 1)})
     @set('model.items', collection)
   ).observes('__perPage')
-
-  formAttributes:(->
-    attrs = (@get('model.formFields') || Admin.DSL.Attributes.withoutId(@get("model").constructor))
-    attrs.map (attr) =>
-      {name: attr}
-  ).property('modelAttributes.@each')
-
-  tableAttributes:(->
-    @get('modelAttributes')
-  ).property('modelAttributes.@each')
-
-  fileuploads:(->
-    if @get('model.fileuploads')
-      @get('model.fileuploads').map (attr) ->
-        {name: attr}
-  ).property('model.fileuploads')
 
   __actions: (->
     [{title: "Edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "glyphicon glyphicon-pencil"},
@@ -68,4 +53,4 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
         @_redirectToTable()
       else
         Ember.run.next =>
-          @edit(@get('model'))
+          @send('edit', @get('model'))

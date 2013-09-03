@@ -4,7 +4,7 @@
       Admin.Fileupload.AssetView templateNameBinding=view.assetTemplate assetBinding=view.asset propertyBinding=view.property
   else
     each asset in view.assets
-      Admin.Fileupload.AssetView templateNameBinding=view.assetTemplate assetBinding=asset
+      Admin.Fileupload.AssetView templateNameBinding=view.assetTemplate assetBinding=asset propertyBinding=view.property
   input{{action selectFile target="view" on="change"}} type="file"
   if view.creating
     span.glyphicon.glyphicon-refresh.glyphicon-refresh

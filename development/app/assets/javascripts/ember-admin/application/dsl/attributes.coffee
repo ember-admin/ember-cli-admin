@@ -12,12 +12,15 @@ class Admin.DSL.Attributes
     attributes = []
     modelType.eachComputedProperty (attribute, meta) =>
       attributes.push(attribute) if meta.isAttribute && @systemAttrs().indexOf(attribute) < 0
-    @relations(modelType, attributes)
+    @relations(modelType, attributes, false)
     attributes
 
-  @relations: (modelType, attrs=[]) ->
+  @relations: (modelType, attrs=[], hasMany=true) ->
     modelType.eachRelationship (attribute, meta) =>
-      attrs.push(attribute)
+      if hasMany
+        attrs.push(attribute)
+      else
+        attrs.push(attribute) unless meta.kind == "hasMany"
     attrs
 
   @isBelongsTo: (modelType, property) ->
