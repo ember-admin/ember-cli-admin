@@ -3,13 +3,13 @@ Admin.MainRoute = Ember.Route.extend
   model: (options, transition) ->
     @action = undefined
     @page = undefined
-    modelName = @_modelName(transition.targetName)
+    @modelName = @_modelName(transition.targetName)
 
     @_checkAction(options, transition.targetName)
     @_setAction(options.action) if options.action
     @_setPage(options.page)
-    if eval("Admin.%@".fmt(modelName.classify()))
-      @_find_model(modelName, options)
+    if eval("Admin.%@".fmt(@modelName.classify()))
+      @_find_model(@modelName, options)
 
   setupController:(controller, model) ->
     @_setSiteTitle(controller, model)
@@ -73,6 +73,7 @@ Admin.MainRoute = Ember.Route.extend
     return controller.set('model', Ember.Object.create(items:  model, __list: true)) if model.type
     controller.set('model', model)
 
+
   _modelName:(name) ->
     if /\./.test(name) then name = name.split(".")[0]
     serializer = @.store.serializerFor("_rest")
@@ -98,6 +99,7 @@ Admin.MainRoute = Ember.Route.extend
   _setupPaginationInfo: (controller) ->
     controller.set('__page', @page)
     controller.set('__controller_name', @_controllerName(controller))
+    controller.set('__model_name', @modelName)
     Admin.Logics.Pagination.setup(controller, @page)
 
   _setType: (controller, type) ->

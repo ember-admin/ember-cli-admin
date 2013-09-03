@@ -7,7 +7,7 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
   __batches: []
 
   reloadTable: (->
-    collection = @get('model.items.type').find({per_page: @get('__perPage'), page: (@get('__page') || 1)})
+    collection = this.store.find(@get('__model_name'), {per_page: @get('__perPage'), page: (@get('__page') || 1)})
     @set('model.items', collection)
   ).observes('__perPage')
 
