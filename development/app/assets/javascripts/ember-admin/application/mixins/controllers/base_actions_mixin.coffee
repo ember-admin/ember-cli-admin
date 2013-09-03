@@ -64,12 +64,12 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
       store.commit()
       @set('batches', [])
 
-    _destroyItem: (model)->
-      model.deleteRecord()
-      model.get('store').commit()
-      model.on 'didDelete', =>
-        locationObject = Ember.Location.create({implementation: 'hash'})
-        locationObject.setURL(@get('__controller_name'))
+  _destroyItem: (model)->
+    model.deleteRecord()
+    model.get('store').commit()
+    model.on 'didDelete', =>
+      locationObject = Ember.Location.create({implementation: 'hash'})
+      locationObject.setURL(@get('__controller_name'))
 
   _path: (model, type)->
     if type
