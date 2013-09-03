@@ -27,15 +27,17 @@ class Admin::UsersController < ActionController::Base
 
   private
   def permit_params
-    params.require(:user).permit(:name, :email, :address_id)
+    fields = params.require(:user).permit(:name, :email)
+    fields[:address_id] = params[:user][:address]
+    fields
   end
 
   def attachment
-    params.require(:user).permit(:avatar_id, :avatar_ids)
+    params.require(:user).permit(:avatar, :avatar_ids)
   end
 
   def set_attachment_id(id)
-    Avatar.find(attachment[:avatar_id]).update_attributes({assetable_id: id}) if attachment[:avatar_id]
-    Avatar.find(attachment[:avatar_ids]).each {|avatar| avatar.assetable_id = id; avatar.save()} if attachment[:avatar_ids]
+    Avatar.find(attachment[:avatar]).update_attributes({assetable_id: id}) if attachment[:avatar]
+    Avatar.find(attachment[:avatars]).each {|avatar| avatar.assetable_id = id; avatar.save()} if attachment[:avatars]
   end
 end

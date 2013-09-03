@@ -6,11 +6,7 @@ Admin.Base.Mixins.FileUploadMixin = Ember.Mixin.create
   actions:
 
     createAsset: (asset, property, view) ->
-      transaction = asset.get('store').transaction()
-      transaction.add asset
-      transaction.commit()
-
-      asset.addObserver 'id', (sender, key, value, context, rev) =>
+      asset.save().then =>
         view.set('creating', false)
         view.clearInput()
         if view.get('single')

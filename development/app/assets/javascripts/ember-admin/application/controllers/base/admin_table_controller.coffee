@@ -21,8 +21,6 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
   actions:
 
     submit: (redirect=true)->
-      unless @get('model.isDirty')
-        return @_redirectToTable()
       if @get('model.id')
         @_updateModel(redirect)
       else
@@ -43,14 +41,12 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
   _updateModel: (redirect)->
     @get('model').save()
     if redirect
-      @get('model').one 'didUpdate', =>
+      @get('model').then =>
         @_redirectToTable()
 
   _createModel: (redirect) ->
-    @get('model').save()
-    @get('model').one 'didCreate', =>
+    @get('model').save().then =>
       if redirect
         @_redirectToTable()
       else
-        Ember.run.next =>
-          @send('edit', @get('model'))
+        @send('edit', @get('model'))

@@ -58,15 +58,15 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     if @get('single')
       if @get("controller.model.#{@get('property')}")
         @get("controller.model.#{@get('property')}").deleteRecord()
-        @get("controller.model.#{@get('property')}.store").commit()
+        @get("controller.model.#{@get('property')}").save()
       @_createAsset(@_params(file), file)
     else
       @_createAsset(@_params(file), file)
 
   _createAsset: (params, file) ->
-    type = @get('context._reference').type
+    type = @get('context.model').constructor
     assetType = Admin.DSL.Attributes.relationForType(type, @get('property'))
-    asset = assetType.createRecord(params)
+    asset = @get('controller.store').createRecord(assetType, params)
     asset.set('file', file)
     @get('controller').send("createAsset", asset, @get('property'), @)
 

@@ -14,6 +14,7 @@ Admin.MainRoute = Ember.Route.extend
   setupController:(controller, model) ->
     @_setSiteTitle(controller, model)
     if model
+      window.m = model
       @_setModel(controller, model)
       type = (model.type || model.constructor)
       @_setType(controller, type)

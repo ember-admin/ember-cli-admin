@@ -1,21 +1,23 @@
-Admin.Adapters.FileuploadAdapter = DS.RESTAdapter.extend
+Admin.AvatarAdapter = DS.RESTAdapter.extend
 
   createRecord: (store, type, record) ->
-    root = this.rootForType(type)
     adapter = this
-    data = {}
+    return new Ember.RSVP.Promise((resolve, reject) ->
+      data = {}
+      data[type.typeKey] = adapter.serializerFor(type.typeKey).serialize(record, { includeId: true })
+      url = adapter.buildURL(type)
+      url = "%@?%@".fmt(url, $.param(adapter._excludeParams(data[type.typeKey])))
+      data.context = adapter
+      request = new XMLHttpRequest()
+      request.open('POST', url, true)
+      request.setRequestHeader('Content-Type', record.get('content_type'))
+      request.onreadystatechange =  =>
+        if request.readyState == 4 && (request.status == 201 || request.status == 200)
+          data = JSON.parse(request.response)
+          Ember.run(null, resolve, data)
+      request.send(record.get('file'))
+    )
 
-    json = this.serialize(record, { includeId: true })
-    url =  this.buildURL(root)
-    url = "%@?%@".fmt(url, $.param(@_excludeParams(json)))
-    request = new XMLHttpRequest()
-    request.open('POST', url, true)
-    request.setRequestHeader('Content-Type', record.get('content_type'))
-    request.onreadystatechange =  =>
-      if request.readyState == 4 && (request.status == 201 || request.status == 200)
-        data = JSON.parse(request.response)
-        adapter.didCreateRecord(store, type, record, data)
-    request.send(record.get('file'))
 
   _excludeParams: (obj) ->
     ["url", "thumb_url"].forEach (param) ->

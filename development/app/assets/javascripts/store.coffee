@@ -2,6 +2,8 @@ DS.RESTAdapter.reopen({
   namespace: 'admin'
 })
 
+Admin.ApplicationAdapter = DS.RESTAdapter;
+
 #DS.RESTAdapter.configure("plurals", {
 #  address: "addresses"
 #});

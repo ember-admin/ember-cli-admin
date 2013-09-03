@@ -36,7 +36,7 @@ Admin.Logics.Breadcrumbs.reopenClass
       actions.push(@_destroyAction())
     if action == "new"
       actions.push(@_createAction())
-    unless action
+    if action == "page" || !action
       actions.push(@_createAction())
 
     controller.set("__breadcrumbsActionsArray", actions)
