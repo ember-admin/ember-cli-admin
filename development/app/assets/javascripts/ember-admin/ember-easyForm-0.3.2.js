@@ -137,11 +137,12 @@
         } else if (options.hash.as === 'select') {
             delete(options.hash.valueBinding);
 
-            type = context.get('_reference.type');
+            type = context.get('model').constructor;
 
             if(Admin.DSL.Attributes.relations(type).indexOf(property) >= 0){
                 options.hash.attribute = property;
-                options.hash.content  = Admin.DSL.Attributes.relationForType(type, property).find();
+                relationType =  Admin.DSL.Attributes.relationForType(type, property);
+                options.hash.content  =context.store.findAll(property);
                 options.hash.selection = context.get(property);
                 options.hash.optionValuePath  = "context.id";
                 options.hash.optionLabelPath  = "context.title";

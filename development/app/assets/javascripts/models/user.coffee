@@ -2,15 +2,11 @@ Admin.User = DS.Model.extend
 
   email: DS.attr('string')
   name: DS.attr('string')
-  address: DS.belongsTo('Admin.Address')
+  address: DS.belongsTo('address')
   updated_at: DS.attr('string')
   created_at: DS.attr('string')
-  avatar: DS.belongsTo('Admin.Avatar')
-  avatars: DS.hasMany('Admin.Avatar')
-
-#  formFields: (->
-#    ["email", "name", "address", "avatar"]
-#  ).property()
+  avatar: DS.belongsTo('avatar')
+  avatars: DS.hasMany('avatar', {async: true})
 
   emails: (->
    [this.get('email')]

@@ -16,7 +16,7 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
   tagName: "td"
 
   didInsertElement: ->
-    if Admin.DSL.Attributes.relations(@get('context._reference').type).indexOf(@get('attributeName')) >= 0
+    if Admin.DSL.Attributes.relations(@get('context').constructor).indexOf(@get('attributeName')) >= 0
       ["title", "name", "thumb_url"].forEach (attr) =>
         @_defineValueProperty(attr, @get('attributeName'))
         @get("_value_#{attr}")

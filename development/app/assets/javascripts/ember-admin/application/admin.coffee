@@ -9,7 +9,6 @@
 #= require_tree ./views
 #= require_tree ./templates
 
-#= require ./store
 #= require ./router
 #= require_tree ./routes
 #= require_tree ./controllers
