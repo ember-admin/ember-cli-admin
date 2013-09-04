@@ -38,10 +38,9 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
     locationObject = Ember.Location.create({implementation: 'hash'})
     locationObject.setURL(@get('__controller_name'))
 
-  _updateModel: (redirect)->
-    @get('model').save()
-    if redirect
-      @get('model').then =>
+  _updateModel: (redirect) ->
+    @get('model').save().then =>
+      if redirect
         @_redirectToTable()
 
   _createModel: (redirect) ->
