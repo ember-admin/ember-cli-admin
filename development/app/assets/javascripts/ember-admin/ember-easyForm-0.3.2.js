@@ -80,8 +80,9 @@
         if (options.contexts[0].get('fileuploads') != undefined && options.contexts[0].get('fileuploads').getEach('name').indexOf(property) >= 0){
             return;
         }
+        type = options.contexts[0].get('model').constructor;
 
-        if(typeof(options.contexts[0].get(property)) == "object"){
+        if(Admin.DSL.Attributes.relations(type).indexOf(property) >= 0){
             options.hash.as = "select"
         }
         options.hash.property = property;
@@ -97,7 +98,8 @@
             return;
         }
 
-        if(typeof(options.contexts[0].get(property)) == "object"){
+        type = options.contexts[0].get('model').constructor
+        if(Admin.DSL.Attributes.relations(type).indexOf(property) >= 0){
             options.hash.as = "select"
         }
         options.hash.property = property;

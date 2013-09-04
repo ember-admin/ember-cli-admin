@@ -46,7 +46,8 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
 
   _createModel: (redirect) ->
     @get('model').save().then =>
-      if redirect
-        @_redirectToTable()
-      else
-        @send('edit', @get('model'))
+      @get('model').reload().then =>
+        if redirect
+          @_redirectToTable()
+        else
+          @send('edit', @get('model'))
