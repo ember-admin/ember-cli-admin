@@ -15,11 +15,9 @@ Admin.Base.Mixins.FileUploadMixin = Ember.Mixin.create
           @_createHasMany(asset, property)
 
     deleteAsset: (asset, single, property) ->
-      transaction = asset.get('store').transaction()
       asset.deleteRecord()
-      transaction.add asset
-      transaction.commit()
-
+      asset.save()
+      
       if single
         @_deleteBelongsTo(asset, property)
       else

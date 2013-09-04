@@ -1,4 +1,4 @@
-Admin.AvatarAdapter = DS.RESTAdapter.extend
+Admin.FileuploadAdapter = DS.RESTAdapter.extend
 
   createRecord: (store, type, record) ->
     adapter = this

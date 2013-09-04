@@ -46,6 +46,8 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
 
   _createModel: (redirect) ->
     @get('model').save().then =>
+
+      #fix for belongsTo relation
       @get('model').reload().then =>
         if redirect
           @_redirectToTable()
