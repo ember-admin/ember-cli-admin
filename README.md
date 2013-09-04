@@ -1,4 +1,6 @@
 ember-admin
+## Works on latest Ember.js(1.0.0) and Ember-Data(master branch)
+
 =================
 Try Admin into your app:
 * `gem "ember-admin", git: "git@github.com:roundscope/ember-admin.git"`
