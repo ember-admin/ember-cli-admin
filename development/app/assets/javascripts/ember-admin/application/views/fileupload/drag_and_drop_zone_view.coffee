@@ -8,14 +8,14 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
   didInsertElement: ->
     @get('single')
 
-  single: (->
-      Admin.DSL.Attributes.isBelongsTo(@get("context.model._reference").type, @get('property'))
+  single:(->
+    Admin.DSL.Attributes.isBelongsTo(@get("context.model").constructor, @get('property'))
   ).property('context')
 
   assets: (->
     Ember.defineProperty(this, "_assets", Ember.computed(->
       @get("context.#{@get('property')}")
-    ).property("context.#{@get('property')}.@each.isLoaded"))
+    ).property("context.#{@get('property')}"))
     @get('_assets')
   ).property('_assets')
 
@@ -58,15 +58,15 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
     if @get('single')
       if @get("controller.model.#{@get('property')}")
         @get("controller.model.#{@get('property')}").deleteRecord()
-        @get("controller.model.#{@get('property')}.store").commit()
+        @get("controller.model.#{@get('property')}").save()
       @_createAsset(@_params(file), file)
     else
       @_createAsset(@_params(file), file)
 
   _createAsset: (params, file) ->
-    type = @get('context._reference').type
+    type = @get('context.model').constructor
     assetType = Admin.DSL.Attributes.relationForType(type, @get('property'))
-    asset = assetType.createRecord(params)
+    asset = @get('controller.store').createRecord(assetType, params)
     asset.set('file', file)
     @get('controller').send("createAsset", asset, @get('property'), @)
 

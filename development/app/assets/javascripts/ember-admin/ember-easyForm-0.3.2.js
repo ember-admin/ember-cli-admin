@@ -80,8 +80,9 @@
         if (options.contexts[0].get('fileuploads') != undefined && options.contexts[0].get('fileuploads').getEach('name').indexOf(property) >= 0){
             return;
         }
+        type = options.contexts[0].get('model').constructor;
 
-        if(typeof(options.contexts[0].get(property)) == "object"){
+        if(Admin.DSL.Attributes.relations(type).indexOf(property) >= 0){
             options.hash.as = "select"
         }
         options.hash.property = property;
@@ -97,7 +98,8 @@
             return;
         }
 
-        if(typeof(options.contexts[0].get(property)) == "object"){
+        type = options.contexts[0].get('model').constructor
+        if(Admin.DSL.Attributes.relations(type).indexOf(property) >= 0){
             options.hash.as = "select"
         }
         options.hash.property = property;
@@ -137,11 +139,12 @@
         } else if (options.hash.as === 'select') {
             delete(options.hash.valueBinding);
 
-            type = context.get('_reference.type');
+            type = context.get('model').constructor;
 
             if(Admin.DSL.Attributes.relations(type).indexOf(property) >= 0){
                 options.hash.attribute = property;
-                options.hash.content  = Admin.DSL.Attributes.relationForType(type, property).find();
+                relationType =  Admin.DSL.Attributes.relationForType(type, property);
+                options.hash.content  =context.store.findAll(property);
                 options.hash.selection = context.get(property);
                 options.hash.optionValuePath  = "context.id";
                 options.hash.optionLabelPath  = "context.title";

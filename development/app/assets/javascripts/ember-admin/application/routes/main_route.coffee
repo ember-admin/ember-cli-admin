@@ -3,20 +3,20 @@ Admin.MainRoute = Ember.Route.extend
   model: (options, transition) ->
     @action = undefined
     @page = undefined
-    modelName = @_modelName(transition.targetName)
-    modelType = @_modelType(modelName)
+    @modelName = @_modelName(transition.targetName)
 
     @_checkAction(options, transition.targetName)
     @_setAction(options.action) if options.action
     @_setPage(options.page)
-    if modelType
-      @_find_model(modelType, options)
+    if eval("Admin.%@".fmt(@modelName.classify()))
+      @_find_model(@modelName, options)
 
   setupController:(controller, model) ->
     @_setSiteTitle(controller, model)
     if model
+      window.m = model
       @_setModel(controller, model)
-      type = (model.type || model.get('_reference').type)
+      type = (model.type || model.constructor)
       @_setType(controller, type)
       @_setupPaginationInfo(controller)
       controller.set('modelAttributes', Admin.DSL.Attributes.detect(type))
@@ -35,9 +35,9 @@ Admin.MainRoute = Ember.Route.extend
     @_renderForm(controller, model)
 
 
-  pagination: (modelType, param) ->
+  pagination: (modelName, param) ->
     perPage = ($.cookie('perPage') || 25)
-    modelType.find({page: @page, per_page: perPage})
+    this.store.find(modelName, {page: @page, per_page: perPage})
 
   _getForm:(controller) ->
     form = "%@_form".fmt(@_controllerName(controller).decamelize())
@@ -46,11 +46,11 @@ Admin.MainRoute = Ember.Route.extend
     else
       "form"
 
-  _find_model: (modelType, options) ->
-    return modelType.createRecord() if options.action == "new"
-    return @pagination(modelType, "_page=1") unless options.id
-    return @pagination(modelType, options.id) if @_checkPaginations(options.id)
-    modelType.find(options.id)
+  _find_model: (modelName, options) ->
+    return this.store.createRecord(modelName, {}) if options.action == "new"
+    return @pagination(modelName, "_page=1") unless options.id
+    return @pagination(modelName, options.id) if @_checkPaginations(options.id)
+    this.store.find(modelName, options.id);
 
   _getControllerTemplate: (controller) ->
     name = @_controllerName(controller)
@@ -74,12 +74,11 @@ Admin.MainRoute = Ember.Route.extend
     return controller.set('model', Ember.Object.create(items:  model, __list: true)) if model.type
     controller.set('model', model)
 
+
   _modelName:(name) ->
     if /\./.test(name) then name = name.split(".")[0]
-    @get('store.adapter').serializer.singularize(name)
-
-  _modelType: (modelName) ->
-    eval("Admin.%@".fmt(modelName.classify()))
+    serializer = this.container.lookup('serializer:_rest')
+    serializer.singularize(name)
 
   _checkPaginations: (id) ->
     @action == "page"
@@ -101,6 +100,7 @@ Admin.MainRoute = Ember.Route.extend
   _setupPaginationInfo: (controller) ->
     controller.set('__page', @page)
     controller.set('__controller_name', @_controllerName(controller))
+    controller.set('__model_name', @modelName)
     Admin.Logics.Pagination.setup(controller, @page)
 
   _setType: (controller, type) ->
@@ -122,7 +122,6 @@ Admin.MainRoute = Ember.Route.extend
     }
 
   _renderActions: (controller, model) ->
-    window.c =  controller
     if model
       @render 'actions',{
         outlet: 'actions'

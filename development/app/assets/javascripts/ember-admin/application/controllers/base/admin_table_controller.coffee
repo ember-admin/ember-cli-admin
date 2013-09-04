@@ -7,7 +7,7 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
   __batches: []
 
   reloadTable: (->
-    collection = @get('model.items.type').find({per_page: @get('__perPage'), page: (@get('__page') || 1)})
+    collection = this.store.find(@get('__model_name'), {per_page: @get('__perPage'), page: (@get('__page') || 1)})
     @set('model.items', collection)
   ).observes('__perPage')
 
@@ -21,8 +21,6 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
   actions:
 
     submit: (redirect=true)->
-      unless @get('model.isDirty')
-        return @_redirectToTable()
       if @get('model.id')
         @_updateModel(redirect)
       else
@@ -43,14 +41,15 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
   _updateModel: (redirect)->
     @get('model').save()
     if redirect
-      @get('model').one 'didUpdate', =>
+      @get('model').then =>
         @_redirectToTable()
 
   _createModel: (redirect) ->
-    @get('model').save()
-    @get('model').one 'didCreate', =>
-      if redirect
-        @_redirectToTable()
-      else
-        Ember.run.next =>
+    @get('model').save().then =>
+
+      #fix for belongsTo relation
+      @get('model').reload().then =>
+        if redirect
+          @_redirectToTable()
+        else
           @send('edit', @get('model'))
