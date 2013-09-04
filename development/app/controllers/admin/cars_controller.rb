@@ -15,6 +15,7 @@ class Admin::CarsController < ApplicationController
 
   def create
     car = Car.create!(permit_params)
+    set_attachment_id(car.id)
     render json: car
   end
 
@@ -27,5 +28,17 @@ class Admin::CarsController < ApplicationController
   private
   def permit_params
     params.require(:car).permit(:title, :color, :description)
+  end
+
+  def attachment
+    attachments = {}
+    attachments[:car_image] = params[:car][:car_image]
+    attachments[:car_images] = params[:car][:car_image]
+    attachments
+  end
+
+  def set_attachment_id(id)
+    CarImage.find(attachment[:car_image]).update_attributes({assetable_id: id}) if attachment[:car_image]
+    CarImage.find(attachment[:car_images]).each {|car_image| avatar.assetable_id = id; car_image.save()} if attachment[:car_images]
   end
 end

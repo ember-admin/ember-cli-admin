@@ -33,7 +33,10 @@ class Admin::UsersController < ActionController::Base
   end
 
   def attachment
-    params.require(:user).permit(:avatar, :avatar_ids)
+    attachments = {}
+    attachments[:avatar] = params[:user][:avatar]
+    attachments[:avatars] = params[:user][:avatars]
+    attachments
   end
 
   def set_attachment_id(id)

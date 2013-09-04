@@ -15,7 +15,7 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
   assets: (->
     Ember.defineProperty(this, "_assets", Ember.computed(->
       @get("context.#{@get('property')}")
-    ).property("context.#{@get('property')}.@each.isLoaded"))
+    ).property("context.#{@get('property')}"))
     @get('_assets')
   ).property('_assets')
 
