@@ -32,6 +32,9 @@ Run install generator
 Then add generated folder in application.js in Admin section after `//= require ember-admin/main`
 * `//= require_tree ./admin`
 
+Don't forget add this line into application.rb
+* `config.handlebars.templates_root = ["ember-admin/application/templates"]`
+
 #Use development app
 * `git clone git@github.com:roundscope/ember-admin.git && cd ember-admin/development`
 * `bundle`
