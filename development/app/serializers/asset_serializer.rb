@@ -15,7 +15,7 @@ class AssetSerializer < ActiveModel::Serializer
   end
 
   def url
-    object.data.url
+    object.data.versions[:large].try(:url)
   end
 
 end

@@ -13,6 +13,8 @@
 Admin.Base.Views.Table.TdView = Ember.View.extend
   attributeBindings: ["style"]
 
+  templateName: "base/_td_template"
+
   tagName: "td"
 
   didInsertElement: ->
@@ -22,8 +24,6 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
         @get("_value_#{attr}")
 
   value:(->
-    @get("color") if @get('attributeName').match /color/
-    return @get('image') if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >=0
     record = @get(@path())
     if typeof record == "object"
       @relation(record, @get('attributeName'))
@@ -43,19 +43,32 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
     @notifyPropertyChange("value")
   ).observes("_value_thumb_url")
 
-  boolean:(->
-    #implement for bool attrs metaForProperty user this fo find meta information about property
-  ).property('_value')
-
-  image: (->
-    path = "context.#{@get('attributeName')}.thumb_url"
-    if @get(path)
-      "<image src='#{@get(path)}'>"
+  color: (->
+    if @get('attributeName').match /color/
+      @set('text', true)
+      @set('style', "color: #{@get('_value')};")
+      false
   ).property('value')
 
-  color: (->
-    @set('style', "color: #{@get('_value')};")
-  ).property('_value')
+  image_object:(->
+    @get("context.#{@get('attributeName')}")
+  ).property('value')
+
+  image: (->
+    if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >=0
+      @set('text', false)
+      true
+  ).property('value')
+
+  text: (->
+    true
+  ).property('value')
+
+#  image: (->
+#    path = "context.#{@get('attributeName')}.thumb_url"
+#    if @get(path)
+#      "<image src='#{@get(path)}'>"
+#  ).property('value')
 
   path: ->
     "context.%@".fmt(@get('attributeName'))

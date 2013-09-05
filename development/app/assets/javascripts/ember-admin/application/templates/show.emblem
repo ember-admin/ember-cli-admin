@@ -6,4 +6,3 @@ table.show-details
       tr
         th = attribute.name
         Admin.Base.Views.Table.TdView contextBinding=model attributeNameBinding=attribute.name
-          == view.value

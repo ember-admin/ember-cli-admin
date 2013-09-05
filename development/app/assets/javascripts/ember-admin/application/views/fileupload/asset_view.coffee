@@ -1,8 +1,6 @@
 Admin.Fileupload.AssetView = Admin.Base.Views.BaseActionView.extend
   attributeBindings: ["templateName", 'property']
 
-
-
   actions:
 
     deleteAsset: ->

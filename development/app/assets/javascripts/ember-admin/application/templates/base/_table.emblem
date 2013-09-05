@@ -14,7 +14,6 @@ table.table-striped
           Admin.Base.Views.CheckboxBatchView contextBinding="item"
         each attributeName in controller.tableAttributes
           Admin.Base.Views.Table.TdView contextBinding=item attributeNameBinding=attributeName
-            == view.value
         td.actions
           = partial "base/actions/_base_actions"
           = partial "base/actions/_addition_actions"

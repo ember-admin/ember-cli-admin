@@ -1,0 +1,2 @@
+if view.image
+  img{{bindAttr src=view.image.thumb_url}} title="Show image"
