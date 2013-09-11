@@ -77,8 +77,7 @@ Admin.MainRoute = Ember.Route.extend
 
   _modelName:(name) ->
     if /\./.test(name) then name = name.split(".")[0]
-    serializer = this.container.lookup('serializer:_rest')
-    serializer.singularize(name)
+    Ember.String.singularize(name)
 
   _checkPaginations: (id) ->
     @action == "page"
