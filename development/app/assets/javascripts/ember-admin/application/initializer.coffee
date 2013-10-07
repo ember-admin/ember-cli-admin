@@ -23,5 +23,8 @@
 #controllers
 #= require ./controllers/base/admin_table_controller.coffee
 
+#forms
+#= require_tree ./forms
+
 
 
