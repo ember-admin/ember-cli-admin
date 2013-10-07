@@ -5,6 +5,9 @@ Admin.User = DS.Model.extend
   address: DS.belongsTo('address')
   updated_at: DS.attr('string')
   created_at: DS.attr('string')
+  lan: DS.attr('number')
+  lng: DS.attr('number')
+  zoom: DS.attr('number')
   avatar: DS.belongsTo('avatar')
   avatars: DS.hasMany('avatar', {async: true})
 

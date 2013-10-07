@@ -38,7 +38,7 @@ group :test, :development do
   gem 'cucumber-rails', require: false, git:"git://github.com/cucumber/cucumber-rails.git", branch: "master"
   gem 'launchy'
   gem 'qunit-rails'
-  gem 'forgery'
+  gem 'forgery', git: "https://github.com/sevenwire/forgery.git"
   gem "factory_girl_rails", ">= 3.3.0"
   gem "factory_girl", '>=4.0.0'
 end

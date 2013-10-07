@@ -55,9 +55,12 @@ ActiveRecord::Schema.define(version: 20130823142233) do
   create_table "users", force: true do |t|
     t.string   "name",       null: false
     t.string   "email",      null: false
+    t.integer  "address_id"
+    t.float    "lan"
+    t.float    "lng"
+    t.float    "zoom"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "address_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
