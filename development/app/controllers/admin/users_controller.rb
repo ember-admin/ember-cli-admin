@@ -27,15 +27,13 @@ class Admin::UsersController < ActionController::Base
 
   private
   def permit_params
-    fields = params.require(:user).permit(:name, :email)
-    fields[:address_id] = params[:user][:address]
-    fields
+    params.require(:user).permit(:name, :email, :address_id)
   end
 
   def attachment
     attachments = {}
-    attachments[:avatar] = params[:user][:avatar]
-    attachments[:avatars] = params[:user][:avatars]
+    attachments[:avatar] = params[:user][:avatar_id]
+    attachments[:avatars] = params[:user][:avatar_ids]
     attachments
   end
 

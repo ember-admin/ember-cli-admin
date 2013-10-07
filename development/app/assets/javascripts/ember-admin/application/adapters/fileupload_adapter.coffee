@@ -1,4 +1,4 @@
-Admin.FileuploadAdapter = DS.RESTAdapter.extend
+Admin.FileuploadAdapter = Admin.ApplicationAdapter.extend
 
   createRecord: (store, type, record) ->
     url = this.buildURL(type.typeKey)

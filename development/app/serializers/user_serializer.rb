@@ -1,15 +1,15 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :created_at, :updated_at, :address, :avatar, :avatars
+  attributes :id, :name, :email, :created_at, :updated_at, :address_id, :avatar_id, :avatar_ids
 
-  def avatar
+  def avatar_id
     object.avatar.try(:id)
   end
 
-  def avatars
+  def avatar_ids
     object.avatars.pluck(:id)
   end
 
-  def address
+  def address_id
     object.address_id
   end
 

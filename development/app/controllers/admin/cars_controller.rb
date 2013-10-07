@@ -32,8 +32,8 @@ class Admin::CarsController < ApplicationController
 
   def attachment
     attachments = {}
-    attachments[:car_image] = params[:car][:car_image]
-    attachments[:car_images] = params[:car][:car_image]
+    attachments[:car_image] = params[:car][:car_image_id]
+    attachments[:car_images] = params[:car][:car_image_ids]
     attachments
   end
 

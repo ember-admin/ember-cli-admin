@@ -1,5 +1,5 @@
-DS.RESTAdapter.reopen({
+DS.ActiveModelAdapter.reopen({
   namespace: 'admin'
 })
 
-Admin.ApplicationAdapter = DS.RESTAdapter;
+Admin.ApplicationAdapter = DS.ActiveModelAdapter;

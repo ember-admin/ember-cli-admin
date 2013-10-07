@@ -1,6 +1,6 @@
-DS.RESTAdapter.reopen({
+DS.ActiveModelAdapter.reopen({
   namespace: 'admin'
-});
+})
 
 #setup base adapter
-Admin.ApplicationAdapter = DS.RESTAdapter;
+Admin.ApplicationAdapter = DS.ActiveModelAdapter.extend()

@@ -22,3 +22,4 @@
 @Admin = Ember.Application.create(
   Resolver: Admin.Resolver.extend()
 )
+Admin.ApplicationAdapter = DS.ActiveModelAdapter.extend()
