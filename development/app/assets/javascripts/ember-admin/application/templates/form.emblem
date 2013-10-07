@@ -1,8 +1,8 @@
-= formFor controller.model wrapper="twitter-bootstrap"
+= form-for controller.model wrapper="twitter-bootstrap"
   each attribute in controller.formAttributes
-    = boundInput attribute.name inputConfig='class:form-control'
+    = bound-input attribute.name inputConfig='class:form-control'
 
   each attribute in controller.fileuploads
-    = boundFileupload attribute.name
+    = bound-fileupload attribute.name
 
   = partial "form_buttons"
