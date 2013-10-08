@@ -18,5 +18,6 @@
 @Admin.Fileupload  = Ember.Namespace.create()
 
 @Admin.Adapters = Ember.Namespace.create()
-#maps
-@Admin.Maps = Ember.Namespace.create()
+
+#forms
+@Admin.Forms = Ember.Namespace.create()

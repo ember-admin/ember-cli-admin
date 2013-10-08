@@ -16,3 +16,11 @@ Admin.User = DS.Model.extend
   ).property('email')
 
   fileuploads: ["avatar", "avatars"]
+
+  asGoogleMap: ['lan', 'lng', 'zoom']
+
+#  asYandexMap: ['lan', 'lng', 'zoom']
+
+
+#lan - latitude
+#lng - longitude

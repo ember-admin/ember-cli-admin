@@ -81,21 +81,27 @@ Ember.Handlebars.registerHelper "input-field", (property, options) ->
 
 Ember.Handlebars.registerHelper "input", (property, options) ->
   options = Ember.EasyForm.processOptions(property, options)
-  return  if options.contexts[0].get("fileuploads") isnt `undefined` and options.contexts[0].get("fileuploads").getEach("name").indexOf(property) >= 0
-  type = options.contexts[0].get("model").constructor
-  options.hash.as = "select"  if Admin.DSL.Attributes.relations(type).indexOf(property) >= 0
+  return  if Admin.Forms.Filters.fileupload(options, property)
+  return if Admin.Forms.Filters.mapField(options, property)
+  Admin.Forms.Filters.as(options, property)
   options.hash.property = property
   options.hash.isBlock = !!(options.fn)
   Ember.Handlebars.helpers.view.call this, Ember.EasyForm.Input, options
 
 Ember.Handlebars.registerBoundHelper "bound-input", (property, options) ->
   options = Ember.EasyForm.processOptions(property, options)
-  return  if options.contexts[0].get("fileuploads") isnt `undefined` and options.contexts[0].get("fileuploads").getEach("name").indexOf(property) >= 0
-  type = options.contexts[0].get("model").constructor
-  options.hash.as = "select"  if Admin.DSL.Attributes.relations(type).indexOf(property) >= 0
+  return if Admin.Forms.Filters.fileupload(options, property)
+  return if Admin.Forms.Filters.mapField(options, property)
+  Admin.Forms.Filters.as(options, property)
   options.hash.property = property
   options.hash.isBlock = !!(options.fn)
   Ember.Handlebars.helpers.view.call this, Ember.EasyForm.Input, options
+
+Ember.Handlebars.registerHelper 'input-map', (property, options) ->
+  options = Ember.EasyForm.processOptions(property, options)
+  options.hash.property = property
+  options.hash.isBlock = !!(options.fn)
+  return Admin.Forms.Filters.map(options, property)
 
 Ember.EasyForm.Select = Ember.Select.extend
   attributeBindings: ["attribute"]
@@ -118,3 +124,7 @@ Ember.EasyForm.Form.reopen
         promise = @get("context.content").validate()
       promise.then ->
         _this.get("controller").send _this.action  if _this.get("context.isValid")
+
+#    $('#'+ dom_input).live "keypress", (e) ->
+#      if e.keyCode == 13
+#        e.preventDefault()

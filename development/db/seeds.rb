@@ -6,8 +6,8 @@ def create_users
 
   100.times do
     user = User.new(email: Forgery(:internet).email_address, name: Forgery::Name.full_name,
-                    address_id: Address.all.sample.try(:id), lan: Forgery::Geo.longitude,
-                    lng: Forgery::Geo.latitude, zoom: 8
+                    address_id: Address.all.sample.try(:id), lan: Forgery::Geo.latitude,
+                    lng: Forgery::Geo.longitude, zoom: 8
     )
     user.avatar = Avatar.new(is_main: true)
     user.avatar.data = File.open(_pictures.sample)

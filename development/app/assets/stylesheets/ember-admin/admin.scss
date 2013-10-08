@@ -162,3 +162,25 @@ form{
   }
 
 }
+.map {
+  height: 400px;
+  margin-left: 10%;
+  width: 81%;
+  margin-top: 0.6em;
+  img {
+    max-width: none;
+  }
+}
+.geo_input {
+  margin-bottom: 30px;
+  label {
+    display: inline-block;
+    width: 10%;
+  }
+  input {
+    display: inline-block;
+    width: 80% !important;
+    margin-left: 1px;
+  }
+
+}
