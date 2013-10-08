@@ -9,7 +9,7 @@ Admin.Base.Views.AbstractMapView = Ember.View.extend
     @get('context').set(@get('lanAttr'), value)
 
   lanAttr:(->
-    @get('context.asGoogleMap')[0]
+    @get("context.#{@get('mapType')}")[0]
   ).property()
 
   lng:(->
@@ -17,7 +17,7 @@ Admin.Base.Views.AbstractMapView = Ember.View.extend
   ).property()
 
   lngAttr:(->
-    @get('context.asGoogleMap')[1]
+    @get("context.#{@get('mapType')}")[1]
   ).property()
 
   setLng: (value) ->
@@ -28,8 +28,22 @@ Admin.Base.Views.AbstractMapView = Ember.View.extend
   ).property()
 
   zoomAttr: (->
-    @get('context.asGoogleMap')[2]
+    @get("context.#{@get('mapType')}")[2]
   ).property()
 
   setZoom: (value) ->
     @get('context').set(@get('zoomAttr'), value)
+
+  centerCoords: ->
+    if @get('lan') && @get('lng')
+      [@get('lan'), @get('lng')]
+    else
+      Admin.Logics.Config.get('mapCenter').split(",")
+
+  setAttrs: (pos) ->
+    if pos['push']
+      @setLan(pos[0])
+      @setLng(pos[1])
+    else
+      @setLan(pos.lb)
+      @setLng(pos.mb)

@@ -2,6 +2,8 @@ Admin.Base.Views.GmapView = Admin.Base.Views.AbstractMapView.extend
 
   templateName: "base/_geo"
 
+  mapType: 'asGoogleMap'
+
   didInsertElement: ->
     options =
       zoom: @get('zoom')
@@ -17,11 +19,8 @@ Admin.Base.Views.GmapView = Admin.Base.Views.AbstractMapView.extend
       @setZoom(map.getZoom())
 
   center: (->
-    if @get('lan') && @get('lng')
-      new google.maps.LatLng(@get('lan'), @get('lng'))
-    else
-      coord = Admin.Logics.Config.get('mapCenter').split(",")
-      new google.maps.LatLng(coord[0], coord[1])
+    coord = @centerCoords()
+    new google.maps.LatLng(coord[0], coord[1])
   ).property()
 
   mapTypeId:(->
@@ -41,10 +40,6 @@ Admin.Base.Views.GmapView = Admin.Base.Views.AbstractMapView.extend
       pos = marker.getPosition()
       @setAttrs(pos)
     marker
-
-  setAttrs: (pos) ->
-    @setLan(pos.lb)
-    @setLng(pos.mb)
 
   initAutocomplete: (map, marker) ->
     autocompleteView = @get('MapAutocomplete')

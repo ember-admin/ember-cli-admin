@@ -16,5 +16,5 @@ Admin.Forms.Filters = Ember.Object.extend().reopenClass
 
   map: (options, property) ->
     context = options.contexts[0]
-    if context.get('asGoogleMap')
-      Ember.Handlebars.helpers.view.call context, Admin.Base.Views.GmapView, options
+    return Ember.Handlebars.helpers.view.call(context, Admin.Base.Views.GmapView, options) if context.get('asGoogleMap')
+    return Ember.Handlebars.helpers.view.call(context, Admin.Base.Views.YandexMapView, options) if context.get('asYandexMap')
