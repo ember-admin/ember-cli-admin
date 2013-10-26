@@ -1,3 +1,0 @@
-class CarImageSerializer < AssetSerializer
-
-end
