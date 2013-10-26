@@ -1,8 +1,3 @@
-Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admin.Base.Mixins.BaseActionsMixin,
-  Admin.Base.Mixins.FileUploadMixin,
-  Admin.Base.Mixins.AttributesMixin,
-  Admin.Base.Mixins.PaginationMixin,
-  Admin.Base.Mixins.BatchActionsMixin,
-  Admin.Base.Mixins.FormActionsMixin,
+Admin.Base.Controllers.AdminTableController = Admin.Base.Controllers.AdminBaseController.extend
 
   __table: true
