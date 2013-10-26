@@ -32,6 +32,3 @@ Capybara.default_selector = :css
 Capybara.default_wait_time = 5
 Capybara.ignore_hidden_elements = true
 
-require_relative 'fonts_controller'
-FontsController.turn_on_routing
-

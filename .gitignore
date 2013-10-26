@@ -22,3 +22,4 @@ development/.idea/
 development/log/*.log
 development/public/uploads
 .rvmrc
+public/assets/
