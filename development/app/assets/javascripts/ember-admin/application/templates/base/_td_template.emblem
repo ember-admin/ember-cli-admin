@@ -1,5 +1,5 @@
 if view.image
-  Admin.Fileupload.ImageLinkView imageBinding=view.image_object
+  Admin.Fileupload.ImageLinkView imageBinding="view.image_object"
 
 if view.text
   = view.value
