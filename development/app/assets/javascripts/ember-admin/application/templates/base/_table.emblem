@@ -15,7 +15,8 @@ table.table-striped
         each attributeName in controller.tableAttributes
           Admin.Base.Views.Table.TdView contextBinding="item" attributeNameBinding="attributeName"
         td.actions
-          = partial "base/actions/_base_actions"
+          if controller.collectionActions
+            = partial "base/actions/_base_actions"
           = partial "base/actions/_addition_actions"
     else
       if controller.model.items.isLoaded
