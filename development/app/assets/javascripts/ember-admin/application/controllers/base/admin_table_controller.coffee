@@ -1,15 +1,11 @@
 Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admin.Base.Mixins.BaseActionsMixin,
-  Admin.Base.Mixins.FileUploadMixin, Admin.Base.Mixins.AttributesMixin,
-  __perPage: (parseInt($.cookie('perPage')) || 25)
+  Admin.Base.Mixins.FileUploadMixin,
+  Admin.Base.Mixins.AttributesMixin,
+  Admin.Base.Mixins.PaginationMixin,
 
   __table: true
 
   __batches: []
-
-  reloadTable: (->
-    collection = this.store.find(@get('__model_name'), {per_page: @get('__perPage'), page: (@get('__page') || 1)})
-    @set('model.items', collection)
-  ).observes('__perPage')
 
   actions:
 
@@ -22,10 +18,6 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
     cancel: ->
       @get('model').rollback() if @get('model.isDirty')
       @_redirectToTable()
-
-    changePerPage: (perPage) ->
-      $.cookie('perPage', perPage)
-      @set('__perPage', perPage)
 
   _redirectToTable: ->
     locationObject = Ember.Location.create({implementation: 'hash'})
