@@ -2,10 +2,9 @@ Admin.Base.Controllers.AdminTableController = Ember.ObjectController.extend Admi
   Admin.Base.Mixins.FileUploadMixin,
   Admin.Base.Mixins.AttributesMixin,
   Admin.Base.Mixins.PaginationMixin,
+  Admin.Base.Mixins.BatchActionsMixin,
 
   __table: true
-
-  __batches: []
 
   actions:
 

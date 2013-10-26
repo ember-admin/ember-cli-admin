@@ -34,10 +34,6 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
     @get('__breadcrumbsActionsArray')
   ).property('__breadcrumbsActionsArray')
 
-  batchActions: (->
-    [{title: "delete", confirm: "Are you sure to delete this?", action: "destroy"}]
-  ).property('model')
-
   actions:
     new: () ->
       locationObject = Ember.Location.create({implementation: 'hash'})
@@ -62,11 +58,6 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
     show: (model) ->
       locationObject = Ember.Location.create({implementation: 'hash'})
       locationObject.setURL(@_path(model, "show"))
-
-    baseBatchAction: (action) ->
-      @get('__batches').forEach (model) =>
-        @send(action, model, true)
-      @set('__batches', [])
 
   _destroyItem: (model)->
     model.deleteRecord()
