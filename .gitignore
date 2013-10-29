@@ -7,3 +7,4 @@
 # Ignore bundler config.
 .idea/
 node_modules/*
+spec/ember-admin_spec.js
