@@ -44,7 +44,7 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
       locationObject.setURL(@_path(model, "edit"))
 
     update: (model)->
-      model.get('store').commit()
+      model.save()
 
     destroy: (model, batch=false) ->
       if @get('model.__list')
@@ -67,6 +67,6 @@ Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
 
   _path: (model, type)->
     if type
-      "/%@/%@/%@".fmt(@get('__controller_name'), model.id, type)
+      "/%@/%@/%@".fmt(@get('__controller_name'), model.get('id'), type)
     else
       "/%@/%@".fmt(@get('__controller_name'), model)

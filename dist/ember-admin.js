@@ -378,7 +378,7 @@
         return locationObject.setURL(this._path(model, "edit"));
       },
       update: function(model) {
-        return model.get('store').commit();
+        return model.save();
       },
       destroy: function(model, batch) {
         if (batch == null) {
@@ -416,7 +416,7 @@
     },
     _path: function(model, type) {
       if (type) {
-        return "/%@/%@/%@".fmt(this.get('__controller_name'), model.id, type);
+        return "/%@/%@/%@".fmt(this.get('__controller_name'), model.get('id'), type);
       } else {
         return "/%@/%@".fmt(this.get('__controller_name'), model);
       }

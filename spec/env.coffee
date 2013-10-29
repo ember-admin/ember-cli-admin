@@ -1,5 +1,6 @@
 class @TestEnv
   constructor: (mixin, controller=undefined) ->
+
     env = {}
     if controller
       usersController = controller.extend()
@@ -12,6 +13,7 @@ class @TestEnv
     env.usersController._debugContainerKey = "controller:users"
 
     @models()
+    @routes()
     @fixtures()
 
     @setupStore({user: User}, env)
@@ -56,4 +58,11 @@ class @TestEnv
       id: '2',
       name: "Piter",
       lastName: "piter@ember-admin.com",
-    }];
+    }]
+
+  routes: ->
+    Admin.Router.map () ->
+      @route "dashboard", path: "/"
+
+    Admin.MetaRoute.map () ->
+      @resources 'users', path: '/users'
