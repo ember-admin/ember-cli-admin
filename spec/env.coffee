@@ -1,11 +1,17 @@
 class @TestEnv
-  constructor: (mixin, controller=undefined) ->
+  constructor: (mixin) ->
 
-    Admin.UserController = Ember.ObjectController.extend(mixin)
+    if mixin
+      Admin.UserController = Ember.ObjectController.extend(mixin)
+    else
+      Admin.UserController = Admin.ApplicationController.extend()
 
     container = Admin.__container__
 
-    Admin.ApplicationAdapter = DS.FixtureAdapter.extend()
+    Admin.ApplicationAdapter = DS.FixtureAdapter.extend(
+      queryFixtures: (fixtures, query, type) ->
+        fixtures
+    )
 
     env = {}
     env.store = container.lookup("store:main")
