@@ -1,10 +1,7 @@
 class @TestEnv
   constructor: (mixin) ->
 
-    if mixin
-      Admin.UserController = Ember.ObjectController.extend(mixin)
-    else
-      Admin.UserController = Admin.ApplicationController.extend()
+    Admin.UsersController = Admin.ApplicationController.extend()
 
     container = Admin.__container__
 
@@ -15,7 +12,8 @@ class @TestEnv
 
     env = {}
     env.store = container.lookup("store:main")
-    env.usersController = Admin.UserController.create({ container: container })
+
+    env.usersController = Admin.UsersController.create({ container: container, store:  env.store, __model_name: "user", __controller_name: "users"})
     env.usersController._debugContainerKey = "controller:users"
 
     @models()

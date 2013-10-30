@@ -562,12 +562,15 @@
   Admin.Base.Mixins.PaginationMixin = Ember.Mixin.create({
     __perPage: parseInt($.cookie('perPage')) || 25,
     reloadTable: (function() {
-      var collection;
-      collection = this.store.find(this.get('__model_name'), {
+      var options,
+        _this = this;
+      options = {
         per_page: this.get('__perPage'),
         page: this.get('__page') || 1
+      };
+      return this.get('store').findAll(this.get('__model_name'), options).then(function(collection) {
+        return _this.set('model.items', collection);
       });
-      return this.set('model.items', collection);
     }).observes('__perPage'),
     actions: {
       changePerPage: function(perPage) {

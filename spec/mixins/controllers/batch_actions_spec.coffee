@@ -7,7 +7,6 @@ describe 'Admin.Base.Mixins.BatchActionsMixin', ->
         @subject.usersController.set('model', Ember.Object.create())
         @subject.usersController.set('model.__list', true)
         @subject.usersController.set('model.items', users.toArray())
-        @subject.usersController.set('__controller_name', 'users')
 
       waitsFor ->
         @subject.usersController.get('model.items') != null

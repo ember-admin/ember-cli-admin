@@ -5,10 +5,9 @@ describe 'Admin.Base.Mixins.BaseActionsMixin', ->
     runs ->
       model = @subject.store.find('user', 1).then (user) =>
         @subject.usersController.set('model', user)
-        @subject.usersController.set('__controller_name', 'users')
 
     waitsFor ->
-      @subject.usersController.get('model') != null
+      @subject.usersController.get('model.id') != null
 
   describe 'actions', ->
     it 'new', ->
