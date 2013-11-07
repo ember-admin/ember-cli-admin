@@ -12,6 +12,7 @@ module.exports = function(grunt) {
                       'src/application/admin.coffee',
                       'src/application/namespace.coffee',
                       'src/application/dsl/*.coffee',
+                      'src/application/logics/*.coffee',
                       'src/application/mixins/**/*.coffee',
                       'src/application/routes/main_route.coffee',
                       'src/application/config.coffee',
@@ -37,22 +38,22 @@ module.exports = function(grunt) {
             }
         },
 
-//        emblem: {
-//            compile: {
-//                files: {
-//                    'src/templates/javascript/templates.js': ['src/templates/emblem/*.emblem']
-//                },
-//                options: {
-//                    root: 'src/templates/emblem/',
-//                    dependencies: {
-//                        jquery: 'vendor/jquery.js',
-//                        ember: 'vendor/ember.js',
-//                        emblem: 'vendor/emblem.js',
-//                        handlebars: 'vendor/handlebars.js'
-//                    }
-//                }
-//            }
-//        },
+        emblem: {
+            compile: {
+                files: {
+                    'dist/templates.js': ['src/application/templates/ember-admin/**/*.emblem']
+                },
+                options: {
+                    root: 'src/application/templates/',
+                    dependencies: {
+                        jquery: 'vendor/jquery.js',
+                        ember: 'vendor/ember.js',
+                        emblem: 'vendor/emblem.js',
+                        handlebars: 'vendor/handlebars.js'
+                    }
+                }
+            }
+        },
 
         uglify: {
             options: { mangle: false, compress: false },
@@ -73,7 +74,8 @@ module.exports = function(grunt) {
                     'src/ember-easyForm.js',
                     'src/jquery.cookie.js',
 
-                    'dist/ember-admin.js'
+                    'dist/ember-admin.js',
+                    'dist/templates.js'
                 ],
 
                 options: {
@@ -90,7 +92,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-emblem');
 
 
-    grunt.registerTask('default', ['coffee', 'uglify']);
-    grunt.registerTask('default', ['coffee']);
-    grunt.registerTask('spec', ['coffee', 'jasmine:pivotal']);
+    grunt.registerTask('default', ['coffee', 'emblem', 'uglify']);
+    grunt.registerTask('spec', ['coffee', 'emblem', 'jasmine:pivotal']);
 };

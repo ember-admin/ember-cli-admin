@@ -283,6 +283,155 @@
 }).call(this);
 
 (function() {
+  Admin.Asset = DS.Model.extend({
+    original_filename: DS.attr('string'),
+    content_type: DS.attr('string', {
+      defaultValue: ""
+    }),
+    guid: DS.attr('string', {
+      defaultValue: ""
+    }),
+    assetable_id: DS.attr('string'),
+    assetable_type: DS.attr('string'),
+    thumb_url: DS.attr('string'),
+    url: DS.attr('string'),
+    type: DS.attr('string', {
+      defaultValue: "Asset"
+    }),
+    is_main: DS.attr('boolean', {
+      defaultValue: false
+    })
+  });
+
+  Admin.Asset.reopenClass({
+    extend: function(obj) {
+      var adapter, name;
+      name = obj.type._meta.options.defaultValue;
+      adapter = "Admin.%@Adapter = Admin.FileuploadAdapter.extend({})".fmt(name);
+      eval(adapter);
+      return this._super.apply(this, arguments);
+    }
+  });
+
+}).call(this);
+
+(function() {
+  Admin.Logics.Breadcrumbs = Ember.Object.extend();
+
+  Admin.Logics.Breadcrumbs.reopenClass({
+    setup: function(action, controller, model, breadcrumbs_controller) {
+      var content, name, obj;
+      content = [];
+      obj = Ember.Object.create({
+        name: "dashboard",
+        url: this._url("#/"),
+        "class": "first",
+        active: false
+      });
+      content.pushObject(obj);
+      obj = Ember.Object.create({
+        name: controller.get('__controller_name'),
+        url: this._url("#/" + (controller.get('__controller_name'))),
+        "class": "active",
+        active: true
+      });
+      if (action && action !== "page") {
+        obj.set('class', "");
+        obj.set('active', false);
+        content.pushObject(obj);
+        name = model.get('id') || action;
+        obj = Ember.Object.create({
+          name: name,
+          "class": "active",
+          active: true
+        });
+        content.pushObject(obj);
+      } else {
+        content.pushObject(obj);
+      }
+      breadcrumbs_controller.set('content', content);
+      return this._actions(action, controller);
+    },
+    _url: function(url) {
+      if (Admin.Logics.Config.get('namescpace')) {
+        return "/%@%@".fmt(Admin.Logics.Config.get('namescpace'), url);
+      } else {
+        return url;
+      }
+    },
+    _actions: function(action, controller) {
+      var actions;
+      actions = [];
+      if (action === "edit") {
+        actions.push(this._createAction());
+        actions.push(this._showAction());
+        actions.push(this._destroyAction());
+      }
+      if (action === "show") {
+        actions.push(this._createAction());
+        actions.push(this._editAction());
+        actions.push(this._destroyAction());
+      }
+      if (action === "new") {
+        actions.push(this._createAction());
+      }
+      if (action === "page" || !action) {
+        actions.push(this._createAction());
+      }
+      return controller.set("__breadcrumbsActionsArray", actions);
+    },
+    _createAction: function() {
+      return "new";
+    },
+    _editAction: function() {
+      return "edit";
+    },
+    _destroyAction: function() {
+      return "destroy";
+    },
+    _showAction: function() {
+      return "show";
+    }
+  });
+
+}).call(this);
+
+(function() {
+  Admin.Logics.Pagination = Ember.Object.extend();
+
+  Admin.Logics.Pagination.reopenClass({
+    setup: function(controller, page) {
+      var nextPage, prevPage;
+      if (page) {
+        nextPage = page + 1;
+        prevPage = page - 1 < 1 ? 1 : page - 1;
+        controller.set('__nextPage', nextPage);
+        return controller.set('__prevPage', prevPage);
+      } else {
+        controller.set('__nextPage', void 0);
+        return controller.set('__prevPage', void 0);
+      }
+    }
+  });
+
+}).call(this);
+
+(function() {
+  Admin.Logics.SiteTile = Ember.Object.extend();
+
+  Admin.Logics.SiteTile.reopenClass({
+    setup: function(controllerName, model, action) {
+      if (action) {
+        return document.title = "%@ - %@ - %@".fmt(controllerName, model.get('id'), action);
+      } else {
+        return document.title = "%@ - list".fmt(controllerName);
+      }
+    }
+  });
+
+}).call(this);
+
+(function() {
   Admin.Base.Mixins.AttributesMixin = Ember.Mixin.create({
     formAttributes: (function() {
       var attrs,

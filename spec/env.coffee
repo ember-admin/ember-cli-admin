@@ -26,6 +26,13 @@ class @TestEnv
     Admin.User = DS.Model.extend
       name: DS.attr('string')
       email: DS.attr('string')
+      avatar: DS.belongsTo('avatar')
+
+      fileuploads: ["avatar"]
+
+    Admin.Avatar = Admin.Asset.extend(
+      type: DS.attr('string', {defaultValue: "Avatar"})
+    )
 
   fixtures: ->
     Admin.User.FIXTURES = [{
