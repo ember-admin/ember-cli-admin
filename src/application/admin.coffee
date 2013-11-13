@@ -24,4 +24,4 @@
 #)
 #Admin.ApplicationAdapter = DS.ActiveModelAdapter.extend()
 
-@Admin = Ember.Namespace.create()
+#@Admin = Ember.Namespace.create()

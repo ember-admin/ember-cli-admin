@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 files: {
                     'dist/ember-admin.js': [
                       'src/application/resolver.coffee',
-                      'src/application/admin.coffee',
+//                      'src/application/admin.coffee',
                       'src/application/namespace.coffee',
                       'src/application/dsl/*.coffee',
                       'src/application/logics/*.coffee',
@@ -74,7 +74,6 @@ module.exports = function(grunt) {
                     'vendor/ember-data.js',
                     'src/ember-easyForm.js',
                     'src/jquery.cookie.js',
-
                     'dist/ember-admin.js',
                     'dist/templates.js'
                 ],

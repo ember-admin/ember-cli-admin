@@ -57,11 +57,6 @@
 }).call(this);
 
 (function() {
-  this.Admin = Ember.Namespace.create();
-
-}).call(this);
-
-(function() {
   this.Admin.DSL = Ember.Namespace.create();
 
   this.Admin.Logics = Ember.Namespace.create();
