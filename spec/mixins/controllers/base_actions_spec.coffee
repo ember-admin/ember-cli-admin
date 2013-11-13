@@ -1,6 +1,6 @@
 describe 'Admin.Base.Mixins.BaseActionsMixin', ->
   beforeEach ->
-    @subject = new TestEnv(Admin.Base.Mixins.BaseActionsMixin)
+    @subject = new TestEnv()
 
     runs ->
       model = @subject.store.find('user', 1).then (user) =>

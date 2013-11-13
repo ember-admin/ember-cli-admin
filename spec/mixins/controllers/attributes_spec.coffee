@@ -1,7 +1,7 @@
 describe 'Admin.Base.Mixins.AttributesMixin', ->
   beforeEach ->
 
-    @subject = new TestEnv(Admin.Base.Mixins.AttributesMixin)
+    @subject = new TestEnv()
 
     runs ->
       model = @subject.store.find('user', 1).then (user) =>
