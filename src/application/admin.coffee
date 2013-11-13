@@ -19,7 +19,9 @@
 
 #= require_tree ./adapters
 
-@Admin = Ember.Application.create(
-  Resolver: Admin.Resolver.extend()
-)
-Admin.ApplicationAdapter = DS.ActiveModelAdapter.extend()
+#@Admin = Ember.Application.create(
+#  Resolver: Admin.Resolver.extend()
+#)
+#Admin.ApplicationAdapter = DS.ActiveModelAdapter.extend()
+
+@Admin = Ember.Namespace.create()

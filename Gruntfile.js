@@ -23,7 +23,6 @@ module.exports = function(grunt) {
                       'src/application/forms/*.coffee',
                       'src/application/helpers/*.coffee',
                       'src/application/views/**/*.coffee',
-                      'src/application/router.coffee',
                       'src/application/routes/**/*.coffee',
                       'src/application/controllers/**/*.coffee',
                       'src/application/form_config.coffee',
@@ -37,6 +36,8 @@ module.exports = function(grunt) {
                 }
             }
         },
+
+
 
         emblem: {
             compile: {

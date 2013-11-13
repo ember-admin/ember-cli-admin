@@ -12,6 +12,6 @@ Admin.Asset = DS.Model.extend
 Admin.Asset.reopenClass
   extend: (obj) ->
     name = obj.type._meta.options.defaultValue
-    adapter = "Admin.%@Adapter = Admin.FileuploadAdapter.extend({})".fmt(name)
+    adapter = "Admin.%@Adapter = Admin.ApplicationAdapter.extend(Admin.FileuploadAdapterMixin)".fmt(name)
     eval(adapter)
     @_super.apply(@, arguments)

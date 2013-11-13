@@ -57,11 +57,7 @@
 }).call(this);
 
 (function() {
-  this.Admin = Ember.Application.create({
-    Resolver: Admin.Resolver.extend()
-  });
-
-  Admin.ApplicationAdapter = DS.ActiveModelAdapter.extend();
+  this.Admin = Ember.Namespace.create();
 
 }).call(this);
 
@@ -307,7 +303,7 @@
     extend: function(obj) {
       var adapter, name;
       name = obj.type._meta.options.defaultValue;
-      adapter = "Admin.%@Adapter = Admin.FileuploadAdapter.extend({})".fmt(name);
+      adapter = "Admin.%@Adapter = Admin.ApplicationAdapter.extend(Admin.FileuploadAdapterMixin)".fmt(name);
       eval(adapter);
       return this._super.apply(this, arguments);
     }
@@ -1904,15 +1900,6 @@ params:
 }).call(this);
 
 (function() {
-  Admin.Router.map(function() {
-    return this.route("dashboard", {
-      path: "/"
-    });
-  });
-
-}).call(this);
-
-(function() {
   Admin.ApplicationController = Admin.Base.Controllers.AdminTableViewController.extend();
 
 }).call(this);
@@ -1952,7 +1939,7 @@ params:
 }).call(this);
 
 (function() {
-  Admin.FileuploadAdapter = Admin.ApplicationAdapter.extend({
+  Admin.FileuploadAdapterMixin = Ember.Mixin.create({
     createRecord: function(store, type, record) {
       var adapter, url;
       url = this.buildURL(type.typeKey);

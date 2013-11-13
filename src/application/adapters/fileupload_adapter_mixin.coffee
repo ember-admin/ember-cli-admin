@@ -1,4 +1,4 @@
-Admin.FileuploadAdapter = Admin.ApplicationAdapter.extend
+Admin.FileuploadAdapterMixin = Ember.Mixin.create
 
   createRecord: (store, type, record) ->
     url = this.buildURL(type.typeKey)
