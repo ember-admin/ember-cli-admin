@@ -1,6 +1,29 @@
 (function() {
   this.Admin = Ember.Namespace.create();
 
+  this.Admin.DSL = Ember.Namespace.create();
+
+  this.Admin.Logics = Ember.Namespace.create();
+
+  this.Admin.Base = Ember.Namespace.create();
+
+  this.Admin.Base.Controllers = Ember.Namespace.create();
+
+  this.Admin.Base.Views = Ember.Namespace.create();
+
+  this.Admin.Base.Views.Table = Ember.Namespace.create();
+
+  this.Admin.Base.Mixins = Ember.Namespace.create();
+
+  this.Admin.Fileupload = Ember.Namespace.create();
+
+  this.Admin.Adapters = Ember.Namespace.create();
+
+  this.Admin.Forms = Ember.Namespace.create();
+
+}).call(this);
+
+(function() {
   Admin.Resolver = Ember.DefaultResolver.extend({
     resolveController: function(parsedName) {
       this.useRouterNaming(parsedName);
@@ -53,29 +76,6 @@
       return /(Show)|(Edit)|(New)|(Page)/;
     }
   });
-
-}).call(this);
-
-(function() {
-  this.Admin.DSL = Ember.Namespace.create();
-
-  this.Admin.Logics = Ember.Namespace.create();
-
-  this.Admin.Base = Ember.Namespace.create();
-
-  this.Admin.Base.Controllers = Ember.Namespace.create();
-
-  this.Admin.Base.Views = Ember.Namespace.create();
-
-  this.Admin.Base.Views.Table = Ember.Namespace.create();
-
-  this.Admin.Base.Mixins = Ember.Namespace.create();
-
-  this.Admin.Fileupload = Ember.Namespace.create();
-
-  this.Admin.Adapters = Ember.Namespace.create();
-
-  this.Admin.Forms = Ember.Namespace.create();
 
 }).call(this);
 

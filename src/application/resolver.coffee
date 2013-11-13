@@ -1,5 +1,3 @@
-@Admin = Ember.Namespace.create()
-
 Admin.Resolver = Ember.DefaultResolver.extend
 
   resolveController: (parsedName) ->

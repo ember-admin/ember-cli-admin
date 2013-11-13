@@ -8,9 +8,8 @@ module.exports = function(grunt) {
             compile: {
                 files: {
                     'dist/ember-admin.js': [
-                      'src/application/resolver.coffee',
-//                      'src/application/admin.coffee',
                       'src/application/namespace.coffee',
+                      'src/application/resolver.coffee',
                       'src/application/dsl/*.coffee',
                       'src/application/logics/*.coffee',
                       'src/application/mixins/**/*.coffee',
@@ -60,7 +59,7 @@ module.exports = function(grunt) {
             options: { mangle: false, compress: false },
 
             dist: {
-                src: 'dist/ember-admin.js',
+                src: ['dist/ember-admin.js', 'dist/templates.js'],
                 dest: 'dist/ember-admin.min.js'
             }
         },
