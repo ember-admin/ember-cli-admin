@@ -36,8 +36,6 @@ module.exports = function(grunt) {
             }
         },
 
-
-
         emblem: {
             compile: {
                 files: {
