@@ -221,7 +221,8 @@
   Admin.DSL.Navigation = (function() {
     Navigation.content = [];
 
-    function Navigation(container) {
+    function Navigation(container, parentId) {
+      this.parentId = parentId;
       this.container = container || [];
     }
 
@@ -234,8 +235,12 @@
       navigateObject = {
         title: title,
         children: [],
-        divider: false
+        divider: false,
+        id: this._uid()
       };
+      if (this.parentId) {
+        navigateObject.parentId = this.parentId;
+      }
       if (options && typeof options !== 'function') {
         navigateObject = $.extend(navigateObject, options);
       }
@@ -248,7 +253,7 @@
       }
       if (callback) {
         emberObject.set('hasChildren', true);
-        callback.call(new Admin.DSL.Navigation(emberObject.get('children')));
+        callback.call(new Admin.DSL.Navigation(emberObject.get('children'), emberObject.get('id')));
       }
       return this.container;
     };
@@ -269,6 +274,17 @@
       if (!options.url) {
         return options.url = "#/%@".fmt(options.route);
       }
+    };
+
+    Navigation.prototype._uid = function() {
+      return Math.random().toString(36).substr(2, 9);
+    };
+
+    Navigation.findParent = function(obj) {
+      var _this = this;
+      return this.content.find(function(item) {
+        return item.id === obj.parentId;
+      });
     };
 
     return Navigation;
