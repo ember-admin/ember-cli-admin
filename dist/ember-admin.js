@@ -727,6 +727,68 @@
 }).call(this);
 
 (function() {
+  Admin.Mixins.Routes.ControllerMixin = Ember.Mixin.create({
+    _getForm: function(controller) {
+      var form;
+      form = "%@_form".fmt(this._controllerName(controller).decamelize());
+      if (Ember.TEMPLATES[form]) {
+        return form;
+      } else {
+        return "form";
+      }
+    },
+    _getControllerTemplate: function(controller) {
+      var name;
+      name = this._controllerName(controller);
+      if (Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]) {
+        return name;
+      } else {
+        if (this.action && this.action !== "page") {
+          return this.action;
+        } else {
+          return "main";
+        }
+      }
+    },
+    _controllerName: function(controller) {
+      return controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Page)/, '');
+    },
+    _setActiveRoute: function(controller) {
+      var url;
+      url = Ember.Location.create({
+        implementation: 'hash'
+      }).getURL();
+      url = "/" + url.split("/")[1];
+      if (url !== "/") {
+        url = "/" + this._controllerName(controller);
+      }
+      return this.controllerFor("navigation").set('activeMenu', url);
+    },
+    _setAction: function(action) {
+      return this.action = action;
+    },
+    _checkAction: function(options, target) {
+      if (/\./.test(target)) {
+        target = target.split(".")[1];
+        if (target) {
+          return options.action = target;
+        }
+      }
+    },
+    _setupBreadscrumbs: function(controller, model) {
+      return Admin.Logics.Breadcrumbs.setup(this.action, controller, model, this.controllerFor('breadcrumbs'));
+    },
+    _setType: function(controller, type) {
+      return controller.set('__type', type.toString().replace("Admin.", ""));
+    },
+    _setSiteTitle: function(controller, model) {
+      return Admin.Logics.SiteTile.setup(this._controllerName(controller), model, this.action);
+    }
+  });
+
+}).call(this);
+
+(function() {
   Admin.Mixins.Routes.ModelMixin = Ember.Mixin.create({
     _find_model: function(modelName, options) {
       if (options.action === "new") {
@@ -789,7 +851,7 @@
 }).call(this);
 
 (function() {
-  Admin.MainRoute = Ember.Route.extend(Admin.Mixins.Routes.PaginationMixin, Admin.Mixins.Routes.ModelMixin, {
+  Admin.MainRoute = Ember.Route.extend(Admin.Mixins.Routes.PaginationMixin, Admin.Mixins.Routes.ModelMixin, Admin.Mixins.Routes.ControllerMixin, {
     model: function(options, transition) {
       this.action = void 0;
       this.page = void 0;
@@ -827,62 +889,6 @@
       this._renderBreadcrumbs(controller, model);
       this._renderActions(controller, model);
       return this._renderForm(controller, model);
-    },
-    _getForm: function(controller) {
-      var form;
-      form = "%@_form".fmt(this._controllerName(controller).decamelize());
-      if (Ember.TEMPLATES[form]) {
-        return form;
-      } else {
-        return "form";
-      }
-    },
-    _getControllerTemplate: function(controller) {
-      var name;
-      name = this._controllerName(controller);
-      if (Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]) {
-        return name;
-      } else {
-        if (this.action && this.action !== "page") {
-          return this.action;
-        } else {
-          return "main";
-        }
-      }
-    },
-    _controllerName: function(controller) {
-      return controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Page)/, '');
-    },
-    _setActiveRoute: function(controller) {
-      var url;
-      url = Ember.Location.create({
-        implementation: 'hash'
-      }).getURL();
-      url = "/" + url.split("/")[1];
-      if (url !== "/") {
-        url = "/" + this._controllerName(controller);
-      }
-      return this.controllerFor("navigation").set('activeMenu', url);
-    },
-    _setAction: function(action) {
-      return this.action = action;
-    },
-    _checkAction: function(options, target) {
-      if (/\./.test(target)) {
-        target = target.split(".")[1];
-        if (target) {
-          return options.action = target;
-        }
-      }
-    },
-    _setupBreadscrumbs: function(controller, model) {
-      return Admin.Logics.Breadcrumbs.setup(this.action, controller, model, this.controllerFor('breadcrumbs'));
-    },
-    _setType: function(controller, type) {
-      return controller.set('__type', type.toString().replace("Admin.", ""));
-    },
-    _setSiteTitle: function(controller, model) {
-      return Admin.Logics.SiteTile.setup(this._controllerName(controller), model, this.action);
     },
     _renderNavigation: function(controller, model) {
       return this.render('navigation', {

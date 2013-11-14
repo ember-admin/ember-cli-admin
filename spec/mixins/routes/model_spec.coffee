@@ -33,7 +33,7 @@ describe 'Admin.Mixins.Routes.ModelMixin', ->
       waitsFor ->
         item != undefined
       runs ->
-        expect(item.toArray).toBeUndefined()
+        expect(item['toArray']).toBeUndefined()
 
   it '_setModel', ->
     withoutModel = @subject.route._setModel(@subject.usersController)
