@@ -1,4 +1,5 @@
 Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
+  Admin.Mixins.Routes.ModelMixin,
 
   model: (options, transition) ->
     @action = undefined
@@ -41,12 +42,6 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
     else
       "form"
 
-  _find_model: (modelName, options) ->
-    return this.store.createRecord(modelName, {}) if options.action == "new"
-    return @pagination(modelName, "_page=1") unless options.id
-    return @pagination(modelName, options.id) if @_checkPaginations()
-    this.store.find(modelName, options.id);
-
   _getControllerTemplate: (controller) ->
     name = @_controllerName(controller)
     if Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]
@@ -63,15 +58,6 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
     unless url == "/"
       url = "/" + @_controllerName(controller)
     @controllerFor("navigation").set('activeMenu', url)
-
-  _setModel: (controller, model) ->
-    return unless model
-    return controller.set('model', Ember.Object.create(items:  model, __list: true)) if model.type
-    controller.set('model', model)
-
-  _modelName:(name) ->
-    if /\./.test(name) then name = name.split(".")[0]
-    Ember.String.singularize(name)
 
   _setAction: (action) ->
     @action = action

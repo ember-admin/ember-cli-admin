@@ -727,6 +727,42 @@
 }).call(this);
 
 (function() {
+  Admin.Mixins.Routes.ModelMixin = Ember.Mixin.create({
+    _find_model: function(modelName, options) {
+      if (options.action === "new") {
+        return this.store.createRecord(modelName, {});
+      }
+      if (!options.id) {
+        return this.pagination(modelName, "_page=1");
+      }
+      if (this._checkPaginations()) {
+        return this.pagination(modelName, options.id);
+      }
+      return this.store.find(modelName, options.id);
+    },
+    _setModel: function(controller, model) {
+      if (!model) {
+        return;
+      }
+      if (model.type) {
+        return controller.set('model', Ember.Object.create({
+          items: model,
+          __list: true
+        }));
+      }
+      return controller.set('model', model);
+    },
+    _modelName: function(name) {
+      if (/\./.test(name)) {
+        name = name.split(".")[0];
+      }
+      return Ember.String.singularize(name);
+    }
+  });
+
+}).call(this);
+
+(function() {
   Admin.Mixins.Routes.PaginationMixin = Ember.Mixin.create({
     pagination: function(modelName) {
       var perPage;
@@ -753,7 +789,7 @@
 }).call(this);
 
 (function() {
-  Admin.MainRoute = Ember.Route.extend(Admin.Mixins.Routes.PaginationMixin, {
+  Admin.MainRoute = Ember.Route.extend(Admin.Mixins.Routes.PaginationMixin, Admin.Mixins.Routes.ModelMixin, {
     model: function(options, transition) {
       this.action = void 0;
       this.page = void 0;
@@ -801,18 +837,6 @@
         return "form";
       }
     },
-    _find_model: function(modelName, options) {
-      if (options.action === "new") {
-        return this.store.createRecord(modelName, {});
-      }
-      if (!options.id) {
-        return this.pagination(modelName, "_page=1");
-      }
-      if (this._checkPaginations()) {
-        return this.pagination(modelName, options.id);
-      }
-      return this.store.find(modelName, options.id);
-    },
     _getControllerTemplate: function(controller) {
       var name;
       name = this._controllerName(controller);
@@ -839,24 +863,6 @@
         url = "/" + this._controllerName(controller);
       }
       return this.controllerFor("navigation").set('activeMenu', url);
-    },
-    _setModel: function(controller, model) {
-      if (!model) {
-        return;
-      }
-      if (model.type) {
-        return controller.set('model', Ember.Object.create({
-          items: model,
-          __list: true
-        }));
-      }
-      return controller.set('model', model);
-    },
-    _modelName: function(name) {
-      if (/\./.test(name)) {
-        name = name.split(".")[0];
-      }
-      return Ember.String.singularize(name);
     },
     _setAction: function(action) {
       return this.action = action;
