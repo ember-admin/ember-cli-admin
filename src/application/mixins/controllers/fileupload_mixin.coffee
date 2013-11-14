@@ -1,7 +1,7 @@
 ###
   You can override this method for create your own logic for create asset
 ###
-Admin.Base.Mixins.FileUploadMixin = Ember.Mixin.create
+Admin.Mixins.Controllers.FileUploadMixin = Ember.Mixin.create
 
   actions:
 

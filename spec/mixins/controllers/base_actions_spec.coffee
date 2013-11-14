@@ -1,4 +1,4 @@
-describe 'Admin.Base.Mixins.BaseActionsMixin', ->
+describe 'Admin.Mixins.Controllers.BaseActionsMixin', ->
   beforeEach ->
     @subject = new TestEnv()
 

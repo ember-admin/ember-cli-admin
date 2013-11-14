@@ -17,7 +17,7 @@
    breadcrumbsActions property and add action title, then add this action into additionalActions property
 ###
 
-Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create
+Admin.Mixins.Controllers.BaseActionsMixin = Ember.Mixin.create
 
 
   collectionActions: [{title: "Edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "glyphicon glyphicon-pencil"},

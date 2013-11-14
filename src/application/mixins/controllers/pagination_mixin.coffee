@@ -1,4 +1,4 @@
-Admin.Base.Mixins.PaginationMixin = Ember.Mixin.create
+Admin.Mixins.Controllers.PaginationMixin = Ember.Mixin.create
   __perPage: (parseInt($.cookie('perPage')) || 25)
 
   reloadTable: (->

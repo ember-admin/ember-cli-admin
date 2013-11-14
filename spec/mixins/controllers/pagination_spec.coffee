@@ -1,4 +1,4 @@
-describe 'Admin.Base.Mixins.PaginationMixin', ->
+describe 'Admin.Mixins.Controllers.PaginationMixin', ->
   beforeEach ->
     @subject = new TestEnv()
 

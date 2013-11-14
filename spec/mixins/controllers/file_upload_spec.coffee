@@ -1,4 +1,4 @@
-describe 'Admin.Base.Mixins.FileUploadMixin', ->
+describe 'Admin.Mixins.Controllers.FileUploadMixin', ->
   beforeEach ->
     @subject = new TestEnv()
     runs ->

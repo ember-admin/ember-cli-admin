@@ -13,7 +13,9 @@
 @Admin.Base.Views.Table = Ember.Namespace.create()
 
 #mixins
-@Admin.Base.Mixins = Ember.Namespace.create()
+@Admin.Mixins = Ember.Namespace.create()
+@Admin.Mixins.Controllers = Ember.Namespace.create()
+@Admin.Mixins.Routes = Ember.Namespace.create()
 
 #fileuploads
 @Admin.Fileupload  = Ember.Namespace.create()

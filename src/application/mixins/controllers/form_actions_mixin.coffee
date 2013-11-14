@@ -1,4 +1,4 @@
-Admin.Base.Mixins.FormActionsMixin = Ember.Mixin.create
+Admin.Mixins.Controllers.FormActionsMixin = Ember.Mixin.create
 
   actions:
 

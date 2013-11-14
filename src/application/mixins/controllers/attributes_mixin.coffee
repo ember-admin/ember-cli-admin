@@ -1,4 +1,4 @@
-Admin.Base.Mixins.AttributesMixin =  Ember.Mixin.create
+Admin.Mixins.Controllers.AttributesMixin =  Ember.Mixin.create
 
   formAttributes:(->
     attrs = (@get('model.formFields') || Admin.DSL.Attributes.withoutId(@get("model").constructor))

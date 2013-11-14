@@ -13,7 +13,11 @@
 
   this.Admin.Base.Views.Table = Ember.Namespace.create();
 
-  this.Admin.Base.Mixins = Ember.Namespace.create();
+  this.Admin.Mixins = Ember.Namespace.create();
+
+  this.Admin.Mixins.Controllers = Ember.Namespace.create();
+
+  this.Admin.Mixins.Routes = Ember.Namespace.create();
 
   this.Admin.Fileupload = Ember.Namespace.create();
 
@@ -423,7 +427,7 @@
 }).call(this);
 
 (function() {
-  Admin.Base.Mixins.AttributesMixin = Ember.Mixin.create({
+  Admin.Mixins.Controllers.AttributesMixin = Ember.Mixin.create({
     formAttributes: (function() {
       var attrs,
         _this = this;
@@ -471,7 +475,7 @@
 
 
 (function() {
-  Admin.Base.Mixins.BaseActionsMixin = Ember.Mixin.create({
+  Admin.Mixins.Controllers.BaseActionsMixin = Ember.Mixin.create({
     collectionActions: [
       {
         title: "Edit",
@@ -566,7 +570,7 @@
 }).call(this);
 
 (function() {
-  Admin.Base.Mixins.BatchActionsMixin = Ember.Mixin.create({
+  Admin.Mixins.Controllers.BatchActionsMixin = Ember.Mixin.create({
     __batches: [],
     batchActions: [
       {
@@ -594,7 +598,7 @@
 
 
 (function() {
-  Admin.Base.Mixins.FileUploadMixin = Ember.Mixin.create({
+  Admin.Mixins.Controllers.FileUploadMixin = Ember.Mixin.create({
     actions: {
       createAsset: function(asset, property, view) {
         var _this = this;
@@ -650,7 +654,7 @@
 }).call(this);
 
 (function() {
-  Admin.Base.Mixins.FormActionsMixin = Ember.Mixin.create({
+  Admin.Mixins.Controllers.FormActionsMixin = Ember.Mixin.create({
     actions: {
       submit: function(redirect) {
         if (redirect == null) {
@@ -699,7 +703,7 @@
 }).call(this);
 
 (function() {
-  Admin.Base.Mixins.PaginationMixin = Ember.Mixin.create({
+  Admin.Mixins.Controllers.PaginationMixin = Ember.Mixin.create({
     __perPage: parseInt($.cookie('perPage')) || 25,
     reloadTable: (function() {
       var options,
@@ -719,6 +723,11 @@
       }
     }
   });
+
+}).call(this);
+
+(function() {
+
 
 }).call(this);
 
@@ -977,7 +986,7 @@ params:
 }).call(this);
 
 (function() {
-  Admin.Base.Controllers.AdminBaseController = Ember.ObjectController.extend(Admin.Base.Mixins.BaseActionsMixin, Admin.Base.Mixins.FileUploadMixin, Admin.Base.Mixins.AttributesMixin, Admin.Base.Mixins.PaginationMixin, Admin.Base.Mixins.BatchActionsMixin, Admin.Base.Mixins.FormActionsMixin);
+  Admin.Base.Controllers.AdminBaseController = Ember.ObjectController.extend(Admin.Mixins.Controllers.BaseActionsMixin, Admin.Mixins.Controllers.FileUploadMixin, Admin.Mixins.Controllers.AttributesMixin, Admin.Mixins.Controllers.PaginationMixin, Admin.Mixins.Controllers.BatchActionsMixin, Admin.Mixins.Controllers.FormActionsMixin);
 
 }).call(this);
 

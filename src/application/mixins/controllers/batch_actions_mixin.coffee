@@ -1,4 +1,4 @@
-Admin.Base.Mixins.BatchActionsMixin = Ember.Mixin.create
+Admin.Mixins.Controllers.BatchActionsMixin = Ember.Mixin.create
   __batches: []
 
   batchActions: [{title: "delete", confirm: "Are you sure to delete this?", action: "destroy"}]
