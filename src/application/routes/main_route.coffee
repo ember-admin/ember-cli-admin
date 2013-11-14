@@ -1,4 +1,4 @@
-Admin.MainRoute = Ember.Route.extend
+Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
 
   model: (options, transition) ->
     @action = undefined
@@ -35,10 +35,6 @@ Admin.MainRoute = Ember.Route.extend
     @_renderForm(controller, model)
 
 
-  pagination: (modelName, param) ->
-    perPage = ($.cookie('perPage') || 25)
-    this.store.find(modelName, {page: @page, per_page: perPage})
-
   _getForm:(controller) ->
     form = "%@_form".fmt(@_controllerName(controller).decamelize())
     if  Ember.TEMPLATES[form]
@@ -74,16 +70,9 @@ Admin.MainRoute = Ember.Route.extend
     return controller.set('model', Ember.Object.create(items:  model, __list: true)) if model.type
     controller.set('model', model)
 
-
   _modelName:(name) ->
     if /\./.test(name) then name = name.split(".")[0]
     Ember.String.singularize(name)
-
-  _checkPaginations: (id) ->
-    @action == "page"
-
-  _setPage: (page) ->
-    @page = parseInt(page) || 1
 
   _setAction: (action) ->
     @action = action
@@ -95,12 +84,6 @@ Admin.MainRoute = Ember.Route.extend
 
   _setupBreadscrumbs: (controller, model)->
     Admin.Logics.Breadcrumbs.setup(@action, controller, model, @controllerFor('breadcrumbs'))
-
-  _setupPaginationInfo: (controller) ->
-    controller.set('__page', @page)
-    controller.set('__controller_name', @_controllerName(controller))
-    controller.set('__model_name', @modelName)
-    Admin.Logics.Pagination.setup(controller, @page)
 
   _setType: (controller, type) ->
     controller.set('__type', type.toString().replace("Admin.", ""))

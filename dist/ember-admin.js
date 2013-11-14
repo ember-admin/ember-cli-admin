@@ -727,12 +727,33 @@
 }).call(this);
 
 (function() {
-
+  Admin.Mixins.Routes.PaginationMixin = Ember.Mixin.create({
+    pagination: function(modelName, param) {
+      var perPage;
+      perPage = $.cookie('perPage') || 25;
+      return this.store.find(modelName, {
+        page: this.page,
+        per_page: perPage
+      });
+    },
+    _checkPaginations: function(id) {
+      return this.action === "page";
+    },
+    _setPage: function(page) {
+      return this.page = parseInt(page) || 1;
+    },
+    _setupPaginationInfo: function(controller) {
+      controller.set('__page', this.page);
+      controller.set('__controller_name', this._controllerName(controller));
+      controller.set('__model_name', this.modelName);
+      return Admin.Logics.Pagination.setup(controller, this.page);
+    }
+  });
 
 }).call(this);
 
 (function() {
-  Admin.MainRoute = Ember.Route.extend({
+  Admin.MainRoute = Ember.Route.extend(Admin.Mixins.Routes.PaginationMixin, {
     model: function(options, transition) {
       this.action = void 0;
       this.page = void 0;
@@ -771,14 +792,6 @@
       this._renderBreadcrumbs(controller, model);
       this._renderActions(controller, model);
       return this._renderForm(controller, model);
-    },
-    pagination: function(modelName, param) {
-      var perPage;
-      perPage = $.cookie('perPage') || 25;
-      return this.store.find(modelName, {
-        page: this.page,
-        per_page: perPage
-      });
     },
     _getForm: function(controller) {
       var form;
@@ -846,12 +859,6 @@
       }
       return Ember.String.singularize(name);
     },
-    _checkPaginations: function(id) {
-      return this.action === "page";
-    },
-    _setPage: function(page) {
-      return this.page = parseInt(page) || 1;
-    },
     _setAction: function(action) {
       return this.action = action;
     },
@@ -865,12 +872,6 @@
     },
     _setupBreadscrumbs: function(controller, model) {
       return Admin.Logics.Breadcrumbs.setup(this.action, controller, model, this.controllerFor('breadcrumbs'));
-    },
-    _setupPaginationInfo: function(controller) {
-      controller.set('__page', this.page);
-      controller.set('__controller_name', this._controllerName(controller));
-      controller.set('__model_name', this.modelName);
-      return Admin.Logics.Pagination.setup(controller, this.page);
     },
     _setType: function(controller, type) {
       return controller.set('__type', type.toString().replace("Admin.", ""));
