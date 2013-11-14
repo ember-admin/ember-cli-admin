@@ -1899,33 +1899,23 @@ params:
     classNameBindings: ["isActive:active"],
     isActive: (function() {
       if (this.get('context.url') === "#%@".fmt(this.get('controller.activeMenu'))) {
-        if (this.get('parentView.tagName') === "li") {
-          this.set('parentView.isActive', true);
-        }
         return true;
       }
+      return this._hasChild();
     }).property('context', 'controller.activeMenu'),
-    setActiveParent: (function() {
-      if (this.get('parentView.tagName') === "li") {
-        if (this.get('isActive')) {
-          this._clearAll();
-          return this.set('parentView.isActive', true);
-        }
-      } else {
-        if (this.get('isActive')) {
-          return this._clearAll();
-        }
+    _hasChild: function() {
+      var hasChild,
+        _this = this;
+      if (!this.get('context.children')) {
+        return false;
       }
-    }).observes('isActive'),
-    _clearAll: function() {
-      if (this.get('state') !== "inBuffer") {
-        if (this.get('parentView.tagName') === "li") {
-          this.get('parentView').$().siblings("li").removeClass('active');
-          return this.get('parentView').$().addClass('active');
-        } else {
-          return this.$().siblings("li").removeClass('active');
+      hasChild = false;
+      this.get('context.children').forEach(function(item) {
+        if (item.url === "#%@".fmt(_this.get('controller.activeMenu'))) {
+          return hasChild = true;
         }
-      }
+      });
+      return hasChild;
     }
   });
 
