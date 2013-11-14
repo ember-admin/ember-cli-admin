@@ -1,9 +1,10 @@
 Admin.Mixins.Routes.PaginationMixin =  Ember.Mixin.create
-  pagination: (modelName, param) ->
+
+  pagination: (modelName) ->
     perPage = ($.cookie('perPage') || 25)
     this.store.find(modelName, {page: @page, per_page: perPage})
 
-  _checkPaginations: (id) ->
+  _checkPaginations: ->
       @action == "page"
 
   _setPage: (page) ->

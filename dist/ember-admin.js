@@ -728,7 +728,7 @@
 
 (function() {
   Admin.Mixins.Routes.PaginationMixin = Ember.Mixin.create({
-    pagination: function(modelName, param) {
+    pagination: function(modelName) {
       var perPage;
       perPage = $.cookie('perPage') || 25;
       return this.store.find(modelName, {
@@ -736,7 +736,7 @@
         per_page: perPage
       });
     },
-    _checkPaginations: function(id) {
+    _checkPaginations: function() {
       return this.action === "page";
     },
     _setPage: function(page) {
@@ -771,7 +771,6 @@
       var type;
       this._setSiteTitle(controller, model);
       if (model) {
-        window.m = model;
         this._setModel(controller, model);
         type = model.type || model.constructor;
         this._setType(controller, type);
@@ -809,7 +808,7 @@
       if (!options.id) {
         return this.pagination(modelName, "_page=1");
       }
-      if (this._checkPaginations(options.id)) {
+      if (this._checkPaginations()) {
         return this.pagination(modelName, options.id);
       }
       return this.store.find(modelName, options.id);

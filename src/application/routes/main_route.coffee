@@ -14,7 +14,6 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
   setupController:(controller, model) ->
     @_setSiteTitle(controller, model)
     if model
-      window.m = model
       @_setModel(controller, model)
       type = (model.type || model.constructor)
       @_setType(controller, type)
@@ -45,7 +44,7 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
   _find_model: (modelName, options) ->
     return this.store.createRecord(modelName, {}) if options.action == "new"
     return @pagination(modelName, "_page=1") unless options.id
-    return @pagination(modelName, options.id) if @_checkPaginations(options.id)
+    return @pagination(modelName, options.id) if @_checkPaginations()
     this.store.find(modelName, options.id);
 
   _getControllerTemplate: (controller) ->
