@@ -29,7 +29,8 @@
         "grunt-contrib-coffee",
         "grunt-contrib-uglify",
         "grunt-contrib-jasmine",
-        "grunt-emblem"
+        "grunt-emblem",
+        "grunt-curl"
     ],
 
     "engines": {

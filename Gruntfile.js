@@ -79,6 +79,18 @@ module.exports = function(grunt) {
                     specs: 'spec/ember-admin_spec.js'
                 }
             }
+        },
+
+        curl: {
+          ember: {
+            src: 'http://builds.emberjs.com/canary/ember.js',
+            dest: 'vendor/ember.js'
+          },
+
+          ember_data: {
+            src: 'http://builds.emberjs.com/canary/ember-data.js',
+            dest: 'vendor/ember-data.js'
+          }
         }
 
     });
@@ -87,8 +99,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-emblem');
+    grunt.loadNpmTasks('grunt-curl');
 
 
     grunt.registerTask('default', ['coffee', 'emblem', 'uglify']);
     grunt.registerTask('spec', ['coffee', 'emblem', 'jasmine:pivotal']);
+    grunt.registerTask('update_ember', ['curl:ember', 'curl:ember_data']);
 };
