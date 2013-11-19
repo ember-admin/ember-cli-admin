@@ -12,12 +12,12 @@ describe 'Admin.Mixins.Controllers.AttributesMixin', ->
 
   it 'returns formAttributes', ->
     runs ->
-      expect(@subject.usersController.get('formAttributes')).toEqual([{ name: 'name'}, {name: 'email'}, { name : 'avatar' }])
+      expect(@subject.usersController.get('formAttributes')).toEqual([{ name: 'name'}, {name: 'email'}, { name : 'avatar' }, {name: 'address'}])
 
   it 'tableAttributes', ->
     runs ->
       @subject.usersController.set('modelAttributes', Admin.DSL.Attributes.detect(@subject.usersController.get('model').constructor))
-      expect(@subject.usersController.get('tableAttributes')).toEqual([ 'id', 'name', 'email', 'avatar'])
+      expect(@subject.usersController.get('tableAttributes')).toEqual([ 'id', 'name', 'email', 'avatar', 'address'])
 
   it 'fileuploads', ->
     runs ->

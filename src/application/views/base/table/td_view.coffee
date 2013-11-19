@@ -64,12 +64,6 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
     true
   ).property('value')
 
-#  image: (->
-#    path = "context.#{@get('attributeName')}.thumb_url"
-#    if @get(path)
-#      "<image src='#{@get(path)}'>"
-#  ).property('value')
-
   path: ->
     "context.%@".fmt(@get('attributeName'))
 

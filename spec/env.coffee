@@ -1,5 +1,5 @@
 class @TestEnv
-  constructor: (mixin) ->
+  constructor: ->
 
     Admin.UsersController = Admin.ApplicationController.extend()
 
@@ -8,13 +8,10 @@ class @TestEnv
     env = @_setupEnv()
     @models()
     @fixtures()
-    @_regModels(env, {user: User, avatar: Avatar})
+    @_regModels(env, {user: User, avatar: Avatar, address: Address})
 
     env.usersController = Admin.UsersController.create({ container: env.container, store:  env.store, __model_name: "user", __controller_name: "users"})
     env.usersController._debugContainerKey = "controller:users"
-
-
-    #    @routes()
 
     return env
 
@@ -23,50 +20,61 @@ class @TestEnv
       name: DS.attr('string')
       email: DS.attr('string')
       avatar: DS.belongsTo('avatar')
+      address: DS.belongsTo('address')
       avatars: DS.hasMany('avatar', {asnc: true})
 
       fileuploads: ['avatar', 'avatars']
 
     window.Avatar = Admin.Asset.extend(
       type: DS.attr('string', {defaultValue: "Avatar"})
+      name: DS.attr('string')
+      thumb_url: DS.attr('string')
     )
 
-    #Admin.AvatarAdapter = DS.FixtureAdapter.extend()
+    window.Address = DS.Model.extend
+      title: DS.attr('string')
+
 
   fixtures: ->
     window.User.FIXTURES = [{
       id: '1',
       name: "Jon",
-      email: "jon@ember-admin.com"
+      address: 1,
+      email: "jon@ember-admin.com",
+      avatars: []
     },
     {
       id: '2',
       name: "Piter",
       lastName: "piter@ember-admin.com",
       avatar: 2,
+      address: 2,
       avatars: []
     }]
 
     window.Avatar.FIXTURES = [{
       id: 1,
       type: 'Avatar',
-      assetable_id: 1
-      assetable_type: 'User'
+      assetable_id: 1,
+      assetable_type: 'User',
+      thumb_url: "/1"
     },
     {
       id: 2,
       type: 'Avatar',
-      assetable_id: 2
-      assetable_type: 'User'
+      assetable_id: 2,
+      assetable_type: 'User',
+      thumb_url: "/2"
     }]
 
-  routes: ->
-    Admin.Router.map () ->
-      @route "dashboard", path: "/"
-
-    Admin.MetaRoute.map () ->
-      @resources 'users', path: '/users'
-
+    window.Address.FIXTURES = [{
+      id: 1,
+      title: "address 1"
+    },
+    {
+      id: 2,
+      title: "address 2"
+    }]
 
   _setupEnv: (options) ->
     adapter = DS.FixtureAdapter.extend(
