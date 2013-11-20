@@ -1,27 +1,32 @@
 ###
-  if you have own attr for display in relation you should add this in didInsertElement and then ctrate own observer
+  if you have own attr for display in relation you should change relations property
 
-  ["title", "name", "thumb_url", "my_atrr"].forEach (attr) =>
-    @_defineValueProperty(attr, @get('attributeName'))
-    @get("_value_#{attr}")
+  if you have own image property you should change fileuploads property
 
-  _relationTitleObserver: (->
-    @notifyPropertyChange("value")
-  ).observes("_value_title")
 ###
 
 Admin.Base.Views.Table.TdView = Ember.View.extend
   attributeBindings: ["style"]
 
+  relations: "name title".w()
+  fileuploads: "thumb_url".w()
+
   templateName: "base/_td_template"
 
   tagName: "td"
 
-  didInsertElement: ->
+  createObserves:(->
+    if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >= 0
+      @get('fileuploads').forEach (attr) =>
+        @addObserver("context.#{@get('attributeName')}.#{attr}", ->
+          @notifyPropertyChange("value")
+        )
     if Admin.DSL.Attributes.relations(@get('context').constructor).indexOf(@get('attributeName')) >= 0
-      ["title", "name", "thumb_url"].forEach (attr) =>
-        @_defineValueProperty(attr, @get('attributeName'))
-        @get("_value_#{attr}")
+      @get('relations').forEach (attr) =>
+        @addObserver("context.#{@get('attributeName')}.#{attr}", ->
+          @notifyPropertyChange("value")
+        )
+  ).on('didInsertElement')
 
   value:(->
     record = @get(@path())
@@ -31,27 +36,11 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
       record
   ).property("context.isLoaded")
 
-  _relationTitleObserver: (->
-    @notifyPropertyChange("value")
-  ).observes("_value_title")
-
-  _relationNameObserver: (->
-    @notifyPropertyChange("value")
-  ).observes("_value_name")
-
-  _relationThumbUrlObserver: (->
-    @notifyPropertyChange("value")
-  ).observes("_value_thumb_url")
-
   color: (->
     if @get('attributeName').match /color/
       @set('text', true)
       @set('style', "color: #{@get('_value')};")
       false
-  ).property('value')
-
-  image_object:(->
-    @get("context.#{@get('attributeName')}")
   ).property('value')
 
   image: (->
@@ -70,17 +59,3 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
   relation: (record, property) ->
     if record
       record.get('name') || record.get('title') || record.get('thumb_url') || record.get('id')
-
-
-  ###defines title, name, thumb_url observers
-    _valueTitle, _valueName, _valueThubmUrl
-  ###
-
-  _defineValueProperty: (name, property) ->
-    Ember.defineProperty(this, "_value_#{name}", Ember.computed(->
-      record = @get(property)
-      if typeof record == "object"
-        @relation(record, property)
-      else
-        record
-    ).property("context.#{property}.#{name}"))

@@ -1673,17 +1673,27 @@ params:
 (function() {
   Admin.Base.Views.Table.TdView = Ember.View.extend({
     attributeBindings: ["style"],
+    relations: "name title".w(),
+    fileuploads: "thumb_url".w(),
     templateName: "base/_td_template",
     tagName: "td",
-    didInsertElement: function() {
+    createObserves: (function() {
       var _this = this;
-      if (Admin.DSL.Attributes.relations(this.get('context').constructor).indexOf(this.get('attributeName')) >= 0) {
-        return ["title", "name", "thumb_url"].forEach(function(attr) {
-          _this._defineValueProperty(attr, _this.get('attributeName'));
-          return _this.get("_value_" + attr);
+      if (this.get('context.fileuploads') && this.get('context.fileuploads').indexOf(this.get('attributeName')) >= 0) {
+        this.get('fileuploads').forEach(function(attr) {
+          return _this.addObserver("context." + (_this.get('attributeName')) + "." + attr, function() {
+            return this.notifyPropertyChange("value");
+          });
         });
       }
-    },
+      if (Admin.DSL.Attributes.relations(this.get('context').constructor).indexOf(this.get('attributeName')) >= 0) {
+        return this.get('relations').forEach(function(attr) {
+          return _this.addObserver("context." + (_this.get('attributeName')) + "." + attr, function() {
+            return this.notifyPropertyChange("value");
+          });
+        });
+      }
+    }).on('didInsertElement'),
     value: (function() {
       var record;
       record = this.get(this.path());
@@ -1693,24 +1703,12 @@ params:
         return record;
       }
     }).property("context.isLoaded"),
-    _relationTitleObserver: (function() {
-      return this.notifyPropertyChange("value");
-    }).observes("_value_title"),
-    _relationNameObserver: (function() {
-      return this.notifyPropertyChange("value");
-    }).observes("_value_name"),
-    _relationThumbUrlObserver: (function() {
-      return this.notifyPropertyChange("value");
-    }).observes("_value_thumb_url"),
     color: (function() {
       if (this.get('attributeName').match(/color/)) {
         this.set('text', true);
         this.set('style', "color: " + (this.get('_value')) + ";");
         return false;
       }
-    }).property('value'),
-    image_object: (function() {
-      return this.get("context." + (this.get('attributeName')));
     }).property('value'),
     image: (function() {
       if (this.get('context.fileuploads') && this.get('context.fileuploads').indexOf(this.get('attributeName')) >= 0) {
@@ -1728,21 +1726,6 @@ params:
       if (record) {
         return record.get('name') || record.get('title') || record.get('thumb_url') || record.get('id');
       }
-    },
-    /*defines title, name, thumb_url observers
-      _valueTitle, _valueName, _valueThubmUrl
-    */
-
-    _defineValueProperty: function(name, property) {
-      return Ember.defineProperty(this, "_value_" + name, Ember.computed(function() {
-        var record;
-        record = this.get(property);
-        if (typeof record === "object") {
-          return this.relation(record, property);
-        } else {
-          return record;
-        }
-      }).property("context." + property + "." + name));
     }
   });
 
