@@ -1658,15 +1658,9 @@ params:
 }).call(this);
 
 /*
-  if you have own attr for display in relation you should add this in didInsertElement and then ctrate own observer
+  if you have own attr for display in relation you should change relations property
 
-  ["title", "name", "thumb_url", "my_atrr"].forEach (attr) =>
-    @_defineValueProperty(attr, @get('attributeName'))
-    @get("_value_#{attr}")
-
-  _relationTitleObserver: (->
-    @notifyPropertyChange("value")
-  ).observes("_value_title")
+  if you have own image property you should change fileuploads property
 */
 
 
@@ -1697,11 +1691,10 @@ params:
     value: (function() {
       var record;
       record = this.get(this.path());
-      if (typeof record === "object") {
-        return this.relation(record, this.get('attributeName'));
-      } else {
+      if (typeof record !== "object") {
         return record;
       }
+      return this.relation(record, this.get('attributeName'));
     }).property("context.isLoaded"),
     color: (function() {
       if (this.get('attributeName').match(/color/)) {
@@ -1722,10 +1715,28 @@ params:
     path: function() {
       return "context.%@".fmt(this.get('attributeName'));
     },
-    relation: function(record, property) {
-      if (record) {
-        return record.get('name') || record.get('title') || record.get('thumb_url') || record.get('id');
+    relation: function(record) {
+      var value,
+        _this = this;
+      if (!record) {
+        return;
       }
+      value = "";
+      if (this.get('context.fileuploads') && this.get('context.fileuploads').indexOf(this.get('attributeName')) >= 0) {
+        this.get('fileuploads').forEach(function(attr) {
+          if (record.get(attr)) {
+            return value = record.get(attr);
+          }
+        });
+      }
+      if (Admin.DSL.Attributes.relations(this.get('context').constructor).indexOf(this.get('attributeName')) >= 0) {
+        this.get('relations').forEach(function(attr) {
+          if (record.get(attr)) {
+            return value = record.get(attr);
+          }
+        });
+      }
+      return value;
     }
   });
 

@@ -30,10 +30,8 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
 
   value:(->
     record = @get(@path())
-    if typeof record == "object"
-      @relation(record, @get('attributeName'))
-    else
-      record
+    return record unless typeof record == "object"
+    @relation(record, @get('attributeName'))
   ).property("context.isLoaded")
 
   color: (->
@@ -56,6 +54,11 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
   path: ->
     "context.%@".fmt(@get('attributeName'))
 
-  relation: (record, property) ->
-    if record
-      record.get('name') || record.get('title') || record.get('thumb_url') || record.get('id')
+  relation: (record) ->
+    return unless record
+    value = ""
+    if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >= 0
+      @get('fileuploads').forEach (attr) => value = record.get(attr) if record.get(attr)
+    if Admin.DSL.Attributes.relations(@get('context').constructor).indexOf(@get('attributeName')) >= 0
+      @get('relations').forEach (attr) => value = record.get(attr) if record.get(attr)
+    value
