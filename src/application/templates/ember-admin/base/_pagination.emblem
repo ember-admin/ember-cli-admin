@@ -8,10 +8,10 @@
 
 ul class="pager"
   li
-    Admin.PaginationLinkView type="prev"
+    Admin.Base.Views.PaginationLinkView type="prev"
       |Previous
   li
-    Admin.PaginationLinkView type="next"
+    Admin.Base.Views.PaginationLinkView type="next"
       |Next
       
 .page-number

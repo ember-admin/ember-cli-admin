@@ -1,4 +1,4 @@
-Admin.PaginationLinkView = Ember.View.extend
+Admin.Base.Views.PaginationLinkView = Ember.View.extend
 
   attributeBindings: ["href"]
   tagName: "a"

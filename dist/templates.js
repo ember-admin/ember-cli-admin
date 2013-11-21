@@ -260,14 +260,14 @@ function program11(depth0,data) {
   data.buffer.push("</div><ul class=\"pager\"><li>");
   hashContexts = {'type': depth0};
   hashTypes = {'type': "STRING"};
-  stack1 = helpers.view.call(depth0, "Admin.PaginationLinkView", {hash:{
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationLinkView", {hash:{
     'type': ("prev")
   },inverse:self.program(3, program3, data),fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</li><li>");
   hashContexts = {'type': depth0};
   hashTypes = {'type': "STRING"};
-  stack1 = helpers.view.call(depth0, "Admin.PaginationLinkView", {hash:{
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationLinkView", {hash:{
     'type': ("next")
   },inverse:self.program(3, program3, data),fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
