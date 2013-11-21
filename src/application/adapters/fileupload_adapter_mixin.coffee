@@ -6,7 +6,7 @@ Admin.FileuploadAdapterMixin = Ember.Mixin.create
     return new Ember.RSVP.Promise((resolve, reject) ->
       data = {}
       data[type.typeKey] = store.serializerFor(type.typeKey).serialize(record, { includeId: true })
-      url = "%@?%@".fmt(url, $.param(adapter._excludeParams(data[type.typeKey])))
+      url = "%@?%@".fmt(url, $.param(record._excludeParams(data[type.typeKey])))
       data.context = adapter
       request = new XMLHttpRequest()
       request.open('POST', url, true)
@@ -18,9 +18,3 @@ Admin.FileuploadAdapterMixin = Ember.Mixin.create
 
       request.send(record.get('file'))
     )
-
-
-  _excludeParams: (obj) ->
-    ["url", "thumb_url"].forEach (param) ->
-      delete obj[param]
-    obj

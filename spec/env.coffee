@@ -31,6 +31,11 @@ class @TestEnv
       thumb_url: DS.attr('string')
     )
 
+    _excludeParams: (obj) ->
+      ["url", "thumb_url"].forEach (param) ->
+        delete obj[param]
+      obj
+
     window.Address = DS.Model.extend
       title: DS.attr('string')
 

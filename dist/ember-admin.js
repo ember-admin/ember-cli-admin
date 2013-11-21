@@ -1967,7 +1967,7 @@ params:
         data[type.typeKey] = store.serializerFor(type.typeKey).serialize(record, {
           includeId: true
         });
-        url = "%@?%@".fmt(url, $.param(adapter._excludeParams(data[type.typeKey])));
+        url = "%@?%@".fmt(url, $.param(record._excludeParams(data[type.typeKey])));
         data.context = adapter;
         request = new XMLHttpRequest();
         request.open('POST', url, true);
@@ -1980,12 +1980,6 @@ params:
         };
         return request.send(record.get('file'));
       });
-    },
-    _excludeParams: function(obj) {
-      ["url", "thumb_url"].forEach(function(param) {
-        return delete obj[param];
-      });
-      return obj;
     }
   });
 
