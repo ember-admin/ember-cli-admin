@@ -95,7 +95,7 @@ module.exports = function(grunt) {
         sass: {
             dist: {
                 files: {
-                    'dist/admin.css': 'src/admin.scss'
+                    'dist/ember-admin.css': 'src/ember-admin.scss'
                 }
             }
         }
