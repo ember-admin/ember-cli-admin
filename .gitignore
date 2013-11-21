@@ -8,3 +8,4 @@
 .idea/
 node_modules/*
 spec/ember-admin_spec.js
+.sass-cache/

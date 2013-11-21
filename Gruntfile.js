@@ -91,6 +91,13 @@ module.exports = function(grunt) {
             src: 'http://builds.emberjs.com/canary/ember-data.js',
             dest: 'vendor/ember-data.js'
           }
+        },
+        sass: {
+            dist: {
+                files: {
+                    'dist/admin.css': 'src/admin.scss'
+                }
+            }
         }
 
     });
@@ -100,9 +107,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-emblem');
     grunt.loadNpmTasks('grunt-curl');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
 
-    grunt.registerTask('default', ['coffee', 'emblem', 'uglify']);
+    grunt.registerTask('default', ['coffee', 'emblem', 'uglify', 'sass']);
     grunt.registerTask('spec', ['coffee', 'emblem', 'jasmine:pivotal']);
     grunt.registerTask('update_ember', ['curl:ember', 'curl:ember_data']);
 };

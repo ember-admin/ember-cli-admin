@@ -30,7 +30,8 @@
         "grunt-contrib-uglify",
         "grunt-contrib-jasmine",
         "grunt-emblem",
-        "grunt-curl"
+        "grunt-curl",
+        "grunt-contrib-sass"
     ],
 
     "engines": {
