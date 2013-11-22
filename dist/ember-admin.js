@@ -1642,6 +1642,9 @@ params:
       }
       return this.relation(record, this.get('attributeName'));
     }).property("context.isLoaded"),
+    image_object: (function() {
+      return this.get("context." + (this.get('attributeName')));
+    }).property('value'),
     color: (function() {
       if (this.get('attributeName').match(/color/)) {
         this.set('text', true);

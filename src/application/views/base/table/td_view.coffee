@@ -34,6 +34,10 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
     @relation(record, @get('attributeName'))
   ).property("context.isLoaded")
 
+  image_object:(->
+    @get("context.#{@get('attributeName')}")
+  ).property('value')
+
   color: (->
     if @get('attributeName').match /color/
       @set('text', true)
