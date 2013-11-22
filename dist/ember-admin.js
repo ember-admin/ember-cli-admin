@@ -570,7 +570,6 @@
           if (view.get('single')) {
             return _this._createBelongsTo(asset, property);
           } else {
-            console.log("hasMany");
             return _this._createHasMany(asset, property);
           }
         });
@@ -675,7 +674,7 @@
         per_page: this.get('__perPage'),
         page: this.get('__page') || 1
       };
-      return this.get('store').findAll(this.get('__model_name'), options).then(function(collection) {
+      return this.get('store').find(this.get('__model_name'), options).then(function(collection) {
         return _this.set('model.items', collection);
       });
     }).observes('__perPage'),

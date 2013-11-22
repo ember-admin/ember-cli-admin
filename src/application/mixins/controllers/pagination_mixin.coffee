@@ -3,7 +3,7 @@ Admin.Mixins.Controllers.PaginationMixin = Ember.Mixin.create
 
   reloadTable: (->
     options = {per_page: @get('__perPage'), page: (@get('__page') || 1)}
-    @get('store').findAll(@get('__model_name'), options).then (collection) =>
+    @get('store').find(@get('__model_name'), options).then (collection) =>
       @set('model.items', collection)
   ).observes('__perPage')
 
