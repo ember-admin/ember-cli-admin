@@ -9,7 +9,6 @@ module.exports = function(grunt) {
                 files: {
                     'dist/ember-admin.js': [
                       'src/application/namespace.coffee',
-                      'src/application/resolver.coffee',
                       'src/application/dsl/*.coffee',
                       'src/application/logics/*.coffee',
                       'src/application/mixins/**/*.coffee',
@@ -31,6 +30,9 @@ module.exports = function(grunt) {
                     'spec/ember-admin_spec.js': [
                         'spec/env.coffee',
                         'spec/**/*.coffee'
+                    ],
+                    'dist/ember-admin-resolver.js':[
+                      'src/application/resolver.coffee'
                     ]
                 }
             }

@@ -1,4 +1,4 @@
-@Admin = Ember.Namespace.create()
+@Admin = Ember.Namespace.create() unless @Admin
 #dsl
 @Admin.DSL = Ember.Namespace.create()
 #logic

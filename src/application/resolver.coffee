@@ -1,4 +1,5 @@
-Admin.Resolver = Ember.DefaultResolver.extend
+@Admin = Ember.Namespace.create() unless @Admin
+@Admin.Resolver = Ember.DefaultResolver.extend
 
   resolveController: (parsedName) ->
     @useRouterNaming(parsedName)
@@ -7,15 +8,14 @@ Admin.Resolver = Ember.DefaultResolver.extend
     if @resolveOther(parsedName)
       @resolveOther(parsedName)
     else
-      Admin.ApplicationController
+      window.Admin.ApplicationController
 
   resolveRoute: (parsedName) ->
     this.useRouterNaming(parsedName)
     if this.resolveOther(parsedName)
       this.resolveOther(parsedName)
     else
-      unless @_checkRouteName(parsedName.fullName)
-        Admin.MainRoute
+      window.Admin.MainRoute unless @_checkRouteName(parsedName.fullName)
 
   resolveTemplate: (parsedName) ->
     resolvedTemplate = this._super(parsedName)
