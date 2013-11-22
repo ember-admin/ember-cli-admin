@@ -570,6 +570,7 @@
           if (view.get('single')) {
             return _this._createBelongsTo(asset, property);
           } else {
+            console.log("hasMany");
             return _this._createHasMany(asset, property);
           }
         });
@@ -1648,8 +1649,7 @@ params:
     color: (function() {
       if (this.get('attributeName').match(/color/)) {
         this.set('text', true);
-        this.set('style', "color: " + (this.get('_value')) + ";");
-        return false;
+        return this.set('style', "color: " + (this.get('_value')) + ";");
       }
     }).property('value'),
     image: (function() {
@@ -1910,13 +1910,18 @@ params:
       url = this.buildURL(type.typeKey);
       adapter = this;
       return new Ember.RSVP.Promise(function(resolve, reject) {
-        var data, request,
+        var data, request, str,
           _this = this;
         data = {};
         data[type.typeKey] = store.serializerFor(type.typeKey).serialize(record, {
           includeId: true
         });
-        url = "%@?%@".fmt(url, $.param(record._excludeParams(data[type.typeKey])));
+        if (record["_excludeParams"]) {
+          str = $.param(record._excludeParams(data[type.typeKey]));
+        } else {
+          str = $.param(data[type.typeKey]);
+        }
+        url = "%@?%@".fmt(url, str);
         data.context = adapter;
         request = new XMLHttpRequest();
         request.open('POST', url, true);

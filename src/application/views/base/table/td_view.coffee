@@ -42,7 +42,6 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
     if @get('attributeName').match /color/
       @set('text', true)
       @set('style', "color: #{@get('_value')};")
-      false
   ).property('value')
 
   image: (->
