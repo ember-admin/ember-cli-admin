@@ -1427,7 +1427,7 @@ params:
   Admin.Base.Views.GmapView = Admin.Base.Views.AbstractMapView.extend({
     templateName: "base/_geo",
     mapType: 'asGoogleMap',
-    didInsertElement: function() {
+    initialize: (function() {
       var map, marker, options,
         _this = this;
       options = {
@@ -1441,7 +1441,7 @@ params:
       return google.maps.event.addListener(map, 'zoom_changed', function() {
         return _this.setZoom(map.getZoom());
       });
-    },
+    }).on('didInsertElement'),
     center: (function() {
       var coord;
       coord = this.centerCoords();

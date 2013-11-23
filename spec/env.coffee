@@ -1,7 +1,9 @@
 class @TestEnv
   constructor: ->
 
-    Admin.UsersController = Admin.ApplicationController.extend()
+    Admin.UsersController = Admin.ApplicationController.extend
+      tableAttributes: ['id', 'name', 'email', 'avatar', 'address']
+      formAttributes: [{name: 'name'}, {name: 'email'}, {name: 'avatar'}, {name: 'address'}]
 
     env = {}
     Admin.ApplicationAdapter = DS.FixtureAdapter.extend()
@@ -19,11 +21,19 @@ class @TestEnv
     window.User = DS.Model.extend
       name: DS.attr('string')
       email: DS.attr('string')
+
+      #map
+      lan: DS.attr('number')
+      lng: DS.attr('number')
+      zoom: DS.attr('number')
+
       avatar: DS.belongsTo('avatar')
       address: DS.belongsTo('address')
       avatars: DS.hasMany('avatar', {asnc: true})
 
       fileuploads: ['avatar', 'avatars']
+
+      asGoogleMap: ['lan', 'lng', 'zoom']
 
     window.Avatar = Admin.Asset.extend(
       type: DS.attr('string', {defaultValue: "Avatar"})
@@ -45,6 +55,9 @@ class @TestEnv
       id: '1',
       name: "Jon",
       address: 1,
+      lan: 50,
+      lng: 50,
+      zoom: 8,
       email: "jon@ember-admin.com",
       avatars: []
     },
@@ -52,6 +65,9 @@ class @TestEnv
       id: '2',
       name: "Piter",
       lastName: "piter@ember-admin.com",
+      lan: 50,
+      lng: 50,
+      zoom: 8,
       avatar: 2,
       address: 2,
       avatars: []

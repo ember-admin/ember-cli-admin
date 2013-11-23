@@ -4,7 +4,7 @@ Admin.Base.Views.GmapView = Admin.Base.Views.AbstractMapView.extend
 
   mapType: 'asGoogleMap'
 
-  didInsertElement: ->
+  initialize:(->
     options =
       zoom: @get('zoom')
       center: @get('center'),
@@ -17,7 +17,8 @@ Admin.Base.Views.GmapView = Admin.Base.Views.AbstractMapView.extend
 
     google.maps.event.addListener map, 'zoom_changed', =>
       @setZoom(map.getZoom())
-
+  ).on('didInsertElement')
+  
   center: (->
     coord = @centerCoords()
     new google.maps.LatLng(coord[0], coord[1])
