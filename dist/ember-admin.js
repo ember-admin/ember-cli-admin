@@ -1415,8 +1415,8 @@ params:
         this.setLan(pos[0]);
         return this.setLng(pos[1]);
       } else {
-        this.setLan(pos.lb);
-        return this.setLng(pos.mb);
+        this.setLan(pos.ob);
+        return this.setLng(pos.pb);
       }
     }
   });

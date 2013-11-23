@@ -45,5 +45,5 @@ Admin.Base.Views.AbstractMapView = Ember.View.extend
       @setLan(pos[0])
       @setLng(pos[1])
     else
-      @setLan(pos.lb)
-      @setLng(pos.mb)
+      @setLan(pos.ob)
+      @setLng(pos.pb)
