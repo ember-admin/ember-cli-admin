@@ -319,21 +319,19 @@
     _actions: function(action, controller) {
       var actions;
       actions = [];
-      if (action === "edit") {
-        actions.push(this._createAction());
-        actions.push(this._showAction());
-        actions.push(this._destroyAction());
-      }
-      if (action === "show") {
-        actions.push(this._createAction());
-        actions.push(this._editAction());
-        actions.push(this._destroyAction());
-      }
-      if (action === "new") {
-        actions.push(this._createAction());
-      }
-      if (action === "page" || !action) {
-        actions.push(this._createAction());
+      switch (action) {
+        case "edit":
+          actions.push(this._createAction());
+          actions.push(this._showAction());
+          actions.push(this._destroyAction());
+          break;
+        case "show":
+          actions.push(this._createAction());
+          actions.push(this._editAction());
+          actions.push(this._destroyAction());
+          break;
+        default:
+          actions.push(this._createAction());
       }
       return controller.set("__breadcrumbsActionsArray", actions);
     },
