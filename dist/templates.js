@@ -980,10 +980,11 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  hashContexts = {'class': depth0};
-  hashTypes = {'class': "STRING"};
+  hashContexts = {'class': depth0,'contextBinding': depth0};
+  hashTypes = {'class': "STRING",'contextBinding': "STRING"};
   stack1 = helpers.view.call(depth0, "Admin.NavigationContentView", {hash:{
-    'class': ("dropdown")
+    'class': ("dropdown"),
+    'contextBinding': ("navigation")
   },inverse:self.program(4, program4, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   else { data.buffer.push(''); }

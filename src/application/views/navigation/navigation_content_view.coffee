@@ -6,7 +6,7 @@ Admin.NavigationContentView = Ember.View.extend
   isActive:(->
     return true if @get('context.url') == "#%@".fmt(@get('controller.activeMenu'))
     @_hasChild()
-  ).property('context', 'controller.activeMenu')
+  ).property('context', 'context.children', 'controller.activeMenu')
 
   _hasChild: ->
     return false unless @get('context.children')

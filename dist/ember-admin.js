@@ -1290,30 +1290,26 @@ params:
         return this.get('controller.__batches').removeObject(this.get('context'));
       }
     }).observes('checked'),
-    checkedObserve: (function() {
-      if (this.get('selectAll')) {
-        return;
-      }
-      if (this.get('controller.__batches').indexOf(this.get('context')) >= 0) {
-        return this.set('checked', true);
-      } else {
-        return this.set('checked', false);
-      }
-    }).observes('controller.__batches.length'),
     _selectAllAction: function() {
       var _this = this;
       this.set('controller.__batches', []);
-      if (this.get('checked')) {
-        return this.get('controller.model.items').forEach(function(item) {
-          return _this._addItem(item);
-        });
+      if (!this.get('checked')) {
+        return;
       }
+      return this.get('controller.model.items').forEach(function(item) {
+        return _this._addItem(item);
+      });
     },
     _addItem: function(item) {
       if (!(this.get('controller.__batches').indexOf(item) >= 0)) {
         return this.get('controller.__batches').pushObject(item);
       }
-    }
+    },
+    createObserverOnBatch: (function() {
+      return this.addObserver("controller.__batches.length", function() {
+        return console.log(this.get('selectAll'));
+      });
+    }).on('didInsertElement')
   });
 
 }).call(this);
@@ -1842,7 +1838,7 @@ params:
         return true;
       }
       return this._hasChild();
-    }).property('context', 'controller.activeMenu'),
+    }).property('context', 'context.children', 'controller.activeMenu'),
     _hasChild: function() {
       var hasChild,
         _this = this;
