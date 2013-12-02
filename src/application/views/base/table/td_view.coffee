@@ -23,7 +23,7 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
         )
     if Admin.DSL.Attributes.relations(@get('context').constructor).indexOf(@get('attributeName')) >= 0
       @get('relations').forEach (attr) =>
-        @addObserver("context.#{@get('attributeName')}.#{attr}", ->
+        @addObserver("context.#{@get('attributeName')}.#{attr}", @, ->
           @notifyPropertyChange("value")
         )
   ).on('didInsertElement')

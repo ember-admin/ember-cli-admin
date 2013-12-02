@@ -1306,8 +1306,16 @@ params:
       }
     },
     createObserverOnBatch: (function() {
-      return this.addObserver("controller.__batches.length", function() {
-        return console.log(this.get('selectAll'));
+      var _this = this;
+      return this.addObserver("controller.__batches.length", this, function() {
+        if (_this.get('selectAll')) {
+          return;
+        }
+        if (_this.get('controller.__batches').indexOf(_this.get('context')) >= 0) {
+          return _this.set('checked', true);
+        } else {
+          return _this.set('checked', false);
+        }
       });
     }).on('didInsertElement')
   });
@@ -1622,7 +1630,7 @@ params:
       }
       if (Admin.DSL.Attributes.relations(this.get('context').constructor).indexOf(this.get('attributeName')) >= 0) {
         return this.get('relations').forEach(function(attr) {
-          return _this.addObserver("context." + (_this.get('attributeName')) + "." + attr, function() {
+          return _this.addObserver("context." + (_this.get('attributeName')) + "." + attr, _this, function() {
             return this.notifyPropertyChange("value");
           });
         });

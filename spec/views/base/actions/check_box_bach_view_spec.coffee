@@ -14,6 +14,7 @@ describe 'Admin.Base.Views.CheckboxBatchView', ->
   it 'observes checked in view', ->
     view = Admin.Base.Views.CheckboxBatchView.create(controller: @controller, context: @controller.get('model.items.firstObject'))
     @mainView.set('checked', true)
+    view.trigger('didInsertElement')
     expect(view.get('checked')).toBeTruthy()
 
   it 'unchecked elements in table', ->

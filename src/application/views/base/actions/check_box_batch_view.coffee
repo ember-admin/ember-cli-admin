@@ -26,8 +26,11 @@ Admin.Base.Views.CheckboxBatchView = Ember.Checkbox.extend
     @get('controller.__batches').pushObject(item) unless @get('controller.__batches').indexOf(item) >= 0
 
   createObserverOnBatch:(->
-    @addObserver("controller.__batches.length", ->
-      console.log @get('selectAll')
-#      @notifyPropertyChange("value")
+    @addObserver("controller.__batches.length", @, =>
+      return if @get('selectAll')
+      if @get('controller.__batches').indexOf(@get('context')) >= 0
+        @set('checked', true)
+      else
+        @set('checked', false)
     )
   ).on('didInsertElement')
