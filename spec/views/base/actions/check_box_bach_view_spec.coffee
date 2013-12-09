@@ -12,14 +12,14 @@ describe 'Admin.Base.Views.CheckboxBatchView', ->
     expect(@controller.get('__batches.length')).toEqual(2)
 
   it 'observes checked in view', ->
-    view = Admin.Base.Views.CheckboxBatchView.create(controller: @controller, context: @controller.get('model.items.firstObject'))
+    view = Admin.Base.Views.CheckboxBatchView.create(controller: @controller,
+    context: @controller.get('model.items.firstObject'), container: @controller.get('container'))
+    Ember.run ->
+      view.append()
     @mainView.set('checked', true)
-    view.trigger('didInsertElement')
     expect(view.get('checked')).toBeTruthy()
 
   it 'unchecked elements in table', ->
     @mainView.set('checked', true)
     @mainView.set('checked', false)
     expect(@controller.get('__batches.length')).toEqual(0)
-
-  it '', ->
