@@ -59,7 +59,7 @@ module.exports = function(grunt) {
             options: { mangle: false, compress: false },
 
             dist: {
-                src: ['dist/ember-admin.js', 'dist/templates.js'],
+                src: ['src/ember-easyForm.js', 'src/jquery.cookie.js', 'dist/ember-admin.js', 'dist/templates.js'],
                 dest: 'dist/ember-admin.min.js'
             }
         },
