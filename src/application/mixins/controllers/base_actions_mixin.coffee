@@ -36,12 +36,10 @@ Admin.Mixins.Controllers.BaseActionsMixin = Ember.Mixin.create
 
   actions:
     new: () ->
-      locationObject = Ember.Location.create({implementation: 'hash'})
-      locationObject.setURL(@_path("new"))
+      @transitionToRoute(@_path("new"))
 
     edit: (model) ->
-      locationObject = Ember.Location.create({implementation: 'hash'})
-      locationObject.setURL(@_path(model, "edit"))
+      @transitionToRoute(@_path(model, "edit"))
 
     update: (model)->
       model.save()
@@ -56,14 +54,12 @@ Admin.Mixins.Controllers.BaseActionsMixin = Ember.Mixin.create
         @_destroyItem(model)
 
     show: (model) ->
-      locationObject = Ember.Location.create({implementation: 'hash'})
-      locationObject.setURL(@_path(model, "show"))
+      @transitionToRoute(@_path(model, "show"))
 
   _destroyItem: (model)->
     model.deleteRecord()
     model.save().then =>
-      locationObject = Ember.Location.create({implementation: 'hash'})
-      locationObject.setURL(@get('__controller_name'))
+      @transitionToRoute(@get('__controller_name'))
 
   _path: (model, type)->
     if type

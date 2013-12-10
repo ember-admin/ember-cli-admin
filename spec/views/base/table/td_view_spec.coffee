@@ -12,9 +12,15 @@ describe "Admin.Base.Views.Table.TdView", ->
     runs ->
       @subject.view = Admin.Base.Views.Table.TdView.create(controller: @subject.usersController,
       context: @subject.usersController.get('model'), attributeName: 'name')
+      @subject.view.trigger('didInsertElement')
       expect(@subject.view.get('value')).toEqual('Piter')
       @subject.usersController.set('model.name', 'Piter updated')
-      expect(@subject.view.get('value')).toEqual('Piter updated')
+      runs ->
+        @subject.usersController.get('model').save()
+      waitsFor ->
+        @subject.usersController.get('model.isDirty') == false
+      runs ->
+        expect(@subject.view.get('value')).toEqual('Piter updated')
 
   it 'change relation value', ->
     runs ->

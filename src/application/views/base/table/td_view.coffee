@@ -21,18 +21,23 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
         @addObserver("context.#{@get('attributeName')}.#{attr}", ->
           @notifyPropertyChange("value")
         )
+      return
     if Admin.DSL.Attributes.relations(@get('context').constructor).indexOf(@get('attributeName')) >= 0
       @get('relations').forEach (attr) =>
         @addObserver("context.#{@get('attributeName')}.#{attr}", @, ->
           @notifyPropertyChange("value")
         )
+      return
+    @addObserver("context.#{@get('attributeName')}", @, ->
+      @notifyPropertyChange("value")
+    )
   ).on('didInsertElement')
 
   value:(->
     record = @get(@path())
     return record unless typeof record == "object"
     @relation(record, @get('attributeName'))
-  ).property("context.isLoaded")
+  ).property("context")
 
   image_object:(->
     @get("context.#{@get('attributeName')}")

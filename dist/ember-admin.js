@@ -468,18 +468,10 @@
     }).property('__breadcrumbsActionsArray'),
     actions: {
       "new": function() {
-        var locationObject;
-        locationObject = Ember.Location.create({
-          implementation: 'hash'
-        });
-        return locationObject.setURL(this._path("new"));
+        return this.transitionToRoute(this._path("new"));
       },
       edit: function(model) {
-        var locationObject;
-        locationObject = Ember.Location.create({
-          implementation: 'hash'
-        });
-        return locationObject.setURL(this._path(model, "edit"));
+        return this.transitionToRoute(this._path(model, "edit"));
       },
       update: function(model) {
         return model.save();
@@ -500,22 +492,14 @@
         }
       },
       show: function(model) {
-        var locationObject;
-        locationObject = Ember.Location.create({
-          implementation: 'hash'
-        });
-        return locationObject.setURL(this._path(model, "show"));
+        return this.transitionToRoute(this._path(model, "show"));
       }
     },
     _destroyItem: function(model) {
       var _this = this;
       model.deleteRecord();
       return model.save().then(function() {
-        var locationObject;
-        locationObject = Ember.Location.create({
-          implementation: 'hash'
-        });
-        return locationObject.setURL(_this.get('__controller_name'));
+        return _this.transitionToRoute(_this.get('__controller_name'));
       });
     },
     _path: function(model, type) {
@@ -634,11 +618,7 @@
       }
     },
     _redirectToTable: function() {
-      var locationObject;
-      locationObject = Ember.Location.create({
-        implementation: 'hash'
-      });
-      return locationObject.setURL(this.get('__controller_name'));
+      return this.transitionToRoute(this.get('__controller_name'));
     },
     _updateModel: function(redirect) {
       var _this = this;
@@ -1327,17 +1307,13 @@ params:
     tagName: "a",
     attributeBindings: ["class", "href"],
     click: function(event) {
-      var locationObject;
       event.preventDefault();
       if (!this.get('controller.resource.__list')) {
         if (this.get('controller.resource.isDirty')) {
           this.get('controller.resource').rollback();
         }
       }
-      locationObject = Ember.Location.create({
-        implementation: 'hash'
-      });
-      return locationObject.setURL(this.get('url'));
+      return this.get('controller').transitionToRoute(this.get('url'));
     }
   });
 
@@ -1627,14 +1603,19 @@ params:
             return this.notifyPropertyChange("value");
           });
         });
+        return;
       }
       if (Admin.DSL.Attributes.relations(this.get('context').constructor).indexOf(this.get('attributeName')) >= 0) {
-        return this.get('relations').forEach(function(attr) {
+        this.get('relations').forEach(function(attr) {
           return _this.addObserver("context." + (_this.get('attributeName')) + "." + attr, _this, function() {
             return this.notifyPropertyChange("value");
           });
         });
+        return;
       }
+      return this.addObserver("context." + (this.get('attributeName')), this, function() {
+        return this.notifyPropertyChange("value");
+      });
     }).on('didInsertElement'),
     value: (function() {
       var record;
@@ -1643,7 +1624,7 @@ params:
         return record;
       }
       return this.relation(record, this.get('attributeName'));
-    }).property("context.isLoaded"),
+    }).property("context"),
     image_object: (function() {
       return this.get("context." + (this.get('attributeName')));
     }).property('value'),

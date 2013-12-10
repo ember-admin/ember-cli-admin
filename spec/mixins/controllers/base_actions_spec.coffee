@@ -9,44 +9,28 @@ describe 'Admin.Mixins.Controllers.BaseActionsMixin', ->
     waitsFor ->
       @subject.usersController.get('model.id') != null
 
-  describe 'actions', ->
-    it 'new', ->
-      runs ->
-        @subject.usersController.send('new')
-        expect(window.location.hash).toEqual('#/users/new')
 
-    it 'edit', ->
+  it 'update', ->
+    runs ->
+      model = @subject.usersController.get('model')
+      model.set('email', 12)
+      expect(model.get('isDirty')).toEqual(true)
       runs ->
-        model = @subject.usersController.get('model')
-        @subject.usersController.send('edit', model)
-        expect(window.location.hash).toEqual('#/users/1/edit')
+        model.save()
+      waitsFor ->
+        model.get('isDirty') == false
+      runs ->
+        expect(model.get('isDirty')).toBe(false)
 
-    it 'show', ->
+  it 'destroy', ->
+    runs ->
+      model = @subject.usersController.get('model')
+      model.deleteRecord()
+      model.save()
+      waitsFor ->
+        model.get('isDeleted') == true
       runs ->
-        model = @subject.usersController.get('model')
-        @subject.usersController.send('show', model)
-        expect(window.location.hash).toEqual('#/users/1/show')
-
-    it 'update', ->
-      runs ->
-        model = @subject.usersController.get('model')
-        model.set('email', 12)
-        expect(model.get('isDirty')).toEqual(true)
-        runs ->
-          @subject.usersController.send('update', model)
-        waitsFor ->
-          model.get('isDirty') == false
-        runs ->
-          expect(model.get('isDirty')).toBe(false)
-
-    it 'destroy', ->
-      runs ->
-        model = @subject.usersController.get('model')
-        @subject.usersController.send('destroy', model)
-        waitsFor ->
-          model.get('isDeleted') == true
-        runs ->
-          expect(model.get('isDeleted')).toBe(true)
+        expect(model.get('isDeleted')).toBe(true)
 
   it '_path', ->
     runs ->

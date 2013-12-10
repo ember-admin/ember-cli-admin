@@ -12,7 +12,9 @@ class @TestEnv
     @fixtures()
     @_regModels(env, {user: User, avatar: Avatar, address: Address})
 
-    env.usersController = Admin.UsersController.create({ container: env.container, store:  env.store, __model_name: "user", __controller_name: "users"})
+    route = Admin.MainRoute.create(store: env.store)
+
+    env.usersController = Admin.UsersController.create({target: route, container: env.container, store:  env.store, __model_name: "user", __controller_name: "users"})
     env.usersController._debugContainerKey = "controller:users"
 
     return env
