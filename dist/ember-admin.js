@@ -1313,6 +1313,9 @@ params:
           this.get('controller.resource').rollback();
         }
       }
+      if (this.get('url') === "#/") {
+        this.set('url', '');
+      }
       return this.get('controller').transitionToRoute(this.get('url'));
     }
   });
