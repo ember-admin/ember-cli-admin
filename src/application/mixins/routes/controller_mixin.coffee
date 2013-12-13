@@ -17,7 +17,8 @@ Admin.Mixins.Routes.ControllerMixin =  Ember.Mixin.create
     controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Page)/, '')
 
   _setActiveRoute: (controller)->
-    url = Ember.Location.create({implementation: 'hash'}).getURL()
+    location = this.container.lookup('location:' + 'hash')
+    url = location.getURL()
     url = "/" + url.split("/")[1]
     url = "/" + @_controllerName(controller) unless url == "/"
     @controllerFor("navigation").set('activeMenu', url)

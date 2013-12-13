@@ -25,7 +25,7 @@
     Ember.TEMPLATES['not_found']
 
   _checkRouteName: (name)->
-    ["route:application", "route:basic", "route:loading"].indexOf(name) >= 0
+    'route:application route:basic route:loading route:error'.w().indexOf(name) >= 0
 
   _checkResourceController: (name) ->
     @_pattern().test(name)

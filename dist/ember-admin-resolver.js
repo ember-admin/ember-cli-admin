@@ -38,7 +38,7 @@
       return Ember.TEMPLATES['not_found'];
     },
     _checkRouteName: function(name) {
-      return ["route:application", "route:basic", "route:loading"].indexOf(name) >= 0;
+      return 'route:application route:basic route:loading route:error'.w().indexOf(name) >= 0;
     },
     _checkResourceController: function(name) {
       return this._pattern().test(name);

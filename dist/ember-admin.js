@@ -694,10 +694,9 @@
       return controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Page)/, '');
     },
     _setActiveRoute: function(controller) {
-      var url;
-      url = Ember.Location.create({
-        implementation: 'hash'
-      }).getURL();
+      var location, url;
+      location = this.container.lookup('location:' + 'hash');
+      url = location.getURL();
       url = "/" + url.split("/")[1];
       if (url !== "/") {
         url = "/" + this._controllerName(controller);
