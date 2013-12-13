@@ -18,5 +18,5 @@ Ember.View class="file_upload modal fade" elementId="FileUploadModal"
         button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
         h4.modal-title
       .modal-body
-        img{{bindAttr src="view.image.url"}}
+        img{{bind-attr src="view.image.url"}}
       .modal-footer

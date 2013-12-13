@@ -1,9 +1,9 @@
 ul.breadcrumb
   each breadcrumb in controller
     if breadcrumb.active
-      li{{bindAttr class="breadcrumb.class"}}
+      li{{bind-attr class="breadcrumb.class"}}
         = breadcrumb.name
     else
-      li{{bindAttr class="breadcrumb.class"}}
+      li{{bind-attr class="breadcrumb.class"}}
         Admin.Base.Views.BreadcrumbView urlBinding="breadcrumb.url" href="#"
           = breadcrumb.name

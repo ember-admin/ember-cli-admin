@@ -133,7 +133,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["ember-admin/base/_modals"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, hashContexts, hashTypes, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+  var buffer = '', stack1, hashContexts, hashTypes, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -168,14 +168,13 @@ function program3(depth0,data) {
 
 function program5(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes, options;
+  var buffer = '', hashContexts, hashTypes;
   data.buffer.push("<div class=\"modal-dialog\"><div class=\"modal-content\"><div class=\"modal-header\"><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button><h4 class=\"modal-title\"></h4></div><div class=\"modal-body\"><img ");
   hashContexts = {'src': depth0};
   hashTypes = {'src': "STRING"};
-  options = {hash:{
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'src': ("view.image.url")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.bindAttr || depth0.bindAttr),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bindAttr", options))));
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(" /></div><div class=\"modal-footer\"></div></div></div>");
   return buffer;
   }
@@ -445,7 +444,7 @@ function program5(depth0,data) {
 Ember.TEMPLATES["ember-admin/base/actions/_addition_actions"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -464,14 +463,13 @@ function program1(depth0,data) {
   }
 function program2(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes, options;
+  var buffer = '', hashContexts, hashTypes;
   data.buffer.push("<span ");
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
-  options = {hash:{
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'class': ("action.iconClass")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.bindAttr || depth0.bindAttr),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bindAttr", options))));
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("></span>");
   return buffer;
   }
@@ -493,7 +491,7 @@ function program4(depth0,data) {
 Ember.TEMPLATES["ember-admin/base/actions/_base_actions"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -512,14 +510,13 @@ function program1(depth0,data) {
   }
 function program2(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes, options;
+  var buffer = '', hashContexts, hashTypes;
   data.buffer.push("<span ");
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
-  options = {hash:{
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'class': ("action.iconClass")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.bindAttr || depth0.bindAttr),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bindAttr", options))));
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("></span>");
   return buffer;
   }
@@ -584,7 +581,7 @@ function program4(depth0,data) {
 Ember.TEMPLATES["ember-admin/breadcrumbs"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -597,14 +594,13 @@ function program1(depth0,data) {
   }
 function program2(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes, options;
+  var buffer = '', hashContexts, hashTypes;
   data.buffer.push("<li ");
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
-  options = {hash:{
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'class': ("breadcrumb.class")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.bindAttr || depth0.bindAttr),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bindAttr", options))));
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(">");
   hashTypes = {};
   hashContexts = {};
@@ -615,22 +611,21 @@ function program2(depth0,data) {
 
 function program4(depth0,data) {
   
-  var buffer = '', stack1, stack2, hashContexts, hashTypes, options;
+  var buffer = '', stack1, hashContexts, hashTypes;
   data.buffer.push("<li ");
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
-  options = {hash:{
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'class': ("breadcrumb.class")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.bindAttr || depth0.bindAttr),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bindAttr", options))));
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(">");
   hashContexts = {'urlBinding': depth0,'href': depth0};
   hashTypes = {'urlBinding': "STRING",'href': "STRING"};
-  stack2 = helpers.view.call(depth0, "Admin.Base.Views.BreadcrumbView", {hash:{
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.BreadcrumbView", {hash:{
     'urlBinding': ("breadcrumb.url"),
     'href': ("#")
   },inverse:self.program(7, program7, data),fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</li>");
   return buffer;
   }
@@ -687,16 +682,15 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["ember-admin/fileuploads/asset"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var buffer = '', hashContexts, hashTypes, escapeExpression=this.escapeExpression;
 
 
   data.buffer.push("<div class=\"asset\"><img ");
   hashContexts = {'src': depth0};
   hashTypes = {'src': "STRING"};
-  options = {hash:{
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'src': ("view.asset.thumb_url")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.bindAttr || depth0.bindAttr),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bindAttr", options))));
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(" /><a class=\"btn btn-danger\" ");
   hashContexts = {'target': depth0,'on': depth0};
   hashTypes = {'target': "STRING",'on': "STRING"};
@@ -793,18 +787,17 @@ function program9(depth0,data) {
 Ember.TEMPLATES["ember-admin/fileuploads/link_to_image"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes, options;
+  var buffer = '', hashContexts, hashTypes;
   data.buffer.push("<img ");
   hashContexts = {'src': depth0};
   hashTypes = {'src': "STRING"};
-  options = {hash:{
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'src': ("view.image.thumb_url")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.bindAttr || depth0.bindAttr),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bindAttr", options))));
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(" title=\"Show image\" />");
   return buffer;
   }
@@ -1037,14 +1030,13 @@ function program7(depth0,data) {
   }
 function program8(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes, options;
+  var buffer = '', hashContexts, hashTypes;
   data.buffer.push("<a ");
   hashContexts = {'href': depth0};
   hashTypes = {'href': "STRING"};
-  options = {hash:{
+  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
     'href': ("navigation.url")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.bindAttr || depth0.bindAttr),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bindAttr", options))));
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(">");
   hashTypes = {};
   hashContexts = {};
