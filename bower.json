@@ -1,0 +1,23 @@
+{
+  "name": "ember-admin.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ember-admin/ember-admin.js",
+  "authors": [
+    "Opak Alex <opak.alexandr@gmail.com>"
+  ],
+  "description": "Admin framework in Ember.js",
+  "main": "Gruntfile.js",
+  "keywords": [
+    "admin",
+    "js.",
+    "ember.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    ".sass-cache"
+  ]
+}

@@ -2,7 +2,7 @@
     "name": "ember-admin",
     "version": "1.0.0",
     "description": "",
-    "main": "dist/ember-admin.js",
+    "main": "Gruntfile.js",
     "author": "Opak Alex <a.opak@roundscope.com>",
     "license": "MIT",
 
@@ -17,7 +17,7 @@
     },
 
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "grunt spec"
     },
 
     "repository": {
@@ -33,6 +33,14 @@
         "grunt-curl",
         "grunt-contrib-sass"
     ],
+
+    "dependencies": {
+        "handlebars": "1.1.2",
+        "jquery": "~1.10.2",
+        "ember": "latest",
+        "ember-data": "latest",
+        "emblem.js":"latest"
+    },
 
     "engines": {
         "node": ">=v0.10.1"
