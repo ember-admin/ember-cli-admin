@@ -1,48 +1,33 @@
 {
-    "name": "ember-admin",
-    "version": "1.0.0",
-    "description": "",
-    "main": "Gruntfile.js",
-    "author": "Opak Alex <a.opak@roundscope.com>",
-    "license": "MIT",
-
-    "keywords": [
-        "ember",
-        "ember-data",
-        "admin"
-    ],
-
-    "bugs": {
-        "url": "https://github.com/ember-admin/ember-admin.js/issues"
-    },
-
-    "scripts": {
-        "test": "grunt spec"
-    },
-
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:ember-admin/ember-admin.js.git"
-    },
-
-    "devDependencies": [
-        "grunt-contrib-coffee",
-        "grunt-contrib-uglify",
-        "grunt-contrib-jasmine",
-        "grunt-emblem",
-        "grunt-curl",
-        "grunt-contrib-sass"
-    ],
-
-    "dependencies": {
-        "handlebars": "1.1.2",
-        "jquery": "~1.10.2",
-        "ember": "latest",
-        "ember-data": "latest",
-        "emblem.js":"latest"
-    },
-
-    "engines": {
-        "node": ">=v0.10.1"
-    }
+  "name": "ember-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "author": "Opak Alex <a.opak@roundscope.com>",
+  "license": "MIT",
+  "keywords": [
+    "ember",
+    "ember-data",
+    "admin"
+  ],
+  "bugs": {
+    "url": "https://github.com/ember-admin/ember-admin.js/issues"
+  },
+  "scripts": {
+    "test": "grunt spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ember-admin/ember-admin.js.git"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=v0.10.1"
+  },
+  "devDependencies": {
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-jasmine": "~0.5.2",
+    "grunt-emblem": "~0.1.0"
+  }
 }

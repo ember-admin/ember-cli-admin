@@ -13,6 +13,12 @@
     "ember.js"
   ],
   "license": "MIT",
+  "dependencies": {
+    "handlebars": "1.0.0",
+    "jquery": "1.10.2",
+    "emblem": "~0.3.5",
+    "jquery.cookie": "1.3.1"
+  },
   "ignore": [
     "node_modules",
     "bower_components",
