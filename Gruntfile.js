@@ -46,10 +46,10 @@ module.exports = function(grunt) {
                 options: {
                     root: 'src/application/templates/',
                     dependencies: {
-                        jquery: 'vendor/jquery.js',
+                        jquery: 'bower_components/jquery/jquery.js',
                         ember: 'vendor/ember.js',
-                        emblem: 'vendor/emblem.js',
-                        handlebars: 'vendor/handlebars.js'
+                        emblem: 'bower_components/emblem/dist/emblem.js',
+                        handlebars: 'bower_components/handlebars/handlebars.js'
                     }
                 }
             }
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
             options: { mangle: false, compress: false },
 
             dist: {
-                src: ['src/ember-easyForm.js', 'src/jquery.cookie.js', 'dist/ember-admin.js', 'dist/templates.js'],
+                src: ['src/ember-easyForm.js', 'bower_components/jquery.cookie/jquery.cookie.js', 'dist/ember-admin.js', 'dist/templates.js'],
                 dest: 'dist/ember-admin.min.js'
             }
         },
@@ -67,12 +67,12 @@ module.exports = function(grunt) {
         jasmine: {
             pivotal: {
                 src: [
-                    'vendor/jquery.js',
-                    'vendor/handlebars.js',
+                    'bower_components/jquery/jquery.js',
+                    'bower_components/handlebars/handlebars.js',
                     'vendor/ember.js',
                     'vendor/ember-data.js',
                     'src/ember-easyForm.js',
-                    'src/jquery.cookie.js',
+                    'bower_components/jquery.cookie/jquery.cookie.js',
                     'dist/ember-admin.js',
                     'dist/templates.js'
                 ],
