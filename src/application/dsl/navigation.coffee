@@ -5,9 +5,11 @@ class Admin.DSL.Navigation
     @container = (container || [])
 
   @map: (callback) ->
-    @content = callback.call(new Admin.DSL.Navigation())
+    navigation = new Admin.DSL.Navigation()
+    callback.call(navigation)
+    @content = navigation.container
 
-  navigate: (title, options, callback) ->
+    navigate: (title, options, callback) ->
     navigateObject =  {title: title, children: [], divider: false, id: @_uid()}
     navigateObject.parentId = @parentId if @parentId
     if options && typeof options != 'function'
