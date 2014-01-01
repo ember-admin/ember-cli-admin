@@ -12,6 +12,15 @@
       if (this.resolveOther(parsedName)) {
         return this.resolveOther(parsedName);
       } else {
+        if (parsedName.fullNameWithoutType === "dashboard") {
+          return Admin.DashboardController;
+        }
+        if (parsedName.fullNameWithoutType === "breadcrumbs") {
+          return Admin.BreadcrumbsController;
+        }
+        if (parsedName.fullNameWithoutType === "navigation") {
+          return Admin.NavigationController;
+        }
         return window.Admin.ApplicationController;
       }
     },
@@ -60,8 +69,10 @@
 
 (function() {
   window.Admin = Ember.Application.extend({
+    name: "admin",
     Resolver: window.AdminResolver,
-    Router: Ember.Router.extend()
+    Router: Ember.Router.extend(),
+    ready: function() {}
   });
 
 }).call(this);
@@ -804,6 +815,9 @@ params:
     _setActiveRoute: function(controller) {
       var url;
       url = this._controllerName(controller);
+      if (url === "dashboard") {
+        url = "/";
+      }
       return this.controllerFor("navigation").set('activeMenu', url);
     },
     _setAction: function(action) {

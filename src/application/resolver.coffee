@@ -8,6 +8,9 @@
     if @resolveOther(parsedName)
       @resolveOther(parsedName)
     else
+      return Admin.DashboardController   if parsedName.fullNameWithoutType == "dashboard"
+      return Admin.BreadcrumbsController if parsedName.fullNameWithoutType == "breadcrumbs"
+      return Admin.NavigationController  if parsedName.fullNameWithoutType == "navigation"
       window.Admin.ApplicationController
 
   resolveRoute: (parsedName) ->

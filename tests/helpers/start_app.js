@@ -14,10 +14,6 @@ function startApp(attrs) {
     App.injectTestHelpers();
   });
 
-  App.DashboardController = Ember.Controller.extend();
-  App.BreadcrumbsController = Ember.ArrayController.extend();
-  App.NavigationController = Admin.NavigationController.extend();
-
   App.Router.map(function(){
     this.route("dashboard", { path: '/' } );
   });

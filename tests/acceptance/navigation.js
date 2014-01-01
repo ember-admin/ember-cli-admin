@@ -8,10 +8,12 @@ module('Acceptance tests: Navigation', {
 });
 
 test('Dashboard should be active', function(){
-  expect(1);
+  expect(2);
   visit('/').then(function(){
     var title = find('h1');
     equal(title.text(), 'Dashboard');
+    var activeMenu = find('.nav.navbar-nav li.active');
+    equal(activeMenu.text(), 'Dashboard');
   });
 });
 
