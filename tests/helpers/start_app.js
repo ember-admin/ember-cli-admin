@@ -31,6 +31,13 @@ function startApp(attrs) {
 
 function fixtures(App) {
 
+  // todo add pagination for this
+  DS.FixtureAdapter.reopen({
+    queryFixtures: function(records, query, type) {
+      return records
+    }
+  });
+
   App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
   App.Person = DS.Model.extend({
@@ -39,14 +46,14 @@ function fixtures(App) {
     gender:      DS.attr('string'),
     birthday:    DS.attr('date'),
 
-    address:     DS.belongsTo('shop'),
+    address:     DS.belongsTo('address'),
     avatar:      DS.belongsTo('Avatar')
   });
 
   App.Person.FIXTURES = [];
 
   var i, _i;
-  for (i = _i = 1; _i <= 100; i = ++_i) {
+  for (i = _i = 1; _i <= 5; i = ++_i) {
     App.Person.FIXTURES.push({
       id:       i,
       name:     chance.name(),
@@ -68,7 +75,7 @@ function fixtures(App) {
 
   App.Address.FIXTURES = [];
 
-  for (i = _i = 1; _i <= 100; i = ++_i) {
+  for (i = _i = 1; _i <= 5; i = ++_i) {
     App.Address.FIXTURES.push({
       id:        i,
       address:   chance.address(),
@@ -88,14 +95,14 @@ function fixtures(App) {
   //Todo add fixtures for avatar
 
   Admin.MetaRoute.map(function(){
-    this.resources('users');
+    this.resources('persons');
     this.resources('addresses');
   });
 
   Admin.DSL.Navigation.map(function(){
     this.navigate('Dashboard', {route: ""});
     this.navigate('System', function(){
-      this.navigate('Users');
+      this.navigate('Persons', {route: "persons"});
       this.navigate('Addresses');
     });
   });

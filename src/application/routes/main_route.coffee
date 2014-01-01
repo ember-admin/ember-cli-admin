@@ -10,7 +10,7 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
     @_checkAction(options, transition.targetName)
     @_setAction(options.action) if options.action
     @_setPage(options.page)
-    if eval("Admin.%@".fmt(@modelName.classify()))
+    if eval("App.%@".fmt(@modelName.classify()))
       @_find_model(@modelName, options)
 
   setupController:(controller, model) ->
@@ -25,7 +25,7 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
 
   renderTemplate: (controller, model) ->
     @_setActiveRoute(controller)
-    @_setupBreadscrumbs(controller, model)
+    @_setupBreadscrumbs(controller, model) if model
 
     @render @_getControllerTemplate(controller), {outlet: "main", controller: controller}
 

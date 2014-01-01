@@ -4,7 +4,7 @@ Admin.NavigationContentView = Ember.View.extend
   classNameBindings: ["isActive:active"]
 
   isActive:(->
-    return true if @get('context.url') == "#%@".fmt(@get('controller.activeMenu'))
+    return true if @get('context.url') == @get('controller.activeMenu')
     @_hasChild()
   ).property('context', 'context.children', 'controller.activeMenu')
 
@@ -12,5 +12,5 @@ Admin.NavigationContentView = Ember.View.extend
     return false unless @get('context.children')
     hasChild = false
     @get('context.children').forEach (item) =>
-      return hasChild = true if item.url == "#%@".fmt(@get('controller.activeMenu'))
+      return hasChild = true if item.url == @get('controller.activeMenu')
     hasChild

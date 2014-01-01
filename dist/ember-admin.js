@@ -814,9 +814,9 @@ params:
     },
     _setActiveRoute: function(controller) {
       var url;
-      url = this._controllerName(controller);
-      if (url === "dashboard") {
-        url = "/";
+      url = "#/%@".fmt(this._controllerName(controller));
+      if (url === "#/dashboard") {
+        url = "#/";
       }
       return this.controllerFor("navigation").set('activeMenu', url);
     },
@@ -851,7 +851,7 @@ params:
         return this.store.createRecord(modelName, {});
       }
       if (!options.id) {
-        return this.pagination(modelName, "_page=1");
+        return this.pagination(modelName);
       }
       if (this._checkPaginations()) {
         return this.pagination(modelName, options.id);
@@ -917,7 +917,7 @@ params:
         this._setAction(options.action);
       }
       this._setPage(options.page);
-      if (eval("Admin.%@".fmt(this.modelName.classify()))) {
+      if (eval("App.%@".fmt(this.modelName.classify()))) {
         return this._find_model(this.modelName, options);
       }
     },
@@ -935,7 +935,9 @@ params:
     },
     renderTemplate: function(controller, model) {
       this._setActiveRoute(controller);
-      this._setupBreadscrumbs(controller, model);
+      if (model) {
+        this._setupBreadscrumbs(controller, model);
+      }
       this.render(this._getControllerTemplate(controller), {
         outlet: "main",
         controller: controller
@@ -1896,7 +1898,7 @@ params:
     tagName: "li",
     classNameBindings: ["isActive:active"],
     isActive: (function() {
-      if (this.get('context.url') === "#%@".fmt(this.get('controller.activeMenu'))) {
+      if (this.get('context.url') === this.get('controller.activeMenu')) {
         return true;
       }
       return this._hasChild();
@@ -1909,7 +1911,7 @@ params:
       }
       hasChild = false;
       this.get('context.children').forEach(function(item) {
-        if (item.url === "#%@".fmt(_this.get('controller.activeMenu'))) {
+        if (item.url === _this.get('controller.activeMenu')) {
           return hasChild = true;
         }
       });
