@@ -173,11 +173,13 @@
     }
 
     Navigation.map = function(callback) {
-      return this.content = callback.call(new Admin.DSL.Navigation());
-    };
-
-    Navigation.prototype.navigate = function(title, options, callback) {
-      var emberObject, navigateObject;
+      var emberObject, navigateObject, navigation;
+      navigation = new Admin.DSL.Navigation();
+      callback.call(navigation);
+      this.content = navigation.container;
+      ({
+        navigate: function(title, options, callback) {}
+      });
       navigateObject = {
         title: title,
         children: [],
