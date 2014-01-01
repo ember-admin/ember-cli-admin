@@ -4,7 +4,7 @@ class Admin.MetaRoute
 
   resources: (name) ->
     self = @
-    Admin.Router.map () ->
+    App.Router.map () ->
       @route name, path: "/#{name}"
       @route "#{name}.edit", path: self._action_edit_path(name)
       @route "#{name}.show", path: self._action_show_path(name)

@@ -190,7 +190,7 @@
     MetaRoute.prototype.resources = function(name) {
       var self;
       self = this;
-      return Admin.Router.map(function() {
+      return App.Router.map(function() {
         this.route(name, {
           path: "/" + name
         });
@@ -230,6 +230,43 @@
   })();
 
 }).call(this);
+
+/*
+  This file create navigation menu in top
+
+  @navigate
+  @params:
+    @title - string
+    @options - hash
+    @nestedMenu - function
+
+  If you want use another main controller, you must set route param to ""
+  for example:
+    @navigate "MyDashboard", route: ""
+
+  When you want use Menu group:
+
+    @navigate "Users", ->
+      @navigate "Admins"
+      @navigate "Managers"
+
+  You can change url for menu when pass url params
+      @navigate "Dashboard", url: "/my_dashboard", route: "my_dashboard"
+
+params:
+  url
+  route
+  divider true|false   -> default false
+*/
+
+
+/*
+  for testing
+    @navigate "System", ->
+      @navigate "Users"
+      @navigate "Settings", divider: true
+*/
+
 
 (function() {
   Admin.DSL.Navigation = (function() {
@@ -335,7 +372,7 @@
     extend: function(obj) {
       var adapter, name;
       name = obj.type._meta.options.defaultValue;
-      adapter = "Admin.%@Adapter = Admin.ApplicationAdapter.extend(Admin.FileuploadAdapterMixin)".fmt(name);
+      adapter = "window.App.%@Adapter = window.App.ApplicationAdapter.extend(Admin.FileuploadAdapterMixin)".fmt(name);
       eval(adapter);
       return this._super.apply(this, arguments);
     }
@@ -765,13 +802,8 @@
       return controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Page)/, '');
     },
     _setActiveRoute: function(controller) {
-      var location, url;
-      location = this.container.lookup('location:' + 'hash');
-      url = location.getURL();
-      url = "/" + url.split("/")[1];
-      if (url !== "/") {
-        url = "/" + this._controllerName(controller);
-      }
+      var url;
+      url = this._controllerName(controller);
       return this.controllerFor("navigation").set('activeMenu', url);
     },
     _setAction: function(action) {
@@ -939,52 +971,6 @@
   Admin.Logics.Config.set('siteTitle', "Ember Admin");
 
   Admin.Logics.Config.set('mapCenter', "50.44067063154785,30.52654266357422");
-
-}).call(this);
-
-/*
-  This file create navigation menu in top
-
-  @navigate
-  @params:
-    @title - string
-    @options - hash
-    @nestedMenu - function
-
-  If you want use another main controller, you must set route param to ""
-  for example:
-    @navigate "MyDashboard", route: ""
-
-  When you want use Menu group:
-
-    @navigate "Users", ->
-      @navigate "Admins"
-      @navigate "Managers"
-
-  You can change url for menu when pass url params
-      @navigate "Dashboard", url: "/my_dashboard", route: "my_dashboard"
-
-params:
-  url
-  route
-  divider true|false   -> default false
-*/
-
-
-/*
-  for testing
-    @navigate "System", ->
-      @navigate "Users"
-      @navigate "Settings", divider: true
-*/
-
-
-(function() {
-  Admin.DSL.Navigation.map(function() {
-    return this.navigate("Dashboard", {
-      route: ""
-    });
-  });
 
 }).call(this);
 

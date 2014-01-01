@@ -7,10 +7,12 @@ module.exports = function(config) {
       "vendor/ember/ember.js",
       "vendor/ember-data/ember-data.js",
       "vendor/jquery-mockjax/jquery.mockjax.js",
+      "vendor/chance/chance.js",
       "dist/ember-admin.min.js",
       "tests/helpers/*.js",
       "tests/test_helper.js",
-      "tests/units/**/*.js"
+      "tests/units/**/*.js",
+      "tests/acceptance/**/*.js"
     ],
 
     logLevel: config.LOG_ERROR,

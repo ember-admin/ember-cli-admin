@@ -16,7 +16,6 @@ module.exports = function(grunt) {
                       'src/application/mixins/**/*.coffee',
                       'src/application/routes/main_route.coffee',
                       'src/application/config.coffee',
-                      'src/application/navigation.coffee',
                       'src/application/views/base/actions/base_action_view.coffee',
                       'src/application/controllers/base/admin_base_controller.coffee',
                       'src/application/controllers/base/admin_table_view_controller.coffee',

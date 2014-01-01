@@ -35,3 +35,22 @@ test('Params exist', function(){
   equal(item.route, '');
   equal(item.divider, true);
 });
+
+test('Check namespace', function(){
+  expect(1);
+  Admin.DSL.Navigation.namespace = "admin";
+  equal(Admin.DSL.Navigation.namespace, 'admin');
+});
+
+test('hasParent', function(){
+  expect(1);
+  item = Admin.DSL.Navigation.content[1];
+  child = Admin.DSL.Navigation.content[1].children[0];
+  equal(child.parentId, item.id)
+});
+
+test('findParent', function(){
+  expect(1);
+  child = Admin.DSL.Navigation.content[1].children[0];
+  equal(Admin.DSL.Navigation.findParent(child), Admin.DSL.Navigation.content[1]);
+});

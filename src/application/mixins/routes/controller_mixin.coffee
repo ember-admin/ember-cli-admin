@@ -1,4 +1,5 @@
 Admin.Mixins.Routes.ControllerMixin =  Ember.Mixin.create
+
   _getForm:(controller) ->
     form = "%@_form".fmt(@_controllerName(controller).decamelize())
     if  Ember.TEMPLATES[form]
@@ -16,11 +17,8 @@ Admin.Mixins.Routes.ControllerMixin =  Ember.Mixin.create
   _controllerName: (controller) ->
     controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Page)/, '')
 
-  _setActiveRoute: (controller)->
-    location = this.container.lookup('location:' + 'hash')
-    url = location.getURL()
-    url = "/" + url.split("/")[1]
-    url = "/" + @_controllerName(controller) unless url == "/"
+  _setActiveRoute: (controller) ->
+    url = @_controllerName(controller)
     @controllerFor("navigation").set('activeMenu', url)
 
   _setAction: (action) ->
