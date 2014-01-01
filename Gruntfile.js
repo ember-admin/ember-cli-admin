@@ -8,6 +8,8 @@ module.exports = function(grunt) {
             compile: {
                 files: {
                     'dist/ember-admin.js': [
+                      'src/application/resolver.coffee',
+                      'src/application/app.coffee',
                       'src/application/namespace.coffee',
                       'src/application/dsl/*.coffee',
                       'src/application/logics/*.coffee',

@@ -1,31 +1,99 @@
 (function() {
-  if (!this.Admin) {
-    this.Admin = Ember.Namespace.create();
+  if (!this.AdminResolver) {
+    this.AdminResolver = Ember.Namespace.create();
   }
 
-  this.Admin.DSL = Ember.Namespace.create();
+  this.AdminResolver = Ember.DefaultResolver.extend({
+    resolveController: function(parsedName) {
+      this.useRouterNaming(parsedName);
+      if (this._checkResourceController(parsedName.fullName)) {
+        this._setNames(parsedName);
+      }
+      if (this.resolveOther(parsedName)) {
+        return this.resolveOther(parsedName);
+      } else {
+        return window.Admin.ApplicationController;
+      }
+    },
+    resolveRoute: function(parsedName) {
+      this.useRouterNaming(parsedName);
+      if (this.resolveOther(parsedName)) {
+        return this.resolveOther(parsedName);
+      } else {
+        if (!this._checkRouteName(parsedName.fullName)) {
+          return window.Admin.MainRoute;
+        }
+      }
+    },
+    resolveTemplate: function(parsedName) {
+      var namespaceTemplate, resolvedTemplate;
+      resolvedTemplate = this._super(parsedName);
+      if (resolvedTemplate) {
+        return resolvedTemplate;
+      }
+      namespaceTemplate = Ember.TEMPLATES["ember-admin/%@".fmt(parsedName.name)];
+      if (namespaceTemplate) {
+        return namespaceTemplate;
+      }
+      return Ember.TEMPLATES['not_found'];
+    },
+    _checkRouteName: function(name) {
+      return 'route:application route:basic route:loading route:error'.w().indexOf(name) >= 0;
+    },
+    _checkResourceController: function(name) {
+      return this._pattern().test(name);
+    },
+    _replaceForResource: function(name) {
+      return name.replace(this._pattern(), '');
+    },
+    _setNames: function(parsedName) {
+      parsedName.fullName = this._replaceForResource(parsedName.fullName);
+      parsedName.fullNameWithoutType = this._replaceForResource(parsedName.fullNameWithoutType);
+      return parsedName.name = this._replaceForResource(parsedName.name);
+    },
+    _pattern: function() {
+      return /([Ss]how)|([Ee]dit)|([Nn]ew)/;
+    }
+  });
 
-  this.Admin.Logics = Ember.Namespace.create();
+}).call(this);
 
-  this.Admin.Base = Ember.Namespace.create();
+(function() {
+  window.Admin = Ember.Application.extend({
+    Resolver: window.AdminResolver,
+    Router: Ember.Router.extend()
+  });
 
-  this.Admin.Base.Controllers = Ember.Namespace.create();
+}).call(this);
 
-  this.Admin.Base.Views = Ember.Namespace.create();
+(function() {
+  if (!window.Admin) {
+    window.Admin = Ember.Namespace.create();
+  }
 
-  this.Admin.Base.Views.Table = Ember.Namespace.create();
+  window.Admin.DSL = Ember.Namespace.create();
 
-  this.Admin.Mixins = Ember.Namespace.create();
+  window.Admin.Logics = Ember.Namespace.create();
 
-  this.Admin.Mixins.Controllers = Ember.Namespace.create();
+  window.Admin.Base = Ember.Namespace.create();
 
-  this.Admin.Mixins.Routes = Ember.Namespace.create();
+  window.Admin.Base.Controllers = Ember.Namespace.create();
 
-  this.Admin.Fileupload = Ember.Namespace.create();
+  window.Admin.Base.Views = Ember.Namespace.create();
 
-  this.Admin.Adapters = Ember.Namespace.create();
+  window.Admin.Base.Views.Table = Ember.Namespace.create();
 
-  this.Admin.Forms = Ember.Namespace.create();
+  window.Admin.Mixins = Ember.Namespace.create();
+
+  window.Admin.Mixins.Controllers = Ember.Namespace.create();
+
+  window.Admin.Mixins.Routes = Ember.Namespace.create();
+
+  window.Admin.Fileupload = Ember.Namespace.create();
+
+  window.Admin.Adapters = Ember.Namespace.create();
+
+  window.Admin.Forms = Ember.Namespace.create();
 
 }).call(this);
 
@@ -173,13 +241,14 @@
     }
 
     Navigation.map = function(callback) {
-      var emberObject, navigateObject, navigation;
+      var navigation;
       navigation = new Admin.DSL.Navigation();
       callback.call(navigation);
-      this.content = navigation.container;
-      ({
-        navigate: function(title, options, callback) {}
-      });
+      return this.content = navigation.container;
+    };
+
+    Navigation.prototype.navigate = function(title, options, callback) {
+      var emberObject, navigateObject;
       navigateObject = {
         title: title,
         children: [],

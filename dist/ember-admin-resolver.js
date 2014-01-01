@@ -1,9 +1,9 @@
 (function() {
-  if (!this.Admin) {
-    this.Admin = Ember.Namespace.create();
+  if (!this.AdminResolver) {
+    this.AdminResolver = Ember.Namespace.create();
   }
 
-  this.Admin.Resolver = Ember.DefaultResolver.extend({
+  this.AdminResolver = Ember.DefaultResolver.extend({
     resolveController: function(parsedName) {
       this.useRouterNaming(parsedName);
       if (this._checkResourceController(parsedName.fullName)) {
@@ -52,7 +52,7 @@
       return parsedName.name = this._replaceForResource(parsedName.name);
     },
     _pattern: function() {
-      return /(Show)|(Edit)|(New)|(Page)/;
+      return /([Ss]how)|([Ee]dit)|([Nn]ew)/;
     }
   });
 

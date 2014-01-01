@@ -1,5 +1,5 @@
-@Admin = Ember.Namespace.create() unless @Admin
-@Admin.Resolver = Ember.DefaultResolver.extend
+@AdminResolver = Ember.Namespace.create() unless @AdminResolver
+@AdminResolver = Ember.DefaultResolver.extend
 
   resolveController: (parsedName) ->
     @useRouterNaming(parsedName)
@@ -39,4 +39,4 @@
     parsedName.name = @_replaceForResource(parsedName.name)
 
   _pattern: ->
-    /(Show)|(Edit)|(New)|(Page)/
+    /([Ss]how)|([Ee]dit)|([Nn]ew)/
