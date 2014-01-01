@@ -27,14 +27,6 @@ module.exports = function(grunt) {
                       'src/application/controllers/**/*.coffee',
                       'src/application/form_config.coffee',
                       'src/application/adapters/*.coffee'
-                    ],
-
-                    'spec/ember-admin_spec.js': [
-                        'spec/env.coffee',
-                        'spec/**/*.coffee'
-                    ],
-                    'dist/ember-admin-resolver.js':[
-                      'src/application/resolver.coffee'
                     ]
                 }
             }
@@ -66,36 +58,6 @@ module.exports = function(grunt) {
             }
         },
 
-        jasmine: {
-            pivotal: {
-                src: [
-                    'vendor/jquery/jquery.js',
-                    'vendor/handlebars/handlebars.js',
-                    'vendor/ember/ember.js',
-                    'vendor/ember-data/ember-data.js',
-                    'src/ember-easyForm.js',
-                    'vendor/jquery.cookie/jquery.cookie.js',
-                    'dist/ember-admin.js',
-                    'dist/templates.js'
-                ],
-
-                options: {
-                    specs: 'spec/ember-admin_spec.js'
-                }
-            }
-        },
-
-        curl: {
-          ember: {
-            src: 'http://builds.emberjs.com/canary/ember.js',
-            dest: 'vendor/ember.js'
-          },
-
-          ember_data: {
-            src: 'http://builds.emberjs.com/canary/ember-data.js',
-            dest: 'vendor/ember-data.js'
-          }
-        },
         sass: {
             dist: {
                 files: {
@@ -113,8 +75,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-curl');
     grunt.loadNpmTasks('grunt-contrib-sass');
 
-
-    grunt.registerTask('default', ['coffee', 'emblem', 'uglify', 'sass']);
-    grunt.registerTask('spec', ['coffee', 'emblem', 'jasmine:pivotal']);
-    grunt.registerTask('update_ember', ['curl:ember', 'curl:ember_data']);
+    grunt.registerTask('dist', ['coffee', 'emblem', 'uglify', 'sass']);
 };
