@@ -41,7 +41,7 @@ function fixtures(App) {
   App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
   App.Person = DS.Model.extend({
-    name:        DS.attr('title'),
+    name:        DS.attr('string'),
     age:         DS.attr('number'),
     gender:      DS.attr('string'),
     birthday:    DS.attr('date'),

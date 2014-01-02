@@ -1294,7 +1294,7 @@ params:
 (function() {
   Admin.Base.Views.BatchActionView = Admin.Base.Views.BaseActionView.extend({
     tagName: "li",
-    click: function() {
+    click: function(event) {
       event.preventDefault();
       if (this.get('controller.__batches.length') < 1) {
         return;

@@ -1,7 +1,7 @@
 Admin.Base.Views.BatchActionView = Admin.Base.Views.BaseActionView.extend
   tagName: "li"
 
-  click: ->
+  click: (event) ->
     event.preventDefault()
     return if @get('controller.__batches.length') < 1
     if @get('context.confirm')
