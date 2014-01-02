@@ -379,16 +379,6 @@ params:
     })
   });
 
-  Admin.Asset.reopenClass({
-    extend: function(obj) {
-      var adapter, name;
-      name = obj.type._meta.options.defaultValue;
-      adapter = "window.App.%@Adapter = window.App.ApplicationAdapter.extend(Admin.FileuploadAdapterMixin)".fmt(name);
-      eval(adapter);
-      return this._super.apply(this, arguments);
-    }
-  });
-
 }).call(this);
 
 (function() {
@@ -814,9 +804,9 @@ params:
     },
     _setActiveRoute: function(controller) {
       var url;
-      url = "#/%@".fmt(this._controllerName(controller));
-      if (url === "#/dashboard") {
-        url = "#/";
+      url = this._controllerName(controller);
+      if (url === "dashboard") {
+        url = "";
       }
       return this.controllerFor("navigation").set('activeMenu', url);
     },
@@ -909,6 +899,7 @@ params:
 (function() {
   Admin.MainRoute = Ember.Route.extend(Admin.Mixins.Routes.PaginationMixin, Admin.Mixins.Routes.ModelMixin, Admin.Mixins.Routes.ControllerMixin, {
     model: function(options, transition) {
+      var e;
       this.action = void 0;
       this.page = void 0;
       this.modelName = this._modelName(transition.targetName);
@@ -917,8 +908,12 @@ params:
         this._setAction(options.action);
       }
       this._setPage(options.page);
-      if (eval("App.%@".fmt(this.modelName.classify()))) {
-        return this._find_model(this.modelName, options);
+      try {
+        if (store.modelFor(this.modelName)) {
+          return this._find_model(this.modelName, options);
+        }
+      } catch (_error) {
+        e = _error;
       }
     },
     setupController: function(controller, model) {
@@ -1898,7 +1893,7 @@ params:
     tagName: "li",
     classNameBindings: ["isActive:active"],
     isActive: (function() {
-      if (this.get('context.url') === this.get('controller.activeMenu')) {
+      if (this.get('context.route') === this.get('controller.activeMenu')) {
         return true;
       }
       return this._hasChild();
@@ -1911,7 +1906,7 @@ params:
       }
       hasChild = false;
       this.get('context.children').forEach(function(item) {
-        if (item.url === _this.get('controller.activeMenu')) {
+        if (item.route === _this.get('controller.activeMenu')) {
           return hasChild = true;
         }
       });
