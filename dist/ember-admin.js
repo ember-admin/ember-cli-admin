@@ -1347,16 +1347,22 @@ params:
         return this.get('controller.__batches').pushObject(item);
       }
     },
+    changeBatchList: (function() {
+      if (this.get('selectAll')) {
+        return;
+      }
+      return this.get('controller.__batches').indexOf(this.get('context')) >= 0;
+    }).property('controller.__batches.@each'),
     createObserverOnBatch: (function() {
-      var _this = this;
-      return this.addObserver("controller.__batches.length", this, function() {
-        if (_this.get('selectAll')) {
+      this.get('changeBatchList');
+      return this.addObserver("changeBatchList", this, function() {
+        if (this.get('selectAll')) {
           return;
         }
-        if (_this.get('controller.__batches').indexOf(_this.get('context')) >= 0) {
-          return _this.set('checked', true);
+        if (this.get('changeBatchList')) {
+          return this.set('checked', true);
         } else {
-          return _this.set('checked', false);
+          return this.set('checked', false);
         }
       });
     }).on('didInsertElement')
