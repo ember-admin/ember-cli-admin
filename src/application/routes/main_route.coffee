@@ -12,7 +12,7 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
     @_setPage(options.page)
 
     try
-      if store.modelFor(@modelName)
+      if this.store.modelFor(@modelName)
         @_find_model(@modelName, options)
     catch e
 
@@ -21,7 +21,6 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
     if model
       @_setModel(controller, model)
       type = (model.type || model.constructor)
-      @_setType(controller, type)
       @_setupPaginationInfo(controller)
       controller.set('modelAttributes', Admin.DSL.Attributes.detect(type))
       controller.set('batches', [])

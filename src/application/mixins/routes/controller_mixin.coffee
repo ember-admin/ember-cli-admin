@@ -2,10 +2,8 @@ Admin.Mixins.Routes.ControllerMixin =  Ember.Mixin.create
 
   _getForm:(controller) ->
     form = "%@_form".fmt(@_controllerName(controller).decamelize())
-    if  Ember.TEMPLATES[form]
-      form
-    else
-      "form"
+    return form if  Ember.TEMPLATES[form]
+    "form"
 
   _getControllerTemplate: (controller) ->
     name = @_controllerName(controller)
@@ -30,11 +28,8 @@ Admin.Mixins.Routes.ControllerMixin =  Ember.Mixin.create
       target = target.split(".")[1]
       options.action = target if target
 
-  _setupBreadscrumbs: (controller, model)->
+  _setupBreadscrumbs: (controller, model) ->
     Admin.Logics.Breadcrumbs.setup(@action, controller, model, @controllerFor('breadcrumbs'))
-
-  _setType: (controller, type) ->
-    controller.set('__type', type.toString().replace("Admin.", ""))
 
   _setSiteTitle: (controller, model) ->
     Admin.Logics.SiteTile.setup(@_controllerName(controller), model, @action)

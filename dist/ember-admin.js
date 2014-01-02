@@ -782,9 +782,8 @@ params:
       form = "%@_form".fmt(this._controllerName(controller).decamelize());
       if (Ember.TEMPLATES[form]) {
         return form;
-      } else {
-        return "form";
       }
+      return "form";
     },
     _getControllerTemplate: function(controller) {
       var name;
@@ -823,9 +822,6 @@ params:
     },
     _setupBreadscrumbs: function(controller, model) {
       return Admin.Logics.Breadcrumbs.setup(this.action, controller, model, this.controllerFor('breadcrumbs'));
-    },
-    _setType: function(controller, type) {
-      return controller.set('__type', type.toString().replace("Admin.", ""));
     },
     _setSiteTitle: function(controller, model) {
       return Admin.Logics.SiteTile.setup(this._controllerName(controller), model, this.action);
@@ -909,7 +905,7 @@ params:
       }
       this._setPage(options.page);
       try {
-        if (store.modelFor(this.modelName)) {
+        if (this.store.modelFor(this.modelName)) {
           return this._find_model(this.modelName, options);
         }
       } catch (_error) {
@@ -922,7 +918,6 @@ params:
       if (model) {
         this._setModel(controller, model);
         type = model.type || model.constructor;
-        this._setType(controller, type);
         this._setupPaginationInfo(controller);
         controller.set('modelAttributes', Admin.DSL.Attributes.detect(type));
         return controller.set('batches', []);
