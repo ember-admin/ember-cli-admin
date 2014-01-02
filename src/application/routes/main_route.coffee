@@ -10,8 +10,11 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
     @_checkAction(options, transition.targetName)
     @_setAction(options.action) if options.action
     @_setPage(options.page)
-    if eval("App.%@".fmt(@modelName.classify()))
-      @_find_model(@modelName, options)
+
+    try
+      if store.modelFor(@modelName)
+        @_find_model(@modelName, options)
+    catch e
 
   setupController:(controller, model) ->
     @_setSiteTitle(controller, model)

@@ -88,6 +88,8 @@ function fixtures(App) {
 
   window.App = App;
 
+  App.AvatarAdapter = App.ApplicationAdapter.extend(Admin.FileuploadAdapterMixin);
+
   App.Avatar = Admin.Asset.extend({
     type: DS.attr('string', {defaultValue: "Avatar"})
   });
