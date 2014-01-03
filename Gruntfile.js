@@ -78,5 +78,5 @@ module.exports = function(grunt) {
     grunt.loadTasks('tasks');
 
     grunt.registerTask('dist', ['coffee', 'emblem', 'uglify', 'sass']);
-    grunt.registerTask('test', ['coffee', 'emblem', 'uglify', 'sass', 'karma:test']);
+    grunt.registerTask('test', ['coffee', 'emblem', 'uglify', 'sass', 'karma:start']);
 };
