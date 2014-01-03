@@ -73,6 +73,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-emblem');
     grunt.loadNpmTasks('grunt-curl');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('karma');
+    grunt.loadTasks('tasks');
 
     grunt.registerTask('dist', ['coffee', 'emblem', 'uglify', 'sass']);
+    grunt.registerTask('test', ['coffee', 'emblem', 'uglify', 'sass', 'karma:test']);
 };
