@@ -96,7 +96,7 @@ function fixtures(App) {
 
   //Todo add fixtures for avatar
 
-  Admin.MetaRoute.map(function(){
+  Admin.MetaRoute.map(App.Router, function(){
     this.resources('persons');
     this.resources('addresses');
   });

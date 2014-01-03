@@ -1,10 +1,11 @@
 class Admin.MetaRoute
-  @map: (callback) ->
+  @map: (router, callback) ->
+    @router = router
     callback.call(new Admin.MetaRoute())
 
   resources: (name) ->
     self = @
-    App.Router.map () ->
+    Admin.MetaRoute.router.map () ->
       @route name, path: "/#{name}"
       @route "#{name}.edit", path: self._action_edit_path(name)
       @route "#{name}.show", path: self._action_show_path(name)

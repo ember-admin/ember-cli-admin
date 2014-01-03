@@ -5,8 +5,8 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
   model: (options, transition) ->
     @action = undefined
     @page = undefined
-    @modelName = @_modelName(transition.targetName)
 
+    @modelName = @_modelName(transition.targetName)
     @_checkAction(options, transition.targetName)
     @_setAction(options.action) if options.action
     @_setPage(options.page)
@@ -27,7 +27,7 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
 
   renderTemplate: (controller, model) ->
     @_setActiveRoute(controller)
-    @_setupBreadscrumbs(controller, model) if model
+    @_setupBreadscrumbs(controller, model)
 
     @render @_getControllerTemplate(controller), {outlet: "main", controller: controller}
 

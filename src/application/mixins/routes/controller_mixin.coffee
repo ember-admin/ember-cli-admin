@@ -21,7 +21,7 @@ Admin.Mixins.Routes.ControllerMixin =  Ember.Mixin.create
     @controllerFor("navigation").set('activeMenu', url)
 
   _setAction: (action) ->
-    @action = action
+    @action = action if action != "index"
 
   _checkAction: (options, target) ->
     if /\./.test(target)

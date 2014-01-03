@@ -53,3 +53,11 @@ test('Delete batch action', function(){
     });
   });
 });
+
+//test('Close modal window', function(){
+//  expect(2);
+//  visit('persons').then(function(){
+    //Todo check for modal window close when click cancel
+//  });
+//});
+

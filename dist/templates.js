@@ -593,14 +593,8 @@ function program1(depth0,data) {
   }
 function program2(depth0,data) {
   
-  var buffer = '', hashContexts, hashTypes;
-  data.buffer.push("<li ");
-  hashContexts = {'class': depth0};
-  hashTypes = {'class': "STRING"};
-  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': ("breadcrumb.class")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">");
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("<li class=\"breadcrumb.class\">");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "breadcrumb.name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
@@ -610,33 +604,22 @@ function program2(depth0,data) {
 
 function program4(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes;
-  data.buffer.push("<li ");
-  hashContexts = {'class': depth0};
-  hashTypes = {'class': "STRING"};
+  var buffer = '', hashContexts, hashTypes;
+  data.buffer.push("<li class=\"breadcrumb.class\"><a ");
+  hashContexts = {'href': depth0};
+  hashTypes = {'href': "STRING"};
   data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'class': ("breadcrumb.class")
+    'href': ("breadcrumb.url")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(">");
-  hashContexts = {'urlBinding': depth0,'href': depth0};
-  hashTypes = {'urlBinding': "STRING",'href': "STRING"};
-  stack1 = helpers.view.call(depth0, "Admin.Base.Views.BreadcrumbView", {hash:{
-    'urlBinding': ("breadcrumb.url"),
-    'href': ("#")
-  },inverse:self.program(7, program7, data),fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</li>");
-  return buffer;
-  }
-function program5(depth0,data) {
-  
-  var hashTypes, hashContexts;
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "breadcrumb.name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</a></li>");
+  return buffer;
   }
 
-function program7(depth0,data) {
+function program6(depth0,data) {
   
   var buffer = '';
   return buffer;
@@ -645,7 +628,7 @@ function program7(depth0,data) {
   data.buffer.push("<ul class=\"breadcrumb\">");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers.each.call(depth0, "breadcrumb", "in", "controller", {hash:{},inverse:self.program(7, program7, data),fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers.each.call(depth0, "breadcrumb", "in", "controller", {hash:{},inverse:self.program(6, program6, data),fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</ul>");
   return buffer;

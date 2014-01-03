@@ -69,7 +69,6 @@
 
 (function() {
   window.Admin = Ember.Application.extend({
-    name: "admin",
     Resolver: window.AdminResolver,
     Router: Ember.Router.extend(),
     ready: function() {}
@@ -194,14 +193,15 @@
   Admin.MetaRoute = (function() {
     function MetaRoute() {}
 
-    MetaRoute.map = function(callback) {
+    MetaRoute.map = function(router, callback) {
+      this.router = router;
       return callback.call(new Admin.MetaRoute());
     };
 
     MetaRoute.prototype.resources = function(name) {
       var self;
       self = this;
-      return App.Router.map(function() {
+      return Admin.MetaRoute.router.map(function() {
         this.route(name, {
           path: "/" + name
         });
@@ -401,7 +401,7 @@ params:
         "class": "active",
         active: true
       });
-      if (action && action !== "page") {
+      if (action && action !== "page" && model) {
         obj.set('class', "");
         obj.set('active', false);
         content.pushObject(obj);
@@ -810,7 +810,9 @@ params:
       return this.controllerFor("navigation").set('activeMenu', url);
     },
     _setAction: function(action) {
-      return this.action = action;
+      if (action !== "index") {
+        return this.action = action;
+      }
     },
     _checkAction: function(options, target) {
       if (/\./.test(target)) {
@@ -838,9 +840,6 @@ params:
       }
       if (!options.id) {
         return this.pagination(modelName);
-      }
-      if (this._checkPaginations()) {
-        return this.pagination(modelName, options.id);
       }
       return this.store.find(modelName, options.id);
     },
@@ -925,9 +924,7 @@ params:
     },
     renderTemplate: function(controller, model) {
       this._setActiveRoute(controller);
-      if (model) {
-        this._setupBreadscrumbs(controller, model);
-      }
+      this._setupBreadscrumbs(controller, model);
       this.render(this._getControllerTemplate(controller), {
         outlet: "main",
         controller: controller
@@ -1366,26 +1363,6 @@ params:
         }
       });
     }).on('didInsertElement')
-  });
-
-}).call(this);
-
-(function() {
-  Admin.Base.Views.BreadcrumbView = Ember.View.extend({
-    tagName: "a",
-    attributeBindings: ["class", "href"],
-    click: function(event) {
-      event.preventDefault();
-      if (!this.get('controller.resource.__list')) {
-        if (this.get('controller.resource.isDirty')) {
-          this.get('controller.resource').rollback();
-        }
-      }
-      if (this.get('url') === "#/") {
-        this.set('url', '');
-      }
-      return this.get('controller').transitionToRoute(this.get('url'));
-    }
   });
 
 }).call(this);
