@@ -53,7 +53,6 @@ class Admin.DSL.Navigation
       navigateObject = $.extend(navigateObject, options)
 
     @_makeRoute(navigateObject)
-    @_makeUrl(navigateObject)
     emberObject = Ember.Object.create(navigateObject)
     @container.push(emberObject)
 
@@ -68,9 +67,6 @@ class Admin.DSL.Navigation
   _makeRoute: (options={}) ->
     if options.route == undefined
       options.route = options.title.underscore()
-
-  _makeUrl: (options={}) ->
-    options.url = "#/%@".fmt(options.route) unless options.url
 
   _uid: ->
     Math.random().toString(36).substr(2,9)

@@ -70,8 +70,7 @@
 (function() {
   window.Admin = Ember.Application.extend({
     Resolver: window.AdminResolver,
-    Router: Ember.Router.extend(),
-    ready: function() {}
+    Router: Ember.Router.extend()
   });
 
 }).call(this);
@@ -310,7 +309,6 @@ params:
         navigateObject = $.extend(navigateObject, options);
       }
       this._makeRoute(navigateObject);
-      this._makeUrl(navigateObject);
       emberObject = Ember.Object.create(navigateObject);
       this.container.push(emberObject);
       if (typeof options === 'function') {
@@ -329,15 +327,6 @@ params:
       }
       if (options.route === void 0) {
         return options.route = options.title.underscore();
-      }
-    };
-
-    Navigation.prototype._makeUrl = function(options) {
-      if (options == null) {
-        options = {};
-      }
-      if (!options.url) {
-        return options.url = "#/%@".fmt(options.route);
       }
     };
 
@@ -788,6 +777,9 @@ params:
     _getControllerTemplate: function(controller) {
       var name;
       name = this._controllerName(controller);
+      if (this.action) {
+        name = "%@/%@".fmt(name, this.action);
+      }
       if (Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]) {
         return name;
       } else {
@@ -893,11 +885,13 @@ params:
 
 (function() {
   Admin.MainRoute = Ember.Route.extend(Admin.Mixins.Routes.PaginationMixin, Admin.Mixins.Routes.ModelMixin, Admin.Mixins.Routes.ControllerMixin, {
-    model: function(options, transition) {
-      var e;
+    beforeModel: function(transition) {
       this.action = void 0;
       this.page = void 0;
-      this.modelName = this._modelName(transition.targetName);
+      return this.modelName = this._modelName(transition.targetName);
+    },
+    model: function(options, transition) {
+      var e;
       this._checkAction(options, transition.targetName);
       if (options.action) {
         this._setAction(options.action);
@@ -956,7 +950,7 @@ params:
       }
     },
     _renderForm: function(controller, model) {
-      if (this.action && (this.action === "edit" || this.action === "new")) {
+      if (this.action && (this.action === "edit" || this.action === "new") && this._getControllerTemplate(controller).split('/').length < 2) {
         return this.render(this._getForm(controller), {
           into: this.action,
           outlet: 'form',
@@ -1876,6 +1870,9 @@ params:
       }
       return this._hasChild();
     }).property('context', 'context.children', 'controller.activeMenu'),
+    url: (function() {
+      return "/#%@".fmt(this.get('context.route'));
+    }).property('context.route'),
     _hasChild: function() {
       var hasChild,
         _this = this;

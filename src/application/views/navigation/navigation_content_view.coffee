@@ -8,6 +8,10 @@ Admin.NavigationContentView = Ember.View.extend
     @_hasChild()
   ).property('context', 'context.children', 'controller.activeMenu')
 
+  url: (->
+    "/#%@".fmt(@get('context.route'))
+  ).property('context.route')
+
   _hasChild: ->
     return false unless @get('context.children')
     hasChild = false

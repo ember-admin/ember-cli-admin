@@ -2,18 +2,18 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
   Admin.Mixins.Routes.ModelMixin,
   Admin.Mixins.Routes.ControllerMixin,
 
-  model: (options, transition) ->
+  beforeModel: (transition) ->
     @action = undefined
     @page = undefined
-
     @modelName = @_modelName(transition.targetName)
+
+  model: (options, transition) ->
     @_checkAction(options, transition.targetName)
     @_setAction(options.action) if options.action
     @_setPage(options.page)
-
     try
       if this.store.modelFor(@modelName)
-        @_find_model(@modelName, options)
+        return @_find_model(@modelName, options)
     catch e
 
   setupController:(controller, model) ->
@@ -57,7 +57,7 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
       }
 
   _renderForm: (controller, model) ->
-    if @action && (@action == "edit" || @action == "new")
+    if @action && (@action == "edit" || @action == "new") && @_getControllerTemplate(controller).split('/').length < 2
       @render @_getForm(controller), {
         into: @action
         outlet: 'form'
