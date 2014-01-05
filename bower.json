@@ -22,7 +22,8 @@
     "ember-data": "1.0.0-beta.4",
     "emblem.js": "*",
     "bootstrap": "3.0.3",
-    "chance": "latest"
+    "chance": "latest",
+    "jquery-mockjax": "~1.5.3"
   },
   "ignore": [
     "node_modules",
