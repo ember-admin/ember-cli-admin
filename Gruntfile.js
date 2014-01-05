@@ -63,17 +63,13 @@ module.exports = function(grunt) {
                     'dist/ember-admin.css': 'src/ember-admin.scss'
                 }
             }
-        }
-
+        },
+        // karma:ci, karma:dev, karma:sever, karma:browsers in ./tasks/karma
+        karma: require('./tasks/karma')
     });
 
-    grunt.loadNpmTasks('grunt-contrib-coffee');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-jasmine');
-    grunt.loadNpmTasks('grunt-emblem');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadTasks('tasks');
+    require('load-grunt-tasks')(grunt);
 
     grunt.registerTask('dist', ['coffee', 'emblem', 'uglify', 'sass']);
-//    grunt.registerTask('test', ['coffee', 'emblem', 'uglify', 'sass', 'karma:start']);
+    grunt.registerTask('test', ['coffee', 'emblem', 'uglify', 'sass', 'karma:ci']);
 };

@@ -1,15 +1,20 @@
 module.exports = {
   options: {
     configFile: 'karma.conf.js',
-    browsers: ['Chrome'],
-    reporters: ['coverage', 'dots']
+    reporters: ['coverage', 'dots'],
+    plugins: [
+      'karma-qunit',
+      'karma-ember-preprocessor',
+      'karma-phantomjs-launcher',
+      'karma-coverage'
+    ]
   },
   ci: {
     singleRun: true,
-    browsers: ['PhantomJS']
   },
-  test: {
-    singleRun: true
+  dev: {
+    autoWatch: true,
+    singleRun: false
   },
   server: {
     background: true,
@@ -20,10 +25,17 @@ module.exports = {
   },
   browsers: {
     singleRun: true,
-    browsers: ['Chrome',
-      'ChromeCanary',
+    plugins: [
+      'karma-qunit',
+      'karma-ember-preprocessor',
+      'karma-phantomjs-launcher',
+      'karma-chrome-launcher',
+      'karma-firefox-launcher'
+    ],
+    browsers: [
+      'Chrome',
       'Firefox',
-      // 'Safari',  // enable plugin in karma.conf.js to use
-      'PhantomJS']
+      'PhantomJS'
+    ]
   }
 };
