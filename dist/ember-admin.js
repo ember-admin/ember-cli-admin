@@ -1813,17 +1813,16 @@ params:
       }
     },
     _createAsset: function(params, file) {
-      var asset, assetType, type;
-      type = this.get('context.model').constructor;
-      assetType = Admin.DSL.Attributes.relationForType(type, this.get('property'));
-      asset = this.get('controller.store').createRecord(assetType, params);
+      var asset, store;
+      store = this.get('controller.store');
+      asset = store.createRecord(this.get('property'), $.extend({}, params));
       asset.set('file', file);
       return this.get('controller').send("createAsset", asset, this.get('property'), this);
     },
     _params: function(file) {
       var params;
       params = {
-        assetable_type: this.get('controller.__type'),
+        assetable_type: this.get('controller.model.__model_name').classify(),
         content_type: file.type,
         original_filename: file.name,
         is_main: true
