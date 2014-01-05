@@ -24,7 +24,6 @@ module.exports = function(config) {
 
     plugins: [
       'karma-qunit',
-      'karma-chrome-launcher',
       'karma-ember-preprocessor',
       'karma-phantomjs-launcher'
     ],
