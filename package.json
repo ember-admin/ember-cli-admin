@@ -14,7 +14,7 @@
     "url": "https://github.com/ember-admin/ember-admin.js/issues"
   },
   "scripts": {
-    "test": "grunt spec"
+    "test": "karma start karma.conf.js"
   },
   "repository": {
     "type": "git",

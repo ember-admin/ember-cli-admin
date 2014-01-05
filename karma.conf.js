@@ -19,9 +19,6 @@ module.exports = function(config) {
     ],
 
     logLevel: config.LOG_ERROR,
-    browsers: ['PhantomJS'],
-    singleRun: true,
-    autoWatch: false,
 
     frameworks: ["qunit"],
 
@@ -55,13 +52,13 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 60000,
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: true
   });
 };
