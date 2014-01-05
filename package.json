@@ -22,7 +22,7 @@
   },
   "dependencies": {},
   "engines": {
-    "node": ">=v0.10.1"
+    "node": ">=v0.10.21"
   },
   "devDependencies": {
     "requirejs": "~2.1.9",
@@ -46,6 +46,7 @@
     "karma-html2js-preprocessor": "~0.1.0",
     "karma-jasmine": "~0.1.5",
     "karma-requirejs": "~0.2.1",
-    "karma-coffee-preprocessor": "~0.1.2"
+    "karma-coffee-preprocessor": "~0.1.2",
+    "phantomjs" : "1.9.1-0"
   }
 }
