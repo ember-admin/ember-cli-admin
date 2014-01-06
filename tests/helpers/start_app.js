@@ -40,8 +40,6 @@ function fixtures(App) {
 
   App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
-  App.AvatarAdapter = App.ApplicationAdapter.extend(Admin.FileuploadAdapterMixin);
-
   App.Avatar = Admin.Asset.extend({
     type: DS.attr('string', {defaultValue: "Avatar"})
   });
@@ -50,14 +48,11 @@ function fixtures(App) {
 
   App.Avatar.FIXTURES.push(
     {
-      "id":1,
-      "assetable_id":1,
-      "assetable_type":"Person",
-      "guid":null,
-      "type":"Avatar",
+      "id":                1,
+      "type":              "Avatar",
       "original_filename": "f61112c5023fc6a9b5b20a620cffa587",
-      "thumb_url":"http://ru.gravatar.com/userimage/59502193/f61112c5023fc6a9b5b20a620cffa587.png",
-      "url":"http://ru.gravatar.com/userimage/59502193/f61112c5023fc6a9b5b20a620cffa587.png"
+      "thumb_url":         "http://ru.gravatar.com/userimage/59502193/f61112c5023fc6a9b5b20a620cffa587.png",
+      "url":               "http://ru.gravatar.com/userimage/59502193/f61112c5023fc6a9b5b20a620cffa587.png"
     }
   );
 
@@ -69,7 +64,9 @@ function fixtures(App) {
     birthday:    DS.attr('date'),
 
     address:     DS.belongsTo('address'),
-    avatar:      DS.belongsTo('Avatar')
+    avatar:      DS.belongsTo('avatar'),
+
+    fileuploads: ['avatar']
   });
 
   App.Person.FIXTURES = [];
@@ -88,7 +85,7 @@ function fixtures(App) {
   }
 
   App.Address = DS.Model.extend({
-    address:   DS.attr('string'),
+    title:   DS.attr('string'),
     phone:     DS.attr('string'),
     street:    DS.attr('string'),
     latitude:  DS.attr('number'),
@@ -100,7 +97,7 @@ function fixtures(App) {
   for (i = _i = 1; _i <= 5; i = ++_i) {
     App.Address.FIXTURES.push({
       id:        i,
-      address:   chance.address(),
+      title:   chance.address(),
       phone:     chance.phone(),
       street:    chance.street(),
       latitude:  chance.latitude(),
@@ -110,8 +107,6 @@ function fixtures(App) {
 
   window.App = App;
 
-
-  //Todo add fixtures for avatar
 
   Admin.MetaRoute.map(App.Router, function(){
     this.resources('persons');
