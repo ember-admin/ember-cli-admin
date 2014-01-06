@@ -402,7 +402,9 @@ params:
         });
         content.pushObject(obj);
       } else {
-        content.pushObject(obj);
+        if (controller.get('__controller_name')) {
+          content.pushObject(obj);
+        }
       }
       breadcrumbs_controller.set('content', content);
       return this._actions(action, controller);
