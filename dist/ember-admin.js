@@ -1668,9 +1668,10 @@ params:
     value: (function() {
       var record;
       record = this.get(this.path());
-      if (typeof record !== "object") {
+      if (!(record['get'] && record.get('id'))) {
         return record;
       }
+      console.info(record);
       return this.relation(record, this.get('attributeName'));
     }).property("context"),
     image_object: (function() {
