@@ -40,6 +40,28 @@ function fixtures(App) {
 
   App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
+  App.AvatarAdapter = App.ApplicationAdapter.extend(Admin.FileuploadAdapterMixin);
+
+  App.Avatar = Admin.Asset.extend({
+    type: DS.attr('string', {defaultValue: "Avatar"})
+  });
+
+  App.Avatar.FIXTURES = [];
+
+  App.Avatar.FIXTURES.push(
+    {
+      "id":1,
+      "assetable_id":1,
+      "assetable_type":"Person",
+      "guid":null,
+      "type":"Avatar",
+      "original_filename": "f61112c5023fc6a9b5b20a620cffa587",
+      "thumb_url":"http://ru.gravatar.com/userimage/59502193/f61112c5023fc6a9b5b20a620cffa587.png",
+      "url":"http://ru.gravatar.com/userimage/59502193/f61112c5023fc6a9b5b20a620cffa587.png"
+    }
+  );
+
+
   App.Person = DS.Model.extend({
     name:        DS.attr('string'),
     age:         DS.attr('number'),
@@ -60,8 +82,8 @@ function fixtures(App) {
       age:      chance.age(),
       gender:   chance.gender(),
       birthday: chance.birthday(),
-      address:  i//,
-//      avatar:   i
+      address:  i,
+      avatar:   1
     });
   }
 
@@ -88,11 +110,6 @@ function fixtures(App) {
 
   window.App = App;
 
-  App.AvatarAdapter = App.ApplicationAdapter.extend(Admin.FileuploadAdapterMixin);
-
-  App.Avatar = Admin.Asset.extend({
-    type: DS.attr('string', {defaultValue: "Avatar"})
-  });
 
   //Todo add fixtures for avatar
 
