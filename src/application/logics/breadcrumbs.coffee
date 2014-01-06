@@ -14,7 +14,7 @@ Admin.Logics.Breadcrumbs.reopenClass
       obj = Ember.Object.create({name: name, class: "active", active: true})
       content.pushObject(obj)
     else
-      content.pushObject(obj)
+      content.pushObject(obj) if  controller.get('__controller_name')
     breadcrumbs_controller.set('content', content)
     @_actions(action, controller)
 
