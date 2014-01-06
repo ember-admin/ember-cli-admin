@@ -25,6 +25,7 @@ module.exports = function(config) {
     plugins: [
       'karma-qunit',
       'karma-ember-preprocessor',
+      'karma-chrome-launcher',
       'karma-phantomjs-launcher'
     ],
 
@@ -58,6 +59,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: true
+    singleRun: false
   });
 };
