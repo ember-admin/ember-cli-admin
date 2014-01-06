@@ -3,6 +3,7 @@ module('Acceptance tests: FileUploads', {
     App = startApp();
   },
   teardown: function() {
+    Ember.run(App, 'advanceReadiness');
     Ember.run(App, 'destroy');
   }
 });
