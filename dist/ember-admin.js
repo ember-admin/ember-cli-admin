@@ -475,7 +475,11 @@ params:
   Admin.Logics.SiteTile.reopenClass({
     setup: function(controllerName, model, action) {
       if (action) {
-        return document.title = "%@ - %@ - %@".fmt(controllerName, model.get('id'), action);
+        if (model.get('id')) {
+          return document.title = "%@ - %@ - %@".fmt(controllerName, model.get('id'), action);
+        } else {
+          return document.title = "%@ - %@".fmt(controllerName, action);
+        }
       } else {
         return document.title = "%@ - list".fmt(controllerName);
       }
