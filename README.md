@@ -15,6 +15,20 @@ window.App = Admin.create() //Create ember.js app
 
 ###Please read docs in wiki pages!
 
+###Features(done):
+ - Image upload
+ - Map integration(google, yandex)
+ - Table View
+ - Pagination
+
+###Features(in progress):
+ - Edit hasMany
+ - Scopes
+ - Search Form
+ - Roles and Permissions
+ - File upload
+ - Tree view
+
 ### To run tests
 1. `npm install`
 2. `bower install` ( In case you don't have [bower](https://twitter.com/bower) installed - run `npm install -g bower`)
