@@ -35,7 +35,7 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
 
   value:(->
     record = @get(@path())
-    return record unless record['get'] && record.get('id')
+    return record if !record || (!record['get'] || !record.get('id'))
     @relation(record, @get('attributeName'))
   ).property("context")
 

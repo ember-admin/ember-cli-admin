@@ -47,10 +47,20 @@ test('Delete batch action', function(){
   });
 });
 
-//test('Close modal window', function(){
-//  expect(2);
-//  visit('persons').then(function(){
-//Todo check for modal window close when click cancel
-//  });
-//});
+test('Close modal window', function(){
+  expect(2);
+  visit('persons');
+  click("#select-all-batches");
+  click(".btn-group.batch-actions > a");
+  click(".btn-group.batch-actions.open ul li a").then(function(){
+  andThen(function(){
+    var modalElement = find(".modal-header");
+    equal(modalElement.text(), "×delete×");
+    click(".modal-footer  .btn.btn-default").then(function(){
+      var style = find("#ActionModal").attr('style');
+      equal(modalElement.text(), "×delete×");
+    });
+  });
+});
+});
 

@@ -1668,7 +1668,7 @@ params:
     value: (function() {
       var record;
       record = this.get(this.path());
-      if (!(record['get'] && record.get('id'))) {
+      if (!record || (!record['get'] || !record.get('id'))) {
         return record;
       }
       return this.relation(record, this.get('attributeName'));
