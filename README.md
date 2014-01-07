@@ -22,6 +22,7 @@ window.App = Admin.create() //Create ember.js app
  - Pagination
 
 ###Features(in progress):
+ - Cucumber integrations
  - Edit hasMany
  - Scopes
  - Search Form
