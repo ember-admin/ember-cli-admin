@@ -6,7 +6,7 @@
 ###
 
 Admin.Base.Views.Table.TdView = Ember.View.extend
-  attributeBindings: ["style"]
+  attributeBindings: ["style", 'data-column']
 
   relations: "name title".w()
   fileuploads: "thumb_url".w()
@@ -14,6 +14,10 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
   templateName: "base/_td_template"
 
   tagName: "td"
+
+  'data-column': (->
+    @get('attributeName')
+  ).property('attributeName')
 
   createObserves:(->
     if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >= 0

@@ -22,4 +22,15 @@ test('Table should have actions and items', function(){
   });
 });
 
+test('show relations and data object', function(){
+  expect(2);
+  visit('persons');
+  andThen(function(){
+    var date = find("table td[data-column='birthday']:first");
+    notEqual(date.text(), '');
+    var address = find("table td[data-column='address']:first");
+    notEqual(address.text(), '');
+  });
+});
+
 //Todo
