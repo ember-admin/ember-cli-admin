@@ -15,9 +15,7 @@ Admin.Base.Views.Table.TdView = Ember.View.extend
 
   tagName: "td"
 
-  'data-column': (->
-    @get('attributeName')
-  ).property('attributeName')
+  'data-column': Ember.computed.alias('attributeName')
 
   createObserves:(->
     if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >= 0

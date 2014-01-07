@@ -1643,9 +1643,7 @@ params:
     fileuploads: "thumb_url".w(),
     templateName: "base/_td_template",
     tagName: "td",
-    'data-column': (function() {
-      return this.get('attributeName');
-    }).property('attributeName'),
+    'data-column': Ember.computed.alias('attributeName'),
     createObserves: (function() {
       var _this = this;
       if (this.get('context.fileuploads') && this.get('context.fileuploads').indexOf(this.get('attributeName')) >= 0) {

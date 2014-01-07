@@ -32,5 +32,3 @@ test('show relations and data object', function(){
     notEqual(address.text(), '');
   });
 });
-
-//Todo
