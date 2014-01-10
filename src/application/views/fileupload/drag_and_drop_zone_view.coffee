@@ -65,7 +65,7 @@ Admin.Fileupload.DragAndDropZoneView = Ember.View.extend
 
   _createAsset: (params, file) ->
     store = @get('controller.store')
-    asset = store.createRecord(@get('property'), $.extend({}, params))
+    asset = store.createRecord(Ember.String.singularize(@get('property')), $.extend({}, params))
     asset.set('file', file)
     @get('controller').send("createAsset", asset, @get('property'), @)
 

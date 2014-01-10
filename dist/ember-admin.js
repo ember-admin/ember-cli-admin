@@ -1822,7 +1822,7 @@ params:
     _createAsset: function(params, file) {
       var asset, store;
       store = this.get('controller.store');
-      asset = store.createRecord(this.get('property'), $.extend({}, params));
+      asset = store.createRecord(Ember.String.singularize(this.get('property')), $.extend({}, params));
       asset.set('file', file);
       return this.get('controller').send("createAsset", asset, this.get('property'), this);
     },
