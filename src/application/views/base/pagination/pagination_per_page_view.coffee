@@ -2,7 +2,7 @@ Admin.Base.Views.PaginationPerPageView = Ember.View.extend
   tagName: "button"
   classNames: ["btn btn-default"]
   attributeBindings: ["type"]
-  classNameBindings: ["isActive:active: "]
+  classNameBindings: ["isActive:active"]
 
   click: ->
     unless @get('isActive')

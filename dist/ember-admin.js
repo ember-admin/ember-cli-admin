@@ -1616,7 +1616,7 @@ params:
     tagName: "button",
     classNames: ["btn btn-default"],
     attributeBindings: ["type"],
-    classNameBindings: ["isActive:active: "],
+    classNameBindings: ["isActive:active"],
     click: function() {
       if (!this.get('isActive')) {
         return this.get('controller').send("changePerPage", this.get('count'));
@@ -1915,7 +1915,7 @@ params:
 (function() {
   Admin.NavigationController = Ember.ArrayController.extend({
     activeMenu: "dashboard",
-    content: (function() {
+    model: (function() {
       return Admin.DSL.Navigation.content;
     }).property()
   });
