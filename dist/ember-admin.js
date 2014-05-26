@@ -748,22 +748,16 @@ params:
 
 (function() {
   Admin.Mixins.Controllers.PaginationMixin = Ember.Mixin.create({
-    __perPage: parseInt($.cookie('perPage')) || 25,
-    reloadTable: (function() {
-      var options,
-        _this = this;
-      options = {
-        per_page: this.get('__perPage'),
-        page: this.get('__page') || 1
-      };
-      return this.get('store').find(this.get('__model_name'), options).then(function(collection) {
-        return _this.set('model.items', collection);
-      });
-    }).observes('__perPage'),
+    queryParams: ['page', 'perPage'],
+    page: 1,
+    perPage: 25,
     actions: {
       changePerPage: function(perPage) {
         $.cookie('perPage', perPage);
-        return this.set('__perPage', perPage);
+        return this.set('perPage', perPage);
+      },
+      changePage: function(page) {
+        return this.set('page', page);
       }
     }
   });
@@ -846,6 +840,7 @@ params:
         return;
       }
       if (model.type) {
+        console.log(model.get('meta'));
         return controller.set('model', Ember.Object.create({
           items: model,
           __list: true
@@ -867,23 +862,15 @@ params:
   Admin.Mixins.Routes.PaginationMixin = Ember.Mixin.create({
     pagination: function(modelName) {
       var perPage;
-      perPage = $.cookie('perPage') || 25;
+      perPage = parseInt($.cookie('perPage')) || 25;
       return this.store.find(modelName, {
         page: this.page,
         per_page: perPage
       });
     },
-    _checkPaginations: function() {
-      return this.action === "page";
-    },
-    _setPage: function(page) {
-      return this.page = parseInt(page) || 1;
-    },
     _setupPaginationInfo: function(controller) {
-      controller.set('__page', this.page);
       controller.set('__controller_name', this._controllerName(controller));
-      controller.set('__model_name', this.modelName);
-      return Admin.Logics.Pagination.setup(controller, this.page);
+      return controller.set('__model_name', this.modelName);
     }
   });
 
@@ -902,7 +889,6 @@ params:
       if (options.action) {
         this._setAction(options.action);
       }
-      this._setPage(options.page);
       try {
         if (this.store.modelFor(this.modelName)) {
           return this._find_model(this.modelName, options);
@@ -1591,41 +1577,12 @@ params:
 }).call(this);
 
 (function() {
-  Admin.Base.Views.PaginationLinkView = Ember.View.extend({
-    attributeBindings: ["href"],
-    tagName: "a",
-    href: (function() {
-      if (this.get('type') === "next") {
-        return this._nextPage();
-      } else {
-        return this._prevPage();
-      }
-    }).property('controller.__page'),
-    _nextPage: function() {
-      return "#/" + (this.get('controller.__controller_name')) + "/page/" + (this.get('controller.__nextPage'));
-    },
-    _prevPage: function() {
-      return "#/" + (this.get('controller.__controller_name')) + "/page/" + (this.get('controller.__prevPage'));
-    }
-  });
+
 
 }).call(this);
 
 (function() {
-  Admin.Base.Views.PaginationPerPageView = Ember.View.extend({
-    tagName: "button",
-    classNames: ["btn btn-default"],
-    attributeBindings: ["type"],
-    classNameBindings: ["isActive:active"],
-    click: function() {
-      if (!this.get('isActive')) {
-        return this.get('controller').send("changePerPage", this.get('count'));
-      }
-    },
-    isActive: (function() {
-      return this.get('controller.__perPage') === this.get('count');
-    }).property('controller.__perPage')
-  });
+
 
 }).call(this);
 
