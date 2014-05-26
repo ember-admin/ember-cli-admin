@@ -1,19 +1,17 @@
 .btn-group.per-page
-  Admin.Base.Views.PaginationPerPageView count=25
-    |25
-  Admin.Base.Views.PaginationPerPageView count=50
-    |50
-  Admin.Base.Views.PaginationPerPageView count=100
-    |100
+  = link-to '25' (query-params perPage=25)
+  |&nbsp;
+  = link-to '50' (query-params perPage=50)
+  |&nbsp;
+  = link-to '100' (query-params perPage=100)
 
 ul class="pager"
   li
-    Admin.Base.Views.PaginationLinkView type="prev"
-      |Previous
+    = link-to 'Previous' (query-params page=1)
+
   li
-    Admin.Base.Views.PaginationLinkView type="next"
-      |Next
-      
+    = link-to 'Next' (query-params page=2)
+
 .page-number
   |Page&nbsp;
-  = controller.__page
+  = controller.page
