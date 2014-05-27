@@ -157,34 +157,67 @@ function program5(depth0,data) {
 Ember.TEMPLATES["ember-admin/base/_pagination"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, helper, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, self=this;
 
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("25");
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '';
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  
+  data.buffer.push("50");
+  }
+
+function program7(depth0,data) {
+  
+  
+  data.buffer.push("100");
+  }
+
+function program9(depth0,data) {
+  
+  
+  data.buffer.push("Previous");
+  }
+
+function program11(depth0,data) {
+  
+  
+  data.buffer.push("Next");
+  }
 
   data.buffer.push("<div class=\"btn-group per-page\">");
-  stack1 = (helper = helpers['query-params'] || (depth0 && depth0['query-params']),options={hash:{
-    'perPage': (25)
-  },hashTypes:{'perPage': "INTEGER"},hashContexts:{'perPage': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "query-params", options));
-  data.buffer.push(escapeExpression((helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","sexpr"],data:data},helper ? helper.call(depth0, "25", stack1, options) : helperMissing.call(depth0, "link-to", "25", stack1, options))));
-  data.buffer.push("&nbsp;");
-  stack1 = (helper = helpers['query-params'] || (depth0 && depth0['query-params']),options={hash:{
-    'perPage': (50)
-  },hashTypes:{'perPage': "INTEGER"},hashContexts:{'perPage': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "query-params", options));
-  data.buffer.push(escapeExpression((helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","sexpr"],data:data},helper ? helper.call(depth0, "50", stack1, options) : helperMissing.call(depth0, "link-to", "50", stack1, options))));
-  data.buffer.push("&nbsp;");
-  stack1 = (helper = helpers['query-params'] || (depth0 && depth0['query-params']),options={hash:{
-    'perPage': (100)
-  },hashTypes:{'perPage': "INTEGER"},hashContexts:{'perPage': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "query-params", options));
-  data.buffer.push(escapeExpression((helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","sexpr"],data:data},helper ? helper.call(depth0, "100", stack1, options) : helperMissing.call(depth0, "link-to", "100", stack1, options))));
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationPerPageView", {hash:{
+    'count': (25)
+  },hashTypes:{'count': "INTEGER"},hashContexts:{'count': depth0},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationPerPageView", {hash:{
+    'count': (50)
+  },hashTypes:{'count': "INTEGER"},hashContexts:{'count': depth0},inverse:self.program(3, program3, data),fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationPerPageView", {hash:{
+    'count': (100)
+  },hashTypes:{'count': "INTEGER"},hashContexts:{'count': depth0},inverse:self.program(3, program3, data),fn:self.program(7, program7, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</div><ul class=\"pager\"><li>");
-  stack1 = (helper = helpers['query-params'] || (depth0 && depth0['query-params']),options={hash:{
-    'page': (1)
-  },hashTypes:{'page': "INTEGER"},hashContexts:{'page': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "query-params", options));
-  data.buffer.push(escapeExpression((helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","sexpr"],data:data},helper ? helper.call(depth0, "Previous", stack1, options) : helperMissing.call(depth0, "link-to", "Previous", stack1, options))));
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationLinkView", {hash:{
+    'type': ("prev")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.program(3, program3, data),fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</li><li>");
-  stack1 = (helper = helpers['query-params'] || (depth0 && depth0['query-params']),options={hash:{
-    'page': (2)
-  },hashTypes:{'page': "INTEGER"},hashContexts:{'page': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "query-params", options));
-  data.buffer.push(escapeExpression((helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["STRING","sexpr"],data:data},helper ? helper.call(depth0, "Next", stack1, options) : helperMissing.call(depth0, "link-to", "Next", stack1, options))));
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationLinkView", {hash:{
+    'type': ("next")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.program(3, program3, data),fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</li></ul><div class=\"page-number\">Page&nbsp;");
   stack1 = helpers._triageMustache.call(depth0, "controller.page", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
