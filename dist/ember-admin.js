@@ -744,6 +744,9 @@ params:
     queryParams: ['page', 'perPage'],
     page: 1,
     perPage: 25,
+    numberOfPages: function() {
+      return Math.ceil(this.get('total') / this.get('perPage'));
+    },
     actions: {
       nextPage: function() {
         return this.incrementProperty('page');
@@ -842,7 +845,8 @@ params:
       if (model.type) {
         return controller.set('model', Ember.Object.create({
           items: model,
-          __list: true
+          __list: true,
+          total: model.meta.total
         }));
       }
       return controller.set('model', model);

@@ -3,6 +3,9 @@ Admin.Mixins.Controllers.PaginationMixin = Ember.Mixin.create
   page: 1
   perPage:25
 
+  numberOfPages:->
+    Math.ceil(@get('total') / @get('perPage'))
+
   actions:
 
     nextPage:->

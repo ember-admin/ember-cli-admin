@@ -9,7 +9,7 @@ Admin.Mixins.Routes.ModelMixin =  Ember.Mixin.create
     return unless model
 
     if model.type
-      return controller.set('model', Ember.Object.create(items:  model, __list: true))
+      return controller.set('model', Ember.Object.create(items:  model, __list: true, total:model.meta.total))
     controller.set('model', model)
 
   _modelName:(name) ->
