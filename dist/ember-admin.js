@@ -210,11 +210,8 @@
         this.route("" + name + ".show", {
           path: self._action_show_path(name)
         });
-        this.route("" + name + ".new", {
+        return this.route("" + name + ".new", {
           path: self._new_path(name)
-        });
-        return this.route("" + name + ".page", {
-          path: self._paginationPath(name)
         });
       });
     };
@@ -225,10 +222,6 @@
 
     MetaRoute.prototype._action_edit_path = function(name) {
       return "/" + name + "/:id/edit";
-    };
-
-    MetaRoute.prototype._paginationPath = function(name) {
-      return "/" + name + "/page/:page";
     };
 
     MetaRoute.prototype._new_path = function(name) {
