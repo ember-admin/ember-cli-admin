@@ -13,6 +13,15 @@ css:
 window.App = Admin.create() //Create ember.js app
 ```
 
+After that you should create controller for your resource and extend it from Admin.ApplicationController.
+
+For example, you have resource Cars. So, you should create CarsController this way:
+
+```
+App.CarsController = Admin.ApplicationController.extend()
+```
+
+
 ###Please read docs in wiki pages!
 
 ###Features(done):
