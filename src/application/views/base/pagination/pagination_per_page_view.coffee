@@ -5,9 +5,10 @@ Admin.Base.Views.PaginationPerPageView = Ember.View.extend
   classNameBindings: ["isActive:active"]
 
   click: ->
-    unless @get('isActive')
-      @get('controller').send("changePerPage", @get('count'))
+    @set('controller.perPage', @get('count'))
+#    unless @get('isActive')
+#      @get('controller').send("changePerPage", @get('count'))
 
   isActive:(->
-    @get('controller.__perPage') == @get('count')
-  ).property('controller.__perPage')
+    @get('controller.perPage') == @get('count')
+  ).property('controller.perPage')

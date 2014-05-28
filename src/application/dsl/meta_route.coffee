@@ -10,16 +10,12 @@ class Admin.MetaRoute
       @route "#{name}.edit", path: self._action_edit_path(name)
       @route "#{name}.show", path: self._action_show_path(name)
       @route "#{name}.new", path: self._new_path(name)
-      @route "#{name}.page", path: self._paginationPath(name)
 
   _action_show_path: (name) ->
     "/#{name}/:id/show"
 
   _action_edit_path: (name) ->
     "/#{name}/:id/edit"
-
-  _paginationPath: (name) ->
-    "/#{name}/page/:page"
 
   _new_path: (name) ->
     "/#{name}/new"

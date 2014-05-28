@@ -3,6 +3,7 @@
 
   resolveController: (parsedName) ->
     @useRouterNaming(parsedName)
+
     if @_checkResourceController(parsedName.fullName)
       @_setNames(parsedName)
     if @resolveOther(parsedName)
@@ -11,7 +12,9 @@
       return Admin.DashboardController   if parsedName.fullNameWithoutType == "dashboard"
       return Admin.BreadcrumbsController if parsedName.fullNameWithoutType == "breadcrumbs"
       return Admin.NavigationController  if parsedName.fullNameWithoutType == "navigation"
-      window.Admin.ApplicationController
+#      window.Admin.ApplicationController.extend()
+      @_super(parsedName)
+
 
   resolveRoute: (parsedName) ->
     this.useRouterNaming(parsedName)

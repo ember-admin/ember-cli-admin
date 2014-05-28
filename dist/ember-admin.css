@@ -84,9 +84,9 @@ form {
     font-size: 12px;
     font-weight: normal; }
 
-.pager {
+.pager, .pagination {
   margin: 35px 0 0; }
-  .pager li {
+  .pager li, .pagination li {
     margin-right: 10px; }
 
 .page-number {

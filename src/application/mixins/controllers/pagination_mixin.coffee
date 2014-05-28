@@ -1,13 +1,22 @@
 Admin.Mixins.Controllers.PaginationMixin = Ember.Mixin.create
-  __perPage: (parseInt($.cookie('perPage')) || 25)
+  queryParams: ['page', 'perPage']
+  page: 1
+  perPage:25
 
-  reloadTable: (->
-    options = {per_page: @get('__perPage'), page: (@get('__page') || 1)}
-    @get('store').find(@get('__model_name'), options).then (collection) =>
-      @set('model.items', collection)
-  ).observes('__perPage')
+  numberOfPages:(->
+    Math.ceil(@get('total') / @get('perPage'))
+  ).property('perPage')
 
   actions:
+
+    nextPage:->
+      @incrementProperty('page') if @get('page') < @get('numberOfPages')
+
+    prevPage:->
+      @decrementProperty('page') if @get('page') > 1
+
     changePerPage: (perPage) ->
-      $.cookie('perPage', perPage)
-      @set('__perPage', perPage)
+      @set('perPage', perPage)
+
+    changePage: (page) ->
+      @set('page', Number(page))

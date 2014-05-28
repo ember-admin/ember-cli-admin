@@ -13,7 +13,7 @@ Admin.Mixins.Controllers.FormActionsMixin = Ember.Mixin.create
       @_redirectToTable()
 
   _redirectToTable: ->
-    @transitionToRoute(@get('__controller_name'))
+    window.history.back()
 
   _updateModel: (redirect) ->
     @get('model').save().then =>
