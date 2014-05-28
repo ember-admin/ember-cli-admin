@@ -185,14 +185,65 @@ function program7(depth0,data) {
 
 function program9(depth0,data) {
   
+  var stack1;
+  stack1 = helpers.unless.call(depth0, "view.onePage", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(18, program18, data),fn:self.program(10, program10, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  else { data.buffer.push(''); }
+  }
+function program10(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push("<ul class=\"pagination\"><li>");
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationLinkView", {hash:{
+    'type': ("prev")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.program(3, program3, data),fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</li>");
+  stack1 = helpers.each.call(depth0, "page", "in", "view.pages", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(13, program13, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("<li>");
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationLinkView", {hash:{
+    'type': ("next")
+  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.program(3, program3, data),fn:self.program(16, program16, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</li></ul>");
+  return buffer;
+  }
+function program11(depth0,data) {
+  
   
   data.buffer.push("Previous");
   }
 
-function program11(depth0,data) {
+function program13(depth0,data) {
+  
+  var buffer = '', stack1;
+  data.buffer.push("<li>");
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationNumberView", {hash:{
+    'number': ("page")
+  },hashTypes:{'number': "ID"},hashContexts:{'number': depth0},inverse:self.program(3, program3, data),fn:self.program(14, program14, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</li>");
+  return buffer;
+  }
+function program14(depth0,data) {
+  
+  var stack1;
+  stack1 = helpers._triageMustache.call(depth0, "view.number", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  else { data.buffer.push(''); }
+  }
+
+function program16(depth0,data) {
   
   
   data.buffer.push("Next");
+  }
+
+function program18(depth0,data) {
+  
+  
+  data.buffer.push("<ul class=\"pager\"><li>&nbsp;</li></ul>");
   }
 
   data.buffer.push("<div class=\"btn-group per-page\">");
@@ -208,17 +259,10 @@ function program11(depth0,data) {
     'count': (100)
   },hashTypes:{'count': "INTEGER"},hashContexts:{'count': depth0},inverse:self.program(3, program3, data),fn:self.program(7, program7, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</div><ul class=\"pager\"><li>");
-  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationLinkView", {hash:{
-    'type': ("prev")
-  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.program(3, program3, data),fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],data:data});
+  data.buffer.push("</div>");
+  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationPagesListView", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</li><li>");
-  stack1 = helpers.view.call(depth0, "Admin.Base.Views.PaginationLinkView", {hash:{
-    'type': ("next")
-  },hashTypes:{'type': "STRING"},hashContexts:{'type': depth0},inverse:self.program(3, program3, data),fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</li></ul><div class=\"page-number\">Page&nbsp;");
+  data.buffer.push("<div class=\"page-number\">Page&nbsp;");
   stack1 = helpers._triageMustache.call(depth0, "controller.page", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</div>");

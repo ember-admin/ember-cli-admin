@@ -6,13 +6,23 @@
   Admin.Base.Views.PaginationPerPageView count=100
     |100
 
-ul class="pager"
-  li
-    Admin.Base.Views.PaginationLinkView type="prev"
-      |Previous
-  li
-    Admin.Base.Views.PaginationLinkView type="next"
-      |Next
+
+Admin.Base.Views.PaginationPagesListView
+  unless view.onePage
+    ul class="pagination"
+      li
+        Admin.Base.Views.PaginationLinkView type="prev"
+          |Previous
+      each page in view.pages
+        li
+          Admin.Base.Views.PaginationNumberView number=page
+            = view.number
+      li
+        Admin.Base.Views.PaginationLinkView type="next"
+          |Next
+  else
+    ul class="pager"
+      li &nbsp;
 
 .page-number
   |Page&nbsp;

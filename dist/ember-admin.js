@@ -744,12 +744,14 @@ params:
     queryParams: ['page', 'perPage'],
     page: 1,
     perPage: 25,
-    numberOfPages: function() {
+    numberOfPages: (function() {
       return Math.ceil(this.get('total') / this.get('perPage'));
-    },
+    }).property('perPage'),
     actions: {
       nextPage: function() {
-        return this.incrementProperty('page');
+        if (this.get('page') < this.get('numberOfPages')) {
+          return this.incrementProperty('page');
+        }
       },
       prevPage: function() {
         if (this.get('page') > 1) {
@@ -760,7 +762,7 @@ params:
         return this.set('perPage', perPage);
       },
       changePage: function(page) {
-        return this.set('page', page);
+        return this.set('page', Number(page));
       }
     }
   });
@@ -1615,6 +1617,70 @@ params:
         return this.get('controller').send('prevPage');
       }
     }
+  });
+
+}).call(this);
+
+(function() {
+  Admin.Base.Views.PaginationNumberView = Ember.View.extend({
+    attributeBindings: ["href"],
+    tagName: "a",
+    classNameBindings: ["isActive:active"],
+    href: '#',
+    isActive: (function() {
+      return this.get('controller.page') === this.get('number');
+    }).property('controller.page'),
+    click: function(e) {
+      e.preventDefault();
+      if (this.get('number') !== '...') {
+        return this.get('controller').send('changePage', this.get('number'));
+      }
+    }
+  });
+
+}).call(this);
+
+(function() {
+  Admin.Base.Views.PaginationPagesListView = Ember.View.extend({
+    onePage: (function() {
+      return this.get('controller').get('numberOfPages') === 1;
+    }).property('controller.numberOfPages'),
+    step: 5,
+    pages: (function() {
+      var currentPage, i, leftEdge, numberOfPages, pages, rightEdge, step;
+      pages = [];
+      numberOfPages = this.get('controller').get('numberOfPages');
+      currentPage = this.get('controller').get('page');
+      step = this.get('step');
+      if (numberOfPages > step + 1) {
+        leftEdge = currentPage;
+        rightEdge = currentPage + step - 1;
+        if (rightEdge >= numberOfPages) {
+          rightEdge = numberOfPages;
+          leftEdge = numberOfPages - step + 1;
+        }
+        i = leftEdge;
+        while (i <= rightEdge) {
+          pages.push(i);
+          i++;
+        }
+        if (leftEdge > 1) {
+          pages.unshift('...');
+          pages.unshift(1);
+        }
+        if (rightEdge < numberOfPages) {
+          pages.push('...');
+          pages.push(numberOfPages);
+        }
+      } else {
+        i = 1;
+        while (i <= numberOfPages) {
+          pages.push(i);
+          i++;
+        }
+      }
+      return pages;
+    }).property('controller.page')
   });
 
 }).call(this);
