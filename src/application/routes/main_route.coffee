@@ -14,8 +14,11 @@ Admin.MainRoute = Ember.Route.extend Admin.Mixins.Routes.PaginationMixin,
       @perPage = options.perPage if options.perPage
     @_checkAction(options, transition.targetName)
     @_setAction(options.action) if options.action
-    @_setPage(@page)
-    @_setPerPage(@perPage)
+
+    unless @action
+      @_setPage(@page)
+      @_setPerPage(@perPage)
+
     try
       if this.store.modelFor(@modelName)
         return @_find_model(@modelName, options)

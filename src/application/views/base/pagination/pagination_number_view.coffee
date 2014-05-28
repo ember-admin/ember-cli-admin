@@ -11,4 +11,6 @@ Admin.Base.Views.PaginationNumberView = Ember.View.extend
 
   click: (e) ->
     e.preventDefault()
-    @get('controller').send('changePage',@get('number')) unless @get('number') == '...'
+    unless @get('number') == '...'
+      @get('controller').send('changePage',@get('number'))
+      window.scrollTo(0,0)

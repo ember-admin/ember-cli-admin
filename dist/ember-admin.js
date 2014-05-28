@@ -715,7 +715,7 @@ params:
       }
     },
     _redirectToTable: function() {
-      return this.transitionToRoute(this.get('__controller_name'));
+      return window.history.back();
     },
     _updateModel: function(redirect) {
       var _this = this;
@@ -915,8 +915,10 @@ params:
       if (options.action) {
         this._setAction(options.action);
       }
-      this._setPage(this.page);
-      this._setPerPage(this.perPage);
+      if (!this.action) {
+        this._setPage(this.page);
+        this._setPerPage(this.perPage);
+      }
       try {
         if (this.store.modelFor(this.modelName)) {
           return this._find_model(this.modelName, options);
@@ -1612,10 +1614,11 @@ params:
     click: function(e) {
       e.preventDefault();
       if (this.get('type') === 'next') {
-        return this.get('controller').send('nextPage');
+        this.get('controller').send('nextPage');
       } else {
-        return this.get('controller').send('prevPage');
+        this.get('controller').send('prevPage');
       }
+      return window.scrollTo(0, 0);
     }
   });
 
@@ -1633,7 +1636,8 @@ params:
     click: function(e) {
       e.preventDefault();
       if (this.get('number') !== '...') {
-        return this.get('controller').send('changePage', this.get('number'));
+        this.get('controller').send('changePage', this.get('number'));
+        return window.scrollTo(0, 0);
       }
     }
   });

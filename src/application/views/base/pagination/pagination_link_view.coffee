@@ -11,3 +11,4 @@ Admin.Base.Views.PaginationLinkView = Ember.View.extend
       @get('controller').send('nextPage')
     else
       @get('controller').send('prevPage')
+    window.scrollTo(0,0)
