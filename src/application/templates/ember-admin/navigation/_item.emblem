@@ -4,5 +4,7 @@ if navigation.hasChildren
   = partial "navigation/collection"
 else
   Admin.NavigationContentView contextBinding="navigation"
-    a{{bind-attr href="view.url"}}
+    = link-to navigation.route
+      = navigation.title
+    /a{{bind-attr href="view.url"}}
       = navigation.title
