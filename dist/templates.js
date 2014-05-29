@@ -874,16 +874,17 @@ function program7(depth0,data) {
   }
 function program8(depth0,data) {
   
-  var buffer = '', stack1;
-  data.buffer.push("<a ");
-  data.buffer.push(escapeExpression(helpers['bind-attr'].call(depth0, {hash:{
-    'href': ("view.url")
-  },hashTypes:{'href': "STRING"},hashContexts:{'href': depth0},contexts:[],types:[],data:data})));
-  data.buffer.push(">");
+  var stack1, helper, options;
+  stack1 = (helper = helpers['link-to'] || (depth0 && depth0['link-to']),options={hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "navigation.route", options) : helperMissing.call(depth0, "link-to", "navigation.route", options));
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  else { data.buffer.push(''); }
+  }
+function program9(depth0,data) {
+  
+  var stack1;
   stack1 = helpers._triageMustache.call(depth0, "navigation.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</a>");
-  return buffer;
+  else { data.buffer.push(''); }
   }
 
   stack1 = helpers['if'].call(depth0, "navigation.divider", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
