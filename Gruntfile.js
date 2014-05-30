@@ -25,7 +25,8 @@ module.exports = function(grunt) {
                       'src/application/routes/**/*.coffee',
                       'src/application/controllers/**/*.coffee',
                       'src/application/form_config.coffee',
-                      'src/application/adapters/*.coffee'
+                      'src/application/adapters/*.coffee',
+                      'src/application/decorators/*.coffee'
                     ]
                 }
             }
@@ -52,7 +53,7 @@ module.exports = function(grunt) {
             options: { mangle: false, compress: false },
 
             dist: {
-                src: ['src/ember-easyForm.js', 'vendor/jquery.cookie/jquery.cookie.js', 'dist/ember-admin.js', 'dist/templates.js'],
+                src: ['src/ember-easyForm.js', 'src/ember-easy-decorator.js', 'vendor/jquery.cookie/jquery.cookie.js', 'dist/ember-admin.js', 'dist/templates.js'],
                 dest: 'dist/ember-admin.min.js'
             }
         },

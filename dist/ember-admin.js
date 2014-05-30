@@ -1013,7 +1013,15 @@ params:
 }).call(this);
 
 (function() {
-  Admin.Base.Controllers.AdminBaseController = Ember.ObjectController.extend(Admin.Mixins.Controllers.BaseActionsMixin, Admin.Mixins.Controllers.FileUploadMixin, Admin.Mixins.Controllers.AttributesMixin, Admin.Mixins.Controllers.PaginationMixin, Admin.Mixins.Controllers.BatchActionsMixin, Admin.Mixins.Controllers.FormActionsMixin);
+  Admin.Base.Controllers.AdminBaseController = Ember.ObjectController.extend(Admin.Mixins.Controllers.BaseActionsMixin, Admin.Mixins.Controllers.FileUploadMixin, Admin.Mixins.Controllers.AttributesMixin, Admin.Mixins.Controllers.PaginationMixin, Admin.Mixins.Controllers.BatchActionsMixin, Admin.Mixins.Controllers.FormActionsMixin, {
+    decorator: (function() {
+      if (this.get('model')) {
+        return Admin.BaseDecorator.create({
+          model: this.get('model')
+        });
+      }
+    }).property('model')
+  });
 
 }).call(this);
 
@@ -1025,144 +1033,6 @@ params:
 }).call(this);
 
 (function() {
-  Ember.Handlebars.registerHelper("input-field", function(property, options) {
-    var config, configs, context, i, inputOptions, inputType, optionName, propertyType, type;
-    options = Ember.EasyForm.processOptions(property, options);
-    context = this;
-    if (options.hash.propertyBinding) {
-      options.hash.property = Ember.Handlebars.get(this, options.hash.propertyBinding, options);
-    }
-    if (options.hash.inputOptionsBinding) {
-      options.hash.inputOptions = Ember.Handlebars.get(this, options.hash.inputOptionsBinding, options);
-    }
-    property = options.hash.property;
-    propertyType = function(property) {
-      var e;
-      try {
-        return (context.get("content") || context).constructor.metaForProperty(property).type;
-      } catch (_error) {
-        e = _error;
-        return null;
-      }
-    };
-    options.hash.valueBinding = property;
-    options.hash.viewName = "input-field-" + options.data.view.elementId;
-    if (options.hash.inputOptions) {
-      inputOptions = options.hash.inputOptions;
-      optionName = void 0;
-      for (optionName in inputOptions) {
-        if (inputOptions.hasOwnProperty(optionName)) {
-          options.hash[optionName] = inputOptions[optionName];
-        }
-      }
-      delete options.hash.inputOptions;
-    }
-    if (options.hash.inputConfig) {
-      configs = options.hash.inputConfig.split(";");
-      i = configs.length;
-      while (i--) {
-        config = configs[i].split(":");
-        options.hash[config[0]] = config[1];
-      }
-    }
-    if (options.hash.as === "text") {
-      return Ember.Handlebars.helpers.view.call(context, Ember.EasyForm.TextArea, options);
-    } else if (options.hash.as === "select") {
-      delete options.hash.valueBinding;
-      type = context.get("model").constructor;
-      if (Admin.DSL.Attributes.relations(type).indexOf(property) >= 0) {
-        options.hash.attribute = property;
-        options.hash.content = context.store.findAll(property);
-        options.hash.selection = context.get(property);
-        options.hash.optionValuePath = "context.id";
-        options.hash.optionLabelPath = "context.title";
-        options.hash.prompt = "Place select %@".fmt(property);
-      } else {
-        options.hash.contentBinding = options.hash.collection;
-        options.hash.selectionBinding = options.hash.selection;
-        options.hash.valueBinding = options.hash.value;
-      }
-      return Ember.Handlebars.helpers.view.call(context, Ember.EasyForm.Select, options);
-    } else {
-      if (!options.hash.as) {
-        if (property.match(/password/)) {
-          options.hash.type = "password";
-        } else if (property.match(/email/)) {
-          options.hash.type = "email";
-        } else if (property.match(/url/)) {
-          options.hash.type = "url";
-        } else if (property.match(/color/)) {
-          options.hash.type = "color";
-        } else if (property.match(/^tel/)) {
-          options.hash.type = "tel";
-        } else if (property.match(/search/)) {
-          options.hash.type = "search";
-        } else {
-          if (propertyType(property) === "number" || typeof (context.get(property)) === "number") {
-            options.hash.type = "number";
-          } else if (propertyType(property) === "date" || (!Ember.isNone(context.get(property)) && context.get(property).constructor === Date)) {
-            options.hash.type = "date";
-          } else if (propertyType(property) === "boolean" || (!Ember.isNone(context.get(property)) && context.get(property).constructor === Boolean)) {
-            options.hash.checkedBinding = property;
-            return Ember.Handlebars.helpers.view.call(context, Ember.EasyForm.Checkbox, options);
-          }
-        }
-      } else {
-        inputType = Ember.EasyForm.Config.getInputType(options.hash.as);
-        if (inputType) {
-          options.hash.property = property;
-          return Ember.Handlebars.helpers.view.call(context, inputType, options);
-        }
-        options.hash.type = options.hash.as;
-      }
-      return Ember.Handlebars.helpers.view.call(context, Ember.EasyForm.TextField, options);
-    }
-  });
-
-  Ember.Handlebars.registerHelper("input", function(property, options) {
-    options = Ember.EasyForm.processOptions(property, options);
-    if (Admin.Forms.Filters.fileupload(options, property)) {
-      return;
-    }
-    if (Admin.Forms.Filters.mapField(options, property)) {
-      return;
-    }
-    Admin.Forms.Filters.as(options, property);
-    options.hash.property = property;
-    options.hash.isBlock = !!options.fn;
-    return Ember.Handlebars.helpers.view.call(this, Ember.EasyForm.Input, options);
-  });
-
-  Ember.Handlebars.registerBoundHelper("bound-input", function(property, options) {
-    options = Ember.EasyForm.processOptions(property, options);
-    if (Admin.Forms.Filters.fileupload(options, property)) {
-      return;
-    }
-    if (Admin.Forms.Filters.mapField(options, property)) {
-      return;
-    }
-    Admin.Forms.Filters.as(options, property);
-    options.hash.property = property;
-    options.hash.isBlock = !!options.fn;
-    return Ember.Handlebars.helpers.view.call(this, Ember.EasyForm.Input, options);
-  });
-
-  Ember.Handlebars.registerHelper('input-map', function(property, options) {
-    options = Ember.EasyForm.processOptions(property, options);
-    options.hash.property = property;
-    options.hash.isBlock = !!options.fn;
-    return Admin.Forms.Filters.map(options, property);
-  });
-
-  Ember.EasyForm.Select = Ember.Select.extend({
-    attributeBindings: ["attribute"],
-    change: function() {
-      var path;
-      path = "context.%@".fmt(this.get("attribute"));
-      return this.set(path, this.get("selection"));
-    }
-  });
-
   Ember.EasyForm.Form.reopen({
     submit: function(event) {
       var promise, _this;
@@ -1192,43 +1062,6 @@ params:
 }).call(this);
 
 (function() {
-  Admin.Forms.Filters = Ember.Object.extend().reopenClass({
-    fileupload: function(options, property) {
-      var context;
-      context = options.contexts[0];
-      return context.get("fileuploads") !== undefined && context.get("fileuploads").getEach("name").indexOf(property) >= 0;
-    },
-    mapField: function(options, property) {
-      var context, exist;
-      context = options.contexts[0];
-      exist = context.get("asGoogleMap") !== undefined && context.get("asGoogleMap").indexOf(property) >= 0;
-      if (exist) {
-        return exist;
-      }
-      return context.get("asYandexMap") !== undefined && context.get("asYandexMap").indexOf(property) >= 0;
-    },
-    as: function(options, property) {
-      var type;
-      type = options.contexts[0].get("model").constructor;
-      if (Admin.DSL.Attributes.relations(type).indexOf(property) >= 0) {
-        return options.hash.as = "select";
-      }
-    },
-    map: function(options, property) {
-      var context;
-      context = options.contexts[0];
-      if (context.get('asGoogleMap')) {
-        return Ember.Handlebars.helpers.view.call(context, Admin.Base.Views.GmapView, options);
-      }
-      if (context.get('asYandexMap')) {
-        return Ember.Handlebars.helpers.view.call(context, Admin.Base.Views.YandexMapView, options);
-      }
-    }
-  });
-
-}).call(this);
-
-(function() {
   Ember.Handlebars.registerHelper("fileupload", function(property, options) {
     options.hash.inputOptions = Ember.copy(options.hash);
     options.hash.property = property;
@@ -1239,6 +1072,21 @@ params:
     options.hash.inputOptions = Ember.copy(options.hash);
     options.hash.property = property;
     return Ember.Handlebars.helpers.view.call(this, Admin.Fileupload.DragAndDropZoneView, options);
+  });
+
+}).call(this);
+
+(function() {
+  Ember.Handlebars.registerHelper("input-map", function(property, options) {
+    options = Ember.EasyForm.processOptions(property, options);
+    options.hash.property = property;
+    options.hash.isBlock = !!options.fn;
+    if (this.get('model.asGoogleMap')) {
+      return Ember.Handlebars.helpers.view.call(this.get('model'), Admin.Base.Views.GmapView, options);
+    }
+    if (this.get('model.asYandexMap')) {
+      return Ember.Handlebars.helpers.view.call(this.get('model'), Admin.Base.Views.YandexMapView, options);
+    }
   });
 
 }).call(this);
@@ -2043,6 +1891,56 @@ params:
         };
         return request.send(record.get('file'));
       });
+    }
+  });
+
+}).call(this);
+
+(function() {
+  Admin.BaseDecorator = EmberEasyDecorator.extend({
+    unknownProperty: function(propertyName) {
+      var modelProperty;
+      if (/Value$/.test(propertyName)) {
+        modelProperty = propertyName.substr(0, propertyName.length - 5);
+        return this.get('model.%@'.fmt(modelProperty));
+      }
+      if (/SectionFields$/.test(propertyName)) {
+        return this._createSectionComputed(propertyName);
+      }
+      if (this.get('model.%@'.fmt(propertyName))) {
+        if (this._checkMapProperty(propertyName) || this._checkFileupload(propertyName)) {
+          return {
+            options: {
+              isVisible: false
+            }
+          };
+        }
+        if (Admin.DSL.Attributes.isBelongsTo(this.get("model").constructor, propertyName)) {
+          this.set('%@Collection'.fmt(propertyName), this.get('model.store').findAll(propertyName));
+          return {
+            html: {
+              optionLabelPath: 'content.title'
+            },
+            type: 'select',
+            options: {
+              relation: true
+            }
+          };
+        } else {
+          return this.get('model.%@'.fmt(propertyName));
+        }
+      }
+    },
+    _checkMapProperty: function(property) {
+      var exist;
+      exist = this.get("model.asGoogleMap") !== undefined && this.get("model.asGoogleMap").indexOf(property) >= 0;
+      if (exist) {
+        return exist;
+      }
+      return this.get("model.asYandexMap") !== undefined && this.get("model.asYandexMap").indexOf(property) >= 0;
+    },
+    _checkFileupload: function(property) {
+      return this.get("model.fileuploads") !== undefined && this.get("model.fileuploads").indexOf(property) >= 0;
     }
   });
 

@@ -724,9 +724,9 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   var helper, options;
-  data.buffer.push(escapeExpression((helper = helpers['bound-input'] || (depth0 && depth0['bound-input']),options={hash:{
+  data.buffer.push(escapeExpression((helper = helpers['decorator-input'] || (depth0 && depth0['decorator-input']),options={hash:{
     'inputConfig': ("class:form-control")
-  },hashTypes:{'inputConfig': "STRING"},hashContexts:{'inputConfig': depth0},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "attribute.name", options) : helperMissing.call(depth0, "bound-input", "attribute.name", options))));
+  },hashTypes:{'inputConfig': "STRING"},hashContexts:{'inputConfig': depth0},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "attribute.name", options) : helperMissing.call(depth0, "decorator-input", "attribute.name", options))));
   }
 
 function program4(depth0,data) {
@@ -743,7 +743,7 @@ function program6(depth0,data) {
 
   stack1 = (helper = helpers['form-for'] || (depth0 && depth0['form-for']),options={hash:{
     'wrapper': ("twitter-bootstrap")
-  },hashTypes:{'wrapper': "STRING"},hashContexts:{'wrapper': depth0},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "controller.model", options) : helperMissing.call(depth0, "form-for", "controller.model", options));
+  },hashTypes:{'wrapper': "STRING"},hashContexts:{'wrapper': depth0},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "controller.decorator.model", options) : helperMissing.call(depth0, "form-for", "controller.decorator.model", options));
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   else { data.buffer.push(''); }
   

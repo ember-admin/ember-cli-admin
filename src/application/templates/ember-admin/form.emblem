@@ -1,6 +1,6 @@
-= form-for controller.model wrapper="twitter-bootstrap"
+= form-for controller.decorator.model wrapper="twitter-bootstrap"
   each attribute in controller.formAttributes
-    = bound-input attribute.name inputConfig='class:form-control'
+    = decorator-input attribute.name inputConfig='class:form-control'
 
   each attribute in controller.fileuploads
     = bound-fileupload attribute.name
