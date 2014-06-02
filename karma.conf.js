@@ -4,7 +4,7 @@ module.exports = function(config) {
     files: [
       "vendor/jquery/jquery.min.js",
       "vendor/handlebars/handlebars.js",
-      "vendor/ember/ember.js",
+      "vendor/ember.js",
       "vendor/ember-data/ember-data.js",
       "vendor/jquery-mockjax/jquery.mockjax.js",
       "vendor/chance/chance.js",

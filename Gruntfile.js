@@ -41,7 +41,7 @@ module.exports = function(grunt) {
                     root: 'src/application/templates/',
                     dependencies: {
                         jquery: 'vendor/jquery/jquery.js',
-                        ember: 'vendor/ember/ember.js',
+                        ember: 'vendor/ember.js',
                         emblem: 'vendor/emblem/dist/emblem.js',
                         handlebars: 'vendor/handlebars/handlebars.js'
                     }
