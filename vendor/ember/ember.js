@@ -8,8 +8,6 @@
  * @version   1.7.0-beta.1+canary.0c75abb7
  */
 
-//sdsdsdssd
-fdfdfd
 (function() {
 var define, requireModule, require, requirejs, Ember;
 
