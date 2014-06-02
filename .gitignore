@@ -10,5 +10,6 @@ node_modules/*
 bower_components/*
 spec/ember-admin_spec.js
 .sass-cache/
-vendor/
+vendor/*
+!vendor/ember/
 coverage/
