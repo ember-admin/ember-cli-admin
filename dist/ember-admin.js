@@ -1930,6 +1930,7 @@ params:
           return this.get('model.%@'.fmt(propertyName));
         }
       }
+      return "";
     },
     _checkMapProperty: function(property) {
       var exist;

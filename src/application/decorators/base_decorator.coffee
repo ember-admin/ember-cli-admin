@@ -14,6 +14,7 @@ Admin.BaseDecorator = EmberEasyDecorator.extend
         return {html: {optionLabelPath: 'content.title'}, type: 'select', options: {relation: true}}
       else
         return @get('model.%@'.fmt(propertyName))
+    return ""
 
   _checkMapProperty: (property) ->
     exist = @get("model.asGoogleMap") isnt `undefined` and @get("model.asGoogleMap").indexOf(property) >= 0
