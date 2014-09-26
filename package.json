@@ -35,6 +35,7 @@
     "broccoli-sass": "^0.2.2",
     "broccoli-coffee": "^0.1.1",
     "broccoli-emblem-compiler": "^0.3.18",
-    "ember-cli-coffeescript": "^0.1.0"
+    "ember-cli-coffeescript": "^0.1.0",
+    "ember-cli-pretender": "^0.3.1"
   }
 }
