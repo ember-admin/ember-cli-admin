@@ -1,37 +1,16 @@
 {
-  "name": "ember-admin.js",
-  "version": "0.0.1",
-  "homepage": "https://github.com/ember-admin/ember-admin.js",
-  "authors": [
-    "Opak Alex <opak.alexandr@gmail.com>"
-  ],
-  "description": "Admin framework in Ember.js",
-  "main": "Gruntfile.js",
-  "keywords": [
-    "admin",
-    "js.",
-    "ember.js"
-  ],
-  "license": "MIT",
+  "name": "dummy",
   "dependencies": {
-    "handlebars": "1.3.0",
-    "jquery": "1.10.2",
-    "emblem": "latest",
-    "jquery.cookie": "1.3.1",
-    "ember-data": "1.0.0-beta.7",
-    "emblem.js": "latest",
-    "bootstrap": "3.0.3",
-    "chance": "latest",
-    "jquery-mockjax": "~1.5.3"
-  },
-  "resolutions": {
-    "handlebars": "~1.3.0"
-  },
-  "ignore": [
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests",
-    ".sass-cache"
-  ]
+    "handlebars": "~1.3.0",
+    "jquery": "^1.11.1",
+    "ember": "1.7.0",
+    "ember-resolver": "~0.1.7",
+    "loader": "stefanpenner/loader.js#1.0.1",
+    "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.3",
+    "ember-cli-test-loader": "rwjblue/ember-cli-test-loader#0.0.4",
+    "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.2",
+    "ember-qunit": "0.1.8",
+    "ember-qunit-notifications": "0.0.4",
+    "qunit": "~1.15.0"
+  }
 }
