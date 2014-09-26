@@ -31,6 +31,10 @@
     "ember-cli-ic-ajax": "0.1.1",
     "ember-cli-qunit": "0.0.5",
     "express": "^4.8.5",
-    "glob": "^4.0.5"
+    "glob": "^4.0.5",
+    "broccoli-sass": "^0.2.2",
+    "broccoli-coffee": "^0.1.1",
+    "broccoli-emblem-compiler": "^0.3.18",
+    "ember-cli-coffeescript": "^0.1.0"
   }
 }

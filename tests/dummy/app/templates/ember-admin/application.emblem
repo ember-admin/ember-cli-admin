@@ -1,0 +1,15 @@
+.wrapper
+  = partial "base/modals"
+  .row
+    .col-12
+      == outlet "navigation"
+  .row.breadcrumbs
+    .col-12
+      == outlet "actions"
+      == outlet "breadcrumbs"
+  #container.row-fluid
+    .wrap_content.main-content
+      == outlet "main"
+  .row
+    .col-12
+      == outlet "footer"

@@ -1,0 +1,22 @@
+Ember.View elementId="ActionModal" class="modal fade"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title= view.action.title
+      .modal-body
+        p
+          == view.action.confirm
+      .modal-footer
+        button type="button" class="btn btn-default" data-dismiss="modal" Close
+        button type="button" class="btn btn-primary" click="confirm target='view.target'" Confirm
+
+Ember.View class="file_upload modal fade" elementId="FileUploadModal"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title
+      .modal-body
+        img{{bind-attr src="view.image.url"}}
+      .modal-footer

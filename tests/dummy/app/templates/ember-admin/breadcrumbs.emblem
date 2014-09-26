@@ -1,0 +1,9 @@
+ul.breadcrumb
+  each breadcrumb in controller
+    if breadcrumb.active
+      li class="breadcrumb.class"
+        = breadcrumb.name
+    else
+      li class="breadcrumb.class"
+        a{{bind-attr href="breadcrumb.url"}}
+          = breadcrumb.name

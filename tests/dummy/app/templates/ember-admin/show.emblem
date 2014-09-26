@@ -1,0 +1,8 @@
+h2 Show
+
+table.show-details
+  tbody
+    each attribute in controller.formAttributes
+      tr
+        th = attribute.name
+        Admin.Base.Views.Table.TdView contextBinding="model" attributeNameBinding="attribute.name"
