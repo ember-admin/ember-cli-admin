@@ -1,6 +1,6 @@
 `import AdminTableViewController from 'dummy/controllers/base/table-view'`
-usersController = AdminTableViewController.extend
-  queryParams: ['page', 'perPage']
+
+usersController = AdminTableViewController.extend()
 ##  additionalActions: [
 ##    {
 ##      title: "clone",

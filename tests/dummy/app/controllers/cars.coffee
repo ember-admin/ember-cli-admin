@@ -1,5 +1,4 @@
 `import AdminTableViewController from 'dummy/controllers/base/table-view'`
-carsController = AdminTableViewController.extend
-  queryParams: ['page', 'perPage']
+carsController = AdminTableViewController.extend()
 
 `export default carsController`

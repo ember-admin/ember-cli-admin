@@ -1,6 +1,7 @@
 `import Ember from 'ember';`
 
 paginationMixin = Ember.Mixin.create
+  queryParams: ['page', 'perPage']
   page: 1
   perPage:25
 
