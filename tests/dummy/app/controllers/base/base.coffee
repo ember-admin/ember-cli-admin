@@ -14,6 +14,8 @@ baseController = Ember.Controller.extend BaseActionsMixin,
   BatchActionsMixin,
   FormActionsMixin,
 
+
+
   decorator: (->
     BaseDecorator.create(model: @get('model')) if @get('model')
   ).property('model')

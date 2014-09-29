@@ -27,13 +27,9 @@ AdminResolver = Resolver.default.extend
       this._setNames(parsedName)
     if (this.resolveOther(parsedName))
       return this.resolveOther(parsedName)
-    else
-      moduleName = "%@/controllers/application".fmt(this.namespace.modulePrefix)
-      module = require(moduleName, null, null, true)
-      if (module['default'])
-        module = module['default']
-      return module
-  ,
+    this._super(parsedName)
+
+
 
   _checkRouteName: (name) ->
     return 'route:application route:basic route:loading route:error'.w().indexOf(name) >= 0;

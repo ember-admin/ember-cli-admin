@@ -11,6 +11,7 @@ initializer = {
       ###
       @navigate "Dashboard", route: ""
       @navigate "Users"
+      @navigate "Cars"
   }
 
 `export default initializer`

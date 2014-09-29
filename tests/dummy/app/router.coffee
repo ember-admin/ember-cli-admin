@@ -11,5 +11,6 @@ Router.map ->
 
 MetaRoute.map Router, ->
   @resources "users"
+  @resources "cars"
 
 `export default Router;`
