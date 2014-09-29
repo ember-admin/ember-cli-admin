@@ -1,4 +1,4 @@
-`import AbstractMapView from 'dummy/views/map/abstract-map';`
+`import AbstractMapView from 'dummy/views/base/map/abstract-map';`
 
 yandexMapView = AbstractMapView.extend
 

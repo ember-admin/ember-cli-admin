@@ -34,15 +34,16 @@ params:
       @navigate "Users"
       @navigate "Settings", divider: true
 ###
+`import Ember from 'ember';`
 
-navigation = class Navigation
+navigationClass = class Navigation
   @content: []
 
   constructor: (container, @parentId) ->
     @container = (container || [])
 
   @map: (callback) ->
-    navigation = new Navigation()
+    navigation = new navigationClass()
     callback.call(navigation)
     @content = navigation.container
 
@@ -61,7 +62,7 @@ navigation = class Navigation
 
     if callback
       emberObject.set('hasChildren', true)
-      callback.call(new Navigation(emberObject.get('children'), emberObject.get('id')))
+      callback.call(new navigationClass(emberObject.get('children'), emberObject.get('id')))
     @container
 
   _makeRoute: (options={}) ->
@@ -74,4 +75,4 @@ navigation = class Navigation
   @findParent: (obj) ->
     @content.find (item) => item.id == obj.parentId
 
-`export default navigation;`
+`export default navigationClass;`

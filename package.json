@@ -36,6 +36,7 @@
     "broccoli-coffee": "^0.1.1",
     "broccoli-emblem-compiler": "^0.3.18",
     "ember-cli-coffeescript": "^0.1.0",
-    "ember-cli-pretender": "^0.3.1"
+    "ember-cli-pretender": "^0.3.1",
+    "connect-restreamer": "^1.0.0"
   }
 }

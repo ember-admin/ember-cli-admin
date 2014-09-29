@@ -1,4 +1,4 @@
-Admin.NavigationContentView class="dropdown" contextBinding="navigation"
+view 'navigation/navigation-content' class="dropdown" contextBinding="navigation"
   a class="dropdown-toggle" data-toggle="dropdown" href="#"
     = navigation.title
     span class="caret"

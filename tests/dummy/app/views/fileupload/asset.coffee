@@ -1,4 +1,6 @@
-Admin.Fileupload.AssetView = Admin.Base.Views.BaseActionView.extend
+`import BaseActionView from 'dummy/views/base/actions/base-action';`
+
+assetView = BaseActionView.extend
   attributeBindings: ["templateName", 'property']
 
   actions:
@@ -16,3 +18,5 @@ Admin.Fileupload.AssetView = Admin.Base.Views.BaseActionView.extend
   action: (->
     {title: 'Delete', confirm: "Are you shure delete this?"}
   ).property()
+
+`export default assetView;`

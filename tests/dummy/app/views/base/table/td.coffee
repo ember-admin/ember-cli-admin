@@ -5,7 +5,7 @@
 
 ###
 `import Ember from 'ember';`
-`import Attributes from 'dummy/dsl/attributes`;
+`import Attributes from 'dummy/dsl/attributes';`
 
 tdView = Ember.View.extend
   attributeBindings: ["style", 'data-column']

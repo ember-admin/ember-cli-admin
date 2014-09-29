@@ -4,5 +4,5 @@
     span class="caret"
   ul.dropdown-menu
     each action in controller.batchActions
-      Admin.Base.Views.BatchActionView contextBinding="action"
+      view 'base/actions/batch-action' contextBinding="action"
         a href="#"= action.title

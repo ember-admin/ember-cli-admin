@@ -1,4 +1,6 @@
-Admin.NavigationContentView = Ember.View.extend
+`import Ember from 'ember';`
+
+navigationContentView = Ember.View.extend
   tagName: "li"
 
   classNameBindings: ["isActive:active"]
@@ -18,3 +20,5 @@ Admin.NavigationContentView = Ember.View.extend
     @get('context.children').forEach (item) =>
       return hasChild = true if item.route == @get('controller.activeMenu')
     hasChild
+
+`export default navigationContentView;`

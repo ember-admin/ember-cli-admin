@@ -24,10 +24,11 @@ mainRoute = Ember.Route.extend PaginationMixin,
       @_setPage(@page)
       @_setPerPage(@perPage)
 
-    try
-      if this.store.modelFor(@modelName)
-        return @_find_model(@modelName, options)
-    catch e
+#    try
+    console.log @modelName
+    if this.store.modelFor(@modelName)
+      return @_find_model(@modelName, options)
+#    catch e
 
   setupController:(controller, model) ->
     @_setSiteTitle(controller, model)

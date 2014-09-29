@@ -29,4 +29,4 @@ formActionsMixin = Ember.Mixin.create
       else
         @send('edit', @get('model'))
 
-`exxport default formActionsMixin;`
+`export default formActionsMixin;`

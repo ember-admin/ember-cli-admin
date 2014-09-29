@@ -12,6 +12,7 @@ controllerMixin =  Ember.Mixin.create
   _getControllerTemplate: (controller) ->
     name = @_controllerName(controller)
     name = "%@/%@".fmt(name, @action) if @action
+    return "dashboard" if name == "dashboard"
     if Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]
       name
     else

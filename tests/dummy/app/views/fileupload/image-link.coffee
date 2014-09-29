@@ -1,4 +1,6 @@
-Admin.Fileupload.ImageLinkView = Ember.View.extend
+`import Ember from 'ember';`
+
+imageLinkView = Ember.View.extend
   tagName: "a"
 
   attributeBindings: ["href"]
@@ -12,3 +14,4 @@ Admin.Fileupload.ImageLinkView = Ember.View.extend
     imageView = Ember.View.views['FileUploadModal']
     imageView.set('image', @get('image'))
     imageView.$().modal({})
+`export default imageLinkView;`

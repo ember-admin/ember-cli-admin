@@ -4,27 +4,27 @@
 abstractMapView = Ember.View.extend
   templateName: "base/_geo"
 
-  lan: (->
-    @get("context.#{@get('lanAttr')}")
+  lat: (->
+    @get("context.#{@get('latAttr')}")
   ).property()
 
   setLan: (value) ->
-    @get('context').set(@get('lanAttr'), value)
+    @get('context').set(@get('latAttr'), value)
 
-  lanAttr:(->
+  latAttr:(->
     @get("context.#{@get('mapType')}")[0]
   ).property()
 
-  lng:(->
-    @get("context.#{@get('lngAttr')}")
+  long:(->
+    @get("context.#{@get('longAttr')}")
   ).property()
 
-  lngAttr:(->
+  longAttr:(->
     @get("context.#{@get('mapType')}")[1]
   ).property()
 
-  setLng: (value) ->
-    @get('context').set(@get('lngAttr'), value)
+  setLong: (value) ->
+    @get('context').set(@get('longAttr'), value)
 
   zoom:(->
     @get("context.#{@get('zoomAttr')}") || 8
@@ -38,17 +38,17 @@ abstractMapView = Ember.View.extend
     @get('context').set(@get('zoomAttr'), value)
 
   centerCoords: ->
-    if @get('lan') && @get('lng')
-      [@get('lan'), @get('lng')]
+    if @get('lat') && @get('long')
+      [@get('lat'), @get('long')]
     else
       Config.get('mapCenter').split(",")
 
   setAttrs: (pos) ->
     if pos['push']
-      @setLan(pos[0])
-      @setLng(pos[1])
+      @setLat(pos[0])
+      @setLong(pos[1])
     else
-      @setLan(pos.ob)
-      @setLng(pos.pb)
+      @setLat(pos.ob)
+      @setLong(pos.pb)
 
 `export default abstractMapView;`

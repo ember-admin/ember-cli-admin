@@ -1,11 +1,11 @@
-metaRoute = class MetaRoute
+metaRouteClass = class MetaRoute
   @map: (router, callback) ->
     @router = router
-    callback.call(new Admin.MetaRoute())
+    callback.call(new metaRouteClass())
 
   resources: (name) ->
     self = @
-    Admin.MetaRoute.router.map () ->
+    metaRouteClass.router.map () ->
       @route name, path: "/#{name}"
       @route "#{name}.edit", path: self._action_edit_path(name)
       @route "#{name}.show", path: self._action_show_path(name)
@@ -19,4 +19,5 @@ metaRoute = class MetaRoute
 
   _new_path: (name) ->
     "/#{name}/new"
-`export default metaRoute;`
+
+`export default metaRouteClass;`

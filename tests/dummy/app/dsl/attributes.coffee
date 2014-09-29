@@ -40,4 +40,4 @@ attributes = class Attributes
   @systemAttrs: (modelType) ->
     ["created_at", "updated_at"]
 
-`export default Attributes;`
+`export default attributes;`

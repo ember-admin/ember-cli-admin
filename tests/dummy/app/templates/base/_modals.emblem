@@ -1,4 +1,4 @@
-Ember.View elementId="ActionModal" class="modal fade"
+view elementId="ActionModal" class="modal fade"
   .modal-dialog
     .modal-content
       .modal-header
@@ -11,7 +11,7 @@ Ember.View elementId="ActionModal" class="modal fade"
         button type="button" class="btn btn-default" data-dismiss="modal" Close
         button type="button" class="btn btn-primary" click="confirm target='view.target'" Confirm
 
-Ember.View class="file_upload modal fade" elementId="FileUploadModal"
+view class="file_upload modal fade" elementId="FileUploadModal"
   .modal-dialog
     .modal-content
       .modal-header
