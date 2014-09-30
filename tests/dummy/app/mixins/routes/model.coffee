@@ -1,6 +1,27 @@
 `import Ember from 'ember';`
 
 modelMixin =  Ember.Mixin.create
+  beforeModel: (transition) ->
+    @action = undefined
+    @page = undefined
+    @perPage = undefined
+    @modelName = @_modelName(transition.targetName)
+
+  model: (options, transition) ->
+    if options
+      @page = options.page if options.page
+      @perPage = options.perPage if options.perPage
+    @_checkAction(options, transition.targetName)
+    @_setAction(options.action) if options.action
+
+    unless @action
+      @_setPage(@page)
+      @_setPerPage(@perPage)
+
+    try
+      if this.store.modelFor(@modelName)
+        return @_find_model(@modelName, options)
+    catch e
 
   _find_model: (modelName, options) ->
     return this.store.createRecord(modelName, {}) if options.action == "new"
