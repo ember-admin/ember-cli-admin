@@ -1,6 +1,6 @@
-`import AdminTableViewController from 'dummy/controllers/base/table-view'`
+`import TableViewController from 'dummy/mixins/controllers/table-view';`
 
-usersController = AdminTableViewController.extend()
+usersController = Ember.ObjectController.extend(TableViewController)
 ##  additionalActions: [
 ##    {
 ##      title: "clone",

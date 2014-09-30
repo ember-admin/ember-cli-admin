@@ -1,4 +1,3 @@
-`import AdminTableViewController from 'dummy/controllers/base/table-view'`
-carsController = AdminTableViewController.extend()
-
+`import TableViewController from 'dummy/mixins/controllers/table-view';`
+carsController = Ember.ObjectController.extend(TableViewController)
 `export default carsController`
