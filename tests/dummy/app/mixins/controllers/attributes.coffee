@@ -13,7 +13,8 @@ attributesMixin =  Ember.Mixin.create
   ).property('modelAttributes.@each')
 
   fileuploads:(->
-    @get('model.fileuploads').map (attr) -> { name: attr } if @get('model.fileuploads')
+    if @get('model.fileuploads')
+      @get('model.fileuploads').map (attr) -> { name: attr }
   ).property('model.fileuploads')
 
 `export default attributesMixin;`

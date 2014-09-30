@@ -15,6 +15,7 @@ adminResolver = Resolver.default.extend
         return module
 
   resolveController: (parsedName) ->
+    console.log parsedName
 
     this.useRouterNaming(parsedName)
 
@@ -39,8 +40,9 @@ adminResolver = Resolver.default.extend
     parsedName.fullName = this._replaceForResource(parsedName.fullName);
     parsedName.fullNameWithoutType = this._replaceForResource(parsedName.fullNameWithoutType);
     parsedName.name = this._replaceForResource(parsedName.name)
+    console.log parsedName
 
   _pattern: () ->
-    return /([Ss]how\/)|([Ee]dit\/)|([Nn]ew\/)/
+    return /(\/[Ss]how)|(\/[Ee]dit)|(\/[Nn]ew)/
 
 `export default adminResolver`
