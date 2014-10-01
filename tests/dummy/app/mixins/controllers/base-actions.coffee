@@ -61,12 +61,12 @@ baseActionsMixin = Ember.Mixin.create
   _destroyItem: (model)->
     model.deleteRecord()
     model.save().then =>
-      @transitionToRoute(@get('__controller_name'))
+      @transitionToRoute(@get('_name'))
 
   _path: (model, type)->
     if type
-      "/%@/%@/%@".fmt(@get('__controller_name'), model.get('id'), type)
+      "/%@/%@/%@".fmt(@get('_name'), model.get('id'), type)
     else
-      "/%@/%@".fmt(@get('__controller_name'), model)
+      "/%@/%@".fmt(@get('_name'), model)
 
 `export default baseActionsMixin;`

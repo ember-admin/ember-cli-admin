@@ -1,4 +1,4 @@
-= form-for controller.decorator.model wrapper="twitter-bootstrap"
+/= form-for controller.decorator.model wrapper="twitter-bootstrap"
   each attribute in controller.formAttributes
     = decorator-input attribute.name inputConfig='class:form-control'
 

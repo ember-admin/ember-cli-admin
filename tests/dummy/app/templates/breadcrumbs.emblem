@@ -5,5 +5,5 @@ ul.breadcrumb
         = breadcrumb.name
     else
       li class="breadcrumb.class"
-        a{{bind-attr href="breadcrumb.url"}}
+        link-to breadcrumb.url
           = breadcrumb.name

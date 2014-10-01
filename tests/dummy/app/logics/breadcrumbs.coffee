@@ -6,10 +6,10 @@ breadcrumbs = Ember.Object.extend()
 breadcrumbs.reopenClass
   setup: (action, controller, model, breadcrumbs_controller) ->
     content = []
-    obj = Ember.Object.create({name: "dashboard", url: @_url("#/"), class: "first", active: false})
+    obj = Ember.Object.create({name: "dashboard", url: @_url("dashboard"), class: "first", active: false})
     content.pushObject(obj)
-    obj = Ember.Object.create({name: controller.get('__controller_name'), url: @_url("#/#{controller.get('__controller_name')}"), class: "active", active: true})
-    if action && action != "page" && model
+    obj = Ember.Object.create({name: controller.get('_name'), url: @_url(controller.get('_name')), class: "active", active: true})
+    if action && model
       obj.set('class', "")
       obj.set('active', false)
       content.pushObject(obj)
@@ -17,15 +17,12 @@ breadcrumbs.reopenClass
       obj = Ember.Object.create({name: name, class: "active", active: true})
       content.pushObject(obj)
     else
-      content.pushObject(obj) if  controller.get('__controller_name')
+      content.pushObject(obj)
     breadcrumbs_controller.set('content', content)
     @_actions(action, controller)
 
   _url: (url) ->
-    if Config.get('namespace')
-      "/%@%@".fmt(Config.get('namespace'), url)
-    else
-      url
+    url
 
   _actions: (action, controller) ->
     actions = []

@@ -1,6 +1,7 @@
 `import Ember from 'ember';`
 
 modelMixin =  Ember.Mixin.create
+
   beforeModel: (transition) ->
     @action = undefined
     @page = undefined
@@ -8,15 +9,10 @@ modelMixin =  Ember.Mixin.create
     @modelName = @_modelName(transition.targetName)
 
   model: (options, transition) ->
-    if options
-      @page = options.page if options.page
-      @perPage = options.perPage if options.perPage
+    @page = options?.page || 1
+    @perPage = options?.perPage || 25
     @_checkAction(options, transition.targetName)
     @_setAction(options.action) if options.action
-
-    unless @action
-      @_setPage(@page)
-      @_setPerPage(@perPage)
 
     return unless this.container.lookupFactory('model:' + @modelName)
 
@@ -25,14 +21,14 @@ modelMixin =  Ember.Mixin.create
 
   _find_model: (modelName, options) ->
     return this.store.createRecord(modelName, {}) if options.action == "new"
-    return @pagination(modelName) unless options.id
+    return @pagination(modelName, {page: @page, perPage: @perPage}) unless options.id
     this.store.find(modelName, options.id)
 
   _setModel: (controller, model) ->
     return unless model
 
     if model.type
-      return controller.set('model', Ember.Object.create(items:  model, __list: true, total:model.meta.total))
+      return controller.set('model', Ember.Object.create(items:  model, __list: true, total: model.meta.total))
     controller.set('model', model)
 
   _modelName:(name) ->

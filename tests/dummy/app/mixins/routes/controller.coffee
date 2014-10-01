@@ -19,7 +19,7 @@ controllerMixin =  Ember.Mixin.create
       if @action && @action != "page" then @action else "main"
 
   _controllerName: (controller) ->
-    @controllerName ||= controller._debugContainerKey.split(":")[1].replace(/(Show)|(Edit)|(New)|(Page)/, '')
+    @controllerName ||= controller._debugContainerKey.split(":")[1].replace(/(\/[Ss]how)|(\/[Ee]dit)|(\/[Nn]ew)/, '')
 
   _setActiveRoute: (controller) ->
     url = @_controllerName(controller)

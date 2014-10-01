@@ -7,7 +7,6 @@ setupControllerMixin = Ember.Mixin.create
     if model
       @_setModel(controller, model)
       type = (model.type || model.constructor)
-      @_setupPaginationInfo(controller)
       controller.set('modelAttributes', Attributes.detect(type))
       controller.set('batches', [])
 

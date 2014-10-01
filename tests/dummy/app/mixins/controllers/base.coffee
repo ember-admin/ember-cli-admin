@@ -13,6 +13,10 @@ baseMixin = Ember.Mixin.create
     BaseDecorator.create(model: @get('model')) if @get('model')
   ).property('model')
 
+  _name: (->
+    @_debugContainerKey.split(":")[1].replace(/(\/[Ss]how)|(\/[Ee]dit)|(\/[Nn]ew)/, '')
+  ).property()
+
 baseMixin.reopen(
   BaseActionsMixin,
   FileUploadMixin,
