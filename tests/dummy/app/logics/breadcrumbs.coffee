@@ -1,5 +1,4 @@
 `import Ember from 'ember';`
-`import Config from 'dummy/config';`
 
 breadcrumbs = Ember.Object.extend()
 
