@@ -1,0 +1,12 @@
+.modal.show
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" click="closeModal" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title= modalObject.actionData.title
+      .modal-body
+        p
+          == modalObject.actionData.confirm
+      .modal-footer
+        button type="button" class="btn btn-default" data-dismiss="modal" click="closeModal" Close
+        button type="button" class="btn btn-primary" click="confirm" Confirm

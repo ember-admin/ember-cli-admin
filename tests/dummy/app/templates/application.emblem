@@ -1,5 +1,5 @@
 .wrapper
-  = partial "base/modals"
+  == outlet "modal"
   .row
     .col-12
       == outlet "navigation"
