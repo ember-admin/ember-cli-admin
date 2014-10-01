@@ -37,6 +37,8 @@
     "broccoli-emblem-compiler": "^0.3.18",
     "ember-cli-coffeescript": "^0.1.0",
     "ember-cli-pretender": "^0.3.1",
-    "connect-restreamer": "^1.0.0"
+    "connect-restreamer": "^1.0.0",
+    "broccoli-static-compiler": "0.1.4",
+    "broccoli-merge-trees": "0.1.4"
   }
 }
