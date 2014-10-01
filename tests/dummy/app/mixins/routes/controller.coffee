@@ -23,7 +23,6 @@ controllerMixin =  Ember.Mixin.create
 
   _setActiveRoute: (controller) ->
     url = @_controllerName(controller)
-    url = "" if url == "dashboard" #todo check for root route
     @controllerFor("navigation").set('activeMenu', url)
 
   _setAction: (action) ->

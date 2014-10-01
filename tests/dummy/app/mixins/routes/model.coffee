@@ -18,10 +18,10 @@ modelMixin =  Ember.Mixin.create
       @_setPage(@page)
       @_setPerPage(@perPage)
 
-    try
-      if this.store.modelFor(@modelName)
-        return @_find_model(@modelName, options)
-    catch e
+    return unless this.container.lookupFactory('model:' + @modelName)
+
+    if this.store.modelFor(@modelName)
+      return @_find_model(@modelName, options)
 
   _find_model: (modelName, options) ->
     return this.store.createRecord(modelName, {}) if options.action == "new"
