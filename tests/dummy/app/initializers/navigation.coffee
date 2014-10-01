@@ -10,7 +10,8 @@ initializer = {
         You can owerride this if you don't use dashboard
       ###
       @navigate "Dashboard", route: "dashboard"
-      @navigate "Users"
+      @navigate "Admin", ->
+        @navigate "Users"
       @navigate "Cars"
   }
 

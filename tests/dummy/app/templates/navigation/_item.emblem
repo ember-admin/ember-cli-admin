@@ -3,6 +3,6 @@ if navigation.divider
 if navigation.hasChildren
   = partial "navigation/collection"
 else
-  view 'navigation/navigation-content' contextBinding="navigation"
+  = navigation-menu content=navigation
     = link-to navigation.route
       = navigation.title
