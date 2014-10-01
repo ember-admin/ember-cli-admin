@@ -5,6 +5,8 @@ var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 var app = new EmberAddon();
 app.import('vendor/ember-easy-decorator.js');
 app.import('vendor/ember-easyForm.js');
+app.import('bower_components/ember-forms/dist/globals/main.js');
+app.import('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js');
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
@@ -19,4 +21,15 @@ app.import('vendor/ember-easyForm.js');
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-module.exports = app.toTree();
+// module.exports = app.toTree();
+
+// Put the bootstrap fonts in the place that the bootstrap css expects to find them.
+var pickFiles = require('broccoli-static-compiler');
+var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
+    srcDir: '/',
+    destDir: '/assets/bootstrap'
+});
+
+// Merge the bootstrapFonts with the ember app tree
+var mergeTrees = require('broccoli-merge-trees');
+module.exports = mergeTrees([app.toTree(),bootstrapFonts]);

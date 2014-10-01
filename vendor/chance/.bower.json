@@ -1,0 +1,34 @@
+{
+  "name": "chance",
+  "version": "0.6.1",
+  "main": "chance.js",
+  "ignore": [
+    "node_modules"
+  ],
+  "description": "Chance - Utility library to generate anything random",
+  "homepage": "http://chancejs.com",
+  "keywords": [
+    "chance",
+    "random",
+    "generator"
+  ],
+  "author": {
+    "name": "Victor Quinn",
+    "web": "http://victorquinn.com"
+  },
+  "devDependencies": {
+    "mocha": "1.18.0",
+    "chai": "~1.9.0",
+    "requirejs": "~2.1.11",
+    "lodash": "~2.4.1"
+  },
+  "_release": "0.6.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.6.1",
+    "commit": "483ba9ce269c69a563dd83b489a72dde7582eb39"
+  },
+  "_source": "git://github.com/victorquinn/chancejs.git",
+  "_target": "*",
+  "_originalSource": "chance"
+}
