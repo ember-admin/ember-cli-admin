@@ -7,18 +7,21 @@
     |100
 
 
-view 'base/pagination/pagination-pages-list'
-  unless view.onePage
+/view 'base/pagination/pagination-pages-list'
+pagination-pages-list numberOfPages=controller.numberOfPages page=controller.page
+  unless onePage
     ul class="pagination"
       li
-        view 'base/pagination/pagination-link' type="prev"
+        /view 'base/pagination/pagination-link' type="prev"
+        pagination-link type="prev" action="prevPage"
           |Previous
-      each page in view.pages
+      each page in pages
         li
-          view 'base/pagination/pagination-number' number=page
-            = view.number
+          /view 'base/pagination/pagination-number' number=page
+          pagination-number number=page page=controller.page action="changePage"
+            = page
       li
-        view 'base/pagination/pagination-link' type="next"
+        pagination-link type="next" action="nextPage"
           |Next
   else
     ul class="pager"

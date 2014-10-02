@@ -1,0 +1,17 @@
+unless view.onePage
+  ul class="pagination"
+    li
+      /view 'base/pagination/pagination-link' type="prev"
+      pagination-link type="prev" action="prevPage"
+        |Previous
+    each page in view.pages
+      li
+        /view 'base/pagination/pagination-number' number=page
+        pagination-number number=page page=controller.page action="changePage"
+          = page
+    li
+      pagination-link type="next" action="nextPage"
+        |Next
+else
+  ul class="pager"
+    li &nbsp;
