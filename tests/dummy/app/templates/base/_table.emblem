@@ -13,7 +13,7 @@ table.table-striped
         td
           view 'base/actions/checkbox-batch' contextBinding="item"
         each attributeName in controller.tableAttributes
-          td-element attributeNameBinding="attributeName" itemBinding="item"
+          td-element attributeName=attributeName item=item
         td.actions
           if controller.collectionActions
             = partial "base/actions/_base_actions"
