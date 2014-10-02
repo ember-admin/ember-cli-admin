@@ -7,32 +7,32 @@
 `import Ember from 'ember';`
 `import Attributes from 'dummy/dsl/attributes';`
 
-tdView = Ember.View.extend
+tdComponent = Ember.Component.extend
   attributeBindings: ["style", 'data-column']
 
   relations: "name title".w()
   fileuploads: "thumb_url".w()
 
-  templateName: "base/_td_template"
+#  templateName: "base/_td_template"
 
   tagName: "td"
 
   'data-column': Ember.computed.alias('attributeName')
 
   createObserves:(->
-    if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >= 0
+    if @get('item.fileuploads') && @get('item.fileuploads').indexOf(@get('attributeName')) >= 0
       @get('fileuploads').forEach (attr) =>
-        @addObserver("context.#{@get('attributeName')}.#{attr}", ->
+        @addObserver("item.#{@get('attributeName')}.#{attr}", ->
           @notifyPropertyChange("value")
         )
       return
-    if Attributes.relations(@get('context').constructor).indexOf(@get('attributeName')) >= 0
+    if Attributes.relations(@get('item').constructor).indexOf(@get('attributeName')) >= 0
       @get('relations').forEach (attr) =>
-        @addObserver("context.#{@get('attributeName')}.#{attr}", @, ->
+        @addObserver("item.#{@get('attributeName')}.#{attr}", @, ->
           @notifyPropertyChange("value")
         )
       return
-    @addObserver("context.#{@get('attributeName')}", @, ->
+    @addObserver("item.#{@get('attributeName')}", @, ->
       @notifyPropertyChange("value")
     )
   ).on('didInsertElement')
@@ -41,10 +41,10 @@ tdView = Ember.View.extend
     record = @get(@path())
     return record if !record || (!record['get'] || !record.get('id'))
     @relation(record, @get('attributeName'))
-  ).property("context")
+  ).property("item")
 
   image_object:(->
-    @get("context.#{@get('attributeName')}")
+    @get("item.#{@get('attributeName')}")
   ).property('value')
 
   color: (->
@@ -54,7 +54,7 @@ tdView = Ember.View.extend
   ).property('value')
 
   image: (->
-    if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >=0
+    if @get('item.fileuploads') && @get('item.fileuploads').indexOf(@get('attributeName')) >=0
       @set('text', false)
       true
   ).property('value')
@@ -64,15 +64,15 @@ tdView = Ember.View.extend
   ).property('value')
 
   path: ->
-    "context.%@".fmt(@get('attributeName'))
+    "item.%@".fmt(@get('attributeName'))
 
   relation: (record) ->
     return unless record
     value = ""
-    if @get('context.fileuploads') && @get('context.fileuploads').indexOf(@get('attributeName')) >= 0
+    if @get('item.fileuploads') && @get('item.fileuploads').indexOf(@get('attributeName')) >= 0
       @get('fileuploads').forEach (attr) => value = record.get(attr) if record.get(attr)
-    if Attributes.relations(@get('context').constructor).indexOf(@get('attributeName')) >= 0
+    if Attributes.relations(@get('item').constructor).indexOf(@get('attributeName')) >= 0
       @get('relations').forEach (attr) => value = record.get(attr) if record.get(attr)
     value
 
-`export default tdView;`
+`export default tdComponent;`

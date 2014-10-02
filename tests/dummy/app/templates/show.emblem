@@ -5,4 +5,4 @@ table.show-details
     each attribute in controller.formAttributes
       tr
         th = attribute.name
-        view 'base/table/td' contextBinding="model" attributeNameBinding="attribute.name"
+        td-element attributeNameBinding="attribute.name" itemBinding="model"
