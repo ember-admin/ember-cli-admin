@@ -9,7 +9,10 @@ modalMixin = Ember.Mixin.create
 
     confirm: ->
       modelObject = @get('controller.modalObject')
-      @get('controller').send(modelObject.get('actionData.action'), modelObject.get('model'))
+      if modelObject.get('options').batch
+        @get('controller').send('baseBatchAction', modelObject.get('actionData.action'))
+      else
+        @get('controller').send(modelObject.get('actionData.action'), modelObject.get('model'))
       @send('closeModal')
 
     closeModal: ->

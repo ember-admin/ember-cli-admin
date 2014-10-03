@@ -6,8 +6,8 @@ baseActionView = Ember.View.extend
     confirm: ->
 #      Ember.View.views["ActionModal"].$().modal('hide')
 
-  _showConfirmation: ->
+  _showConfirmation: (options = {})->
     action =  @get('action') || @get('context')
-    @get('controller').send('openModal', Ember.Object.create(actionData: action, model: @get('model')))
+    @get('controller').send('openModal', Ember.Object.create(actionData: action, model: @get('model'), options: options))
 
 `export default baseActionView;`

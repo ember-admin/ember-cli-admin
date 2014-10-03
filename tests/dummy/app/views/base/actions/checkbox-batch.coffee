@@ -11,6 +11,13 @@ checkboxBatchView = Ember.Checkbox.extend
       @get('controller.__batches').removeObject(@get('context'))
   ).observes('checked')
 
+  observerForChangeBatchesCollection:(->
+    Ember.run.later =>
+      if @get('controller.__batches').length == 0 && @get('selectAll')
+        @set('checked', false)
+    , 300
+  ).observes('controller.__batches.@each')
+
   _selectAllAction: ->
     @set('controller.__batches', [])
     return unless @get('checked')
