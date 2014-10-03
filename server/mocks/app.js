@@ -8,5 +8,9 @@ module.exports = function(app) {
   appRouter.get('/users', function(req, res) {
     res.send({users: users, meta:{total: 40}});
   });
+
+  appRouter.delete('/users/:id', function(req, res) {
+    res.send({});
+  });
   app.use('/api', appRouter);
 };

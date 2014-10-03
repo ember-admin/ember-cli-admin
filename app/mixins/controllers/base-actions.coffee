@@ -25,7 +25,7 @@ baseActionsMixin = Ember.Mixin.create
   collectionActions: [{title: "Edit", class: "btn btn-small btn-primary", action: "edit", iconClass: "glyphicon glyphicon-pencil"},
                       {title: "Show", class: "btn btn-small btn-success", action: "show",
                       iconClass: "glyphicon glyphicon-info-sign"},
-                      {title: "Delete", confirm: "are you shure to delete this?", class: "btn btn-small btn-danger",
+                      {title: "Delete", confirm: "Are you sure you want to delete this?", class: "btn btn-small btn-danger",
                       action: "destroy", iconClass: "glyphicon glyphicon-trash"}]
 
   actionNew:(->

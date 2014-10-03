@@ -1,4 +1,4 @@
-`import BaseControllerMixin from 'dummy/mixins/controllers/base';`
+`import BaseControllerMixin from '../controllers/base';`
 
 tableViewMixin = Ember.Mixin.create
   __table: true

@@ -1,4 +1,4 @@
-`import Navigation from 'dummy/dsl/navigation'`
+`import Navigation from '../dsl/navigation'`
 
 initializer = {
   name: 'navigation'
