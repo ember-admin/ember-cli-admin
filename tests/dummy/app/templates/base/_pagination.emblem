@@ -1,23 +1,21 @@
 .btn-group.per-page
-  view 'base/pagination/pagination-per-page' count=25
+  pagination-per-page count=25 action="changePerPage" perPage=controller.perPage
     |25
-  view 'base/pagination/pagination-per-page' count=50
+  pagination-per-page count=50 action="changePerPage" perPage=controller.perPage
     |50
-  view 'base/pagination/pagination-per-page' count=100
+  pagination-per-page count=100 action="changePerPage" perPage=controller.perPage
     |100
 
 
-/view 'base/pagination/pagination-pages-list'
+
 pagination-pages-list numberOfPages=controller.numberOfPages page=controller.page
   unless onePage
     ul class="pagination"
       li
-        /view 'base/pagination/pagination-link' type="prev"
         pagination-link type="prev" action="prevPage"
           |Previous
       each page in pages
         li
-          /view 'base/pagination/pagination-number' number=page
           pagination-number number=page page=controller.page action="changePage"
             = page
       li

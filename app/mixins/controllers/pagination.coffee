@@ -63,6 +63,8 @@ paginationMixin = Ember.Mixin.create
 
     changePerPage: (perPage) ->
       @set('perPage', perPage)
+      if @get('numberOfPages') < @get('page')
+        @send('changePage', 1)
 
     changePage: (page) ->
       @set('page', Number(page))
