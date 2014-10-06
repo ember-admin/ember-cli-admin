@@ -1,5 +1,5 @@
 `import Ember from 'ember';`
-`import Attributes from 'dummy/dsl/attributes';`
+`import Attributes from 'emberadmin/dsl/attributes';`
 
 setupControllerMixin = Ember.Mixin.create
   setupController:(controller, model) ->

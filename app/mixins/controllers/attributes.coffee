@@ -1,5 +1,5 @@
 `import Ember from 'ember';`
-`import Attributes from '../../dsl/attributes';`
+`import Attributes from 'emberadmin/dsl/attributes';`
 
 attributesMixin =  Ember.Mixin.create
 

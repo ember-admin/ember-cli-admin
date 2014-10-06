@@ -1,4 +1,4 @@
-`import Attributes from 'dummy/dsl/attributes';`
+`import Attributes from 'emberadmin/dsl/attributes';`
 
 baseDecorator = EmberEasyDecorator.extend
 
