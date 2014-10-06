@@ -34,7 +34,7 @@ params:
       @navigate "Users"
       @navigate "Settings", divider: true
 ###
-`import Ember from 'ember';`
+`import Ember from 'ember'`
 
 navigationClass = class Navigation
   @content: []
@@ -51,7 +51,7 @@ navigationClass = class Navigation
     navigateObject =  {title: title, children: [], divider: false, id: @_uid()}
     navigateObject.parentId = @parentId if @parentId
     if options && typeof options != 'function'
-      navigateObject = $.extend(navigateObject, options)
+      navigateObject = Ember.$.extend(navigateObject, options)
 
     @_makeRoute(navigateObject)
     emberObject = Ember.Object.create(navigateObject)
@@ -73,6 +73,6 @@ navigationClass = class Navigation
     Math.random().toString(36).substr(2,9)
 
   @findParent: (obj) ->
-    @content.find (item) => item.id == obj.parentId
+    @content.find (item) -> item.id == obj.parentId
 
-`export default navigationClass;`
+`export default navigationClass`
