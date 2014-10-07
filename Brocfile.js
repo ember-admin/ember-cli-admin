@@ -8,6 +8,7 @@ app.import('vendor/ember-easyForm.js');
 app.import('bower_components/ember-forms/dist/globals/main.js');
 app.import('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js');
 
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
@@ -30,6 +31,10 @@ var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/
     destDir: '/assets/bootstrap'
 });
 
+var compileSass = require('broccoli-sass');
+var adminCss   = compileSass(['app/styles'], 'app.scss',  'assets/vendor.css');
+
+
 // Merge the bootstrapFonts with the ember app tree
 var mergeTrees = require('broccoli-merge-trees');
-module.exports = mergeTrees([app.toTree(),bootstrapFonts]);
+module.exports = mergeTrees([app.toTree(),bootstrapFonts, adminCss], { overwrite: true });
