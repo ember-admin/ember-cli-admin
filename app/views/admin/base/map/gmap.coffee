@@ -1,4 +1,4 @@
-`import AbstractMapView from 'dummy/views/base/map/abstract-map'`
+`import AbstractMapView from '../map/abstract-map'`
 
 gmapView = AbstractMapView.extend
 

@@ -1,5 +1,4 @@
 `import Ember from 'ember'`
-`import Config from 'dummy/config'`
 
 abstractMapView = Ember.View.extend
   templateName: "admin/base/_geo"
@@ -41,7 +40,7 @@ abstractMapView = Ember.View.extend
     if @get('lat') && @get('long')
       [@get('lat'), @get('long')]
     else
-      Config.get('mapCenter').split(",")
+      ["50.44067063154785","30.52654266357422"]
 
   setAttrs: (pos) ->
     if pos['push']

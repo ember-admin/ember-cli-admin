@@ -1,4 +1,4 @@
 |Geo Input
 .geo_input
-  view 'base/map/map-autocomplete'
+  view 'admin/base/map/map-autocomplete'
 .map#map_container

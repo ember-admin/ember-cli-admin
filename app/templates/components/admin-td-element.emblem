@@ -1,5 +1,5 @@
 if view.image
-  view 'fileupload/image-link' imageBinding="view.image_object"
+  view 'admin/fileupload/image-link' imageBinding="view.image_object"
 
 if view.text
   = view.value

@@ -1,6 +1,6 @@
 `import Ember from 'ember';`
-`import GmapView from 'dummy/views/base/map/gmap';`
-`import YandexMapView from 'dummy/views/base/map/yandex-map';`
+`import GmapView from '../views/admin/base/map/gmap';`
+`import YandexMapView from '../views/admin/base/map/yandex-map';`
 
 inputMap = Ember.Handlebars.registerHelper "input-map", (property, options) ->
   options = Ember.EasyForm.processOptions(property, options)
