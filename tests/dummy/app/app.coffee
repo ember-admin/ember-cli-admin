@@ -1,5 +1,5 @@
 `import Ember from 'ember';`
-`import AdminResolver from 'dummy/admin-resolver';`
+`import AdminResolver from 'emberadmin/admin-resolver';`
 `import loadInitializers from 'ember/load-initializers';`
 
 Ember.MODEL_FACTORY_INJECTIONS = true;
