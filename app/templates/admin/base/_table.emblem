@@ -1,5 +1,5 @@
 table.table-striped
-  = partial "base/actions/_batch_actions"
+  = partial "admin/base/actions/_batch_actions"
   thead
     tr
       th
@@ -13,15 +13,15 @@ table.table-striped
         td
           view 'base/actions/checkbox-batch' contextBinding="item"
         each attributeName in controller.tableAttributes
-          td-element attributeName=attributeName item=item
+          admin-td-element attributeName=attributeName item=item
         td.actions
           if controller.collectionActions
-            = partial "base/actions/_base_actions"
-          = partial "base/actions/_addition_actions"
+            = partial "admin/base/actions/_base_actions"
+          = partial "admin/base/actions/_addition_actions"
     else
       if controller.model.items.isLoaded
         tr: td: span.glyphicon.glyphicon-exclamation-sign: |Empty
       else
         tr: td: span.glyphicon.glyphicon-refresh.glyphicon-refresh
 
-partial "base/_pagination"
+partial "admin/base/_pagination"

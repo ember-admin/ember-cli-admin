@@ -1,7 +1,7 @@
-= navigation-menu class="dropdown" content=navigation
+= admin-navigation-menu class="dropdown" content=navigation
   a class="dropdown-toggle" data-toggle="dropdown" href="#"
     = navigation.title
     span class="caret"
   ul class="dropdown-menu"
     each navigation in navigation.children
-      partial "navigation/item"
+      partial "admin/navigation/item"

@@ -17,20 +17,20 @@ renderMixin = Ember.Mixin.create({
     return this._renderForm(controller, model);
   },
   _renderNavigation: function() {
-    return this.render('navigation', {
+    return this.render('admin/navigation', {
       outlet: 'navigation',
       controller: 'navigation'
     });
   },
   _renderBreadcrumbs: function() {
-    return this.render('breadcrumbs', {
+    return this.render('admin/breadcrumbs', {
       outlet: 'breadcrumbs',
       controller: 'breadcrumbs'
     });
   },
   _renderActions: function(controller, model) {
     if (model) {
-      return this.render('actions', {
+      return this.render('admin/actions', {
         outlet: 'actions',
         controller: controller
       });

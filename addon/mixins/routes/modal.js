@@ -6,7 +6,7 @@ modalMixin = Ember.Mixin.create({
   actions: {
     openModal: function(item, modalName) {
       if (modalName == null) {
-        modalName = 'base.confirm-modal';
+        modalName = 'admin.base.confirm-modal';
       }
       this.set('controller.modalObject', item);
       return this.render(modalName, {

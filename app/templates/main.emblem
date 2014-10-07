@@ -1,2 +1,0 @@
-if controller.__table
-  partial "base/_table"

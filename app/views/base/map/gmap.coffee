@@ -2,7 +2,7 @@
 
 gmapView = AbstractMapView.extend
 
-  templateName: "base/_geo"
+  templateName: "admin/base/_geo"
 
   mapType: 'asGoogleMap'
 

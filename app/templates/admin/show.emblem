@@ -5,4 +5,4 @@ table.show-details
     each attribute in controller.formAttributes
       tr
         th = attribute.name
-        td-element attributeName=attribute.name item=model
+        admin-td-element attributeName=attribute.name item=model

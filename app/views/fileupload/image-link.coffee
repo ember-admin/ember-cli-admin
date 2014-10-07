@@ -7,11 +7,12 @@ imageLinkView = Ember.View.extend
 
   href: "#"
 
-  templateName: "fileuploads/link_to_image"
+  templateName: "admin/fileuploads/link_to_image"
 
   click: (e) ->
     e.preventDefault()
-    imageView = Ember.View.views['FileUploadModal']
-    imageView.set('image', @get('image'))
-    imageView.$().modal({})
+    throw 'implement me'
+#    imageView = Ember.View.views['FileUploadModal']
+#    imageView.set('image', @get('image'))
+#    imageView.$().modal({})
 `export default imageLinkView`

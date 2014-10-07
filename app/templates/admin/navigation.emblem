@@ -2,7 +2,4 @@
   a class="navbar-brand" href="/#/"= controller.siteTitle
   ul class="nav navbar-nav"
     each navigation in controller
-      = partial "navigation/item"
-/
-/  ul.nav.navbar-nav.pull-right
-/    = partial "navigation/user"
+      = partial "admin/navigation/item"

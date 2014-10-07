@@ -3,9 +3,9 @@
 dragAndDropZoneView = Ember.View.extend
   attributeBindings: ["property", "assetTemplate"]
 
-  assetTemplate: "fileuploads/asset"
+  assetTemplate: "admin/fileuploads/asset"
 
-  templateName: "fileuploads/drag_and_drop_zone"
+  templateName: "admin/fileuploads/drag_and_drop_zone"
 
   didInsertElement: ->
     @get('single')

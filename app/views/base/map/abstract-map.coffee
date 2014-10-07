@@ -2,7 +2,7 @@
 `import Config from 'dummy/config'`
 
 abstractMapView = Ember.View.extend
-  templateName: "base/_geo"
+  templateName: "admin/base/_geo"
 
   lat: (->
     @get("context.#{@get('latAttr')}")

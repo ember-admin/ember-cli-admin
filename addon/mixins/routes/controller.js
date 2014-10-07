@@ -11,6 +11,9 @@ controllerMixin = Ember.Mixin.create({
     if (Ember.TEMPLATES[form]) {
       return form;
     }
+    if (Ember.TEMPLATES["admin/%@".fmt(form)]){
+      return form;
+    }
     return "form";
   },
   _getControllerTemplate: function(controller) {
@@ -20,15 +23,15 @@ controllerMixin = Ember.Mixin.create({
       name = "%@/%@".fmt(name, this.action);
     }
     if (name === "dashboard") {
-      return "dashboard";
+      return "admin/dashboard";
     }
-    if (Ember.TEMPLATES[name] || Ember.TEMPLATES["ember-admin/%@".fmt(name)]) {
+    if (Ember.TEMPLATES[name] || Ember.TEMPLATES["admin/%@".fmt(name)]) {
       return name;
     } else {
       if (this.action && this.action !== "page") {
-        return this.action;
+        return "admin/%@".fmt(this.action);
       } else {
-        return "main";
+        return "admin/main";
       }
     }
   },

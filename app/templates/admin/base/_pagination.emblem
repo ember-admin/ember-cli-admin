@@ -1,0 +1,30 @@
+.btn-group.per-page
+  admin-pagination-per-page count=25 action="changePerPage" perPage=controller.perPage
+    |25
+  admin-pagination-per-page count=50 action="changePerPage" perPage=controller.perPage
+    |50
+  admin-pagination-per-page count=100 action="changePerPage" perPage=controller.perPage
+    |100
+
+
+
+admin-pagination-pages-list numberOfPages=controller.numberOfPages page=controller.page
+  unless onePage
+    ul class="pagination"
+      li
+        admin-pagination-link type="prev" action="prevPage"
+          |Previous
+      each page in pages
+        li
+          admin-pagination-number number=page page=controller.page action="changePage"
+            = page
+      li
+        admin-pagination-link type="next" action="nextPage"
+          |Next
+  else
+    ul class="pager"
+      li &nbsp;
+
+.page-number
+  |Page&nbsp;
+  = controller.page
