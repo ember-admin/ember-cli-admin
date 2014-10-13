@@ -15,7 +15,7 @@ user = DS.Model.extend
 #   [this.get('email')]
 #  ).property('email')
 #  fileuploads: ["avatar", "avatars"]
-#  asGoogleMap: ['lat', 'long', 'zoom']
+  asGoogleMap: ['lat', 'long', 'zoom']
 
 
 `export default user`
