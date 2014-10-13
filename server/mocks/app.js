@@ -12,5 +12,14 @@ module.exports = function(app) {
   appRouter.delete('/users/:id', function(req, res) {
     res.send({});
   });
+
+  appRouter.get('/users/:id', function(req, res) {
+    res.send({user: {id: req.params.id, name: 'testuser', lat: 50, long: 40, zoom: 1}});
+  });
+
+
+  appRouter.put('/users/:id', function(req, res) {
+    res.send({user: {id: req.params.id, name: req.body.user.name, lat: req.body.user.lat, long: req.body.user.long, zoom: req.body.user.zoom}});
+  });
   app.use('/api', appRouter);
 };

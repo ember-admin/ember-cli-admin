@@ -1,9 +1,10 @@
 Admin.Mixins.Routes.ControllerMixin =  Ember.Mixin.create
 
   _getForm:(controller) ->
-    form = "%@_form".fmt(@_controllerName(controller).decamelize())
+    form = "admin/%@_form".fmt(@_controllerName(controller).decamelize())
+    console.log('FORM', form)
     return form if  Ember.TEMPLATES[form]
-    "form"
+    "admin/form"
 
   _getControllerTemplate: (controller) ->
     name = @_controllerName(controller)

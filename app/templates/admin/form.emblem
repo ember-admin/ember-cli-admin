@@ -8,3 +8,14 @@
   = input-map
 
   = partial "form_buttons"
+
+form
+  each attribute in controller.formAttributes
+    admin-input model=controller.model name=attribute.name
+    /.control-group
+    /  label class="control-label"
+    /    =attribute.name
+    /  .controls
+    /    =input valueBinding='controller.decorator.model.name'
+
+  = partial "admin/form_buttons"

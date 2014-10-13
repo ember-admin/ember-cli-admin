@@ -4,7 +4,7 @@ var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 var app = new EmberAddon();
 app.import('vendor/ember-easy-decorator.js');
-app.import('vendor/ember-easyForm.js');
+//app.import('vendor/ember-easyForm.js');
 app.import('bower_components/ember-forms/dist/globals/main.js');
 app.import('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js');
 
