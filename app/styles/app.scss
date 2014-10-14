@@ -1,5 +1,5 @@
 @import 'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
-@import 'node_modules/ember-cli-map/app/styles/map';
+//@import 'node_modules/ember-cli-map/app/styles/map';
 
 .main-content {
   background-color: #f5f5f5;
@@ -159,28 +159,6 @@ form{
     background-color: #e0e1e2;
     padding: 10px;
     font-size: 12px;
-  }
-
-}
-.map {
-  height: 400px;
-  margin-left: 10%;
-  width: 81%;
-  margin-top: 0.6em;
-  img {
-    max-width: none;
-  }
-}
-.geo_input {
-  margin-bottom: 30px;
-  label {
-    display: inline-block;
-    width: 10%;
-  }
-  input {
-    display: inline-block;
-    width: 80% !important;
-    margin-left: 1px;
   }
 
 }

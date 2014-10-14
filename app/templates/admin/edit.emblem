@@ -1,6 +1,6 @@
 h1 Edit
 
-/= google-map model=controller.decorator.model
+= google-map model=controller.decorator.model
 
 == outlet 'form'
 
