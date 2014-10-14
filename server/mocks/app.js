@@ -3,7 +3,7 @@ module.exports = function(app) {
   var appRouter = express.Router();
   users = [];
   for (i = 0; i < 25; i++) {
-    users.push({id: i, name: 'testuser', lat: 50, long: 40, zoom: 1})
+    users.push({id: i, name: 'testuser', lat: 50, long: 40, zoom: 3})
   }
   appRouter.get('/users', function(req, res) {
     res.send({users: users, meta:{total: 40}});
@@ -14,7 +14,7 @@ module.exports = function(app) {
   });
 
   appRouter.get('/users/:id', function(req, res) {
-    res.send({user: {id: req.params.id, name: 'testuser', lat: 50, long: 40, zoom: 1}});
+    res.send({user: {id: req.params.id, name: 'testuser', lat: 50, long: 40, zoom: 3}});
   });
 
 

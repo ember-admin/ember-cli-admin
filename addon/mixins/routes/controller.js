@@ -12,9 +12,9 @@ controllerMixin = Ember.Mixin.create({
       return form;
     }
     if (Ember.TEMPLATES["admin/%@".fmt(form)]){
-      return form;
+      return "admin/%@".fmt(form);
     }
-    return "form";
+    return "admin/form";
   },
   _getControllerTemplate: function(controller) {
     var name;

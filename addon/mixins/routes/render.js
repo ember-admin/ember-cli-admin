@@ -38,7 +38,7 @@ renderMixin = Ember.Mixin.create({
   },
   _renderForm: function(controller) {
     if (this.get('action') && (this.get('action') === "edit" || this.get('action') === "new") && this._getControllerTemplate(controller).split('/').length < 3) {
-      return this.render('admin/form', {
+      return this.render(this._getForm(controller), {
         into: 'admin/%@'.fmt(this.get('action')),
         outlet: 'form',
         controller: controller
