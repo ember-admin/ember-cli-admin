@@ -2,8 +2,7 @@
   each attribute in controller.formAttributes
     = decorator-input attribute.name inputConfig='class:form-control'
 
-  each attribute in controller.fileuploads
-    = bound-fileupload attribute.name
+
 
   = input-map
 
@@ -12,6 +11,10 @@
 form
   each attribute in controller.formAttributes
     admin-input model=controller.model name=attribute.name
+
+  each attribute in controller.fileuploads
+
+    view 'admin/fileupload/drag-and-drop-zone' model=controller.model property=attribute.name
 
   if controller.model.asGoogleMap
     = google-map model=controller.model

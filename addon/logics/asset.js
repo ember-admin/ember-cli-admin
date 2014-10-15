@@ -22,6 +22,6 @@ asset = DS.Model.extend({
   })
 });
 
-export default 'asset';
+export default asset;
 
 // TODO do we need this?

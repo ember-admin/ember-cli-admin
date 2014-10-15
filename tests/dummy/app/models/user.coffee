@@ -9,12 +9,11 @@ user = DS.Model.extend
   lat:                        DS.attr('number')
   long:                       DS.attr('number')
   zoom:                       DS.attr('number')
-#  avatar:                     DS.belongsTo('avatar')
-#  avatars:                    DS.hasMany('avatar', {async: true})
-#  emails: (->
-#   [this.get('email')]
-#  ).property('email')
-#  fileuploads: ["avatar", "avatars"]
+  avatar:                     DS.belongsTo('avatar')
+  avatars:                    DS.hasMany('avatar', {async: true})
+
+  fileuploads: ["avatar", "avatars"]
+
   asGoogleMap: ['lat', 'long', 'zoom']
 
   formFields: ['email', 'name']

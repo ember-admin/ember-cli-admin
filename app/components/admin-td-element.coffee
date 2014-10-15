@@ -75,4 +75,8 @@ tdComponent = Ember.Component.extend
       @get('relations').forEach (attr) => value = record.get(attr) if record.get(attr)
     value
 
+  actions:
+    openImagePreview: ->
+      @sendAction('action', this.get('image_object.url'))
+
 `export default tdComponent;`

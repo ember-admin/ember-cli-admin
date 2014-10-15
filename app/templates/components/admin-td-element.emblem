@@ -1,5 +1,6 @@
 if view.image
-  view 'admin/fileupload/image-link' imageBinding="view.image_object"
+  a href="#" click="openImagePreview view.image_object.url target='view'"
+    img{{bind-attr src="view.image_object.thumb_url"}} title="Show image"
 
 if view.text
   = view.value

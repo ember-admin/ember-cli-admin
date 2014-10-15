@@ -5,26 +5,26 @@ dragAndDropZoneView = Ember.View.extend
 
   assetTemplate: "admin/fileuploads/asset"
 
-  templateName: "admin/fileuploads/drag_and_drop_zone"
+  templateName: "admin/fileuploads/drag-and-drop-zone"
 
   didInsertElement: ->
     @get('single')
 
   single:(->
-    Attributes.isBelongsTo(@get("context.model").constructor, @get('property'))
-  ).property('context')
+    Attributes.isBelongsTo(@get("model").constructor, @get('property'))
+  ).property('model')
 
   assets: (->
     Ember.defineProperty(this, "_assets", Ember.computed(->
-      @get("context.#{@get('property')}")
-    ).property("context.#{@get('property')}"))
+      @get("model.#{@get('property')}")
+    ).property("model.#{@get('property')}"))
     @get('_assets')
   ).property('_assets')
 
   asset: (->
     Ember.defineProperty(this, "_asset", Ember.computed(->
-      @get("context.#{@get('property')}")
-    ).property("context.#{@get('property')}"))
+      @get("model.#{@get('property')}")
+    ).property("model.#{@get('property')}"))
     @get('_asset')
   ).property('_asset')
 
@@ -58,9 +58,9 @@ dragAndDropZoneView = Ember.View.extend
   createAsset: (file) ->
     @set('creating', true)
     if @get('single')
-      if @get("controller.model.#{@get('property')}")
-        @get("controller.model.#{@get('property')}").deleteRecord()
-        @get("controller.model.#{@get('property')}").save()
+      if @get("model.#{@get('property')}")
+        @get("model.#{@get('property')}").deleteRecord()
+        @get("model.#{@get('property')}").save()
       @_createAsset(@_params(file), file)
     else
       @_createAsset(@_params(file), file)
@@ -73,12 +73,12 @@ dragAndDropZoneView = Ember.View.extend
 
   _params: (file)->
     params =
-      assetable_type: @get('controller.model.__model_name').classify()
+      assetable_type: Ember.String.singularize(@get('controller._name')).classify()
       content_type: file.type
       original_filename: file.name
       is_main: true
 
-    params.assetable_id = @get('context.id') if @get('context.id')
+    params.assetable_id = @get('model.id') if @get('model.id')
 
     params.is_main = false unless @get('single')
     params
