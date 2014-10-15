@@ -12,11 +12,6 @@
 form
   each attribute in controller.formAttributes
     admin-input model=controller.model name=attribute.name
-    /.control-group
-    /  label class="control-label"
-    /    =attribute.name
-    /  .controls
-    /    =input valueBinding='controller.decorator.model.name'
 
   if controller.model.asGoogleMap
     = google-map model=controller.model

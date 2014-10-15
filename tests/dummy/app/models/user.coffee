@@ -17,5 +17,7 @@ user = DS.Model.extend
 #  fileuploads: ["avatar", "avatars"]
   asGoogleMap: ['lat', 'long', 'zoom']
 
+  formFields: ['email', 'name']
+
 
 `export default user`
