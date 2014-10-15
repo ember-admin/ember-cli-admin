@@ -37,7 +37,7 @@
     "ember-cli-coffeescript": "^0.1.0",
     "ember-cli-ember-data": "0.1.0",
     "ember-cli-ic-ajax": "0.1.1",
-    "ember-cli-map": "^0.1.4",
+    "ember-cli-map": "^0.2.0",
     "ember-cli-pretender": "^0.3.1",
     "ember-cli-qunit": "0.0.5",
     "express": "^4.8.5",
