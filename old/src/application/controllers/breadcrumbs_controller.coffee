@@ -1,1 +1,0 @@
-Admin.BreadcrumbsController = Ember.ArrayController.extend()

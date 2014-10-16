@@ -1,4 +1,0 @@
-|Geo Input
-.geo_input
-  Admin.Base.Views.MapAutocompleteView viewName="MapAutocomplete"
-.map#map_container
