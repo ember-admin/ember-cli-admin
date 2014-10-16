@@ -1,0 +1,8 @@
+if navigation.divider
+  li.divider
+if navigation.hasChildren
+  = partial "admin/navigation/collection"
+else
+  = admin-navigation-menu content=navigation
+    = link-to navigation.route
+      = navigation.title

@@ -1,3 +1,0 @@
-each action in controller.breadcrumbsActions
-  Admin.Base.Views.ActionView tagName="button" href="#" breadcrumbActionBinding="action" controllerBinding="controller"
-    = view.title

@@ -1,0 +1,27 @@
+table.table-striped
+  = partial "admin/base/actions/_batch_actions"
+  thead
+    tr
+      th
+        view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches"
+      each attributeName in controller.tableAttributes
+        th= attributeName
+      th Actions
+  tbody
+    each item in controller.model.items
+      tr
+        td
+          view 'admin/base/actions/checkbox-batch' contextBinding="item"
+        each attributeName in controller.tableAttributes
+          admin-td-element attributeName=attributeName item=item action='openImagePreview'
+        td.actions
+          if controller.collectionActions
+            = partial "admin/base/actions/_base_actions"
+          = partial "admin/base/actions/_addition_actions"
+    else
+      if controller.model.items.isLoaded
+        tr: td: span.glyphicon.glyphicon-exclamation-sign: |Empty
+      else
+        tr: td: span.glyphicon.glyphicon-refresh.glyphicon-refresh
+
+partial "admin/base/_pagination"

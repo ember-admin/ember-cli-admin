@@ -1,0 +1,12 @@
+.asset_wrapper
+  if view.single
+    if view.asset
+      view 'admin/fileupload/asset' templateNameBinding="view.assetTemplate" assetBinding="view.asset" propertyBinding="view.property"
+  else
+    each asset in view.assets
+      view 'admin/fileupload/asset' templateNameBinding="view.assetTemplate" assetBinding="asset" propertyBinding="view.property"
+
+  /input type="file" change='selectFile' target='view'
+  input type="file" change="selectFile target='view'"
+  if view.creating
+    span.glyphicon.glyphicon-refresh.glyphicon-refresh

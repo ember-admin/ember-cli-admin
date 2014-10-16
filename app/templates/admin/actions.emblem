@@ -1,0 +1,3 @@
+each action in controller.breadcrumbsActions
+  view 'admin/base/actions/action' tagName="button" href="#" breadcrumbActionBinding="action" controllerBinding="controller"
+    = view.title

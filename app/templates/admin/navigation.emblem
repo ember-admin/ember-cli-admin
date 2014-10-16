@@ -1,0 +1,5 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  a class="navbar-brand" href="/#/"= controller.siteTitle
+  ul class="nav navbar-nav"
+    each navigation in controller
+      = partial "admin/navigation/item"
