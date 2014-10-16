@@ -4,6 +4,10 @@
 
 Ember-cli-admin is a powerful admin dashboard for ember-cli projects that is built on ideas of [ActiveAdmin][2] and [AbAdmin][3].
 
+##See example
+
+[Ember-cli-admin example app](https://github.com/ember-admin/ember-cli-example)
+
 ##Version
 
 0.1.3
