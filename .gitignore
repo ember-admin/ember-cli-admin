@@ -19,6 +19,4 @@ testem.log
 /.idea
 /.editorconfig
 /vendor/*
-!/vendor/ember-easy-decorator.js
-!/vendor/ember-easyForm.js
 !/vendor/app.css

@@ -14,6 +14,16 @@ Ember-cli-admin is a powerful admin dashboard for ember-cli projects that is bui
 npm install ember-cli-admin --save-dev
 ```
 
+## Dependencies
+
+* `"ember-cli-map": "^0.2.0"`
+* `"broccoli-emblem-compiler": "^0.3.18"`
+* `"broccoli-merge-trees": "0.1.4"`
+* `"broccoli-sass": "^0.2.2"`
+* `"broccoli-static-compiler": "0.1.4"`
+* `"ember-cli-coffeescript": "^0.1.0"`
+* `"broccoli-coffee": "^0.1.1"`
+
 ##Setup
 
 ###In your app.js
