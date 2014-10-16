@@ -19,4 +19,4 @@ form
   if controller.model.asGoogleMap
     = google-map model=controller.model
 
-  = partial "admin/form_buttons"
+  = partial "admin/form-buttons"

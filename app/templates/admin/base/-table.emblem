@@ -1,5 +1,5 @@
 table.table-striped
-  = partial "admin/base/actions/batch-actions"
+  partial "admin/base/actions/batch"
   thead
     tr
       th
