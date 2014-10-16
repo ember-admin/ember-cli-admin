@@ -8,10 +8,11 @@ controllerMixin = Ember.Mixin.create({
   _getForm: function(controller) {
     var form;
     form = "%@_form".fmt(this._controllerName(controller).decamelize());
-    if (Ember.TEMPLATES[form]) {
+
+    if (this.container.resolve('template:'+form)) {
       return form;
     }
-    if (Ember.TEMPLATES["admin/%@".fmt(form)]){
+    if (this.container.resolve("template:admin/%@".fmt(form))){
       return "admin/%@".fmt(form);
     }
     return "admin/form";
@@ -25,7 +26,7 @@ controllerMixin = Ember.Mixin.create({
     if (name === "dashboard") {
       return "admin/dashboard";
     }
-    if (Ember.TEMPLATES[name] || Ember.TEMPLATES["admin/%@".fmt(name)]) {
+    if (this.container.resolve('template:'+name) || this.container.resolve('template:'+"admin/%@".fmt(name))) {
       return name;
     } else {
       if (this.action && this.action !== "page") {
