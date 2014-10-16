@@ -55,7 +55,7 @@ MetaRoute.map(Router, function() {
 export default Router;
 ```
 
-###Now let's setup resources
+###Now let's set up resources
 
 For example, if we have the following model:
 
@@ -94,7 +94,7 @@ MetaRoute.map(Router, function() {
 You'll also need to add Navigation initializer to set up your navigation bar:
 
 ```
-/*app/initializers/navigation.js*/
+#app/initializers/navigation.js
 
 import Navigation from 'ember-cli-admin/dsl/navigation';
 
@@ -103,7 +103,7 @@ export default {
   initialize: function(container, app) {
     return Navigation.map(function() {
         //Dashboard page
-        //You can owerride this if you don't use dashboard
+        //You can override this if you don't use dashboard
       this.navigate("Dashboard", { route: "dashboard" });
       this.navigate("Admin", function() {
         return this.navigate("Users");
@@ -118,7 +118,7 @@ export default {
 You can specify the attributes to use in admin form with ```formFields``` property in the model:
 
 ```
-#app/models/user/js
+#app/models/user.js
 ...
 export default DS.Model.extend({
   ...
@@ -130,7 +130,7 @@ export default DS.Model.extend({
 We currently support ```google-map``` component which can be added to your resource form with the following simple setup
 
 ```
-#app/models/user/js
+#app/models/user.js
 ...
 export default DS.Model.extend({
   ...
@@ -145,7 +145,7 @@ export default DS.Model.extend({
 
 And don't forget to add Google Maps to your ```index.html```
 ```
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyCqyf1CwoH9VU6XNYBmIXZSRsMQ0BJUOrw&libraries=places">
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key={your API key}&libraries=places">
   </script>
 ```
 
@@ -170,7 +170,7 @@ export default Asset.extend();
 Add avatar/avatars to User model, and specify them on ```fileuploads``` property:
 
 ```
-#app/models/user/js
+#app/models/user.js
 ...
 export default DS.Model.extend({
   ...
