@@ -1,5 +1,5 @@
 `import Ember from 'ember'`
-`import ConfirmationMixin from 'emberadmin/mixins/views/confirmation'`
+`import ConfirmationMixin from 'ember-cli-admin/mixins/views/confirmation'`
 
 assetView = Ember.View.extend ConfirmationMixin,
   attributeBindings: ["templateName", 'property']

@@ -1,5 +1,5 @@
 `import Ember from 'ember';`
-`import Navigation from 'emberadmin/dsl/navigation';`
+`import Navigation from 'ember-cli-admin/dsl/navigation';`
 
 navigationController = Ember.ArrayController.extend
   activeMenu: "dashboard"

@@ -1,5 +1,5 @@
 `import Ember from 'ember';`
-`import MetaRoute from 'emberadmin/dsl/meta-route';`
+`import MetaRoute from 'ember-cli-admin/dsl/meta-route';`
 `import App from 'dummy/app';`
 
 Router = Ember.Router.extend({

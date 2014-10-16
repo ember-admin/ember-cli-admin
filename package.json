@@ -1,6 +1,7 @@
 {
-  "name": "emberadmin",
-  "version": "0.0.0",
+  "name": "ember-cli-admin",
+  "version": "0.1.0",
+  "description": "powerful admin dashboard for ember-cli projects",
   "directories": {
     "doc": "doc",
     "test": "test"
@@ -10,17 +11,22 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "https://github.com/stefanpenner/ember-cli",
+  "repository": "https://github.com/ember-admin/ember-cli-admin",
   "engines": {
     "node": ">= 0.10.0"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-cli",
+    "admin",
+    "ember",
+    "ember-cli-map"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "author": "",
+  "author": "Alex Opak <opak.alexandr@gmail.com>",
+  "contributors": ["Valeria Leshchenko <valeria.leshchenko@gmail.com>"],
   "license": "MIT",
   "devDependencies": {
     "body-parser": "^1.2.0",

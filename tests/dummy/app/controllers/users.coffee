@@ -1,4 +1,4 @@
-`import TableViewController from 'emberadmin/mixins/controllers/table-view'`
+`import TableViewController from 'ember-cli-admin/mixins/controllers/table-view'`
 
 usersController = Ember.ObjectController.extend(TableViewController)
 ##  additionalActions: [
