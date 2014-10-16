@@ -1,4 +1,4 @@
-`import FileuploadAdapterMixin from 'emberadmin/mixins/fileupload-adapter'`
+`import FileuploadAdapterMixin from 'ember-cli-admin/mixins/fileupload-adapter'`
 `import ApplicationAdapter from './application'`
 
 avatar = ApplicationAdapter.extend(FileuploadAdapterMixin, {

@@ -1,3 +1,3 @@
 module.exports = {
-  name: 'emberadmin'
+  name: 'ember-cli-admin'
 };

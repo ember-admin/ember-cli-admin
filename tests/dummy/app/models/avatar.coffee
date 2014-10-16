@@ -1,4 +1,4 @@
-`import Asset from 'emberadmin/logics/asset'`
+`import Asset from 'ember-cli-admin/logics/asset'`
 `import DS from 'ember-data'`
 
 avatar = Asset.extend

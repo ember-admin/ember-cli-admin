@@ -1,4 +1,4 @@
-`import Navigation from 'emberadmin/dsl/navigation'`
+`import Navigation from 'ember-cli-admin/dsl/navigation'`
 
 initializer = {
   name: 'navigation'
