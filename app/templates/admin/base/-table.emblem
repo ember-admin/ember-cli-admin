@@ -1,5 +1,5 @@
 table.table-striped
-  = partial "admin/base/actions/batch_actions"
+  = partial "admin/base/actions/batch-actions"
   thead
     tr
       th
@@ -16,8 +16,8 @@ table.table-striped
           admin-td-element attributeName=attributeName item=item action='openImagePreview'
         td.actions
           if controller.collectionActions
-            = partial "admin/base/actions/base_actions"
-          = partial "admin/base/actions/addition_actions"
+            = partial "admin/base/actions/base-actions"
+          = partial "admin/base/actions/addition-actions"
     else
       if controller.model.items.isLoaded
         tr: td: span.glyphicon.glyphicon-exclamation-sign: |Empty
