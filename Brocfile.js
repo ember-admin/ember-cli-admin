@@ -15,8 +15,5 @@ var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/
     destDir: '/assets/bootstrap'
 });
 var mergeTrees = require('broccoli-merge-trees');
-//app.import('vendor/app.css');
-
-// Merge the bootstrapFonts with the ember app tree
 
 module.exports = mergeTrees([app.toTree(), bootstrapFonts]);
