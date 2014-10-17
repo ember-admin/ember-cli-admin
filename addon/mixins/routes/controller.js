@@ -7,7 +7,7 @@ var controllerMixin;
 controllerMixin = Ember.Mixin.create({
   _getForm: function(controller) {
     var form;
-    form = "%@_form".fmt(this._controllerName(controller).decamelize());
+    form = "%@/form".fmt(this._controllerName(controller).decamelize());
 
     if (this.container.resolve('template:'+form)) {
       return form;
