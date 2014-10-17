@@ -88,6 +88,12 @@ MetaRoute.map(Router, function() {
 export default Router;
 ```
 
+###Add admin/index template to your application template:
+```
+#application.hbs
+{{partial 'admin/index'}}
+```
+
 ###Now let's set up resources
 
 For example, if we have the following model:
@@ -156,7 +162,7 @@ You can specify the attributes to use in admin form with ```formFields``` proper
 export default DS.Model.extend({
   ...
   formFields: ['email', 'name']
-});  
+});
 ```
 ###Ember-cli-admin also uses [ember-cli-map][4]
 
@@ -172,7 +178,7 @@ export default DS.Model.extend({
   zoom:                       DS.attr('number')
 
   asGoogleMap: ['lat', 'long', 'zoom']
- 
+
 });
 ```
 
@@ -209,12 +215,28 @@ export default DS.Model.extend({
   ...
   avatar:                     DS.belongsTo('avatar'),
   avatars:                    DS.hasMany('avatar', {async: true}),
-  
+
   fileuploads: ["avatar", "avatars"]
 });
 ```
 That's it!
 
+##Customize Templates
+
+To override admin **edit/new/show/form** templates with your own, put your templates in ```app/templates/admin``` directory. For example:
+```
+#app/templates/admin/show.hbs
+...
+```
+
+You can also provide your own form template for a specific resource. Put your form template in `app/templates/admin/[controllerName]` directory. For users resource:
+
+```
+#app/templates/admin/users/form.hbs
+...
+```
+
+If you have `admin/form` and `admin/users/form` templates, the last will be used for your users resource, and the first for all the other resources.
 
 
 ##License
