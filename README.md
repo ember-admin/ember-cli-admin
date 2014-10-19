@@ -18,12 +18,16 @@ Ember-cli-admin is a powerful admin dashboard for ember-cli projects that is bui
 npm install ember-cli-admin --save-dev
 ```
 
-This addon requires ```bootstrap-sass-official```. Add it to your bower.json:
+##Dependencies
+
+Run ember-cli-admin generator and install dependencies:
 ```
-"bootstrap-sass-official": "3.2.0"
+ember g ember-cli-admin
+npm install
+bower install
 ```
 
-Then in your Brocfile.js do:
+Then in your Brocfile.js add bootstrap fonts:
 ```
 // Put the bootstrap fonts in the place that the bootstrap css expects to find them.
 var pickFiles = require('broccoli-static-compiler');
@@ -35,17 +39,6 @@ var mergeTrees = require('broccoli-merge-trees');
 
 module.exports = mergeTrees([app.toTree(), bootstrapFonts]);
 ```
-
-
-## Dependencies
-
-* `"ember-cli-map": "^0.2.0"`
-* `"broccoli-emblem-compiler": "^0.3.18"`
-* `"broccoli-merge-trees": "0.1.4"`
-* `"broccoli-sass": "^0.2.2"`
-* `"broccoli-static-compiler": "0.1.4"`
-* `"ember-cli-coffeescript": "^0.1.0"`
-* `"broccoli-coffee": "^0.1.1"`
 
 ##Setup
 
