@@ -48,9 +48,11 @@
             <form class="search" {{action 'search' on="submit"}}>
                 {{#each field in controller.searchForm.fields}}
                     {{#if field.isInput}}
-                        <div class="input">
+                        <div class="clearfix string">
                             <label>{{field.fieldName}}</label>
-                            {{input name=field.fieldName valueBinding='field.value' type="text"}}
+                            <div class="controls">
+                                {{input name=field.fieldName valueBinding='field.value' type="text"}}
+                            </div>
                         </div>
                     {{/if}}
                     {{#if field.isNumberInput}}
