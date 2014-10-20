@@ -25,7 +25,7 @@ searchMixin = Ember.Mixin.create({
     },
 
     clearSearchForm: function(){
-      this.set('q', '')
+      this.set('q', '');
     }
   }
 });
