@@ -8,13 +8,13 @@
 
   = partial "form_buttons"--}}
 
-<form>
+<form class="admin-form">
   {{#each attribute in controller.formAttributes}}
-    {{admin-input model=controller.model name=attribute.name}}
+    {{admin-input class="admin-attribute" model=controller.model name=attribute.name}}
   {{/each}}
 
   {{#each attribute in controller.fileuploads}}
-    {{view 'admin/fileupload/drag-and-drop-zone' model=controller.model property=attribute.name}}
+    {{view 'admin/fileupload/drag-and-drop-zone' class="admin-fileupload" model=controller.model property=attribute.name}}
   {{/each}}
 
   {{#if controller.model.asGoogleMap}}
