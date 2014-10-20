@@ -22,6 +22,10 @@ searchMixin = Ember.Mixin.create({
     search: function(){
       var query =  this.get('searchForm').serialize();
       this.set('q', Ember.$.param(query));
+    },
+
+    clearSearchForm: function(){
+      this.set('q', '')
     }
   }
 });

@@ -1,0 +1,37 @@
+<div class="search-container">
+    <div class="panel panel-default">
+        <div class="panel-heading">Search</div>
+        <div class="panel-body">
+            <form class="search" {{action 'search' on="submit"}}>
+                {{#each field in controller.searchForm.fields}}
+                    {{#if field.isInput}}
+                        <div class="clearfix string">
+                            <label>{{field.fieldName}}</label>
+                            <div class="controls">
+                                {{input name=field.fieldName valueBinding='field.value' type="text"}}
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if field.isNumberInput}}
+                        <div class="input">
+                            <label>{{field.fieldName}}</label>
+                            {{view "select" content=field.numberPredicats value=field.predicat}}
+                            {{input name=field.fieldName valueBinding='field.value' type="number"}}
+                        </div>
+                    {{/if}}
+                    {{#if field.isSelect}}
+                        <div class="input">
+                            <label>{{field.fieldName}}</label>
+                            {{view "select" content=field.options.selectContent value=field.value}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+                <div>
+                    <button class="search-button btn btn-success" type="submit">Search</button>
+                    <a href="#" class="search-button btn btn-danger" {{action 'clearSearchForm'}}>Clear</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
