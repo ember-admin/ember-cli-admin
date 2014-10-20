@@ -45,7 +45,7 @@
     </div>
     <div class="col-md-3">
         <div class="search-container">
-            <form class="search" {{action 'search on="submit"'}}>
+            <form class="search" {{action 'search' on="submit"}}>
                 {{#each field in controller.searchForm.fields}}
                     {{#if field.isInput}}
                         <div class="input">
