@@ -1,5 +1,0 @@
-.control-group
-  label class="control-label"
-    =name
-  .controls
-    =input value=value

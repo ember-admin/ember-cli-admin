@@ -1,0 +1,9 @@
+{{#if view.image}}
+  <a href="#" {{action "openImagePreview" view.image_object.url on="click" target=view}}>
+    <img {{bind-attr src="view.image_object.thumb_url"}} title="Show image">
+  </a>
+{{/if}}
+
+{{#if view.text}}
+  {{view.value}}
+{{/if}}

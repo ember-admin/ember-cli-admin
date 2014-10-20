@@ -1,0 +1,13 @@
+{{#if navigation.divider}}
+  <li class="divider"></li>
+{{/if}}
+
+{{#if navigation.hasChildren}}
+  {{partial "admin/navigation/collection"}}
+{{else}}
+  {{#admin-navigation-menu content=navigation}}
+    {{#link-to navigation.route}}
+      {{navigation.title}}
+    {{/link-to}}
+  {{/admin-navigation-menu}}
+{{/if}}

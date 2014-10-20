@@ -1,8 +1,0 @@
-h2 Show
-
-table.show-details
-  tbody
-    each attribute in controller.formAttributes
-      tr
-        th = attribute.name
-        admin-td-element attributeName=attribute.name item=model

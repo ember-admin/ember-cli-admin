@@ -1,9 +1,0 @@
-ul.breadcrumb
-  each breadcrumb in controller
-    if breadcrumb.active
-      li class="breadcrumb.class"
-        = breadcrumb.name
-    else
-      li class="breadcrumb.class"
-        link-to breadcrumb.url
-          = breadcrumb.name
