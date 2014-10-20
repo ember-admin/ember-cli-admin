@@ -1,0 +1,13 @@
+<ul class="breadcrumb">
+  {{#each breadcrumb in controller}}
+    {{#if breadcrumb.active}}
+      <li {{bind-attr class='breadcrumb.class'}}>{{breadcrumb.name}}</li>
+    {{else}}
+      <li {{bind-attr class='breadcrumb.class'}}>
+        {{#link-to breadcrumb.url}}
+          {{breadcrumb.name}}
+        {{/link-to}}
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>

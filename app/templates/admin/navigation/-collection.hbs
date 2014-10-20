@@ -1,0 +1,11 @@
+{{#admin-navigation-menu class="dropdown" content=navigation}}
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    {{navigation.title}}
+  </a>
+    <span class="caret"></span>
+  <ul class="dropdown-menu">
+    {{#each navigation in navigation.children}}
+      {{partial "admin/navigation/item"}}
+    {{/each}}
+  </ul>
+{{/admin-navigation-menu}}

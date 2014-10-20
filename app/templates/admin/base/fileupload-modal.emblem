@@ -1,9 +1,0 @@
-.file_upload.modal.show
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button type="button" click="closeModal" class="close" data-dismiss="modal" aria-hidden="true" &times;
-        h4.modal-title
-      .modal-body
-        img{{bind-attr src="modalObject.model.image.url"}}
-      .modal-footer

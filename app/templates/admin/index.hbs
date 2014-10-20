@@ -1,0 +1,24 @@
+<div class="wrapper">
+  {{outlet modal}}
+  <div class="row">
+    <div class="col-12">
+      {{outlet navigation}}
+    </div>
+  </div>
+  <div class="row breadcrumbs">
+    <div class="col-12">
+      {{outlet actions}}
+      {{outlet breadcrumbs}}
+    </div>
+  </div>
+  <div id="container" class="row-fluid">
+    <div class="wrap_content main-content">
+      {{outlet main}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      {{outlet footer}}
+    </div>
+  </div>
+</div>

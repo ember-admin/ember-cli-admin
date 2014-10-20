@@ -1,0 +1,25 @@
+{{!--= form-for controller.decorator.model wrapper="twitter-bootstrap"
+  each attribute in controller.formAttributes
+    = decorator-input attribute.name inputConfig='class:form-control'
+
+
+
+  = input-map
+
+  = partial "form_buttons"--}}
+
+<form>
+  {{#each attribute in controller.formAttributes}}
+    {{admin-input model=controller.model name=attribute.name}}
+  {{/each}}
+
+  {{#each attribute in controller.fileuploads}}
+    {{view 'admin/fileupload/drag-and-drop-zone' model=controller.model property=attribute.name}}
+  {{/each}}
+
+  {{#if controller.model.asGoogleMap}}
+    {{google-map model=controller.model}}
+  {{/if}}
+
+  {{partial "admin/form-buttons"}}
+</form>

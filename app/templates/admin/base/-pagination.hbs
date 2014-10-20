@@ -1,0 +1,29 @@
+<div class="btn-group per-page">
+{{#admin-pagination-per-page count=25 action="changePerPage" perPage=controller.perPage}}25{{/admin-pagination-per-page}}
+{{#admin-pagination-per-page count=50 action="changePerPage" perPage=controller.perPage}}50{{/admin-pagination-per-page}}
+{{#admin-pagination-per-page count=100 action="changePerPage" perPage=controller.perPage}}100{{/admin-pagination-per-page}}
+</div>
+
+{{#admin-pagination-pages-list numberOfPages=controller.numberOfPages page=controller.page}}
+  {{#unless onePage}}
+    <ul class="pagination">
+      <li>
+        {{#admin-pagination-link type="prev" action="prevPage"}}>Previous{{/admin-pagination-link}}
+      </li>
+      {{#each page in pages}}
+        <li>
+          {{#admin-pagination-number number=page page=controller.page action="changePage"}}{{page}}{{/admin-pagination-number}}
+        </li>
+      <li>
+        {{#admin-pagination-link type="next" action="nextPage"}}Next{{/admin-pagination-link}}
+      </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <ul class="pager">
+      <li>&nbsp;</li>
+    </ul>
+  {{/unless}}
+{{/admin-pagination-pages-list}}
+
+<div class="page-number">Page&nbsp;{{controller.page}}</div>

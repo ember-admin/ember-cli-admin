@@ -1,4 +1,0 @@
-.asset
-  img{{bind-attr src="view.asset.thumb_url"}}
-  a.btn.btn-danger click="deleteAsset target='view'"
-    |x

@@ -1,0 +1,13 @@
+<div class="btn-group batch-actions">
+  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    batch actions
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    {{#each action in controller.batchActions}}
+      {{#view 'admin/base/actions/batch-action' contextBinding="action"}}
+        <a href="#">{{action.title}}</a>
+      {{/view}}
+    {{/each}}
+  </ul>
+</div>
