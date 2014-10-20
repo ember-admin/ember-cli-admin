@@ -1,0 +1,13 @@
+<h2>Show</h2>
+
+<table class="show-details">
+  <thead></thead>
+  <tbody>
+    {{#each attribute in controller.formAttributes}}
+      <tr>
+        <th>{{attribute.name}}</th>
+        {{admin-td-element attributeName=attribute.name item=model}}
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

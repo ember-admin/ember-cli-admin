@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-9">
+        <table class="table-striped">
+            {{partial "admin/base/actions/batch"}}
+            <thead>
+            <tr>
+                <th>{{view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches"}}</th>
+                {{#each attributeName in controller.tableAttributes}}
+                    <th>{{attributeName}}</th>
+                {{/each}}
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each item in controller.model.items}}
+                <tr>
+                    <td>{{view 'admin/base/actions/checkbox-batch' contextBinding="item"}}</td>
+                    {{#each attributeName in controller.tableAttributes}}
+                        {{admin-td-element attributeName=attributeName item=item action='openImagePreview'}}
+                    {{/each}}
+                    <td class="actions">
+                        {{#if controller.collectionActions}}
+                            {{partial "admin/base/actions/base-actions"}}
+                        {{/if}}
+                        {{partial "admin/base/actions/addition-actions"}}
+                    </td>
+                </tr>
+            {{else}}
+                {{#if controller.model.items.isLoaded}}
+                    <tr>
+                        <td>
+                            <span class="glyphicon glyphicon-exclamation-sign">Empty</span>
+                        </td>
+                    </tr>
+                {{else}}
+                    <tr>
+                        <td>
+                            <span class="glyphicon glyphicon-refresh"></span>
+                        </td>
+                    </tr>
+                {{/if}}
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <div class="search-container">
+            <form class="search" {{action 'search on="submit"'}}>
+                {{#each field in controller.searchForm.fields}}
+                    {{#if field.isInput}}
+                        <div class="input">
+                            <label>{{field.fieldName}}</label>
+                            {{input name=field.fieldName valueBinding='field.value' type="text"}}
+                        </div>
+                    {{/if}}
+                    {{#if field.isNumberInput}}
+                        <div class="input">
+                            <label>{{field.fieldName}}</label>
+                            {{view "select" content=field.numberPredicats value=field.predicat}}
+                            {{input name=field.fieldName valueBinding='field.value' type="number"}}
+                        </div>
+                    {{/if}}
+                    {{#if field.isSelect}}
+                        <div class="input">
+                            <label>{{field.fieldName}}</label>
+                            {{view "select" content=field.options.selectContent value=field.value}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{partial "admin/base/pagination"}}

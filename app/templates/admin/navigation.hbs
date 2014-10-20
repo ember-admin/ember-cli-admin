@@ -1,0 +1,8 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <a class="navbar-brand" href="/#/">{{controller.siteTitle}}</a>
+  <ul class="nav navbar-nav">
+    {{#each navigation in controller}}
+      {{partial "admin/navigation/item"}}
+    {{/each}}
+  </ul>
+</div>
