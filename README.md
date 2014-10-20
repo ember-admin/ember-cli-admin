@@ -216,12 +216,6 @@ That's it!
 
 ##Customize Templates
 
-To override admin **edit/new/show/form** templates with your own, put your templates in ```app/templates/admin``` directory. For example:
-```
-#app/templates/admin/show.hbs
-...
-```
-
 You can also provide your own form template for a specific resource. Put your form template in `app/templates/admin/[controllerName]` directory. For users resource:
 
 ```
