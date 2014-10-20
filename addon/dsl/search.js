@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Attributes from 'ember-cli-admin/dsl/attributes';
 
 var SearchField;
 
@@ -17,10 +18,18 @@ var SearchClass = (function() {
     return this;
   };
 
-  Search.prototype.fromModel = function(model){
-    var searchObject = new Search();
-    searchObject.formModel(model);
-    return searchObject;
+  Search.prototype.fromModel = function(searchParams, model, attributes){
+    this.fields = [];
+    this.queryParams = this.deserializer(searchParams);
+    var fields = Ember.$.extend({}, attributes).fields;
+    if(!fields){
+      fields = Attributes.forSearch(model);
+    }
+    var self = this;
+    fields.forEach(function(attribute){
+      self.input(attribute);
+    });
+    return this;
   };
 
   Search.prototype.input = function(fieldName, options) {

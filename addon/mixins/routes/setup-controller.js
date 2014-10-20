@@ -11,6 +11,7 @@ setupControllerMixin = Ember.Mixin.create({
       this._setModel(controller, model);
       type = model.type || model.constructor;
       controller.set('modelAttributes', Attributes.detect(type));
+      controller.set('modelType', type);
       return controller.set('batches', []);
     }
   }
