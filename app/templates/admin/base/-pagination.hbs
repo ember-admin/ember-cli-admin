@@ -8,7 +8,7 @@
   {{#unless onePage}}
     <ul class="pagination">
       <li>
-        {{#admin-pagination-link type="prev" action="prevPage"}}>Previous{{/admin-pagination-link}}
+        {{#admin-pagination-link type="prev" action="prevPage"}}Previous{{/admin-pagination-link}}
       </li>
       {{#each page in pages}}
         <li>
@@ -25,5 +25,3 @@
     </ul>
   {{/unless}}
 {{/admin-pagination-pages-list}}
-
-<div class="page-number">Page&nbsp;{{controller.page}}</div>

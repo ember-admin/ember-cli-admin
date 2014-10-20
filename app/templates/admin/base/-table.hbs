@@ -1,12 +1,17 @@
 <div class="row">
     <div class="col-md-9">
-        <table class="table-striped">
+        <table class="table-view">
             {{partial "admin/base/actions/batch"}}
             <thead>
             <tr>
-                <th>{{view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches"}}</th>
+                <th class="checkbox-list">
+                    {{view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches"}}
+                </th>
                 {{#each attributeName in controller.tableAttributes}}
-                    <th>{{attributeName}}</th>
+                    
+                <th>
+                    {{attributeName}}
+                </th>
                 {{/each}}
                 <th>Actions</th>
             </tr>
@@ -14,11 +19,11 @@
             <tbody>
             {{#each item in controller.model.items}}
                 <tr>
-                    <td>{{view 'admin/base/actions/checkbox-batch' contextBinding="item"}}</td>
+                    <td class="checkbox-list">{{view 'admin/base/actions/checkbox-batch' contextBinding="item"}}</td>
                     {{#each attributeName in controller.tableAttributes}}
                         {{admin-td-element attributeName=attributeName item=item action='openImagePreview'}}
                     {{/each}}
-                    <td class="actions">
+                    <td class="table-item-actions">
                         {{#if controller.collectionActions}}
                             {{partial "admin/base/actions/base-actions"}}
                         {{/if}}
@@ -45,32 +50,41 @@
     </div>
     <div class="col-md-3">
         <div class="search-container">
-            <form class="search" {{action 'search' on="submit"}}>
-                {{#each field in controller.searchForm.fields}}
-                    {{#if field.isInput}}
-                        <div class="clearfix string">
-                            <label>{{field.fieldName}}</label>
-                            <div class="controls">
-                                {{input name=field.fieldName valueBinding='field.value' type="text"}}
+            <div class="panel panel-default">
+              <div class="panel-heading">Search</div>
+              <div class="panel-body">
+                <form class="search" {{action 'search' on="submit"}}>
+                    {{#each field in controller.searchForm.fields}}
+                        {{#if field.isInput}}
+                            <div class="clearfix string">
+                                <label>{{field.fieldName}}</label>
+                                <div class="controls">
+                                    {{input name=field.fieldName valueBinding='field.value' type="text"}}
+                                </div>
                             </div>
-                        </div>
-                    {{/if}}
-                    {{#if field.isNumberInput}}
-                        <div class="input">
-                            <label>{{field.fieldName}}</label>
-                            {{view "select" content=field.numberPredicats value=field.predicat}}
-                            {{input name=field.fieldName valueBinding='field.value' type="number"}}
-                        </div>
-                    {{/if}}
-                    {{#if field.isSelect}}
-                        <div class="input">
-                            <label>{{field.fieldName}}</label>
-                            {{view "select" content=field.options.selectContent value=field.value}}
-                        </div>
-                    {{/if}}
-                {{/each}}
-                <button type="submit">Search</button>
-            </form>
+                        {{/if}}
+                        {{#if field.isNumberInput}}
+                            <div class="input">
+                                <label>{{field.fieldName}}</label>
+                                {{view "select" content=field.numberPredicats value=field.predicat}}
+                                {{input name=field.fieldName valueBinding='field.value' type="number"}}
+                            </div>
+                        {{/if}}
+                        {{#if field.isSelect}}
+                            <div class="input">
+                                <label>{{field.fieldName}}</label>
+                                {{view "select" content=field.options.selectContent value=field.value}}
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                    <div>
+                        <button class="search-button btn btn-success" type="submit">Search</button>
+                        <a href="#" class="search-button btn btn-danger">Clear</a>
+                    </div>
+                </form>
+              </div>
+            </div>
+                
         </div>
     </div>
 </div>
