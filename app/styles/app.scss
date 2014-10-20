@@ -161,3 +161,44 @@ form{
   }
 
 }
+
+html, body {
+  margin: 20px;
+}
+
+.admin-form {
+
+  .admin-attribute {
+    margin-bottom: 10px;
+
+    .controls {
+      display:inline;
+      margin-left: 10px;
+
+      .ember-text-field {
+        width: 400px;
+        border: 1px solid rgb(180,180,180);
+        border-radius: 3px;
+      }
+    }
+  }
+
+  .admin-fileupload {
+    margin-bottom: 10px;
+
+    .asset_wrapper {
+
+      .ember-view {
+        margin-bottom: 10px;
+        .asset{
+
+          .btn-danger{
+            vertical-align: top;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+
+  }
+}
