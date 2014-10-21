@@ -17,6 +17,9 @@ attributes = Attributes = (function() {
 
   Attributes.forSearch = function(modelType){
     attributes = [];
+    if(!modelType || !modelType['eachComputedProperty']){
+      return [];
+    }
     modelType.eachComputedProperty((function(_this) {
       return function(attribute, meta) {
         if (meta.isAttribute && _this.systemAttrs(modelType).indexOf(attribute) < 0) {
@@ -47,7 +50,7 @@ attributes = Attributes = (function() {
     if (hasMany == null) {
       hasMany = true;
     }
-    if(!modelType || modelType === 'Ember.Object'){
+    if(!modelType ||!modelType['eachRelationship']){
       return [];
     }
     modelType.eachRelationship((function() {

@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" click="closeModal" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" {{action "closeModal" on="click"}}>&times;</button>
         <h4 class="modal-title">{{modalObject.actionData.title}}</h4>
       </div>
       <div class="modal-body">
@@ -10,7 +10,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" {{action "closeModal" on="click"}}>Close</button>
-        <button type="button" class="btn btn-primary" {{action "confirm" on="click"}}>Confirm</button>
+        <button type="button" class="btn btn-primary" {{action "confirm" modalObject on="click"}}>Confirm</button>
       </div>
     </div>
   </div>
