@@ -13,19 +13,19 @@ searchMixin = Ember.Mixin.create({
 
   searchLogic: new SearchLogic(),
 
-  searchForm: function(){
-    var search =  this.get('searchLogic').fromModel(this.get('q'), this.get('modelType'));
+  searchForm: function () {
+    var search = this.get('searchLogic').fromModel(this.get('q'), this.get('modelType'));
     return search;
   }.property('model', 'q'),
 
   actions: {
-    search: function(){
-      var query =  this.get('searchForm').serialize();
-      this.set('q', Ember.$.param(query));
+    search: function () {
+      var query = this.get('searchForm').serialize();
+      this.setProperties({page: 1, q: Ember.$.param(query)});
     },
 
-    clearSearchForm: function(){
-      this.set('q', '');
+    clearSearchForm: function () {
+      this.setProperties({page: 1, q: ''});
     }
   }
 });
