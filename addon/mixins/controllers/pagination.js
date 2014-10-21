@@ -12,65 +12,10 @@ paginationMixin = Ember.Mixin.create({
   onePage: (function() {
     return this.get('numberOfPages') === 1;
   }).property('numberOfPages'),
-//  pages: (function(){
-//    console.log(this);
-//    return this.get('content');
-//  }).property('numberOfPages'),
-//  step: 5,
-//  pages: (function() {
-//    var currentPage, i, leftEdge, numberOfPages, pages, rightEdge, step;
-//    pages = [];
-//    numberOfPages = this.get('numberOfPages');
-//    currentPage = this.get('page');
-//    step = this.get('step');
-//    if (numberOfPages > step + 1) {
-//      leftEdge = currentPage;
-//      rightEdge = currentPage + step - 1;
-//      if (rightEdge >= numberOfPages) {
-//        rightEdge = numberOfPages;
-//        leftEdge = numberOfPages - step + 1;
-//      }
-//      i = leftEdge;
-//      while (i <= rightEdge) {
-//        pages.push(i);
-//        i++;
-//      }
-//      if (leftEdge > 1) {
-//        pages.unshift('...');
-//        pages.unshift(1);
-//      }
-//      if (rightEdge < numberOfPages) {
-//        pages.push('...');
-//        pages.push(numberOfPages);
-//      }
-//    } else {
-//      i = 1;
-//      while (i <= numberOfPages) {
-//        pages.push(i);
-//        i++;
-//      }
-//    }
-//    return pages;
-//  }).property('page'),
+
   actions: {
-//    nextPage: function() {
-//      if (this.get('page') < this.get('numberOfPages')) {
-//        return this.incrementProperty('page');
-//      }
-//    },
-//    prevPage: function() {
-//      if (this.get('page') > 1) {
-//        return this.decrementProperty('page');
-//      }
-//    },
     changePerPage: function(perPage) {
-      this.set('perPage', perPage);
-      if (this.get('numberOfPages') < this.get('page')) {
-        return this.send('changePage', 1);
-      }
-    },
-    changePage: function(page) {
-      return this.set('page', +(page));
+      return this.set('perPage', perPage);
     }
   }
 });

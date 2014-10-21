@@ -31,7 +31,6 @@ export default Ember.Component.extend({
 
   actions: {
     clickPage: function(number) {
-      console.log(this.get("currentPage"));
       this.set("currentPage", number);
     },
     changePage: function(num) {
