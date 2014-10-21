@@ -3,16 +3,21 @@ import Ember from 'ember';
 var paginationMixin;
 
 paginationMixin = Ember.Mixin.create({
-  queryParams: ['page', 'perPage'],
+  queryParams: ['page', 'perPage', 'q'],
   page: 1,
   perPage: 25,
+  q: '',
+
   numberOfPages: (function() {
     return Math.ceil(this.get('total') / this.get('perPage'));
   }).property('perPage'),
+
   onePage: (function() {
     return this.get('numberOfPages') === 1;
   }).property('numberOfPages'),
+
   step: 5,
+
   pages: (function() {
     var currentPage, i, leftEdge, numberOfPages, pages, rightEdge, step;
     pages = [];
@@ -48,6 +53,7 @@ paginationMixin = Ember.Mixin.create({
     }
     return pages;
   }).property('page'),
+
   actions: {
     nextPage: function() {
       if (this.get('page') < this.get('numberOfPages')) {

@@ -15,6 +15,18 @@ attributes = Attributes = (function() {
     return attrs;
   };
 
+  Attributes.forSearch = function(modelType){
+    attributes = [];
+    modelType.eachComputedProperty((function(_this) {
+      return function(attribute, meta) {
+        if (meta.isAttribute && _this.systemAttrs(modelType).indexOf(attribute) < 0) {
+          return attributes.push(attribute);
+        }
+      };
+    })(this));
+    return attributes;
+  };
+
   Attributes.withoutId = function(modelType) {
     attributes = [];
     modelType.eachComputedProperty((function(_this) {

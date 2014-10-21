@@ -21,7 +21,6 @@ adminResolver = Resolver["default"].extend({
     }
   },
   resolveController: function(parsedName) {
-    console.log(parsedName);
     this.useRouterNaming(parsedName);
     if (this._checkResourceController(parsedName.fullName)) {
       this._setNames(parsedName);
@@ -44,7 +43,6 @@ adminResolver = Resolver["default"].extend({
     parsedName.fullName = this._replaceForResource(parsedName.fullName);
     parsedName.fullNameWithoutType = this._replaceForResource(parsedName.fullNameWithoutType);
     parsedName.name = this._replaceForResource(parsedName.name);
-    return console.log(parsedName);
   },
   _pattern: function() {
     return /(\/[Ss]how)|(\/[Ee]dit)|(\/[Nn]ew)/;

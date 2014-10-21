@@ -9,6 +9,9 @@ paginationMixin = Ember.Mixin.create({
     },
     perPage: {
       refreshModel: true
+    },
+    q: {
+      refreshModel: true
     }
   },
   pagination: function(modelName, params) {

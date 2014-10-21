@@ -7,6 +7,7 @@ import PaginationMixin from 'ember-cli-admin/mixins/controllers/pagination';
 import BatchActionsMixin from 'ember-cli-admin/mixins/controllers/batch-actions';
 import FormActionsMixin from 'ember-cli-admin/mixins/controllers/form-actions';
 import BaseDecorator from 'ember-cli-admin/decorators/base-decorator';
+import SearchMixin from 'ember-cli-admin/mixins/controllers/search';
 var baseMixin;
 
 baseMixin = Ember.Mixin.create({
@@ -22,6 +23,7 @@ baseMixin = Ember.Mixin.create({
   }).property()
 });
 
-baseMixin.reopen(BaseActionsMixin, FileUploadMixin, AttributesMixin, PaginationMixin, BatchActionsMixin, FormActionsMixin);
+baseMixin.reopen(BaseActionsMixin, FileUploadMixin, AttributesMixin, PaginationMixin, BatchActionsMixin,
+  FormActionsMixin, SearchMixin);
 
 export default baseMixin;
