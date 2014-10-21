@@ -9,11 +9,15 @@ confirmationMixin = Ember.Mixin.create({
       options = {};
     }
     action = this.get('action') || this.get('context');
-    return this.get('controller').send('openModal', Ember.Object.create({
+    return this.get('controller').send('openModal', this._createConfirmationObject(action, options));
+  },
+
+  _createConfirmationObject: function(action, options){
+    return Ember.Object.create({
       actionData: action,
       model: this.get('model') || this.get('controller.model'),
       options: options
-    }));
+    });
   }
 });
 

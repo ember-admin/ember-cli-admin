@@ -26,7 +26,12 @@ modalMixin = Ember.Mixin.create({
       if (modelObject.get('options').batch) {
         this.get('controller').send('baseBatchAction', modelObject.get('actionData.action'));
       } else {
-        this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('model'));
+        if(modelObject.get('options').withOptions){
+          this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('options'));
+        }
+        else{
+          this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('model'));
+        }
       }
       return this.send('closeModal');
     },

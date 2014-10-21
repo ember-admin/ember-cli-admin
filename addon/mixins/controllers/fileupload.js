@@ -22,7 +22,11 @@ fileUploadMixin = Ember.Mixin.create({
         };
       })(this));
     },
-    deleteAsset: function(asset, single, property) {
+    deleteAsset: function(options) {
+      var asset = options.asset;
+      var single = options.single;
+      var property = options.property;
+
       asset.deleteRecord();
       asset.save();
       if (single) {
