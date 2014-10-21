@@ -20,7 +20,9 @@
     "ember-cli",
     "admin",
     "ember",
-    "ember-cli-map"
+    "ember-cli-admin",
+    "ember-admin",
+    "bootstrap-admin"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
