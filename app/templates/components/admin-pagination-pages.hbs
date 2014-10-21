@@ -1,0 +1,37 @@
+<div class="pagination-centered">
+  {{#unless onePage}}
+    <ul class="pagination">
+      {{#if canStepBackward}}
+          <li class="arrow prev enabled-arrow">
+              <a {{action "changePage" -1}}>&laquo;</a>
+          </li>
+      {{else}}
+          <li class="arrow prev disabled">
+              <a {{action "changePage" -1}}>&laquo;</a>
+          </li>
+      {{/if}}
+
+      {{#each item in pageItems}}
+        {{#if item.current}}
+            <li class="active page-number">
+                <a>{{item.page}}</a>
+            </li>
+        {{else}}
+            <li class="page-number">
+                <a {{action "clickPage" item.page}}>{{item.page}}</a>
+            </li>
+        {{/if}}
+      {{/each}}
+
+      {{#if canStepForward}}
+          <li class="arrow next enabled-arrow">
+              <a {{action "changePage" 1}}>&raquo;</a>
+          </li>
+      {{else}}
+          <li class="arrow next disabled">
+              <a {{action "changePage" 1}}>&raquo;</a>
+          </li>
+      {{/if}}
+    </ul>
+  {{/unless}}
+</div>
