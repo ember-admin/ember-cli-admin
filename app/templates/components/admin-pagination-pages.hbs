@@ -1,4 +1,5 @@
 <div class="pagination-centered">
+  {{#unless onePage}}
     <ul class="pagination">
       {{#if canStepBackward}}
           <li class="arrow prev enabled-arrow">
@@ -32,4 +33,5 @@
           </li>
       {{/if}}
     </ul>
+  {{/unless}}
 </div>

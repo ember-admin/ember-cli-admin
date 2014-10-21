@@ -29,6 +29,11 @@ export default Ember.Component.extend({
     return page > 1;
   }).property("currentPage"),
 
+  onePage: (function() {
+    var totalPages = +(this.get("numberOfPages"));
+    return totalPages === 1;
+  }).property('numberOfPages'),
+
   actions: {
     clickPage: function(number) {
       this.set("currentPage", number);

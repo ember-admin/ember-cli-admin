@@ -12,10 +12,6 @@ paginationMixin = Ember.Mixin.create({
     return Math.ceil(this.get('total') / this.get('perPage'));
   }).property('perPage'),
 
-  onePage: (function() {
-    return this.get('numberOfPages') === 1;
-  }).property('numberOfPages'),
-
   actions: {
     changePerPage: function(perPage) {
       return this.set('perPage', perPage);
