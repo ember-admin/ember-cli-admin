@@ -8,10 +8,9 @@
                     {{view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches"}}
                 </th>
                 {{#each attributeName in controller.tableAttributes}}
-                    
-                <th>
-                    {{attributeName}}
-                </th>
+                    <th>
+                        {{attributeName}}
+                    </th>
                 {{/each}}
                 <th>Actions</th>
             </tr>
@@ -20,9 +19,11 @@
             {{#each item in controller.model.items}}
                 <tr>
                     <td class="checkbox-list">{{view 'admin/base/actions/checkbox-batch' contextBinding="item"}}</td>
+                    
                     {{#each attributeName in controller.tableAttributes}}
                         {{admin-td-element attributeName=attributeName item=item action='openImagePreview'}}
                     {{/each}}
+
                     <td class="table-item-actions">
                         {{#if controller.collectionActions}}
                             {{partial "admin/base/actions/base-actions"}}
