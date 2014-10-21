@@ -14,6 +14,7 @@ renderMixin = Ember.Mixin.create({
     this.controllerFor('breadcrumbs').set('resource', model);
     this._renderBreadcrumbs(controller, model);
     this._renderActions(controller, model);
+    this._renderSearchForm(controller);
     return this._renderForm(controller, model);
   },
   _renderNavigation: function() {
@@ -44,6 +45,14 @@ renderMixin = Ember.Mixin.create({
         controller: controller
       });
     }
+  },
+
+  _renderSearchForm: function(controller){
+    return this.render(this._getSearchForm(controller), {
+      into:  this._getControllerTemplate(controller),
+      outlet: 'search',
+      controller: controller
+    });
   }
 });
 
