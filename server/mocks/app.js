@@ -8,7 +8,11 @@ module.exports = function(app) {
     users.push({id: i, name: 'testuser', lat: 50, long: 40, zoom: 3, avatar_id: i});
   }
   appRouter.get('/users', function(req, res) {
-    res.send({users: users, meta:{total: 50}, avatars: avatars});
+    var perPage = +req.query.perPage;
+    var page = +req.query.page;
+    usersArray = users.slice((page-1)*perPage, page*perPage);
+    avatarsArray = avatars.slice((page-1)*perPage, page*perPage);
+    res.send({users: usersArray, meta:{total: 50}, avatars: avatarsArray});
   });
 
   appRouter.delete('/users/:id', function(req, res) {
