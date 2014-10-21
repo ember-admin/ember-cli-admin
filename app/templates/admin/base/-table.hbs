@@ -1,44 +1,45 @@
-<table class="table-striped">
-  {{partial "admin/base/actions/batch"}}
-  <thead>
-    <tr>
-      <th>{{view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches"}}</th>
-      {{#each attributeName in controller.tableAttributes}}
-        <th>{{attributeName}}</th>
-      {{/each}}
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each item in controller.model.items}}
-      <tr>
-        <td>{{view 'admin/base/actions/checkbox-batch' contextBinding="item"}}</td>
-        {{#each attributeName in controller.tableAttributes}}
-          {{admin-td-element attributeName=attributeName item=item action='openImagePreview'}}
-        {{/each}}
-        <td class="actions">
-          {{#if controller.collectionActions}}
-            {{partial "admin/base/actions/base-actions"}}
-          {{/if}}
-          {{partial "admin/base/actions/addition-actions"}}
-        </td>
-      </tr>
-    {{else}}
-      {{#if controller.model.items.isLoaded}}
-        <tr>
-          <td>
-            <span class="glyphicon glyphicon-exclamation-sign">Empty</span>
-          </td>
-        </tr>
-      {{else}}
-        <tr>
-          <td>
-            <span class="glyphicon glyphicon-refresh"></span>
-          </td>
-        </tr>
-      {{/if}}
-    {{/each}}
-  </tbody>
-</table>
-
+<div class="row">
+    <div class="col-md-9">
+        <table class="table-view">
+            {{partial "admin/base/actions/batch"}}
+            <thead>
+            <tr>
+                <th class="checkbox-list">
+                    {{view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches"}}
+                </th>
+                {{#each attributeName in controller.tableAttributes}}
+                    <th>
+                        {{attributeName}}
+                    </th>
+                {{/each}}
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#if controller.model.items }}
+                    {{each controller.model.items itemViewClass="admin/base/tr-list"}}
+                {{else}}
+                    {{#if controller.model.items.isLoaded}}
+                        <tr>
+                            <td>
+                                <span class="glyphicon glyphicon-exclamation-sign">Empty</span>
+                            </td>
+                        </tr>
+                    {{else}}
+                        <tr>
+                            <td>
+                                <span class="glyphicon glyphicon-refresh"></span>
+                            </td>
+                        </tr>
+                    {{/if}}
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+    {{#if controller.isShowSearchForm}}
+        <div class="col-md-3">
+            {{outlet 'search'}}
+        </div>
+    {{/if}}
+</div>
 {{partial "admin/base/pagination"}}

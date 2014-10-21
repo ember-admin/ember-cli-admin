@@ -10,7 +10,8 @@ modalMixin = Ember.Mixin.create({
       }
       this.set('controller.modalObject', item);
       return this.render(modalName, {
-        outlet: "modal"
+        outlet: "modal",
+        controller: this.get('controller')
       });
     },
     openImagePreview: function(url) {
@@ -19,13 +20,18 @@ modalMixin = Ember.Mixin.create({
         outlet: "modal"
       });
     },
-    confirm: function() {
+    confirm: function(modal) {
       var modelObject;
-      modelObject = this.get('controller.modalObject');
+      modelObject = modal || this.get('controller.modalObject');
       if (modelObject.get('options').batch) {
         this.get('controller').send('baseBatchAction', modelObject.get('actionData.action'));
       } else {
-        this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('model'));
+        if(modelObject.get('options').withOptions){
+          this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('options'));
+        }
+        else{
+          this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('model'));
+        }
       }
       return this.send('closeModal');
     },

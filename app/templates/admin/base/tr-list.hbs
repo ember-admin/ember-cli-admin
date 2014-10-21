@@ -1,0 +1,10 @@
+<td class="checkbox-list">{{view 'admin/base/actions/checkbox-batch' contextBinding="view.context"}}</td>
+{{#each attributeName in controller.tableAttributes}}
+    {{admin-td-element attributeName=attributeName item=view.item action='openImagePreview'}}
+{{/each}}
+<td class="table-item-actions">
+    {{#if controller.collectionActions}}
+        {{partial "admin/base/actions/base-actions"}}
+    {{/if}}
+    {{partial "admin/base/actions/addition-actions"}}
+</td>

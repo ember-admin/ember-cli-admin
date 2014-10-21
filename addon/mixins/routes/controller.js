@@ -36,6 +36,19 @@ controllerMixin = Ember.Mixin.create({
       }
     }
   },
+
+  _getSearchForm: function(controller){
+    var form;
+    form = "%@/search".fmt(this._controllerName(controller).decamelize());
+    if (this.container.resolve('template:'+form)) {
+      return form;
+    }
+    if (this.container.resolve("template:admin/%@".fmt(form))){
+      return "admin/%@".fmt(form);
+    }
+    return "admin/search";
+  },
+
   _controllerName: function(controller) {
     return this.controllerName || (this.controllerName = controller._debugContainerKey.split(":")[1].replace(/(\/[Ss]how)|(\/[Ee]dit)|(\/[Nn]ew)/, ''));
   },

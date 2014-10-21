@@ -12,6 +12,7 @@ modelMixin = Ember.Mixin.create({
   model: function(options, transition) {
     this.page = (options != null ? options.page : void 0) || 1;
     this.perPage = (options != null ? options.perPage : void 0) || 25;
+    this.q = (options != null ? options.q : void 0);
     this._checkAction(options, transition.targetName);
     if (options.action) {
       this._setAction(options.action);
@@ -28,10 +29,14 @@ modelMixin = Ember.Mixin.create({
       return this.store.createRecord(modelName, {});
     }
     if (!options.id) {
-      return this.pagination(modelName, {
+      var findOptions = {
         page: this.page,
         perPage: this.perPage
-      });
+      };
+      if(!Ember.isEmpty(this.q)){
+        findOptions.q = this.q;
+      }
+      return this.pagination(modelName, findOptions);
     }
     return this.store.find(modelName, options.id);
   },
