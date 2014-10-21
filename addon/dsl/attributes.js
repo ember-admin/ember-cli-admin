@@ -47,6 +47,9 @@ attributes = Attributes = (function() {
     if (hasMany == null) {
       hasMany = true;
     }
+    if(!modelType || modelType === 'Ember.Object'){
+      return [];
+    }
     modelType.eachRelationship((function() {
       return function(attribute, meta) {
         if (hasMany) {
