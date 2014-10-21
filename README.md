@@ -28,7 +28,7 @@ bower install
 ```
 
 Then in your Brocfile.js add bootstrap fonts:
-```
+```javascript
 // Put the bootstrap fonts in the place that the bootstrap css expects to find them.
 var pickFiles = require('broccoli-static-compiler');
 var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
@@ -46,7 +46,7 @@ module.exports = mergeTrees([app.toTree(), bootstrapFonts]);
 
 
 Add ```AdminResolver```:
-```
+```javascript
 ...
 #app/app.js
 import AdminResolver from 'ember-cli-admin/admin-resolver';
@@ -60,7 +60,7 @@ export default App;
 
 ###In your router.js
 
-```
+```javascript
 #app/router.js
 ---
 import MetaRoute from 'ember-cli-admin/dsl/meta-route';
@@ -91,7 +91,7 @@ export default Router;
 
 For example, if we have the following model:
 
-```
+```javascript
 #app/models/user.js
 import DS from 'ember-data';
 
@@ -105,7 +105,7 @@ export default DS.Model.extend({
 ```
 To add users resource to admin dashboard, just setup users controller like this:
 
-```
+```javascript
 #app/controllers/users.js
 import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
@@ -114,7 +114,7 @@ export default Ember.ObjectController.extend(TableViewController);
 ```
 And add resources to your router:
 
-```
+```javascript
 #app/router.js
 ...
 MetaRoute.map(Router, function() {
@@ -125,7 +125,7 @@ MetaRoute.map(Router, function() {
 
 You'll also need to add Navigation initializer to set up your navigation bar:
 
-```
+```javascript
 #app/initializers/navigation.js
 
 import Navigation from 'ember-cli-admin/dsl/navigation';
@@ -149,7 +149,7 @@ export default {
 
 You can specify the attributes to use in admin form with ```formFields``` property in the model:
 
-```
+```javascript
 #app/models/user.js
 ...
 export default DS.Model.extend({
@@ -161,7 +161,7 @@ export default DS.Model.extend({
 
 We currently support ```google-map``` component which can be added to your resource form with the following simple setup
 
-```
+```javascript
 #app/models/user.js
 ...
 export default DS.Model.extend({
@@ -191,7 +191,7 @@ To display and upload them in admin interface, do the following setup.
 
 First, add avatar model extending it from ember-cli-admin Asset:
 
-```
+```javascript
 #app/models/avatar.js
 import Asset from 'ember-cli-admin/logics/asset';
 import DS from 'ember-data';
@@ -201,7 +201,7 @@ export default Asset.extend();
 
 Add avatar/avatars to User model, and specify them on ```fileuploads``` property:
 
-```
+```javascript
 #app/models/user.js
 ...
 export default DS.Model.extend({
