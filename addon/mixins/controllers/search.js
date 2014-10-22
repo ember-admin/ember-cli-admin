@@ -1,5 +1,5 @@
 // You can create your own search form with form dsl
-//  var search =  this.get('searchLogic').form(this.get('q'), function(){
+//  var search =  new SearchLogic().form(this.get('q'), function(){
 //    this.input('title');
 //    this.input('lat', {type: 'number'});
 //  });

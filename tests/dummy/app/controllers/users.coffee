@@ -1,6 +1,14 @@
 `import TableViewController from 'ember-cli-admin/mixins/controllers/table-view'`
+`import SearchLogic from 'ember-cli-admin/dsl/search'`
 
-usersController = Ember.ObjectController.extend(TableViewController)
+usersController = Ember.ObjectController.extend TableViewController,
+
+  searchForm: (->
+    new SearchLogic().form(@get('q'), ->
+      @input('email')
+      @input('name')
+    )
+  ).property('q')
 ##  additionalActions: [
 ##    {
 ##      title: "clone",
