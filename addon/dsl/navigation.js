@@ -84,7 +84,7 @@ navigationClass  = (function() {
       options = {};
     }
     if (options.route === void 0) {
-      return options.route = options.title.underscore();
+      return options.route = options.title.dasherize();
     }
   };
 

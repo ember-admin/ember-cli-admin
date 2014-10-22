@@ -12,6 +12,7 @@ initializer = {
       @navigate "Dashboard", route: "dashboard"
       @navigate "Admin", ->
         @navigate "Users"
+        @navigate "User Categories"
       @navigate "Cars"
   }
 

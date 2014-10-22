@@ -27,6 +27,26 @@ module.exports = function(app) {
     res.send({user: {id: req.params.id, name: req.body.user.name, lat: req.body.user.lat, long: req.body.user.long, zoom: req.body.user.zoom}});
   });
 
+
+
+  appRouter.get('/user_categories', function(req, res) {
+    res.send({user_categories: [{id: 1, name: 'test'}]});
+  });
+  appRouter.delete('/user_categories/:id', function(req, res) {
+    res.send({});
+  });
+
+  appRouter.get('/user_categories/:id', function(req, res) {
+    res.send({user_category: {id: req.params.id, name: 'test'}});
+  });
+
+  appRouter.put('/user_categories/:id', function(req, res) {
+    res.send({user_category: {id: req.params.id, name: req.body.user_category.name}});
+  });
+
+
+
+
   appRouter.post('/avatars', function(req, res) {
 //    req.on('data', function(chunk){ console.log(chunk)});
     res.send({avatar: {id: 1, thumb_url: 'http://media-cache-ak0.pinimg.com/236x/0c/e6/7f/0ce67fa7c94da77ab90877e65f3fda87.jpg', url: 'http://www.londra.us/Bristol_Castle.jpg'}});
