@@ -11,12 +11,10 @@ var searchMixin;
 
 searchMixin = Ember.Mixin.create({
 
-  searchLogic: new SearchLogic(),
-
   isShowSearchForm: true,
 
   searchForm: function () {
-    var search = this.get('searchLogic').fromModel(this.get('q'), this.get('modelType'));
+    var search = new SearchLogic().fromModel(this.get('q'), this.get('modelType'));
     return search;
   }.property('model', 'q'),
 
