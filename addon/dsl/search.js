@@ -53,10 +53,13 @@ var SearchClass = (function() {
     return this;
   };
 
-  Search.prototype.serialize = function(){
+  Search.prototype.serialize = function () {
     var q = {};
-    this.fields.forEach(function(field){
-      q[field.get('fieldName')] = field.serialize();
+    this.fields.forEach(function (field) {
+      var json = field.serialize();
+      if (!Ember.isEmpty(json.value)) {
+        q[field.get('fieldName')] = json;
+      }
     });
     return q;
   };
@@ -163,10 +166,10 @@ SearchField = Ember.Object.extend({
     var serialzied;
     switch(this.get('options').type){
       case 'number':
-        serialzied = {name: this.get('fieldName'), value: this.get('value'), predicat: this.get('selectedPredicat')};
+        serialzied = {value: this.get('value'), predicat: this.get('selectedPredicat')};
         break;
       default:
-        serialzied = {name: this.get('fieldName'), value: this.get('value')};
+        serialzied = {value: this.get('value')};
         break;
     }
     return serialzied;
