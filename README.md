@@ -48,7 +48,7 @@ module.exports = mergeTrees([app.toTree(), bootstrapFonts]);
 Add ```AdminResolver```:
 ```javascript
 ...
-#app/app.js
+//app/app.js
 import AdminResolver from 'ember-cli-admin/admin-resolver';
 App = Ember.Application.extend({
   Resolver: AdminResolver
@@ -61,7 +61,7 @@ export default App;
 ###In your router.js
 
 ```javascript
-#app/router.js
+//app/router.js
 ---
 import MetaRoute from 'ember-cli-admin/dsl/meta-route';
 var Router;
@@ -75,15 +75,15 @@ Router.map(function() {
 });
 
 MetaRoute.map(Router, function() {
-  # we'll add routes for our resources here in the next step
+  // we'll add routes for our resources here in the next step
 });
 
 export default Router;
 ```
 
 ###Add admin/index template to your application template:
-```
-#application.hbs
+```handlebars
+//application.hbs
 {{partial 'admin/index'}}
 ```
 
@@ -92,7 +92,7 @@ export default Router;
 For example, if we have the following model:
 
 ```javascript
-#app/models/user.js
+//app/models/user.js
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -106,7 +106,7 @@ export default DS.Model.extend({
 To add users resource to admin dashboard, just setup users controller like this:
 
 ```javascript
-#app/controllers/users.js
+//app/controllers/users.js
 import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
 export default Ember.ObjectController.extend(TableViewController);
@@ -115,7 +115,7 @@ export default Ember.ObjectController.extend(TableViewController);
 And add resources to your router:
 
 ```javascript
-#app/router.js
+//app/router.js
 ...
 MetaRoute.map(Router, function() {
   this.resources("users");
@@ -126,7 +126,7 @@ MetaRoute.map(Router, function() {
 You'll also need to add Navigation initializer to set up your navigation bar:
 
 ```javascript
-#app/initializers/navigation.js
+//app/initializers/navigation.js
 
 import Navigation from 'ember-cli-admin/dsl/navigation';
 
@@ -150,7 +150,7 @@ export default {
 You can specify the attributes to use in admin form with ```formFields``` property in the model:
 
 ```javascript
-#app/models/user.js
+//app/models/user.js
 ...
 export default DS.Model.extend({
   ...
@@ -162,7 +162,7 @@ export default DS.Model.extend({
 We currently support ```google-map``` component which can be added to your resource form with the following simple setup
 
 ```javascript
-#app/models/user.js
+//app/models/user.js
 ...
 export default DS.Model.extend({
   ...
@@ -192,7 +192,7 @@ To display and upload them in admin interface, do the following setup.
 First, add avatar model extending it from ember-cli-admin Asset:
 
 ```javascript
-#app/models/avatar.js
+//app/models/avatar.js
 import Asset from 'ember-cli-admin/logics/asset';
 import DS from 'ember-data';
 
@@ -202,7 +202,7 @@ export default Asset.extend();
 Add avatar/avatars to User model, and specify them on ```fileuploads``` property:
 
 ```javascript
-#app/models/user.js
+//app/models/user.js
 ...
 export default DS.Model.extend({
   ...
