@@ -166,7 +166,7 @@ SearchField = Ember.Object.extend({
     var serialzied;
     switch(this.get('options').type){
       case 'number':
-        serialzied = {value: this.get('value'), predicat: this.get('selectedPredicat')};
+        serialzied = {value: this.get('value'), predicat: this.get('predicat')};
         break;
       default:
         serialzied = {value: this.get('value')};
