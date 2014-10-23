@@ -147,14 +147,47 @@ export default {
 ```
 ###Form fields
 
-You can specify the attributes to use in admin form with ```formFields``` property in the model:
+You can specify the attributes to use in admin form with ```formAttributes``` property in the controller:
 
 ```javascript
-//app/models/user.js
-...
-export default DS.Model.extend({
-  ...
-  formFields: ['email', 'name']
+//app/controllers/users.js
+import Ember from 'ember';
+import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
+
+export default Ember.ObjectController.extend(TableViewController,{
+  formAttributes: ['email', 'name']
+});
+```
+###Actions in form
+
+You can specify the actions in table with ```collectionActions``` property in the controller:
+
+```javascript
+//app/controllers/users.js
+import Ember from 'ember';
+import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
+
+export default Ember.ObjectController.extend(TableViewController,{
+  collectionActions: [{title: "Edit",
+      "class": "btn btn-small btn-primary",
+      action: "edit",
+      iconClass: "glyphicon glyphicon-pencil"}]
+});
+```
+
+Or you can put custom actions with ```additionalActions``` property in the controller:
+```javascript
+//app/controllers/users.js
+import Ember from 'ember';
+import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
+
+export default Ember.ObjectController.extend(TableViewController,{
+  additionalActions: [{title: "my action", class: "btn my-action-css", action: "my"}],
+  actions: {
+    my: function(model){
+        return alert('hi!');
+    }
+  }
 });
 ```
 ###Ember-cli-admin also uses [ember-cli-map][4]
