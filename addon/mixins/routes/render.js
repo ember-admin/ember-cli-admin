@@ -15,6 +15,7 @@ renderMixin = Ember.Mixin.create({
     this._renderBreadcrumbs(controller, model);
     this._renderActions(controller, model);
     this._renderSearchForm(controller);
+    this._renderSidebar(controller);
     return this._renderForm(controller, model);
   },
   _renderNavigation: function() {
@@ -51,6 +52,14 @@ renderMixin = Ember.Mixin.create({
     return this.render(this._getSearchForm(controller), {
       into:  this._getControllerTemplate(controller),
       outlet: 'search',
+      controller: controller
+    });
+  },
+
+  _renderSidebar: function(controller){
+    return this.render(this._getSidebar(controller), {
+      into:  this._getControllerTemplate(controller),
+      outlet: 'sidebar',
       controller: controller
     });
   }

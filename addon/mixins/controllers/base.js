@@ -10,6 +10,8 @@ import BaseDecorator from 'ember-cli-admin/decorators/base-decorator';
 import SearchMixin from 'ember-cli-admin/mixins/controllers/search';
 import QueryParams from 'ember-cli-admin/mixins/controllers/query-params';
 import SortMixin from 'ember-cli-admin/mixins/controllers/sort';
+import SidebarMixin from 'ember-cli-admin/mixins/controllers/sidebar';
+
 var baseMixin;
 
 baseMixin = Ember.Mixin.create({
@@ -26,6 +28,6 @@ baseMixin = Ember.Mixin.create({
 });
 
 baseMixin.reopen(BaseActionsMixin, FileUploadMixin, AttributesMixin, QueryParams, PaginationMixin, BatchActionsMixin,
-  FormActionsMixin, SearchMixin, SortMixin);
+  FormActionsMixin, SearchMixin, SortMixin, SidebarMixin);
 
 export default baseMixin;
