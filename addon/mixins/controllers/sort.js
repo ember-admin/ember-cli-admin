@@ -4,7 +4,6 @@ var sortMixin;
 
 sortMixin = Ember.Mixin.create({
   sortFields: ['title', 'name'],
-  orderAscending: false,
 
   actions: {
     sort: function(fieldName){
@@ -13,7 +12,6 @@ sortMixin = Ember.Mixin.create({
       } else {
         this.setProperties({sort: fieldName, orderAscending: true});
       }
-      console.log(this.get('sort'), this.get('orderAscending'));
     }
   }
 });
