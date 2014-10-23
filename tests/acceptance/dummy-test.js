@@ -13,6 +13,18 @@ module('Acceptance: Admin', {
           users = [{id: 1, name: 'testuser'}];
           return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
         }
+        if (request.queryParams.sort === "id" && request.queryParams.orderAscending === "true") {
+          users = [{id: 0, name: 'testuser'}];
+          return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
+        }
+        if (request.queryParams.sort === "id" && request.queryParams.orderAscending !== "true") {
+          users = [{id: 10, name: 'testuser'}];
+          return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
+        }
+        if (request.queryParams.sort === "name") {
+          users = [{id: 3, name: 'testuser'}];
+          return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
+        }
         users = [];
         for (var i = 0; i < 25; i++) {
           users.push({id: i, name: 'testuser'});
@@ -145,4 +157,40 @@ asyncTest('model properties are saved and the previous visited route is transiti
     equal(find(".panel-heading:contains('Show')").length, 1);
   }, 300);
 
+});
+
+test('records in table are sorted by controller sortFields in ascending order', function() {
+  expect(1);
+
+  visit('/users');
+  click('th:contains("id")');
+  andThen(function() {
+    equal(find('tr:eq(1) td:eq(1):contains("0")').length, 1);
+  });
+
+});
+
+test('records in table are sorted by controller sortFields in descending order', function() {
+  expect(1);
+
+  visit('/users');
+  click('th:contains("id")');
+  click('th:contains("id")');
+  andThen(function() {
+    equal(find('tr:eq(1) td:eq(1):contains("10")').length, 1);
+  });
+
+});
+
+test('switching from sorting by one attribute to another works as expected - records are sorted by the ' +
+     'new selected attribute', function() {
+  expect(1);
+
+  visit('/users');
+  click('th:contains("id")');
+  click('th:contains("id")');
+  click('th:contains("name")');
+  andThen(function() {
+    equal(find('tr:eq(1) td:eq(1):contains("3")').length, 1);
+  });
 });

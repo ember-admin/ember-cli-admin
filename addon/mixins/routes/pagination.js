@@ -12,6 +12,12 @@ paginationMixin = Ember.Mixin.create({
     },
     q: {
       refreshModel: true
+    },
+    sort: {
+      refreshModel: true
+    },
+    orderAscending: {
+      refreshModel: true
     }
   },
   pagination: function(modelName, params) {
