@@ -3,7 +3,7 @@
 user = DS.Model.extend
   email:                      DS.attr('string')
   name:                       DS.attr('string')
-#  address:                    DS.belongsTo('address')
+  nickname:                   DS.attr('string')
   updated_at:                 DS.attr('string')
   created_at:                 DS.attr('string')
   lat:                        DS.attr('number')

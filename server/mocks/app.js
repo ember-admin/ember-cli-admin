@@ -33,6 +33,10 @@ module.exports = function(app) {
     res.send({users: usersArray, meta:{total: 50}, avatars: avatarsArray});
   });
 
+  appRouter.get('/users/autocomplete', function(req, res){
+    res.send(users);
+  });
+
   appRouter.delete('/users/:id', function(req, res) {
     res.send({});
   });

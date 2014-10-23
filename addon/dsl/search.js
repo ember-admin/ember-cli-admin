@@ -122,6 +122,10 @@ SearchField = Ember.Object.extend({
   numberPredicats: ['=', '>=', '<='],
 
   init: function(){
+    if(this.get('options')){
+      this.setProperties(this.get('options'));
+    }
+
     var fieldParams = this.get('query')[this.get('fieldName')];
     if(fieldParams){
       this.setProperties(fieldParams);

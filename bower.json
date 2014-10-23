@@ -14,6 +14,7 @@
     "ember-qunit-notifications": "0.0.4",
     "qunit": "~1.15.0",
     "pretender": "0.1.0",
-    "bootstrap-sass-official": "3.2.0"
+    "bootstrap-sass-official": "3.2.0",
+    "typeahead.js": "git@github.com:twitter/typeahead.js.git#0.10.5"
   }
 }
