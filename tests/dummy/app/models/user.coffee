@@ -16,7 +16,4 @@ user = DS.Model.extend
 
   asGoogleMap: ['lat', 'long', 'zoom']
 
-  formFields: ['email', 'name']
-
-
 `export default user`

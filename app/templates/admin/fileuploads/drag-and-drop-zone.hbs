@@ -1,15 +1,15 @@
 <div class="asset_wrapper">
   {{#if view.single}}
     {{#if view.asset}}
-      {{view 'admin/fileupload/asset' templateNameBinding="view.assetTemplate" assetBinding="view.asset" propertyBinding="view.property"}}
+      {{view 'admin/fileupload/asset' templateNameBinding="view.assetTemplate" asset=view.asset propertyBinding="view.property"}}
     {{/if}}
   {{else}}
     {{#each asset in view.assets}}
       {{view 'admin/fileupload/asset' templateNameBinding="view.assetTemplate" assetBinding="asset" propertyBinding="view.property"}}
     {{/each}}
   {{/if}}
-  <input type="file" {{action 'selectFile' on='change' target=view}}>
+    <input type="file" {{action 'selectFile' on='change' target=view}}>
   {{#if view.creating}}
-    <span class="glyphicon glyphicon-refresh glyphicon-refresh"></span>
+      <span class="glyphicon glyphicon-refresh glyphicon-refresh"></span>
   {{/if}}
 </div>

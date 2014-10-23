@@ -1,19 +1,9 @@
-{{!--= form-for controller.decorator.model wrapper="twitter-bootstrap"
-  each attribute in controller.formAttributes
-    = decorator-input attribute.name inputConfig='class:form-control'
-
-
-
-  = input-map
-
-  = partial "form_buttons"--}}
-
 <form class="admin-form">
   <div class="panel panel-default">
     <div class="panel-heading">Base Information</div>
     <div class="panel-body">
       {{#each attribute in controller.formAttributes}}
-        {{admin-input class="admin-attribute" model=controller.model name=attribute.name}}
+        {{admin-input class="admin-attribute" model=controller.model name=attribute}}
       {{/each}}
     </div>
   </div>
@@ -22,7 +12,7 @@
     <div class="panel-heading">File Uploads</div>
     <div class="panel-body">
       {{#each attribute in controller.fileuploads}}
-        {{view 'admin/fileupload/drag-and-drop-zone' class="admin-fileupload" model=controller.model property=attribute.name}}
+        {{view 'admin/fileupload/drag-and-drop-zone' class="admin-fileupload" model=controller.model property=attribute}}
       {{/each}}
     </div>
   </div>

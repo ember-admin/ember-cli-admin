@@ -148,14 +148,64 @@ export default {
 ```
 ###Form fields
 
-You can specify the attributes to use in admin form with ```formFields``` property in the model:
+You can specify the attributes to use in admin form with ```formAttributes``` property in the controller:
 
 ```javascript
-//app/models/user.js
-...
-export default DS.Model.extend({
-  ...
-  formFields: ['email', 'name']
+//app/controllers/users.js
+import Ember from 'ember';
+import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
+
+export default Ember.ObjectController.extend(TableViewController,{
+  formAttributes: ['email', 'name']
+});
+```
+###Actions in table
+
+You can specify the actions in table with ```collectionActions``` property in the controller:
+
+```javascript
+//app/controllers/users.js
+import Ember from 'ember';
+import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
+
+export default Ember.ObjectController.extend(TableViewController,{
+  collectionActions: [{title: "Edit",
+      "class": "btn btn-small btn-primary",
+      action: "edit",
+      iconClass: "glyphicon glyphicon-pencil"}]
+});
+```
+
+Or you can put custom actions with ```additionalActions``` property in the controller:
+```javascript
+//app/controllers/users.js
+import Ember from 'ember';
+import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
+
+export default Ember.ObjectController.extend(TableViewController,{
+  additionalActions: [{title: "my action", class: "btn my-action-css", action: "my"}],
+  actions: {
+    my: function(model){
+        return alert('hi!');
+    }
+  }
+});
+```
+
+###Batch Actions in table
+You can specify the batch actions in table with ```batchActions``` property in the controller:
+```javascript
+//app/controllers/users.js
+import Ember from 'ember';
+import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
+
+export default Ember.ObjectController.extend(TableViewController,{
+  batchActions: [{title: "my action", confirm: "Are you sure you to do it", action: "my"}],
+  actions: {
+    my: function(model){
+        return alert('hi!');
+    }
+  }
 });
 ```
 ###Ember-cli-admin also uses [ember-cli-map][4]
@@ -190,7 +240,19 @@ Say, our user has one main avatar and/or many avatar pictures.
 
 To display and upload them in admin interface, do the following setup.
 
-First, add avatar model extending it from ember-cli-admin Asset:
+Setup Adapter for you asset model:
+```javascript
+//app/adapters/logo.js
+import FileuploadAdapterMixin from 'ember-cli-admin/mixins/fileupload-adapter';
+import ApplicationAdapter from './application';
+
+var logo = ApplicationAdapter.extend(FileuploadAdapterMixin, {
+});
+
+export default logo;
+```
+
+Then, add avatar model extending it from ember-cli-admin Asset:
 
 ```javascript
 //app/models/avatar.js
