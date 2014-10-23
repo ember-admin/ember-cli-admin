@@ -24,9 +24,15 @@ dragAndDropZoneView = Ember.View.extend
   asset: (->
     Ember.defineProperty(this, "_asset", Ember.computed(->
       @get("model.#{@get('property')}")
-    ).property("model.#{@get('property')}"))
+    ).property("model.#{@get('property')}.isLoaded"))
     @get('_asset')
   ).property('_asset')
+
+  assetRSVP: (->
+    new Ember.RSVP.Promise((resolve) =>
+      resolve(@get('asset'))
+    )
+  ).property('asset')
 
   actions:
     selectFile: () ->
@@ -54,14 +60,17 @@ dragAndDropZoneView = Ember.View.extend
   dragEnter: (e) ->
     e.stopPropagation()
     e.preventDefault()
-    
+
   createAsset: (file) ->
     @set('creating', true)
     if @get('single')
-      if @get("model.#{@get('property')}")
-        @get("model.#{@get('property')}").deleteRecord()
-        @get("model.#{@get('property')}").save()
-      @_createAsset(@_params(file), file)
+      asset = @get("model.#{@get('property')}");
+      if asset
+        @get('assetRSVP').then (asset) =>
+          asset.destroyRecord() if asset
+          @_createAsset(@_params(file), file)
+      else
+        @_createAsset(@_params(file), file)
     else
       @_createAsset(@_params(file), file)
 

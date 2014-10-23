@@ -7,8 +7,8 @@
       <tbody>
         {{#each attribute in controller.formAttributes}}
           <tr>
-            <th>{{attribute.name}}</th>
-            {{admin-td-element attributeName=attribute.name item=model}}
+            <th>{{attribute}}</th>
+            {{admin-td-element attributeName=attribute item=model}}
           </tr>
         {{/each}}
       </tbody>

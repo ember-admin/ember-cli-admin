@@ -5,15 +5,7 @@ var attributesMixin;
 
 attributesMixin = Ember.Mixin.create({
   formAttributes: (function() {
-    var attrs;
-    attrs = this.get('model.formFields') || Attributes.withoutId(this.get("model").constructor);
-    var self = this;
-    return attrs.map(function(attr) {
-      return {
-        name: attr,
-        value: self.get('model').get(attr)
-      };
-    });
+    return Attributes.withoutId(this.get("model").constructor);
   }).property('modelAttributes.@each'),
 
   tableAttributes: (function() {
@@ -22,11 +14,7 @@ attributesMixin = Ember.Mixin.create({
 
   fileuploads: (function() {
     if (this.get('model.fileuploads')) {
-      return this.get('model.fileuploads').map(function(attr) {
-        return {
-          name: attr
-        };
-      });
+      return this.get('model.fileuploads');
     }
   }).property('model.fileuploads')
 });
