@@ -8,9 +8,7 @@
                     {{view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches"}}
                 </th>
                 {{#each attributeName in controller.tableAttributes}}
-                    <th>
-                        {{attributeName}}
-                    </th>
+                    {{admin-sort-th sortFields=controller.sortFields attributeName=attributeName action="sort"}}
                 {{/each}}
                 <th>Actions</th>
             </tr>
