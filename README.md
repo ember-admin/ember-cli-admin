@@ -320,6 +320,7 @@ searchForm: (function() {
   return new SearchLogic().form(this.get('q'), function() {
     this.input('email');
     this.input('name');
+    this.input('price', {type: 'number'});
   });
 }).property('q')
 ...  
