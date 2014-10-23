@@ -107,6 +107,7 @@ To add users resource to admin dashboard, just setup users controller like this:
 
 ```javascript
 //app/controllers/users.js
+import Ember from 'ember';
 import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
 export default Ember.ObjectController.extend(TableViewController);
@@ -274,6 +275,36 @@ export default DS.Model.extend({
   fileuploads: ["avatar", "avatars"]
 });
 ```
+Then you need to make Avatar adapter like this:
+
+```javascript
+//app/adapters/avatar.js
+import FileuploadAdapterMixin from 'ember-cli-admin/mixins/fileupload-adapter';
+import ApplicationAdapter from './application';
+
+var avatar = ApplicationAdapter.extend(FileuploadAdapterMixin, {
+});
+
+export default avatar;
+```
+By default, FileuploadAdapterMixin provides type property for Asset equals ```Asset```.
+
+If your backend API expect for different type request parameters property you can specify it in your asset model.
+
+Let's say your API except Avatar type to be "Avatar", not "Asset".
+You can do this by editing your Avatar model like this: 
+
+```javascript
+//app/models/avatar.js
+...
+
+var avatar = Asset.extend({
+  type: DS.attr('string', {defaultValue: 'Avatar'})
+});
+
+...
+```
+
 That's it!
 
 ##Customize Templates
