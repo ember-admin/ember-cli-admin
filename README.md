@@ -240,19 +240,7 @@ Say, our user has one main avatar and/or many avatar pictures.
 
 To display and upload them in admin interface, do the following setup.
 
-Setup Adapter for you asset model:
-```javascript
-//app/adapters/logo.js
-import FileuploadAdapterMixin from 'ember-cli-admin/mixins/fileupload-adapter';
-import ApplicationAdapter from './application';
-
-var logo = ApplicationAdapter.extend(FileuploadAdapterMixin, {
-});
-
-export default logo;
-```
-
-Then, add avatar model extending it from ember-cli-admin Asset:
+First add avatar model extending it from ember-cli-admin Asset:
 
 ```javascript
 //app/models/avatar.js
