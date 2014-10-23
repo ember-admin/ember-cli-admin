@@ -158,7 +158,7 @@ export default Ember.ObjectController.extend(TableViewController,{
   formAttributes: ['email', 'name']
 });
 ```
-###Actions in form
+###Actions in table
 
 You can specify the actions in table with ```collectionActions``` property in the controller:
 
@@ -183,6 +183,23 @@ import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
 export default Ember.ObjectController.extend(TableViewController,{
   additionalActions: [{title: "my action", class: "btn my-action-css", action: "my"}],
+  actions: {
+    my: function(model){
+        return alert('hi!');
+    }
+  }
+});
+```
+
+###Batch Actions in table
+You can specify the batch actions in table with ```batchActions``` property in the controller:
+```javascript
+//app/controllers/users.js
+import Ember from 'ember';
+import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
+
+export default Ember.ObjectController.extend(TableViewController,{
+  batchActions: [{title: "my action", confirm: "Are you sure you to do it", action: "my"}],
   actions: {
     my: function(model){
         return alert('hi!');
