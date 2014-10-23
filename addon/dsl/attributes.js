@@ -16,7 +16,17 @@ attributes = Attributes = (function() {
   };
 
   Attributes.forSearch = function(modelType){
-    attributes = [];
+    return this.withoutRelations(modelType);
+  };
+
+  Attributes.forSort = function(modelType){
+    var attributes = ['id'];
+    attributes.pushObjects(this.withoutRelations(modelType));
+    return attributes;
+  };
+
+  Attributes.withoutRelations = function(modelType){
+    var attributes = [];
     if(!modelType || !modelType['eachComputedProperty']){
       return [];
     }

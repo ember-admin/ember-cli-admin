@@ -1,9 +1,13 @@
 import Ember from 'ember';
+import Attributes from 'ember-cli-admin/dsl/attributes';
 
 var sortMixin;
 
 sortMixin = Ember.Mixin.create({
-  sortFields: ['title', 'name'],
+
+  sortFields: function(){
+    return Attributes.forSort(this.get('modelType'));
+  }.property(),
 
   actions: {
     sort: function(fieldName){
