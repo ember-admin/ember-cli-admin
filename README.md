@@ -335,6 +335,10 @@ To specify fields for sorting, in your resource controller add `sortFields` prop
   sortFields: ['id', 'name']
 ...  
 ```
+
+##Contribution
+See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).
+
 ##License
 
 
