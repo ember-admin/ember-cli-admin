@@ -7,7 +7,7 @@ sortMixin = Ember.Mixin.create({
 
   actions: {
     sort: function(fieldName){
-      if (this.get('sort') == fieldName) {
+      if (this.get('sort') === fieldName) {
         this.toggleProperty('orderAscending');
       } else {
         this.setProperties({sort: fieldName, orderAscending: true});

@@ -10,7 +10,7 @@ module.exports = function(app) {
   users[0].email = 'test@example.com';
   appRouter.get('/users', function(req, res) {
     if (req.query.q) {
-      res.send({users: [users[0]], meta:{total: 1}, avatars: [avatars[0]]});
+      return res.send({users: [users[0]], meta:{total: 1}, avatars: [avatars[0]]});
     }
     var perPage = +req.query.perPage;
     var page = +req.query.page;
