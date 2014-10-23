@@ -314,7 +314,7 @@ For now, we render text inputs for all attributes. This will be fixed in future.
 In your resource controller, you can specify search attributes that appear in this form:
 
 ```javascript
-#app/controllers/users.js
+//app/controllers/users.js
 ...
 searchForm: (function() {
   return new SearchLogic().form(this.get('q'), function() {
