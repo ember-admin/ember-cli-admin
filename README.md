@@ -331,8 +331,9 @@ You can sort records on resource index page by attributes in ascending or descen
 To specify fields for sorting, in your resource controller add `sortFields` property:
 ```javascript
 //app/controllers/users.js
+import SearchLogic from 'ember-cli-admin/dsl/search'
 ...
-  sortFields: ['id', 'name']
+  sortFields: ['id', 'name'],
 ...  
 ```
 
