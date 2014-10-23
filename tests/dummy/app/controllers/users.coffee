@@ -3,6 +3,8 @@
 
 usersController = Ember.ObjectController.extend TableViewController,
 
+  formAttributes: ['email', 'name']
+
   searchForm: (->
     new SearchLogic().form(@get('q'), ->
       @input('email')
