@@ -1,0 +1,13 @@
+{{#if isCurrentSortAttribute}}
+  {{#if isOrderAscending}}
+    {{attributeName}} ▲
+  {{else}}
+    {{attributeName}} ▼
+  {{/if}}
+{{else}}
+  {{#if isInSortFields}}
+    {{attributeName}} ▲▼
+  {{else}}
+    {{attributeName}}
+  {{/if}}
+{{/if}}

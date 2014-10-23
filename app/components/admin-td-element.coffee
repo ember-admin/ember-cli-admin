@@ -13,8 +13,6 @@ tdComponent = Ember.Component.extend
   relations: "name title".w()
   fileuploads: "thumb_url".w()
 
-#  templateName: "base/_td_template"
-
   tagName: "td"
 
   'data-column': Ember.computed.alias('attributeName')
