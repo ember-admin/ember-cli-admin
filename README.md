@@ -103,7 +103,7 @@ export default DS.Model.extend({
 });
 
 ```
-To add users resource to admin dashboard, just setup users controller like this:
+To add users resource to admin dashboard, just set up users controller like this:
 
 ```javascript
 //app/controllers/users.js
@@ -287,7 +287,35 @@ You can also provide your own form template for a specific resource. Put your fo
 
 If you have `admin/form` and `admin/users/form` templates, the last will be used for your users resource, and the first for all the other resources.
 
+##Searching
 
+All model attributes, except relations, are available to search by in **search form** on resource index page.
+For now, we render text inputs for all attributes. This will be fixed in future.
+
+In your resource controller, you can specify search attributes that appear in this form:
+
+```javascript
+//app/controllers/users.js
+...
+searchForm: (function() {
+  return new SearchLogic().form(this.get('q'), function() {
+    this.input('email');
+    this.input('name');
+  });
+}).property('q')
+...  
+```
+
+##Sorting
+
+You can sort records on resource index page by attributes in ascending or descending order.
+To specify fields for sorting, in your resource controller add `sortFields` property:
+```javascript
+//app/controllers/users.js
+...
+  sortFields: ['id', 'name']
+...  
+```
 ##License
 
 
