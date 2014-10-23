@@ -59,8 +59,7 @@ dragAndDropZoneView = Ember.View.extend
     @set('creating', true)
     if @get('single')
       if @get("model.#{@get('property')}")
-        @get("model.#{@get('property')}").deleteRecord()
-        @get("model.#{@get('property')}").save()
+        @get("model.#{@get('property')}").destroyRecord()
       @_createAsset(@_params(file), file)
     else
       @_createAsset(@_params(file), file)
