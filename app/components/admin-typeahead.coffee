@@ -21,11 +21,7 @@ typeaheadComponent = Ember.TextField.extend
   ).property()
 
   initComponent: (->
-    @$().typeahead({
-        hint: @get('hint'),
-        highlight: @get('highlight'),
-        minLength: @get('minLength')
-      },
+    @$().typeahead(@getProperties(['hint', 'highlight', 'minLength']),
       {
         displayKey: @get('displayKey'),
         source: @get('bloodhound').ttAdapter()
