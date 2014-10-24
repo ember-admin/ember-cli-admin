@@ -3,7 +3,7 @@
 typeaheadComponent = Ember.TextField.extend
   classNames: ['typeahead']
   tagName: 'input'
-  displayKey: 'name'
+  displayKey: 'value'
   hint: true
   highlight: true
   minLength: 1
