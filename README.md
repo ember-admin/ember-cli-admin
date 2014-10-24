@@ -10,7 +10,7 @@ Ember-cli-admin is a powerful admin dashboard for ember-cli projects that is bui
 
 ##Version
 
-0.1.4
+0.2.0
 
 ##Installation
 
