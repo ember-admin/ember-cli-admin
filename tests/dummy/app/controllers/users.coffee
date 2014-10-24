@@ -15,4 +15,9 @@ usersController = Ember.ObjectController.extend TableViewController,
     )
   ).property('q')
 
+  actions:
+    toggleActive: (item) ->
+      item.toggleProperty('is_active')
+      return
+
 `export default usersController`

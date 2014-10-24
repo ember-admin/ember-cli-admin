@@ -9,11 +9,22 @@ user = DS.Model.extend
   lat:                        DS.attr('number')
   long:                       DS.attr('number')
   zoom:                       DS.attr('number')
+  is_active:                  DS.attr('boolean', defaultValue: false)
   avatar:                     DS.belongsTo('avatar')
   avatars:                    DS.hasMany('avatar', {async: true})
 
   fileuploads: ["avatar", "avatars"]
 
   asGoogleMap: ['lat', 'long', 'zoom']
+
+  additionalActions: (->
+    actions = []
+    if @get('is_active')
+      actions.pushObject({title: "Toggle Active", class: "btn btn-small btn-warning", action: "toggleActive", iconClass: "glyphicon glyphicon-remove"})
+    else
+      actions.pushObject({title: "Toggle Active", class: "btn btn-small btn-green", action: "toggleActive", iconClass: "glyphicon glyphicon-ok"})
+    actions
+  ).property('is_active')
+
 
 `export default user`

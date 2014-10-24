@@ -192,6 +192,22 @@ export default Ember.ObjectController.extend(TableViewController,{
 });
 ```
 
+Maybe you have model depends actions, so you can add in your model:
+Or you can add custom actions with ```additionalActions``` property in the controller:
+```javascript
+//app/models/user.js
+additionalActions: function(){
+    var actions = [];
+    if(this.get('is_active')){
+      actions.pushObject({title: "Toggle Active", class: "btn btn-small btn-warning", action: "toggleActive", iconClass: "glyphicon glyphicon-remove"});
+    }
+    else{
+      actions.pushObject({title: "Toggle Active", class: "btn btn-small btn-green", action: "toggleActive", iconClass: "glyphicon glyphicon-ok"});
+    }
+    return actions;
+  }.property('is_active')
+```
+
 ###Batch Actions
 You can specify the batch actions with ```batchActions``` property in the controller:
 ```javascript
