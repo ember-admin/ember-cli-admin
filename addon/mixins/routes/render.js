@@ -39,7 +39,7 @@ renderMixin = Ember.Mixin.create({
   },
   _renderForm: function(controller) {
     if (this.get('action') && (this.get('action') === "edit" || this.get('action') === "new") && this._getControllerTemplate(controller).split('/').length < 3) {
-      return this.render(this._getForm(controller), {
+      return this.render(this.getOutlet(controller, 'form'), {
         into: 'admin/%@'.fmt(this.get('action')),
         outlet: 'form',
         controller: controller
@@ -48,7 +48,7 @@ renderMixin = Ember.Mixin.create({
   },
 
   _renderSearchForm: function(controller){
-    return this.render(this._getSearchForm(controller), {
+    return this.render(this.getOutlet(controller, 'search'), {
       into:  this._getControllerTemplate(controller),
       outlet: 'search',
       controller: controller
