@@ -11,7 +11,7 @@ usersController = Ember.ObjectController.extend TableViewController,
     new SearchLogic().form(@get('q'), ->
       @input('email')
       @input('name')
-      @input('nickname', type: 'autocomplete', url: '/api/users/autocomplete')
+      @input('nickname', type: 'autocomplete', url: '/api/users/autocomplete', displayKey: 'name')
     )
   ).property('q')
 
