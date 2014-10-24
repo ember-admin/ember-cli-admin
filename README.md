@@ -344,6 +344,22 @@ import SearchLogic from 'ember-cli-admin/dsl/search'
 ...  
 ```
 
+##Sidebar
+You can put sidebar for each resource:
+```javascript
+//app/controllers/users.js
+...
+  isShowSidebar: true,
+  sidebarTitle: 'Hi i am sidebar',
+  sidebarContent: '<p>Some Content</p>'
+...
+```
+You can also provide your own sidebar template:
+```
+#app/templates/users/sidebar.hbs
+...
+```
+
 ##Contribution
 See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).
 
