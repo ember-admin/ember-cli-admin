@@ -35,6 +35,7 @@ module.exports = {
    bowerFilePath = path.join(this.project.root, 'bower.json');
    bowerFile = require(bowerFilePath);
    bowerFile.dependencies["bootstrap-sass-official"] = "3.2.0";
+   bowerFile.dependencies["typeahead.js"] = "twitter/typeahead.js#0.10.5";
    return fs.writeFileSync(bowerFilePath, JSON.stringify(bowerFile, null, 2));
   }
 };
