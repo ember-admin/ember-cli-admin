@@ -193,7 +193,7 @@ export default Ember.ObjectController.extend(TableViewController,{
 ```
 
 ###Batch Actions
-You can specify the batch actions table with ```batchActions``` property in the controller:
+You can specify the batch actions with ```batchActions``` property in the controller:
 ```javascript
 //app/controllers/users.js
 import Ember from 'ember';
