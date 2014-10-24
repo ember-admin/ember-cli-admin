@@ -161,7 +161,7 @@ export default Ember.ObjectController.extend(TableViewController,{
 ```
 ###Actions in table
 
-You can specify the actions in table with ```collectionActions``` property in the controller:
+You can specify the actions in table with ```itemActions``` property in the controller:
 
 ```javascript
 //app/controllers/users.js
@@ -169,7 +169,7 @@ import Ember from 'ember';
 import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
 export default Ember.ObjectController.extend(TableViewController,{
-  collectionActions: [{title: "Edit",
+  itemActions: [{title: "Edit",
       "class": "btn btn-small btn-primary",
       action: "edit",
       iconClass: "glyphicon glyphicon-pencil"}]
