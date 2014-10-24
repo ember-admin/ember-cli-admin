@@ -20,7 +20,6 @@ module.exports = {
    jsonFile = require(packageJsonPath);
     properties = {
       "ember-cli-map": "^0.2.0",
-      "broccoli-emblem-compiler": "^0.3.18",
       "broccoli-merge-trees": "0.1.4",
       "broccoli-sass": "^0.2.2",
       "broccoli-static-compiler": "0.1.4",
@@ -35,6 +34,7 @@ module.exports = {
    bowerFilePath = path.join(this.project.root, 'bower.json');
    bowerFile = require(bowerFilePath);
    bowerFile.dependencies["bootstrap-sass-official"] = "3.2.0";
+   bowerFile.dependencies["typeahead.js"] = "twitter/typeahead.js#0.10.5";
    return fs.writeFileSync(bowerFilePath, JSON.stringify(bowerFile, null, 2));
   }
 };

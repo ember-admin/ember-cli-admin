@@ -21,6 +21,14 @@
                             </div>
                         </div>
                     {{/if}}
+                    {{#if field.isAutocomplete}}
+                        <div class="clearfix string">
+                            <label>{{field.fieldName}}</label>
+                            <div class="controls">
+                                {{admin-typeahead url=field.url valueBinding='field.value' name=field.fieldName}}
+                            </div>
+                        </div>
+                    {{/if}}
                     {{#if field.isSelect}}
                         <div class="clearfix string">
                             <label>{{field.fieldName}}</label>

@@ -33,7 +33,7 @@ test('search panel contains model search fields', function() {
   visit('/users');
 
   andThen(function() {
-    equal(find('form.search .controls').length, 2);
+    equal(find('form.search .controls').length, 3);
     equal(find('form.search input[name="email"]').length, 1);
     equal(find('form.search input[name="name"]').length, 1);
   });
@@ -47,5 +47,18 @@ test('search results are shown in table', function() {
 
   andThen(function() {
     equal(find("tbody tr").length, 1);
+  });
+});
+
+test('autocomplete search', function(){
+  server.get('api/users/autocomplete', function(request){
+    users = [{id: 1, name: 'testuser'}];
+    return [200, {"Content-Type": "application/json"}, JSON.stringify(users)];
+  });
+  visit('/users');
+  Ember.$('.typeahead').typeahead('val', '12');
+  click('button[type="submit"]');
+  andThen(function(){
+    equal(find('form.search .controls').length, 3);
   });
 });

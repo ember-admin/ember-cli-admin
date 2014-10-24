@@ -65,6 +65,6 @@ test('switching from sorting by one attribute to another works as expected - rec
   click('th:contains("id")');
   click('th:contains("name")');
   andThen(function() {
-    equal(find('tr:eq(1) td:eq(1):contains("3")').length, 1);
+    equal(find('tbody tr:first td[data-column="id"]:contains("3")').length, 1);
   });
 });
