@@ -354,6 +354,11 @@ You can put sidebar for each resource:
   sidebarContent: '<p>Some Content</p>'
 ...
 ```
+You can also provide your own sidebar template:
+```
+#app/templates/users/sidebar.hbs
+...
+```
 
 ##Contribution
 See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).
