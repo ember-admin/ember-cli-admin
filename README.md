@@ -319,7 +319,7 @@ In your resource controller, you can specify search attributes that appear in th
 searchForm: (function() {
   return new SearchLogic().form(this.get('q'), function() {
     this.input('email');
-    this.input('name');
+    this.input('name', {type: 'autocomplete', url: '/api/users/autocomplete'});
     this.input('price', {type: 'number'});
   });
 }).property('q')
@@ -331,6 +331,7 @@ You can also provide your own search form template:
 #app/templates/admin/search.hbs
 ...
 ```
+More options for autocomplete check in `app/components/admin-typeahead.coffee`
 
 ##Sorting
 
