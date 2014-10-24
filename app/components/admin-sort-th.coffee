@@ -6,7 +6,7 @@ adminSortThView = Ember.Component.extend
   isOrderAscending: Ember.computed.bool('orderAscending')
 
   isCurrentSortAttribute: (->
-    @get('sort') is @get('attributeName')
+    @get('sort') is @get('attributeName') && @get('isInSortFields')
   ).property('sort', 'attributeName')
 
   isInSortFields: (->

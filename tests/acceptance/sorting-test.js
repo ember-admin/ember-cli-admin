@@ -56,15 +56,15 @@ test('records in table are sorted by controller sortFields in descending order',
 
 });
 
-//test('switching from sorting by one attribute to another works as expected - records are sorted by the ' +
-//     'new selected attribute', function() {
-//  expect(1);
-//
-//  visit('/users');
-//  click('th:contains("id")');
-//  click('th:contains("id")');
-//  click('th:contains("name")');
-//  andThen(function() {
-//    equal(find('tr:eq(1) td:eq(0):contains("3")').length, 1);
-//  });
-//});
+test('switching from sorting by one attribute to another works as expected - records are sorted by the ' +
+     'new selected attribute', function() {
+  expect(1);
+
+  visit('/users');
+  click('th:contains("id")');
+  click('th:contains("id")');
+  click('th:contains("name")');
+  andThen(function() {
+    equal(find('tbody tr:first td[data-column="id"]:contains("3")').length, 1);
+  });
+});
