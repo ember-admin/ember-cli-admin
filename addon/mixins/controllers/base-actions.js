@@ -22,7 +22,8 @@ import Ember from 'ember';
 var baseActionsMixin;
 
 baseActionsMixin = Ember.Mixin.create({
-  collectionActions: [
+
+  itemActions: [
     {
       title: "Edit",
       "class": "btn btn-small btn-primary",
@@ -41,6 +42,7 @@ baseActionsMixin = Ember.Mixin.create({
       iconClass: "glyphicon glyphicon-trash"
     }
   ],
+
   actionNew: (function() {
     return {
       title: "New",
@@ -49,9 +51,11 @@ baseActionsMixin = Ember.Mixin.create({
       iconClass: "glyphicon glyphicon-plus"
     };
   }).property('model'),
+
   breadcrumbsActions: (function() {
     return this.get('__breadcrumbsActionsArray');
   }).property('__breadcrumbsActionsArray'),
+
   actions: {
     "new": function() {
       return this.transitionToRoute(this._path("new"));

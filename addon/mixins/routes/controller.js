@@ -5,18 +5,18 @@ import SiteTitle from 'ember-cli-admin/logics/site-title';
 var controllerMixin;
 
 controllerMixin = Ember.Mixin.create({
-  _getForm: function(controller) {
-    var form;
-    form = "%@/form".fmt(this._controllerName(controller).decamelize());
 
-    if (this.container.resolve('template:'+form)) {
-      return form;
+  getOutlet: function(controller, outletName){
+    var outlet = "%@/%@".fmt(this._controllerName(controller).decamelize(), outletName);
+    if (this.container.resolve('template:%@'.fmt(outlet))) {
+      return outlet;
     }
-    if (this.container.resolve("template:admin/%@".fmt(form))){
-      return "admin/%@".fmt(form);
+    if (this.container.resolve("template:admin/%@".fmt(outletName))){
+      return "admin/%@".fmt(outletName);
     }
-    return "admin/form";
+    return "admin/%@".fmt(outletName);
   },
+
   _getControllerTemplate: function(controller) {
     var name;
     name = this._controllerName(controller);
@@ -35,30 +35,6 @@ controllerMixin = Ember.Mixin.create({
         return "admin/main";
       }
     }
-  },
-
-  _getSearchForm: function(controller){
-    var form;
-    form = "%@/search".fmt(this._controllerName(controller).decamelize());
-    if (this.container.resolve('template:'+form)) {
-      return form;
-    }
-    if (this.container.resolve("template:admin/%@".fmt(form))){
-      return "admin/%@".fmt(form);
-    }
-    return "admin/search";
-  },
-
-  _getSidebar: function(controller){
-    var form;
-    form = "%@/sidebar".fmt(this._controllerName(controller).decamelize());
-    if (this.container.resolve('template:'+form)) {
-      return form;
-    }
-    if (this.container.resolve("template:admin/%@".fmt(form))){
-      return "admin/%@".fmt(form);
-    }
-    return "admin/sidebar";
   },
 
   _controllerName: function(controller) {
