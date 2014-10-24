@@ -29,7 +29,7 @@ bower install
 
 Then in your Brocfile.js add bootstrap fonts:
 ```javascript
-// Put the bootstrap fonts in the place that the bootstrap css expects to find them.
+// Put the bootstrap fonts where the bootstrap css expects to find them.
 var pickFiles = require('broccoli-static-compiler');
 var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
     srcDir: '/',
@@ -159,9 +159,9 @@ export default Ember.ObjectController.extend(TableViewController,{
   formAttributes: ['email', 'name']
 });
 ```
-###Actions in table
+###Item Actions
 
-You can specify the actions in table with ```itemActions``` property in the controller:
+You can customize item actions with ```itemActions``` property in the controller:
 
 ```javascript
 //app/controllers/users.js
@@ -176,7 +176,7 @@ export default Ember.ObjectController.extend(TableViewController,{
 });
 ```
 
-Or you can put custom actions with ```additionalActions``` property in the controller:
+Or you can add custom actions with ```additionalActions``` property in the controller:
 ```javascript
 //app/controllers/users.js
 import Ember from 'ember';
@@ -192,8 +192,8 @@ export default Ember.ObjectController.extend(TableViewController,{
 });
 ```
 
-###Batch Actions in table
-You can specify the batch actions in table with ```batchActions``` property in the controller:
+###Batch Actions
+You can specify the batch actions table with ```batchActions``` property in the controller:
 ```javascript
 //app/controllers/users.js
 import Ember from 'ember';
@@ -240,7 +240,7 @@ Say, our user has one main avatar and/or many avatar pictures.
 
 To display and upload them in admin interface, do the following setup.
 
-First add avatar model extending it from ember-cli-admin Asset:
+First add avatar model, extending it from ember-cli-admin Asset:
 
 ```javascript
 //app/models/avatar.js
@@ -263,7 +263,7 @@ export default DS.Model.extend({
   fileuploads: ["avatar", "avatars"]
 });
 ```
-Then you need to make Avatar adapter like this:
+Then add an Avatar adapter like this:
 
 ```javascript
 //app/adapters/avatar.js
@@ -275,12 +275,12 @@ var avatar = ApplicationAdapter.extend(FileuploadAdapterMixin, {
 
 export default avatar;
 ```
-By default, FileuploadAdapterMixin provides type property for Asset equals ```Asset```.
+By default, FileuploadAdapterMixin Asset type property is ```Asset```.
 
 If your backend API expect for different type request parameters property you can specify it in your asset model.
 
-Let's say your API except Avatar type to be "Avatar", not "Asset".
-You can do this by editing your Avatar model like this: 
+Let's say your API excepts Avatar type to be "Avatar", not "Asset".
+You can do this by editing your Avatar model like this:
 
 ```javascript
 //app/models/avatar.js
@@ -304,11 +304,11 @@ You can also provide your own form template for a specific resource. Put your fo
 ...
 ```
 
-If you have `admin/form` and `admin/users/form` templates, the last will be used for your users resource, and the first for all the other resources.
+If you have `admin/form` and `admin/users/form` templates, the latter will be used for your users resource, and the first for all the other resources.
 
 ##Searching
 
-All model attributes, except relations, are available to search by in **search form** on resource index page.
+All model attributes, except of relations, are searchable in **search form** on resource index page.
 For now, we render text inputs for all attributes. This will be fixed in future.
 
 In your resource controller, you can specify search attributes that appear in this form:
@@ -323,7 +323,7 @@ searchForm: (function() {
     this.input('price', {type: 'number'});
   });
 }).property('q')
-...  
+...
 ```
 
 You can also provide your own search form template:
@@ -335,13 +335,13 @@ You can also provide your own search form template:
 ##Sorting
 
 You can sort records on resource index page by attributes in ascending or descending order.
-To specify fields for sorting, in your resource controller add `sortFields` property:
+To specify fields for sorting, add `sortFields` property in your resource controller:
 ```javascript
 //app/controllers/users.js
 import SearchLogic from 'ember-cli-admin/dsl/search'
 ...
   sortFields: ['id', 'name'],
-...  
+...
 ```
 
 ##Contribution
