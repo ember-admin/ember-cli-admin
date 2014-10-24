@@ -19,7 +19,7 @@ module.exports = {
    packageJsonPath = path.join(this.project.root, 'package.json');
    jsonFile = require(packageJsonPath);
     properties = {
-      "ember-cli-map": "^0.2.0",
+      "ember-cli-map": "^0.2.2",
       "broccoli-merge-trees": "0.1.4",
       "broccoli-sass": "^0.2.2",
       "broccoli-static-compiler": "0.1.4",
