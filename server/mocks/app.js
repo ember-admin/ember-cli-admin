@@ -66,6 +66,16 @@ module.exports = function(app) {
     res.send({user_category: {id: req.params.id, name: req.body.user_category.name}});
   });
 
+  appRouter.get('/catalogues', function(req, res){
+    var catalogues = [{id: 1, name: 'Tree #1', parent_id: null, catalogue_ids: [2,3]},
+      {id: 2, name: 'Tree #2', parent_id: 1, catalogue_ids: [4]},
+      {id: 3, name: 'Tree #3', parent_id: 1, catalogue_ids: [5]},
+      {id: 4, name: 'Tree #4', parent_id: 2, catalogue_ids: []},
+      {id: 5, name: 'Tree #5', parent_id: 3, catalogue_ids: []}
+    ];
+    res.send({catalogues: catalogues});
+  });
+
 
 
 
