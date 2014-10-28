@@ -19,7 +19,6 @@
     "jquery-ui-sortable": "*"
   },
   "resolutions": {
-    "jquery": "1.11.1",
-    "typeahead.js": "0.10.5"
+    "jquery": "1.11.1"
   }
 }
