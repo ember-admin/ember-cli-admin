@@ -8,6 +8,9 @@ treeViewMixin = Ember.Mixin.create({
   perPage: 100000,
 
   roots: function(){
+    if(!this.get('model.items')){
+      return [];
+    }
     return this.get('model.items').filter(function(item){
       return Ember.isEmpty(item.get('parent'));
     });

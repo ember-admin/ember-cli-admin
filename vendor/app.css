@@ -5362,7 +5362,6 @@ ol.sortable_tree {
       ol.sortable_tree li .tree-item_wrap .controls {
         float: right; }
         ol.sortable_tree li .tree-item_wrap .controls .btn {
-          width: 20px;
           margin-right: 5px; }
     ol.sortable_tree li ol {
       list-style: none;

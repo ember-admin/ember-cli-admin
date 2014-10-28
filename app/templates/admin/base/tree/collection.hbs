@@ -1,15 +1,3 @@
-<div class="tree-item_wrap">
-    <i class="icon-move icon-move glyphicon glyphicon-move"></i>
-    <a class="tree-item_link" href="javascript:void(0);">{{view.content.name}}</a>
-    <div class="controls">
-        {{#if controller.itemActions}}
-            {{partial "admin/base/actions/base-actions"}}
-        {{/if}}
-        {{partial "admin/base/actions/addition-actions"}}
-    </div>
-</div>
-<ol class="sortable_tree">
-    {{#each item in view.content.children}}
-        {{partial 'admin/base/tree/item'}}
-    {{/each}}
-</ol>
+{{#with view.content}}
+    {{partial 'admin/base/tree/item'}}
+{{/with}}
