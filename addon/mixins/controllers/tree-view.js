@@ -7,6 +7,10 @@ treeViewMixin = Ember.Mixin.create({
   __tree: true,
   perPage: 100000,
 
+  catalogues: function(){
+    return this.get('store').find('catalogue', {});
+  }.property(),
+
   roots: function(){
     if(!this.get('model.items')){
       return [];
