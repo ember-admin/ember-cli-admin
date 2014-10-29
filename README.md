@@ -387,19 +387,16 @@ In your model:
 ...
 export default DS.Model.extend({
   name: DS.attr('string'),
-  parent: DS.belongsTo('catalogue', {inverse: null}), //necessary
-  lft: DS.attr('number'),
-  rgt: DS.attr('number'),
-  depth: DS.attr('number'),
-  /*
-    it's not for show
-  */
-  prevId: DS.attr('number'),                          //necessary
-  nextId: DS.attr('number'),                          //necessary
+  parent_id: DS.attr('number'), //necessary
 
   catalogues: DS.hasMany('catalogue', {async: true, inverse: null}),
 
-  children: Ember.computed.alias('catalogues')        //necessary
+  children: Ember.computed.alias('catalogues'),        //necessary
+
+  rebuildUrl: function(){
+     return '/api/v1/catalogues';   //necessary
+  }.property()
+
 });
 ```
 

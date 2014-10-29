@@ -21,16 +21,29 @@ treeViewMixin = Ember.Mixin.create({
   }.property('model.items.[]'),
 
   actions: {
+
     rebuild: function(itemObject, prevId, nextId, parentId){
-      Ember.$('.sortable_tree i.handle').hide();
-      itemObject.setProperties({
-        parent: parentId,
-        prevId: prevId,
-        nextId: nextId
-      });
-      itemObject.save().then(function(){
-        Ember.$('.sortable_tree i.handle').show();
-      });
+      var properties = {
+        parent_id: parentId,
+        prev_id: prevId,
+        next_id: nextId,
+        id: itemObject.get('id')
+      };
+
+      var data = {
+        type: 'POST',
+        dataType: 'script',
+        url: itemObject.get('rebuildUrl'),
+        data: properties,
+        beforeSend: function (xhr){
+          Ember.$('.sortable_tree i.handle').hide();
+        },
+        success: function(data, status, xhr) {
+          Ember.$('.sortable_tree i.handle').show();
+        }
+      };
+
+      Ember.$.ajax(data);
     }
   }
 });
