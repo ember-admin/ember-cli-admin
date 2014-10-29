@@ -21,10 +21,10 @@ treeViewMixin = Ember.Mixin.create({
   }.property('model.items.[]'),
 
   actions: {
-    rebuild: function(itemObject, prevId, nextId, parentObject){
+    rebuild: function(itemObject, prevId, nextId, parentId){
       Ember.$('.sortable_tree i.handle').hide();
       itemObject.setProperties({
-        parent: parentObject,
+        parent: parentId,
         prevId: prevId,
         nextId: nextId
       });

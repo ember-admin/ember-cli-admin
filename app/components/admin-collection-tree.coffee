@@ -42,9 +42,6 @@ view = Ember.CollectionView.extend
     itemObject = @get('controller.model.items').find (item) =>
       item.id.toString() == itemId.toString()
 
-    parentObject = @get('controller.model.items').find (item) =>
-      item.id.toString() == parentId.toString()
-
-    @get('controller').send('rebuild', itemObject, prevId, nextId, parentObject)
+    @get('controller').send('rebuild', itemObject, prevId, nextId, parentId)
 
 `export default view;`
