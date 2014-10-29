@@ -383,29 +383,29 @@ They are implemented following the [nested set model pattern](http://en.wikipedi
 
 In your model:
 ```javascript
-#app/models/catalogue.js
+//app/models/catalogue.js
 ...
 export default DS.Model.extend({
   name: DS.attr('string'),
-  parent: DS.belongsTo('catalogue', {inverse: null}), #necessary
+  parent: DS.belongsTo('catalogue', {inverse: null}), //necessary
   lft: DS.attr('number'),
   rgt: DS.attr('number'),
   depth: DS.attr('number'),
-  ###
-  #  it's not for show
-  ###
-  prevId: DS.attr('number'),                          #necessary
-  nextId: DS.attr('number'),                          #necessary
+  /*
+    it's not for show
+  */
+  prevId: DS.attr('number'),                          //necessary
+  nextId: DS.attr('number'),                          //necessary
 
   catalogues: DS.hasMany('catalogue', {async: true, inverse: null}),
 
-  children: Ember.computed.alias('catalogues')        #necessary
+  children: Ember.computed.alias('catalogues')        //necessary
 });
 ```
 
 Add `TreeViewController` Mixin to your resource controller:
 ```javascript
-#app/controllers/catalogues.js
+//app/controllers/catalogues.js
 import TreeViewController from 'ember-cli-admin/mixins/controllers/tree-view';
 
 export default Ember.ObjectController.extend(TreeViewController, {
