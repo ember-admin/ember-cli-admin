@@ -1,0 +1,44 @@
+ol.sortable_tree {
+  list-style: none;
+  max-width: 1000px;
+  li {
+    margin-bottom: 5px;
+    .tree-item_wrap {
+      overflow: hidden;
+      zoom: 1;
+      padding: 2px;
+      margin: 0 0 5px 5px;
+      background: #EFEFEF;
+      >i {
+        cursor: move;
+        float: left;
+        margin: 6px 15px 0 6px;
+      }
+      .tree-item_link {
+        float: left;
+        margin-top: 5px;
+      }
+      .controls {
+        float: right;
+        .btn {
+          margin-right: 5px;
+        }
+      }
+    }
+    ol {
+      list-style: none;
+      margin: 0 0 0 25px;
+      border-left: 1px dashed gray;
+    }
+  }
+}
+
+.nested_set .placeholder {
+  background-color: #EEF;
+  border: 1px dashed blue;
+}
+
+.nested_set .ui-nestedSortable-error {
+  background: #FAA;
+  color: #8a1f11;
+}

@@ -15,10 +15,10 @@
     "qunit": "~1.15.0",
     "pretender": "0.1.0",
     "bootstrap-sass-official": "3.2.0",
-    "typeahead.js": "twitter/typeahead.js#0.10.5"
+    "typeahead.js": "twitter/typeahead.js#0.10.5",
+    "jquery-ui-sortable": "*"
   },
   "resolutions": {
-    "jquery": "1.11.1",
-    "typeahead.js": "0.10.5"
+    "jquery": "1.11.1"
   }
 }

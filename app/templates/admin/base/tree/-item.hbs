@@ -1,0 +1,21 @@
+<li {{bind-attr data-id=id}}>
+    <div class="tree-item_wrap">
+        <i class="icon-move icon-move glyphicon glyphicon-move"></i>
+        <a class="tree-item_link" href="javascript:void(0);">{{name}}</a>
+        <div class="controls">
+            {{#if controller.itemActions}}
+                {{#each action in controller.itemActions}}
+                    {{#view 'admin/base/actions/action' tagName="button" href="#" contextBinding="action" modelBinding="this" titleBinding="action.title"}}
+                        <span {{bind-attr class="action.iconClass"}}></span>
+                    {{/view}}
+                {{/each}}
+            {{/if}}
+            {{partial "admin/base/actions/addition-actions"}}
+        </div>
+    </div>
+    <ol class="sortable_tree">
+        {{#each children}}
+            {{partial 'admin/base/tree/item'}}
+        {{/each}}
+    </ol>
+</li>
