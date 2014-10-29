@@ -35,10 +35,10 @@ treeViewMixin = Ember.Mixin.create({
         dataType: 'script',
         url: itemObject.get('rebuildUrl'),
         data: properties,
-        beforeSend: function (xhr){
+        beforeSend: function (){
           Ember.$('.sortable_tree i.handle').hide();
         },
-        success: function(data, status, xhr) {
+        success: function() {
           Ember.$('.sortable_tree i.handle').show();
         }
       };
