@@ -377,6 +377,42 @@ You can also provide your own sidebar template:
 ...
 ```
 
+###Nested Tree View
+You can display **nested trees** of records in Ember-Cli-Admin.
+They are implemented following the [nested set model pattern](http://en.wikipedia.org/wiki/Nested_set_model).
+
+In your model:
+```javascript
+#app/models/catalogue.js
+...
+export default DS.Model.extend({
+  name: DS.attr('string'),
+  parent: DS.belongsTo('catalogue', {inverse: null}), #necessary
+  lft: DS.attr('number'),
+  rgt: DS.attr('number'),
+  depth: DS.attr('number'),
+  ###
+  #  it's not for show
+  ###
+  prevId: DS.attr('number'),                          #necessary
+  nextId: DS.attr('number'),                          #necessary
+
+  catalogues: DS.hasMany('catalogue', {async: true, inverse: null}),
+
+  children: Ember.computed.alias('catalogues')        #necessary
+});
+```
+
+Add `TreeViewController` Mixin to your resource controller:
+```javascript
+#app/controllers/catalogues.js
+import TreeViewController from 'ember-cli-admin/mixins/controllers/tree-view';
+
+export default Ember.ObjectController.extend(TreeViewController, {
+  formAttributes: ['name']
+});
+```
+
 ##Contribution
 See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).
 
