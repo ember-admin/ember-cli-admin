@@ -20,3 +20,4 @@ testem.log
 /.editorconfig
 /vendor/*
 !/vendor/app.css
+!/vendor/nested-sortable.js
