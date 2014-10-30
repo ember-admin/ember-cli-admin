@@ -30,8 +30,7 @@ test('model tree is displayed', function() {
   visit('/catalogues');
 
   andThen(function() {
-    equal(find('.sortable_tree li:first:contains("1") .sortable_tree li:first:contains("2") ' +
-        '.sortable_tree li:first:contains("4")').length, 1);
+    equal(find('.sortable_tree li:first:contains("1") li:first:contains("2") li:first:contains("4")').length, 1);
   });
 
 });
