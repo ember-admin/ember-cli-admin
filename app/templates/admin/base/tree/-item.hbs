@@ -13,9 +13,11 @@
             {{partial "admin/base/actions/addition-actions"}}
         </div>
     </div>
-    <ol class="sortable_tree">
-        {{#each children}}
-            {{partial 'admin/base/tree/item'}}
-        {{/each}}
-    </ol>
+    {{#if children}}
+        <ol>
+            {{#each children}}
+                {{partial 'admin/base/tree/item'}}
+            {{/each}}
+        </ol>
+    {{/if}}
 </li>

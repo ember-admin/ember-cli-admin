@@ -77,7 +77,9 @@ module.exports = function(app) {
   });
 
 
-
+appRouter.post('/catalogues', function(req, res){
+  res.send({});
+});
 
   appRouter.post('/avatars', function(req, res) {
 //    req.on('data', function(chunk){ console.log(chunk)});

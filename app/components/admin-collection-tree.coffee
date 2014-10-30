@@ -1,7 +1,7 @@
 `import Ember from 'ember'`
 
 view = Ember.CollectionView.extend
-  classNames: ['sortable_tree']
+  classNames: ['sortable_tree', 'nested_set', 'ui-sortable']
   tagName: 'ol'
 
   itemViewClass: Ember.View.extend

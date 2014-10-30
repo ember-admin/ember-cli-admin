@@ -9,4 +9,6 @@ catalogue = DS.Model.extend
 
   children: Ember.computed.alias('catalogues')
 
+  rebuildUrl: '/api/catalogues'
+
 `export default catalogue`
