@@ -22,6 +22,7 @@ view = Ember.CollectionView.extend
   initSortable:(->
     @$().nestedSortable({
       handle: 'div',
+      listType: 'ol',
       items: 'li',
       toleranceElement: '.tree-item_wrap'
     })
