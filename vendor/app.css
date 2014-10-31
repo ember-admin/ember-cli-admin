@@ -5370,6 +5370,7 @@ ol.sortable_tree {
 
 .nested_set .placeholder {
   background-color: #EEF;
+  visibility: visible;
   border: 1px dashed blue; }
 
 .nested_set .ui-nestedSortable-error {

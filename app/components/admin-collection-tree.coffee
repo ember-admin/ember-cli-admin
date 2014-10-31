@@ -24,7 +24,8 @@ view = Ember.CollectionView.extend
       handle: 'div',
       listType: 'ol',
       items: 'li',
-      toleranceElement: '.tree-item_wrap'
+      toleranceElement: '.tree-item_wrap',
+      placeholder: 'placeholder'
     })
     self = @
     @$().on 'sortupdate', (event, ui) =>
