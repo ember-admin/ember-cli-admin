@@ -5288,7 +5288,7 @@ button.close {
   .hidden-print {
     display: none !important; } }
 .typeahead, .tt-query, .tt-hint {
-  width: 396px;
+  width: 240px;
   height: 30px;
   padding: 8px 12px;
   font-size: 24px;
