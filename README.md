@@ -87,6 +87,16 @@ export default Router;
 {{partial 'admin/index'}}
 ```
 
+###Add routes/main.js in our routes:
+```javascript
+//routes/main.js
+import Ember from 'ember';
+import BaseAdminRouteMixin from 'ember-cli-admin/mixins/routes/base';
+
+var mainRoute = Ember.Route.extend(BaseAdminRouteMixin);
+export default mainRoute;
+```
+
 ###Now let's set up resources
 
 For example, if we have the following model:
