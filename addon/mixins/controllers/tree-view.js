@@ -16,9 +16,10 @@ treeViewMixin = Ember.Mixin.create({
       return [];
     }
     return this.get('model.items').filter(function(item){
-      return Ember.isEmpty(item.get('parent'));
+      return Ember.isEmpty(item.get('parent_id'));
     });
   }.property('model.items.[]'),
+
 
   actions: {
 
