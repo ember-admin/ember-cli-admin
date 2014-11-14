@@ -203,7 +203,7 @@ export default Ember.ObjectController.extend(TableViewController,{
 ```
 
 Maybe you have model depends actions, so you can add in your model:
-Or you can add custom actions with ```additionalActions``` property in the controller:
+Or you can add custom actions with ```additionalActions``` property in the model:
 ```javascript
 //app/models/user.js
 additionalActions: function(){
