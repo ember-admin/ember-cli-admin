@@ -40,6 +40,13 @@ var mergeTrees = require('broccoli-merge-trees');
 module.exports = mergeTrees([app.toTree(), bootstrapFonts]);
 ```
 
+Also make sure that your styles in app/styles have proper extensions if an attempt to start the server results in:
+
+```
+app/styles/app.[scss/sass does not exist]
+```
+
+
 ##Setup
 
 ###In your app.js
