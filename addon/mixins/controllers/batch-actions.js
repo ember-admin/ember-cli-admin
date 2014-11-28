@@ -20,10 +20,7 @@ batchActionsMixin = Ember.Mixin.create({
       })(this));
       return this.set('__batches', []);
     }
-  },
-  hasBatchActions: function(){
-    return this.get('batchActions').get('length') > 0;
-  }.property('batchActions')
+  }
 });
 
 export default batchActionsMixin;
