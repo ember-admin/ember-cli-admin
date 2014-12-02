@@ -13,7 +13,6 @@ initializer = {
       @navigate "Admin", ->
         @navigate "Users"
         @navigate "User Categories"
-      @navigate "Cars"
       @navigate "Catalogues"
   }
 
