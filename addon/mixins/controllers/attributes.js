@@ -12,6 +12,18 @@ attributesMixin = Ember.Mixin.create({
     return this.get('modelAttributes');
   }).property('modelAttributes.@each'),
 
+  activeTableAttributes: function(){
+    var type = this.model.modelType.toString().match(/:([^:]+)/)[1];
+    var hiddenAttributes = this.tableSettingsStore.get(type);
+    var attributes = this.get('tableAttributes');
+    var returnValue = attributes.filter(function(attr){
+      return !hiddenAttributes.some(function(hiddenAttr){
+        return hiddenAttr === attr;
+      });
+    });
+    return returnValue;
+  }.property(),
+
   fileuploads: (function() {
     if (this.get('model.fileuploads')) {
       return this.get('model.fileuploads');

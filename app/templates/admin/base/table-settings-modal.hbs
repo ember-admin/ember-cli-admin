@@ -1,0 +1,22 @@
+<div class="modal show">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" {{action "closeModal" on="click"}}>&times;</button>
+        <h4 class="modal-title">table settings  </h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+          {{#each attr in controller.tableAttributes itemController="attribute"}}
+            <div>
+              {{input type="checkbox" checked=attr.isActive}}
+              <label>{{attr.model}}</label>
+            </div>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
