@@ -41,7 +41,7 @@ export default Ember.Mixin.create({
 				return function(){
 					_this.get('parentController')
 					.set('activeTableAttributes', activeAttributes);	
-				}
+				};
 			})(this), 0);
 		} else {
 			this.get('parentController').set('activeTableAttributes', activeAttributes);
