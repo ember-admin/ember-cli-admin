@@ -1,4 +1,4 @@
-@import 'bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
+@import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap';
 @import "components/typeahead";
 @import "components/tree_view";
 
@@ -129,6 +129,17 @@
   padding: 4px 12px;
   .caret {
     margin-left: 5px;
+  }
+}
+
+.table-header-settings {
+  margin-left: 10px;
+  .btn {
+    margin-bottom: -2px;
+    padding: 4px 12px;
+    .glyphicon {
+      vertical-align: text-top;
+    }
   }
 }
 

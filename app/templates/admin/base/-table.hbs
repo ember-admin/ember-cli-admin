@@ -2,12 +2,13 @@
     <div class="col-md-9">
         <table class="table-view">
             {{partial "admin/base/actions/batch"}}
+            {{partial "admin/base/table-settings"}}
             <thead>
             <tr>
                 <th class="checkbox-list">
                     {{view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches"}}
                 </th>
-                {{#each attributeName in controller.tableAttributes}}
+                {{#each attributeName in controller.activeTableAttributes}}
                     {{admin-sort-th sortFields=controller.sortFields attributeName=attributeName orderAscending=controller.orderAscending sort=controller.sort action="sort"}}
                 {{/each}}
                 <th>Actions</th>
