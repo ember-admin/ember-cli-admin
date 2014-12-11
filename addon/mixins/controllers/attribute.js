@@ -18,7 +18,7 @@ export default Ember.Mixin.create({
 				hiddenAttributes.push(model);
 			}
 			this.tableSettingsStore.set(modelType, hiddenAttributes);
-			this._setActiveAttributes(hiddenAttributes);
+			this._setActiveAttributes(hiddenAttributes, {async: true});	
 			return value;			
 		}
 	}.property(),
@@ -27,14 +27,24 @@ export default Ember.Mixin.create({
 		return this.get('parentController').model.modelType.toString().match(/:([^:]+)/)[1];
 	},
 
-	_setActiveAttributes: function(hiddenAttributes){
+	_setActiveAttributes: function(hiddenAttributes, options){
 		var attributes = this.get('parentController')
 		.get('tableAttributes');
-		var returnValue = attributes.filter(function(attr){
+		var activeAttributes = attributes.filter(function(attr){
 	      return !hiddenAttributes.some(function(hiddenAttr){
 	        return hiddenAttr === attr;
 	      });
 	    });
-	    this.get('parentController').set('activeTableAttributes', returnValue);
+
+		if (options && options.async){
+			window.setTimeout((function(_this){
+				return function(){
+					_this.get('parentController')
+					.set('activeTableAttributes', activeAttributes);	
+				}
+			})(this), 0);
+		} else {
+			this.get('parentController').set('activeTableAttributes', activeAttributes);
+		}
 	}
 });
