@@ -3,8 +3,8 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
 	isActive: function(key, value){
 		var model = this.model;
-		var modelType = this._getModelType();
-		var hiddenAttributes = this.tableSettingsStore.get(modelType);
+		var currentController = this._getCurrentController();
+		var hiddenAttributes = this.tableSettingsStore.get(currentController) || [];
 		var isHidden = hiddenAttributes.some(function(attr){
 				return attr === model;
 			});
@@ -17,14 +17,14 @@ export default Ember.Mixin.create({
 			} else {
 				hiddenAttributes.push(model);
 			}
-			this.tableSettingsStore.set(modelType, hiddenAttributes);
+			this.tableSettingsStore.set(currentController, hiddenAttributes);
 			this._setActiveAttributes(hiddenAttributes, {async: true});	
 			return value;			
 		}
 	}.property(),
 
-	_getModelType: function(){
-		return this.get('parentController').model.modelType.toString().match(/:([^:]+)/)[1];
+	_getCurrentController: function(){
+		return this.get('parentController').toString().match(/:([^:]+)/)[1];
 	},
 
 	_setActiveAttributes: function(hiddenAttributes, options){

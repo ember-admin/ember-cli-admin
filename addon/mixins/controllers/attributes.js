@@ -13,8 +13,8 @@ attributesMixin = Ember.Mixin.create({
   }).property('modelAttributes.@each'),
 
   activeTableAttributes: function(){
-    var type = this.model.modelType.toString().match(/:([^:]+)/)[1];
-    var hiddenAttributes = this.tableSettingsStore.get(type);
+    var type = this.toString().match(/:([^:]+)/)[1];
+    var hiddenAttributes = this.tableSettingsStore.get(type) || [];
     var attributes = this.get('tableAttributes');
     var returnValue = attributes.filter(function(attr){
       return !hiddenAttributes.some(function(hiddenAttr){
