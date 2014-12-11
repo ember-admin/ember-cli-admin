@@ -176,6 +176,21 @@ export default Ember.ObjectController.extend(TableViewController,{
   formAttributes: ['email', 'name']
 });
 ```
+
+###Table fields
+
+You can specify the attributes to use in admin table with the ```tableAttributes``` property in the controller:
+
+```javascript
+//app/controllers/users.js
+import Ember from 'ember';
+import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
+
+export default Ember.ObjectController.extend(TableViewController,{
+  tableAttributes: ['email', 'name']
+});
+```
+
 ###Item Actions
 
 You can customize item actions with ```itemActions``` property in the controller:
