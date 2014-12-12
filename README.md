@@ -345,14 +345,28 @@ That's it!
 
 ##Customize Templates
 
-You can also provide your own form template for a specific resource. Put your form template in `app/templates/admin/[controllerName]` directory. For users resource:
+You can also provide your own template for the show, edit and new actions. These can override the global defaults as well as for specific resources. 
 
+###Global Overrides
+
+Put your template in the `app/templates/admin` directory. For example:
 ```
-#app/templates/admin/users/form.hbs
-...
+#app/templates/admin/show.hbs
+#app/templates/admin/new.hbs
+#app/templates/admin/edit.hbs
+#app/templates/admin/form.hbs
 ```
 
-If you have `admin/form` and `admin/users/form` templates, the latter will be used for your users resource, and the first for all the other resources.
+###Resource Specific Override
+
+Put your template in `app/templates/[controllerName]` directory. For users resource:
+```
+#app/templates/users/show.hbs
+#app/templates/users/new.hbs
+#app/templates/users/edit.hbs
+```
+
+If you have `admin/new.hbs` and `users/new.hbs` templates, the latter will be used for your users resource, and the first for all the other resources.
 
 ##Searching
 
