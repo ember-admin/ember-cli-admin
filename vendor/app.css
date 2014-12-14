@@ -5370,7 +5370,6 @@ ol.sortable_tree {
 
 .nested_set .placeholder {
   background-color: #EEF;
-  visibility: visible;
   border: 1px dashed blue; }
 
 .nested_set .ui-nestedSortable-error {
@@ -5469,6 +5468,14 @@ ol.sortable_tree {
   .batch-actions .btn .caret {
     margin-left: 5px; }
 
+.table-header-settings {
+  margin-left: 10px; }
+  .table-header-settings .btn {
+    margin-bottom: -2px;
+    padding: 4px 12px; }
+    .table-header-settings .btn .glyphicon {
+      vertical-align: text-top; }
+
 .navbar-inverse .navbar-nav > li > a {
   color: #fff; }
   .navbar-inverse .navbar-nav > li > a:hover {
@@ -5544,3 +5551,5 @@ html, body {
     .admin-form .admin-fileupload .asset_wrapper .ember-view .asset .btn-danger {
       vertical-align: top;
       margin-left: 10px; }
+
+/*# sourceMappingURL=app.css.map */

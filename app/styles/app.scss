@@ -132,6 +132,17 @@
   }
 }
 
+.table-header-settings {
+  margin-left: 10px;
+  .btn {
+    margin-bottom: -2px;
+    padding: 4px 12px;
+    .glyphicon {
+      vertical-align: text-top;
+    }
+  }
+}
+
 .navbar-inverse .navbar-nav > li > a {
   color: #fff;
   &:hover {
