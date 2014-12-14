@@ -73,6 +73,13 @@ attributesMixin = Ember.Mixin.create({
     } else {
       this.set('activeTableAttributes', activeAttributes);
     }
+  },
+
+  actions: {
+    openModalSettings: function(){
+      this.send('openModal', Ember.Object.extend({}),
+       'admin.base.filter-columns-modal');
+    }
   }
   
 });
