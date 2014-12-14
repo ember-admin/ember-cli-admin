@@ -456,6 +456,11 @@ export default Ember.ObjectController.extend(TreeViewController, {
 });
 ```
 
+##Show/hide table column
+You can chose what table columns to display via table settings icon next to the 'Batch actions' button in the table header. 
+
+Each controller has its own set of table settings that persist via browser local storage. 
+
 ##Contribution
 See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).
 
