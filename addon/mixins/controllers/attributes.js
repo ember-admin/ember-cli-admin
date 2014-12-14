@@ -32,7 +32,7 @@ attributesMixin = Ember.Mixin.create({
 
   isActive: function(attribute, value){
     var model = attribute;
-    var currentController = this._getCurrentController();
+    var currentController = this.get('_name');
     var hiddenAttributes = this.tableSettingsStore.get(currentController) || [];
     var isHidden = hiddenAttributes.some(function(attr){
         return attr === model;
@@ -50,10 +50,6 @@ attributesMixin = Ember.Mixin.create({
       this._setActiveAttributes(hiddenAttributes, {async: true}); 
       return value;     
     }
-  },
-
-  _getCurrentController: function(){
-    return this.toString().match(/:([^:]+)/)[1];
   },
 
   _setActiveAttributes: function(hiddenAttributes, options){
