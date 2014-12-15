@@ -12,6 +12,7 @@ adminSortThView = Ember.Component.extend
   isInSortFields: (->
     @get('sortFields').contains(@get('attributeName'))
   ).property('sortFields', 'attributeName')
+
   click: ->
     this.sendAction('action', @get('attributeName'))
 

@@ -8,29 +8,29 @@ checkboxBatchView = Ember.Checkbox.extend
     if @get('checked')
       @_addItem(@get('context'))
     else
-      @get('controller.__batches').removeObject(@get('context'))
+      @get('batches').removeObject(@get('context'))
   ).observes('checked')
 
   observerForChangeBatchesCollection:(->
     Ember.run.later =>
-      if @get('controller.__batches').length == 0 && @get('selectAll')
+      if @get('batches').length == 0 && @get('selectAll')
         @set('checked', false)
     , 300
-  ).observes('controller.__batches.@each')
+  ).observes('batches.@each')
 
   _selectAllAction: ->
-    @set('controller.__batches', [])
+    @set('batches', [])
     return unless @get('checked')
-    @get('controller.model.items').forEach (item) =>
+    @get('items').forEach (item) =>
       @_addItem(item)
 
   _addItem: (item) ->
-    @get('controller.__batches').pushObject(item) unless @get('controller.__batches').indexOf(item) >= 0
+    @get('batches').pushObject(item) unless @get('batches').indexOf(item) >= 0
 
   changeBatchList:( ->
     return if @get('selectAll')
-    @get('controller.__batches').indexOf(@get('context')) >= 0
-  ).property('controller.__batches.@each')
+    @get('batches').indexOf(@get('context')) >= 0
+  ).property('batches.@each')
 
   createObserverOnBatch:(->
     @get('changeBatchList')
