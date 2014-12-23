@@ -44,11 +44,11 @@ actionView = Ember.View.extend ConfirmationMixin,
   ).property('action')
 
   _findAction: (title) ->
-    @get('controller.itemActions').find (action) =>
+    @get('controller.itemActions').find (action) ->
       action.title == title
 
   _findAdditionalActions: (title) ->
-    @get('controller.additionalActions').find (action) =>
+    @get('controller.additionalActions').find (action) ->
       action.title == title
 
 `export default actionView`
