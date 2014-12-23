@@ -3,30 +3,23 @@
         {{partial "admin/base/actions/batch"}}
         {{partial "admin/base/table-settings"}}
         <table class="table-view">
-            {{admin-table-head activeTableAttributes=controller.activeTableAttributes
-            sortFields=controller.sortFields orderAscending=controller.orderAscending
-            sort=controller.sort action='sort' batches=controller.__batches
-            items=controller.model.items
+            {{admin-table-head 
+                activeTableAttributes=controller.activeTableAttributes
+                sortFields=controller.sortFields 
+                orderAscending=controller.orderAscending
+                sort=controller.sort
+                action='sort'
+                batches=controller.__batches
+                items=controller.model.items
             }}
-            <tbody>
-                {{#if controller.model.items }}
-                    {{each controller.model.items itemViewClass="admin/base/tr-list"}}
-                {{else}}
-                    {{#if controller.model.items.isLoaded}}
-                        <tr>
-                            <td>
-                                <span class="glyphicon glyphicon-exclamation-sign">Empty</span>
-                            </td>
-                        </tr>
-                    {{else}}
-                        <tr>
-                            <td>
-                                <span class="glyphicon glyphicon-refresh"></span>
-                            </td>
-                        </tr>
-                    {{/if}}
-                {{/if}}
-            </tbody>
+            {{admin-table-body
+                items=controller.model.items
+                activeTableAttributes=controller.activeTableAttributes
+                itemActions=controller.itemActions
+                additionalActions=controller.additionalActions
+                batches=controller.__batches
+                action='openImagePreview'
+            }}
         </table>
     </div>
     {{#if controller.isShowSearchForm}}
