@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   classNames: "",
   actions: {
     openImagePreview: function(imageUrl) {
-      this.sendAction('action', imageUrl);
+      this.sendAction('openImagePreview', imageUrl);
     }
   }
 });
