@@ -75,7 +75,6 @@ tdComponent = Ember.Component.extend
 
   actions:
     openImagePreview: ->
-      debugger
       @sendAction('action', this.get('image_object.url'))
 
 `export default tdComponent;`
