@@ -1,4 +1,4 @@
-<td class="checkbox-list">{{view 'admin/base/actions/checkbox-batch' contextBinding="view.context" batches=batches}}</td>
+<td class="checkbox-list">{{view 'admin/base/actions/checkbox-batch' context=item batches=batches}}</td>
 {{#each attributeName in activeTableAttributes}}
     {{admin-td-element attributeName=attributeName item=item action='openImagePreview'}}
 {{/each}}
