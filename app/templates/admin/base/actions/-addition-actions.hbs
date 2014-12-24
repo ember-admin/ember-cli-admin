@@ -1,4 +1,4 @@
-{{#each action in controller.additionalActions}}
+{{#each action in additionalActions}}
   {{#view 'admin/base/actions/action' tagName="button" href="#" contextBinding="action" modelBinding="view.item" titleBinding="action.title"}}
     <span {{bind-attr class="action.iconClass"}}></span>
   {{/view}}

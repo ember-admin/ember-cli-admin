@@ -75,6 +75,6 @@ tdComponent = Ember.Component.extend
 
   actions:
     openImagePreview: ->
-      @sendAction('action', this.get('image_object.url'))
+      @sendAction('adminAction', 'openImagePreview', this.get('image_object.url'))
 
 `export default tdComponent;`

@@ -1,9 +1,9 @@
-{{#if view.image_object.url}}
-  <a href="#" {{action "openImagePreview" view.image_object.url on="click" target=view}}>
-    <img {{bind-attr src="view.image_object.thumb_url"}} title="Show image">
+{{#if image_object.url}}
+  <a href="#" {{action "openImagePreview" image_object.url on="click" target=view}}>
+    <img {{bind-attr src="image_object.thumb_url"}} title="Show image">
   </a>
 {{/if}}
 
-{{#unless view.image}}
-  {{view.value}}
+{{#unless image}}
+  {{value}}
 {{/unless}}

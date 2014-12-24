@@ -83,6 +83,9 @@ baseActionsMixin = Ember.Mixin.create({
     },
     show: function(model) {
       return this.transitionToRoute(this._path(model, "show"));
+    },
+    adminAction: function(adminActionName, item) {
+      this.send(adminActionName, item);
     }
   },
   _destroyItem: function(model) {

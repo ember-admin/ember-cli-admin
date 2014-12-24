@@ -1,0 +1,26 @@
+{{#if items}}
+    {{#each item in items}}
+        {{admin-tr-list 
+            item=item 
+            activeTableAttributes=activeTableAttributes 
+            itemActions=itemActions 
+            additionalActions=additionalActions 
+            batches=batches
+            adminAction='adminAction' }}
+    {{/each}}
+{{else}}
+    {{#if items.isLoaded}}
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-exclamation-sign">Empty</span>
+            </td>
+        </tr>
+    {{else}}
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-refresh"></span>
+            </td>
+        </tr>
+    {{/if}}
+{{/if}}
+

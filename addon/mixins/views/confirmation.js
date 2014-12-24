@@ -9,7 +9,7 @@ confirmationMixin = Ember.Mixin.create({
       options = {};
     }
     action = this.get('action') || this.get('context');
-    return this.get('controller').send('openModal', this._createConfirmationObject(action, options));
+    return this.get('controller').send('adminAction', 'openModal', this._createConfirmationObject(action, options));
   },
 
   _createConfirmationObject: function(action, options){
