@@ -14,13 +14,13 @@ actionView = Ember.View.extend ConfirmationMixin,
     if @get('action.confirm')
       @_showConfirmation()
     else
-      @get('controller').send(@get('action.action'), model)
+      @get('controller').send('adminAction',@get('action.action'), model)
 
   actions:
 
     confirm: ->
       model = (@get('model') || @get('controller.model'))
-      @get('controller').send(@get('action.action'), model)
+      @get('controller').send(@get('adminAction','action.action'), model)
       @_super()
 
   action:(->

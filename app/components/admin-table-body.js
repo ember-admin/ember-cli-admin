@@ -3,8 +3,9 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: "tbody",
   actions: {
-    openImagePreview: function(imageUrl) {
-      this.sendAction('openImagePreview', imageUrl);
+    adminAction: function(adminActionName, model) {
+      console.log('admin-table-body.adminAction: ', adminActionName, model);
+      this.sendAction('adminAction', adminActionName, model);
     }
   }
 });
