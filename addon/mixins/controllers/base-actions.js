@@ -57,8 +57,8 @@ baseActionsMixin = Ember.Mixin.create({
   }).property('__breadcrumbsActionsArray'),
 
   actions: {
-    "new": function() {
-      return this.transitionToRoute(this._path("new"));
+    "new": function(model) {
+      return this.transitionToRoute(this._path(model, "new"));
     },
     edit: function(model) {
       return this.transitionToRoute(this._path(model, "edit"));
@@ -99,13 +99,22 @@ baseActionsMixin = Ember.Mixin.create({
   },
   _path: function(model, type) {
     if (type) {
-      return "/%@/%@/%@".fmt(this._controllerPathFor(model), model.get('id'), type);
+      if (type==='new') {
+        return "/%@/%@/%@".fmt(this._controllerPathFor(model), type);
+      } else {
+        return "/%@/%@/%@".fmt(this._controllerPathFor(model), model.get('id'), type);
+      }
     } else {
       return "/%@/%@".fmt(this._controllerPathFor(model), model);
     }
   },
   _controllerPathFor: function(model) {
-    return model._debugContainerKey.split(":")[1]+"s";
+    var containerKey = model.get('modelType._debugContainerKey');
+    if (!containerKey) {
+      containerKey = model.get('_debugContainerKey');
+    }
+
+    return containerKey.split(":")[1]+"s";
   }
 });
 
