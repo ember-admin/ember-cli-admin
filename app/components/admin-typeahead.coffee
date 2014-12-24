@@ -15,7 +15,6 @@ typeaheadComponent = Ember.TextField.extend
 
   bloodhound:(->
     self = @
-    console.log @get('ajax')
     states = new Bloodhound(
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace("value")
       queryTokenizer: Bloodhound.tokenizers.whitespace
