@@ -461,6 +461,46 @@ You can chose what table columns to display via table settings icon next to the 
 
 Each controller has its own set of table settings that persist via browser local storage. 
 
+##Integration with [elasticsearch](http://www.elasticsearch.org/)
+Now you can integrate admin with elasticsearch server. You need use [elasticsearch adapter](https://github.com/api-hogs/ember-data-elasticsearch-kit/blob/master/dist/ember-data-elasticsearch-kit.js) download into vendor and import it to app.
+Then you need turn CORS in elasticsearch, and create resource route:
+```javascript
+  //routes/users.js
+  
+  /* global EDEK*/
+  import Ember from 'ember';
+  import BaseAdminRouteMixin from 'ember-cli-admin/mixins/routes/base';
+  import ElasticSearch from 'ember-cli-admin/mixins/routes/elasticsearch';
+  
+  BaseAdminRouteMixin.reopen(ElasticSearch);
+  
+  export default Ember.Route.extend(BaseAdminRouteMixin, {
+  
+    //you need implement this method for ES search
+    _queryElasticsearch: function(query, params){
+      var fields = [];
+      var text = "";
+      for (var value in params){
+        fields.pushObject(value);
+        text += params[value].value;
+      }
+  
+      if(fields.length === 0){
+        return query;
+      }
+  
+      return  EDEK.QueryDSL.query(function(){
+        return this.flt({
+          fields: fields,
+          like_text: text,
+          max_query_terms: 12
+        });
+      });
+    }
+  });
+```
+
+
 ##Contribution
 See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).
 
