@@ -10,7 +10,8 @@ export default function startApp(attrs) {
   attributes = Ember.merge(attributes, attrs); // use defaults, but you can override;
 
   Router.reopen({
-    location: 'none'
+    // Using 'hash' allows us to properly test window.history actions
+    location: 'hash'
   });
 
   Ember.run(function() {

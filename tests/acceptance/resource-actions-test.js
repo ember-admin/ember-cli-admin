@@ -91,13 +91,18 @@ test('model formFields are shown on resource show page', function() {
   });
 });
 
-// test('model properties are saved and the previous visited route is transitioned to when we click "Submit" on the edit page', function() {
-  // visit('/users/1/show');
-  // click('button[title="Edit"]');
-  // fillIn('input:first', "test@ex.co");
-  // ok(true);
-  // click('button:contains("Submit")');
-  // andThen(function(){
-    // equal(find(".panel-heading:contains('Show')").length, 1);
-  // });
-// });
+test('model properties are saved and the previous visited route is transitioned to when we click "Submit" on the edit page', function() {
+  visit('/users/1/show');
+  click('button[title="Edit"]');
+  fillIn('input:first', "test@ex.co");
+  ok(true);
+  click('button:contains("Submit")');
+  andThen(function(){
+    // Ember seems to fulfill previous promise a bit too early,
+    // not accounting for the process of reloading the page via
+    // window.history.back()
+    Ember.run.later(function(){
+      equal(find(".panel-heading:contains('Show')").length, 1);
+    }, 700);
+  });
+});
