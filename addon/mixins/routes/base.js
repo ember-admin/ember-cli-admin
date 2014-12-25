@@ -6,10 +6,11 @@ import ControllerMixin from 'ember-cli-admin/mixins/routes/controller';
 import RenderMixin from 'ember-cli-admin/mixins/routes/render';
 import SetupControllerMixin from 'ember-cli-admin/mixins/routes/setup-controller';
 import ModalMixin from 'ember-cli-admin/mixins/routes/modal';
+import QueryParams from 'ember-cli-admin/mixins/routes/query-params';
 var mainRouteMixin;
 
 mainRouteMixin = Ember.Mixin.create();
 
-mainRouteMixin.reopen(PaginationMixin, ModelMixin, ControllerMixin, SetupControllerMixin, RenderMixin, ModalMixin);
+mainRouteMixin.reopen(QueryParams, PaginationMixin, ModelMixin, ControllerMixin, SetupControllerMixin, RenderMixin, ModalMixin);
 
 export default mainRouteMixin;
