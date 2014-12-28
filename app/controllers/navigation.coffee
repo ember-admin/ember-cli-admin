@@ -6,6 +6,6 @@ navigationController = Ember.ArrayController.extend
 
   model: Navigation.content
 
-  siteTitle: 'Ember Admin'
+  siteTitle: Ember.ENV.appName || 'Ember Admin'
 
 `export default navigationController;`

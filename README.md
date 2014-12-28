@@ -341,6 +341,23 @@ var avatar = Asset.extend({
 ...
 ```
 
+
+###Set title
+By default, navigation bar title display your application's module prefix. You can change this to any name of you choice by adding 'appName' property to your application config file:
+
+```javascript
+//config/environment.js
+...
+var ENV = {
+  ...
+  EmberENV: {
+    appName: 'application name of your choice',
+    ...
+    }
+  ...
+  }
+```
+
 That's it!
 
 ##Customize Templates
