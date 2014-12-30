@@ -26,13 +26,13 @@ actionView = Ember.View.extend ConfirmationMixin,
   action:(->
     if @get('breadcrumbAction')
       switch  @get('breadcrumbAction')
-        when "new"
+        when "New"
           @get('controller.actionNew')
-        when "edit"
+        when "Edit"
           @_findAction('Edit')
-        when "destroy"
+        when "Destroy"
           @_findAction('Delete')
-        when "show"
+        when "Show"
           @_findAction('Show')
         else ""
     else

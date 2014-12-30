@@ -8,13 +8,48 @@ export default Ember.Component.extend({
     var currentPage = +(this.get("currentPage"));
     var totalPages = +(this.get("numberOfPages"));
 
-    var res = [];
-    for(var i=1; i<=totalPages; i++) {
-      res.push({
-        page: i,
-        current: currentPage == i
-      });
-    }
+    var res = [{
+        title: currentPage,
+        page: currentPage,
+        current: true
+    }];
+
+    var noSkipDistance = 5;
+
+    for(var i = currentPage - 1; i > 0; ) {
+        if (currentPage - i < noSkipDistance || i == 1) {
+            res.unshift({
+                title: i,
+                page: i
+            });
+            i--;
+        } else {
+            var offset = i - currentPage;
+            res.unshift({
+                title: offset,
+                page: i
+            });
+            i = Math.max(currentPage + offset * 10, 1);
+        }
+    };
+
+    for(var i = currentPage + 1; i <= totalPages; ) {
+        if (i - currentPage < noSkipDistance || i == totalPages) {
+            res.push({
+                title: i,
+                page: i
+            });
+            i++;
+        } else {
+            var offset = i - currentPage;
+            res.push({
+                title: '+' + offset,
+                page: i
+            });
+            i = Math.min(currentPage + offset * 10, totalPages);
+        }
+    };
+
     return res;
   }.property("currentPage", "numberOfPages"),
 

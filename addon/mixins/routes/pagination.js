@@ -3,23 +3,6 @@ import Ember from 'ember';
 var paginationMixin;
 
 paginationMixin = Ember.Mixin.create({
-  queryParams: {
-    page: {
-      refreshModel: true
-    },
-    perPage: {
-      refreshModel: true
-    },
-    q: {
-      refreshModel: true
-    },
-    sort: {
-      refreshModel: true
-    },
-    orderAscending: {
-      refreshModel: true
-    }
-  },
   pagination: function(modelName, params) {
     return this.store.find(modelName, params);
   }

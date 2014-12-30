@@ -14,11 +14,11 @@
       {{#each item in pageItems}}
         {{#if item.current}}
             <li class="active page-number">
-                <a>{{item.page}}</a>
+                <a>{{item.title}}</a>
             </li>
         {{else}}
             <li class="page-number">
-                <a {{action "clickPage" item.page}}>{{item.page}}</a>
+                <a {{action "clickPage" item.page}}>{{item.title}}</a>
             </li>
         {{/if}}
       {{/each}}
