@@ -45,9 +45,9 @@ breadcrumbs.reopenClass({
         actions.push(this._createAction());
     }
     var controllerItemActions = controller.get('itemActions').map(function(item){return item.title;});
-    actions = actions.filter(function(action){
+    actions.concat(actions.filter(function(action){
       return controllerItemActions.indexOf(action) >= 0;
-    });
+    }));
     return controller.set("__breadcrumbsActionsArray", actions);
   },
   _createAction: function() {
