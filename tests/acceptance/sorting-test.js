@@ -39,7 +39,7 @@ test('records in table are sorted by controller sortFields in ascending order', 
   visit('/users');
   click('th:contains("id")');
   andThen(function() {
-    equal(find('tr:eq(1) td:eq(1):contains("0")').length, 1);
+    equal(find('tbody tr:first td[data-column="id"]:contains("0")').length, 1);
   });
 
 });
@@ -51,7 +51,7 @@ test('records in table are sorted by controller sortFields in descending order',
   click('th:contains("id")');
   click('th:contains("id")');
   andThen(function() {
-    equal(find('tr:eq(1) td:eq(1):contains("10")').length, 1);
+    equal(find('tbody tr:first td[data-column="id"]:contains("10")').length, 1);
   });
 
 });
