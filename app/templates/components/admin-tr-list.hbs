@@ -1,6 +1,4 @@
-{{#if batches}}
-    <td class="checkbox-list">{{view 'admin/base/actions/checkbox-batch' context=item batches=batches}}</td>
-{{/if}}
+<td class="checkbox-list">{{view 'admin/base/actions/checkbox-batch' context=item batches=batches}}</td>
 {{#each attributeName in activeTableAttributes}}
     {{admin-td-element attributeName=attributeName item=item adminAction='adminAction'}}
 {{/each}}
