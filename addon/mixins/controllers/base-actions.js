@@ -100,21 +100,13 @@ baseActionsMixin = Ember.Mixin.create({
   _path: function(model, type) {
     if (type) {
       if (type==='new') {
-        return "/%@/%@/%@".fmt(this._controllerPathFor(model), type);
+        return "/%@/%@/%@".fmt(this.get('_name'), type);
       } else {
-        return "/%@/%@/%@".fmt(this._controllerPathFor(model), model.get('id'), type);
+        return "/%@/%@/%@".fmt(this.get('_name'), model.get('id'), type);
       }
     } else {
-      return "/%@/%@".fmt(this._controllerPathFor(model), model);
+      return "/%@/%@".fmt(this.get('_name'), model);
     }
-  },
-  _controllerPathFor: function(model) {
-    var containerKey = model.get('modelType._debugContainerKey');
-    if (!containerKey) {
-      containerKey = model.get('_debugContainerKey');
-    }
-
-    return containerKey.split(":")[1]+"s";
   }
 });
 
