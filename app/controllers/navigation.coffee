@@ -7,6 +7,8 @@ navigationController = Ember.ArrayController.extend
 
   model: Navigation.content
 
+  titleLinksTo: config.EmberENV.titleLinksTo || '/#/'
+
   siteTitle: config.EmberENV.appName || config.modulePrefix || 'Ember Admin'
 
 `export default navigationController;`
