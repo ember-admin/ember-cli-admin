@@ -7,6 +7,8 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
+      appName: 'Sample App Name',
+      titleLinksTo: '/example/url',
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
