@@ -10,12 +10,14 @@ breadcrumbs.reopenClass({
     var content, name, obj, controllerName;
     content = [];
     content.pushObject(this._dashboard(options));
+
     if (options.uppercased && !Ember.isEmpty(controller.get('_name'))) {
       controllerName = LetterCaselogic.titlize(controller.get('_name'));
     }
     else {
       controllerName = controller.get('_name');
     }
+
     obj = this._controllerLink(controllerName);
     content.pushObject(obj);
     if (action && model) {

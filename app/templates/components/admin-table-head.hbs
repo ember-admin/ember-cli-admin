@@ -2,7 +2,7 @@
     <th class="checkbox-list">
         {{view 'admin/base/actions/checkbox-batch' selectAll=true elementId="select-all-batches" batches=batches items=items}}
     </th>
-    {{#each attributeName in activeTableAttributes}}
+    {{#each attributeName in attrs}}
         {{admin-sort-th sortFields=sortFields attributeName=attributeName orderAscending=orderAscending sort=sort action="sort"}}
     {{/each}}
     <th>Actions</th>

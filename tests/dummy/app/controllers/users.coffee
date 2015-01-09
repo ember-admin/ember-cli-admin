@@ -2,6 +2,7 @@
 `import SearchLogic from 'ember-cli-admin/dsl/search'`
 
 usersController = Ember.ObjectController.extend TableViewController,
+  useFirstLetterUpper: true,
 
   sortFields: ['id', 'name']
 

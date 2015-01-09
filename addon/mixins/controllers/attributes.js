@@ -47,8 +47,8 @@ attributesMixin = Ember.Mixin.create({
         hiddenAttributes.push(model);
       }
       this.tableSettingsStore.set(currentController, hiddenAttributes);
-      this._setActiveAttributes(hiddenAttributes, {async: true}); 
-      return value;     
+      this._setActiveAttributes(hiddenAttributes, {async: true});
+      return value;
     }
   },
 
@@ -63,7 +63,7 @@ attributesMixin = Ember.Mixin.create({
     if (options && options.async){
       window.setTimeout((function(_this){
         return function(){
-          _this.set('activeTableAttributes', activeAttributes);  
+          _this.set('activeTableAttributes', activeAttributes);
         };
       })(this), 0);
     } else {
@@ -77,7 +77,7 @@ attributesMixin = Ember.Mixin.create({
        'admin.base.filter-columns-modal');
     }
   }
-  
+
 });
 
 export default attributesMixin;
