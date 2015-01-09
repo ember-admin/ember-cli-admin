@@ -1,13 +1,13 @@
 {{#if isCurrentSortAttribute}}
   {{#if isOrderAscending}}
-    {{attributeName}} ▲
+    {{admin-letter-case content=attributeName caseType=caseType}} ▲
   {{else}}
-    {{attributeName}} ▼
+    {{admin-letter-case content=attributeName caseType=caseType}} ▼
   {{/if}}
 {{else}}
   {{#if isInSortFields}}
-    {{attributeName}} ▲▼
+    {{admin-letter-case content=attributeName caseType=caseType}} ▲▼
   {{else}}
-    {{attributeName}}
+    {{admin-letter-case content=attributeName caseType=caseType}}
   {{/if}}
 {{/if}}

@@ -345,7 +345,7 @@ var avatar = Asset.extend({
 ###Set title
 By default, navigation bar title display your application's module prefix. You can change this to any name of you choice by adding 'appName' property to your application config file.
 
-Here you can also change where the title link actually points to via 'titleLinksTo' property. If this property is not set, it will point to the root URL by default. 
+Here you can also change where the title link actually points to via 'titleLinksTo' property. If this property is not set, it will point to the root URL by default.
 
 ```javascript
 //config/environment.js
@@ -365,7 +365,7 @@ That's it!
 
 ##Customize Templates
 
-You can also provide your own template for the show, edit and new actions. These can override the global defaults as well as for specific resources. 
+You can also provide your own template for the show, edit and new actions. These can override the global defaults as well as for specific resources.
 
 ###Global Overrides
 
@@ -477,25 +477,25 @@ export default Ember.ObjectController.extend(TreeViewController, {
 ```
 
 ##Show/hide table column
-You can chose what table columns to display via table settings icon next to the 'Batch actions' button in the table header. 
+You can chose what table columns to display via table settings icon next to the 'Batch actions' button in the table header.
 
-Each controller has its own set of table settings that persist via browser local storage. 
+Each controller has its own set of table settings that persist via browser local storage.
 
 ##Integration with [elasticsearch](http://www.elasticsearch.org/)
 Now you can integrate admin with elasticsearch server. You need use [elasticsearch adapter](https://github.com/api-hogs/ember-data-elasticsearch-kit/blob/master/dist/ember-data-elasticsearch-kit.js) download into vendor and import it to app.
 Then you need turn CORS in elasticsearch, and create resource route:
 ```javascript
   //routes/users.js
-  
+
   /* global EDEK*/
   import Ember from 'ember';
   import BaseAdminRouteMixin from 'ember-cli-admin/mixins/routes/base';
   import ElasticSearch from 'ember-cli-admin/mixins/routes/elasticsearch';
-  
+
   BaseAdminRouteMixin.reopen(ElasticSearch);
-  
+
   export default Ember.Route.extend(BaseAdminRouteMixin, {
-  
+
     //you need implement this method for ES search
     _queryElasticsearch: function(query, params){
       var fields = [];
@@ -504,11 +504,11 @@ Then you need turn CORS in elasticsearch, and create resource route:
         fields.pushObject(value);
         text += params[value].value;
       }
-  
+
       if(fields.length === 0){
         return query;
       }
-  
+
       return  EDEK.QueryDSL.query(function(){
         return this.flt({
           fields: fields,
@@ -520,6 +520,41 @@ Then you need turn CORS in elasticsearch, and create resource route:
   });
 ```
 
+##Change case for text in table, breadcrumbs, searchbar, etc.
+
+You can change how text is dispayed in table, breadcrumbs, searchbar, etc.
+
+To do this you should specify `caseType` property in controller.
+
+For example,
+
+```javascript
+  //controllers/users.js
+
+  import TableViewController from 'ember-cli-admin/mixins/controllers/table-view'
+
+  export default Ember.ObjectController.extend(TableViewController, {
+    caseType: 'title'
+  });
+```
+You have these options for case changing by default:
+
+- `title`
+- `upper`
+- `lower`
+
+By default all text is lowercased.
+
+To change case in breadcrumbs you need to specify `caseType` property in breadcrumbs  controller like this (and also define it in `controllers/breadcrumbs.js` if you didn't do this before):
+
+```javascript
+  //controllers/breadcrumbs.js
+
+  import Ember from 'ember';
+  export default Ember.ArrayController.extend({
+    caseType: 'title'
+  });
+```
 
 ##Contribution
 See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).

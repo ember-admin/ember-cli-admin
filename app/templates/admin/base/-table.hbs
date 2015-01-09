@@ -3,14 +3,15 @@
         {{partial "admin/base/actions/batch"}}
         {{partial "admin/base/table-settings"}}
         <table class="table-view">
-            {{admin-table-head 
+            {{admin-table-head
                 activeTableAttributes=controller.activeTableAttributes
-                sortFields=controller.sortFields 
+                sortFields=controller.sortFields
                 orderAscending=controller.orderAscending
                 sort=controller.sort
                 action='sort'
                 batches=controller.__batches
                 items=controller.model.items
+                caseType=caseType
             }}
             {{admin-table-body
                 items=controller.model.items
