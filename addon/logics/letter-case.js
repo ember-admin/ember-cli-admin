@@ -3,13 +3,25 @@ import Ember from 'ember';
 var letterCase = Ember.Object.extend();
 
 letterCase.reopenClass({
-  firstLetterUpper: function(str) {
+  _firstLetterUpper: function(str) {
     return str && str.toLowerCase().replace(/(^| )(\w)/g, function(x) {
       return x.toUpperCase();
     });
   },
   titlize: function(str) {
-    return this.firstLetterUpper(str.replace(/(\-)/g, " "));
+    return this._firstLetterUpper(str.replace(/(\-)/g, " "));
+  },
+  transform: function(text, caseType){
+    switch(caseType) {
+      case 'lower':
+        return text.toLowerCase();
+      case 'upper':
+        return text.toUpperCase();
+      case 'title':
+        return this.titlize(text);
+      default:
+        return text;
+    }
   }
 });
 
