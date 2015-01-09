@@ -2,8 +2,6 @@
 `import SearchLogic from 'ember-cli-admin/dsl/search'`
 
 usersController = Ember.ObjectController.extend TableViewController,
-  caseType: 'title',
-
   sortFields: ['id', 'name']
 
   formAttributes: ['email', 'name']
