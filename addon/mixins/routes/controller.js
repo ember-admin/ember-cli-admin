@@ -59,7 +59,7 @@ controllerMixin = Ember.Mixin.create({
     }
   },
   _setupBreadscrumbs: function(controller, model) {
-    return Breadcrumbs.setup(this.action, controller, model, this.controllerFor('breadcrumbs'), {caseType: this.get('caseType')});
+    return Breadcrumbs.setup(this.action, controller, model, this.controllerFor('breadcrumbs'));
   },
   _setSiteTitle: function(controller, model) {
     return SiteTitle.setup(this._controllerName(controller), model, this.action);
