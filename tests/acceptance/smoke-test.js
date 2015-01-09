@@ -22,6 +22,6 @@ test('root displays dashboard', function() {
 test('navbar contains links to dashboard and resources', function() {
   expect(2);
   visit('/');
-  equal(find("a:contains('Users')").length, 1);
-  equal(find("a:contains('Dashboard')").length, 1);
+  equal(find(".navbar a:contains('Users')").length, 1);
+  equal(find(".navbar a:contains('Dashboard')").length, 1);
 });
