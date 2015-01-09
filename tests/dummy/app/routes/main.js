@@ -2,6 +2,6 @@ import Ember from 'ember';
 import BaseAdminRouteMixin from 'ember-cli-admin/mixins/routes/base';
 
 var mainRoute = Ember.Route.extend(BaseAdminRouteMixin, {
-  useFirstLetterUpper: true
+  caseType: 'title'
 });
 export default mainRoute;

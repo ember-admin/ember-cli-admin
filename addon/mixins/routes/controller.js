@@ -59,8 +59,7 @@ controllerMixin = Ember.Mixin.create({
     }
   },
   _setupBreadscrumbs: function(controller, model) {
-    var uppercased = this.get('useFirstLetterUpper');
-    return Breadcrumbs.setup(this.action, controller, model, this.controllerFor('breadcrumbs'), {uppercased: uppercased});
+    return Breadcrumbs.setup(this.action, controller, model, this.controllerFor('breadcrumbs'), {caseType: this.get('caseType')});
   },
   _setSiteTitle: function(controller, model) {
     return SiteTitle.setup(this._controllerName(controller), model, this.action);
