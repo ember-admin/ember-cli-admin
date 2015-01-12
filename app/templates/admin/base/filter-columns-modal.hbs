@@ -10,7 +10,7 @@
           {{#each attr in controller.tableAttributes}}
             <div>
               {{view 'admin/table-settings/show-column-checkbox' attribute=attr}}
-              <label>{{attr}}</label>
+              <label>{{{{admin-letter-case content=attr caseType=controller.caseType}}}}</label>
             </div>
           {{/each}}
         </ul>
