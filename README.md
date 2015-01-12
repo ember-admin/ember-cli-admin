@@ -546,6 +546,7 @@ You have these options for case changing by default:
 By default all text is lowercased.
 
 For breadcrumbs:
+```javascript
 //config/environment.js
 ...
 var ENV = {
@@ -558,7 +559,7 @@ var ENV = {
     }
   ...
   }
-
+```
 ##Contribution
 See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).
 
