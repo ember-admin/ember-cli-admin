@@ -1,6 +1,7 @@
 #Ember-Cli-Admin
 
 [![Build Status](https://travis-ci.org/ember-admin/ember-cli-admin.svg?branch=master)](https://travis-ci.org/ember-admin/ember-cli-admin)
+[![npm version](https://badge.fury.io/js/ember-cli-admin.svg)](http://badge.fury.io/js/ember-cli-admin)
 
 Ember-cli-admin is a powerful admin dashboard for ember-cli projects that is built on ideas of [ActiveAdmin][2] and [AbAdmin][3].
 
