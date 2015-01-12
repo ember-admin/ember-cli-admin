@@ -9,6 +9,9 @@ letterCase.reopenClass({
     });
   },
   titlize: function(str) {
+    if(!str){
+      return '';
+    }
     return this._firstLetterUpper(str.replace(/(\-)/g, " "));
   },
   transform: function(text, caseType){
