@@ -12,14 +12,14 @@ letterCase.reopenClass({
     if(!str){
       return '';
     }
-    return this._firstLetterUpper(str.replace(/(\-)/g, " "));
+    return this._firstLetterUpper(str.replace(/(\-)|(_)/g, " "));
   },
   transform: function(text, caseType){
     switch(caseType) {
       case 'lower':
         return text.toLowerCase();
       case 'upper':
-        return text.toUpperCase();
+        return text.replace(/_/g, ' ').toUpperCase();
       case 'title':
         return this.titlize(text);
       default:
