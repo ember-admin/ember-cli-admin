@@ -9,7 +9,7 @@ breadcrumbs.reopenClass({
     var content, name, obj;
     content = [];
     content.pushObject(this._dashboard());
-    obj = this._controllerLink(controller.get('breadcrumbName') || controller.get('_name'));
+    obj = this._controllerLink(controller.get('breadcrumbName') || controller.get('_name'), controller.get('_name'));
     content.pushObject(obj);
     if (action && model) {
       obj.set('class', "");
@@ -72,10 +72,10 @@ breadcrumbs.reopenClass({
     });
   },
 
-  _controllerLink: function(name){
+  _controllerLink: function(name, url){
     return Ember.Object.create({
       name: name,
-      url: name,
+      url: url,
       "class": "active",
       active: true
     });
