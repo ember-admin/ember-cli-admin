@@ -9,7 +9,7 @@ breadcrumbs.reopenClass({
     var content, name, obj;
     content = [];
     content.pushObject(this._dashboard());
-    obj = this._controllerLink(controller.get('_name'));
+    obj = this._controllerLink(controller.get('breadcrumbName') || controller.get('_name'));
     content.pushObject(obj);
     if (action && model) {
       obj.set('class', "");
