@@ -7,7 +7,7 @@
       <tbody>
         {{#each attribute in controller.formAttributes}}
           <tr>
-            <th>{{admin-letter-case content=attributeName caseType=controller.caseType}}</th>
+            <th>{{admin-letter-case content=attribute caseType=controller.caseType}}</th>
             {{admin-td-element attributeName=attribute item=model}}
           </tr>
         {{/each}}
