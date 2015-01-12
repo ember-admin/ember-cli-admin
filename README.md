@@ -545,16 +545,19 @@ You have these options for case changing by default:
 
 By default all text is lowercased.
 
-To change case in breadcrumbs you need to specify `caseType` property in breadcrumbs  controller like this (and also define it in `controllers/breadcrumbs.js` if you didn't do this before):
-
-```javascript
-  //controllers/breadcrumbs.js
-
-  import Ember from 'ember';
-  export default Ember.ArrayController.extend({
+For breadcrumbs:
+//config/environment.js
+...
+var ENV = {
+  ...
+  EmberENV: {
+    appName: 'application name of your choice',
+    titleLinksTo: '/example/url/',
     caseType: 'title'
-  });
-```
+    ...
+    }
+  ...
+  }
 
 ##Contribution
 See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).
