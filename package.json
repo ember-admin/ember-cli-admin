@@ -42,7 +42,7 @@
     "broccoli-sass": "^0.2.2",
     "broccoli-static-compiler": "0.1.4",
     "connect-restreamer": "^1.0.0",
-    "ember-cli": "0.1.2",
+    "ember-cli": "0.1.7",
     "ember-cli-coffeescript": "^0.1.0",
     "ember-cli-ember-data": "0.1.0",
     "ember-cli-ic-ajax": "0.1.1",
