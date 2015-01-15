@@ -34,3 +34,16 @@ test('model tree is displayed', function() {
   });
 
 });
+
+test('it goes to edit', function() {
+  expect(1);
+
+  visit('/catalogues');
+
+  andThen(function() {
+    click('button[title="Edit"]:first');
+    andThen(()=>{
+      equal(currentRouteName(), 'catalogues.edit');
+    });
+  });
+});
