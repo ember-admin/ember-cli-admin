@@ -1,7 +1,7 @@
-{{#with view.content}}
+{{#with view.content as content}}
     <div class="tree-item_wrap">
       <i class="icon-move icon-move glyphicon glyphicon-move"></i>
-      <a class="tree-item_link" href="javascript:void(0);">{{name}}</a>
+      <a class="tree-item_link" href="javascript:void(0);">{{content.name}}</a>
       <div class="controls">
         {{#if controller.itemActions}}
           {{#each action in controller.itemActions}}
@@ -13,9 +13,9 @@
         {{partial "admin/base/actions/addition-actions"}}
       </div>
     </div>
-    {{#if children}}
+    {{#if content.children}}
       <ol>
-        {{#each children}}
+        {{#each item in content.children}}
           {{partial 'admin/base/tree/item'}}
         {{/each}}
       </ol>

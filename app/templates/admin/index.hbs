@@ -1,24 +1,24 @@
 <div class="wrapper">
-  {{outlet modal}}
+  {{outlet 'modal'}}
   <div class="row">
     <div class="col-12">
-      {{outlet navigation}}
+      {{outlet 'navigation'}}
     </div>
   </div>
   <div class="row breadcrumbs">
     <div class="col-12">
-      {{outlet actions}}
-      {{outlet breadcrumbs}}
+      {{outlet 'actions'}}
+      {{outlet 'breadcrumbs'}}
     </div>
   </div>
   <div id="container" class="row-fluid">
     <div class="wrap_content main-content">
-      {{outlet main}}
+      {{outlet 'main'}}
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      {{outlet footer}}
+      {{outlet 'footer'}}
     </div>
   </div>
 </div>
