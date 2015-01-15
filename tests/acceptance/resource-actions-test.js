@@ -19,6 +19,9 @@ module('Acceptance: Resource Actions', {
         users[0].email = 'test@example.com';
         return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 40}})];
       });
+      this.delete('/api/users/:id', function(request) {
+        return [200, {"Content-Type": "application/json"}, JSON.stringify({})];
+      });
       this.get('/api/users/:id', function(request){
         return [200, {"Content-Type": "application/json"}, JSON.stringify({user: {id: request.params.id, email: 'test@example.com', name: 'Test User'}})];
       });
