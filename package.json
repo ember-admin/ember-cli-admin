@@ -52,6 +52,7 @@
     "ember-cli-qunit": "0.0.5",
     "ember-export-application-global": "^1.0.0",
     "express": "^4.8.5",
-    "glob": "^4.0.5"
+    "glob": "^4.0.5",
+    "ember-cli-6to5": "^0.2.1"
   }
 }
