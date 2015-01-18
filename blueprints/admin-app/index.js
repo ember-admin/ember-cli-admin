@@ -2,9 +2,8 @@ var Promise = require('ember-cli/lib/ext/promise');
 var fs = require('ember-cli/node_modules/fs-extra');
 var path = require('path');
 var writeFile = Promise.denodeify(fs.outputFile);
-var EOL = require('os').EOL;
 
-var replaceInFile = function(pathRelativeToProjectRoot, contentsToInsert, contentsToReplace) {
+var replaceInFile = function(pathRelativeToProjectRoot, phrasesToReplace) {
   var fullPath = path.join(this.project.root, pathRelativeToProjectRoot);
   var originalContents = '';
 
@@ -12,21 +11,21 @@ var replaceInFile = function(pathRelativeToProjectRoot, contentsToInsert, conten
     originalContents = fs.readFileSync(fullPath, {
       encoding: 'utf8'
     });
-
   }
 
   var contentsToWrite = originalContents;
 
-  var contentMarkerIndex = contentsToWrite.indexOf(contentsToReplace);
+  contentsToWrite = Object.keys(phrasesToReplace).reduce(function(prev, next){
+    var contentMarkerIndex = contentsToWrite.indexOf(next);
+    if (contentMarkerIndex !== -1) {
+      var replaceIndex = contentMarkerIndex;
 
-  if (contentMarkerIndex !== -1) {
-    var replaceIndex = contentMarkerIndex;
-
-    contentsToWrite = contentsToWrite.slice(0, replaceIndex) +
-      contentsToInsert + EOL +
-      contentsToWrite.slice(replaceIndex+contentsToReplace.length);
-
-  }
+      contentsToWrite = contentsToWrite.slice(0, replaceIndex) +
+        phrasesToReplace[next] +
+        contentsToWrite.slice(replaceIndex + next.length);
+      return contentsToWrite;
+    }
+  },"");
 
   var returnValue = {
     path: fullPath,
@@ -43,10 +42,8 @@ var replaceInFile = function(pathRelativeToProjectRoot, contentsToInsert, conten
         return returnValue;
 
       });
-
   } else {
     return Promise.resolve(returnValue);
-
   }
 
 };
@@ -54,11 +51,11 @@ var replaceInFile = function(pathRelativeToProjectRoot, contentsToInsert, conten
 module.exports = {
   description: 'Generates an acceptance test for a feature.',
   beforeInstall: function() {
-    // this.insertIntoFile('app/app.js',
-    //   "import AdminResolver from 'ember-cli-admin/admin-resolver';", {
-    //     after: "import config from './config/environment';" + "\n"
-    //   });
-    replaceInFile.bind(this)('app/app.js', 'Resolver: AdminResolver',  'Resolver: Resolver');
-
+    replaceInFile.bind(this)('app/app.js',
+      {
+        'ember/resolver': "ember-cli-admin/admin-resolver",
+        'Resolver: Resolver': 'Resolver: AdminResolver',
+        'import Resolver': 'import AdminResolver'
+      });
   }
 };
