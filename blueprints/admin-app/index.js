@@ -1,13 +1,15 @@
-var replaceInFile = require('ember-cli-admin/lib/replace-in-file');
+var processTextContent = require('ember-cli-admin/lib/proccess-text-content');
 
 module.exports = {
   description: 'Generates an acceptance test for a feature.',
   beforeInstall: function() {
-    replaceInFile.bind(this)('app/app.js',
+    processTextContent.bind(this)('app/app.js',
       {
-        'ember/resolver': "ember-cli-admin/admin-resolver",
-        'Resolver: Resolver': 'Resolver: AdminResolver',
-        'import Resolver': 'import AdminResolver'
+        replace: {
+          'ember/resolver': "ember-cli-admin/admin-resolver",
+          'Resolver: Resolver': 'Resolver: AdminResolver',
+          'import Resolver': 'import AdminResolver'
+        }
       });
   }
 };
