@@ -1,6 +1,8 @@
 var fs = require('fs');
 var path = require('path');
+var renameFile = require('ember-cli-admin/lib/proccess-text-content').renameFile;
 var jsonFile, packageJsonPath, properties, self;
+
 module.exports = {
   // locals: function(options) {
   //   // Return custom template variables here.
@@ -16,6 +18,8 @@ module.exports = {
   },
 
   afterInstall: function() {
+    renameFile.bind(this)('app/styles/app.css', 'app/styles/app.scss');
+
    packageJsonPath = path.join(this.project.root, 'package.json');
    jsonFile = require(packageJsonPath);
    properties = {
