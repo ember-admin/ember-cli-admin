@@ -42,7 +42,9 @@ baseActionsMixin = Ember.Mixin.create({
       iconClass: "glyphicon glyphicon-trash"
     }
   ],
-
+  allActions: function(){
+    return this.get('itemActions').concat([this.get('actionNew')]);
+  }.property('actionNew', 'itemActions'),
   actionNew: (function() {
     return {
       title: "New",

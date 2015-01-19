@@ -44,7 +44,7 @@ breadcrumbs.reopenClass({
       default:
         actions.push(this._createAction());
     }
-    var controllerItemActions = controller.get('itemActions').map(function(item){return item.title;});
+    var controllerItemActions = controller.get('allActions').map(function(item){return item.title;});
     actions = actions.filter(function(action){
       return controllerItemActions.indexOf(action) >= 0;
     });
