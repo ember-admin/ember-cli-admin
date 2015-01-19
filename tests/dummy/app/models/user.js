@@ -18,7 +18,7 @@ user = DS.Model.extend({
     async: true
   }),
   fileuploads: ["avatar", "avatars"],
-  asGoogleMap: ['lat', 'long', 'zoom'],
+  // asGoogleMap: ['lat', 'long', 'zoom'],
   additionalActions: (function() {
     var actions;
     actions = [];

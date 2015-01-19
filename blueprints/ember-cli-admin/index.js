@@ -12,12 +12,10 @@ module.exports = {
       {name: "jquery-ui-sortable", target: "*"}
     ]);
     return this.addPackagesToProject([
-        {name: "ember-cli-map", target: "0.2.2"},
-        {name: "broccoli-merge-trees", target: "0.1.4"},
-        {name: "broccoli-sass", target: "^0.2.2"},
-        {name: "broccoli-static-compiler", target: "0.1.4"},
-        {name: "ember-cli-coffeescript", target: "^0.1.0"},
-        {name: "broccoli-coffee", target: "^0.1.1"}
+      {name: "ember-cli-map", target: "0.2.2"},
+      {name: "broccoli-merge-trees", target: "0.1.4"},
+      {name: "broccoli-sass", target: "^0.2.2"},
+      {name: "broccoli-static-compiler", target: "0.1.4"}
     ]);
   }
 };
