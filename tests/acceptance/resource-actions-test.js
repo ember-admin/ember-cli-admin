@@ -41,6 +41,14 @@ test('resource table is displayed', function() {
   });
 });
 
+test('breadcrumbs contains "New" action button', function() {
+  expect(1);
+  visit('/users');
+
+  andThen(function() {
+    equal(find(".breadcrumb-action button").length, 1);
+  });
+});
 
 test('resource index page contains link to resource edit page', function() {
   expect(1);
