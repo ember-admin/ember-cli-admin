@@ -1,7 +1,7 @@
 var processTextContent = require('ember-cli-admin/lib/proccess-text-content').processTextContent;
 
 module.exports = {
-  description: 'Generates an acceptance test for a feature.',
+  description: 'Generates an app scaffold',
   beforeInstall: function(options) {
     var process = processTextContent.bind(this);
     process('app/app.js',
