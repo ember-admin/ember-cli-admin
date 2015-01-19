@@ -19,13 +19,32 @@ Ember-cli-admin is a powerful admin dashboard for ember-cli projects that is bui
 npm install ember-cli-admin --save-dev
 ```
 
+##Quick Setup Steps
+
+1.`npm install ember-cli-admin --save-dev`
+
+2.`ember g ember-cli-admin`
+
+3.`ember g admin-app "My Awesome App Name"`
+
+4.`ember g table-view-resource my-resources`
+
+##Blueprints
+
+[Ember-Cli-Admin](https://github.com/ember-admin/ember-cli-admin) provides some default blueprints.
+
+These are:
+- **admin-app** - generates basic ember-cli-admin app scaffold;
+- **table-view-controller** - generates TableViewController;
+- **tree-view-controller** - generates TreeViewController;
+- **table-view-resource** - generates model, TableViewController and register them in MetaRouter and Navigation;
+- **table-view-resource** - same as table-view-resource, but with TreeViewController and model suited for it;
+
 ##Dependencies
 
 Run ember-cli-admin generator and install dependencies:
 ```
 ember g ember-cli-admin
-npm install
-bower install
 ```
 
 Then in your Brocfile.js add bootstrap fonts:
