@@ -33,7 +33,7 @@
                         <div class="clearfix string">
                             <label>{{admin-letter-case content=field.fieldName caseType=caseType}}</label>
                             <div class="controls">
-                                {{view "select" content=field.options.selectContent value=field.value}}
+                                {{view "select" content=field.options.selectContent value=field.value prompt=field.options.prompt}}
                             </div>
                         </div>
                     {{/if}}

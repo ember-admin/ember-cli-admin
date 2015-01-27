@@ -9,7 +9,7 @@ usersController = Ember.ObjectController.extend(TableViewController, {
   searchForm: (function() {
     return new SearchLogic().form(this.get('q'), function() {
       this.input('email');
-      this.input('name');
+      this.input('name', {type: 'select', selectContent: ["Foo", "Bar"], prompt: 'Select Name'});
       return this.input('nickname', {
         type: 'autocomplete',
         url: '/api/users/autocomplete',
