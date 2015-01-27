@@ -5,7 +5,7 @@ module.exports = function(app) {
   avatars = [];
   for (i = 0; i < 50; i++) {
     avatars.push({id: i, thumb_url: 'http://media-cache-ak0.pinimg.com/236x/0c/e6/7f/0ce67fa7c94da77ab90877e65f3fda87.jpg', url: 'http://www.londra.us/Bristol_Castle.jpg'});
-    users.push({id: i, name: 'testuser'+i, lat: 50, long: 40, zoom: 3, avatar_id: i});
+    users.push({id: i, name: 'testuser'+i, lat: 50, long: 40, zoom: 3, avatar_id: i, birthdate: new Date()});
   }
   users[0].email = 'test@example.com';
   appRouter.get('/users', function(req, res) {

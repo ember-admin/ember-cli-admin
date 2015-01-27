@@ -29,13 +29,12 @@ module('Acceptance: Search', {
 });
 
 test('search panel contains model search fields', function() {
-  expect(3);
+  expect(2);
   visit('/users');
 
   andThen(function() {
-    equal(find('form.search .controls').length, 3);
+    equal(find('form.search .controls').length, 4);
     equal(find('form.search input[name="email"]').length, 1);
-    equal(find('form.search input[name="name"]').length, 1);
   });
 });
 
@@ -50,6 +49,17 @@ test('search results are shown in table', function() {
   });
 });
 
+test('search input can be selectable', function() {
+  expect(3);
+  visit('/users');
+
+  andThen(function() {
+    equal(find(".controls select").length, 1);
+    equal(find('.controls select option:first').text(), "Select Name");
+    equal(find('.controls select option:last').text(), "Bar");
+  });
+});
+
 test('autocomplete search', function(){
   server.get('api/users/autocomplete', function(request){
     users = [{id: 1, name: 'testuser'}];
@@ -59,6 +69,6 @@ test('autocomplete search', function(){
   Ember.$('.typeahead').typeahead('val', '12');
   click('button[type="submit"]');
   andThen(function(){
-    equal(find('form.search .controls').length, 3);
+    equal(find('form.search .controls').length, 4);
   });
 });
