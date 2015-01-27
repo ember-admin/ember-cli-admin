@@ -116,6 +116,7 @@ var SearchClass = (function() {
 SearchField = Ember.Object.extend({
   isInput: false,
   isSelect: false,
+  isDate: false,
   isAutocomplete: false,
   isNumberInput: false,
   options: {},
@@ -149,6 +150,9 @@ SearchField = Ember.Object.extend({
       case 'select':
         this.select();
         break;
+      case 'date':
+        this.date();
+        break;
       default:
         throw('search dsl doesnt has default field');
     }
@@ -160,6 +164,10 @@ SearchField = Ember.Object.extend({
 
   select: function(){
     this.set('isSelect', true);
+  },
+
+  date: function(){
+    this.set('isDate', true);
   },
 
   autocomlete: function(){

@@ -37,6 +37,14 @@
                             </div>
                         </div>
                     {{/if}}
+                    {{#if field.isDate}}
+                        <div class="clearfix string">
+                            <label>{{admin-letter-case content=field.fieldName caseType=caseType}}</label>
+                            <div class="controls">
+                                {{bootstrap-datepicker value=field.value autoclose=true format=field.options.format placeholder=field.options.placeholder class="form-control"}}
+                            </div>
+                        </div>
+                    {{/if}}
                 {{/each}}
                 <div>
                     <button class="search-button btn btn-success" type="submit">Search</button>

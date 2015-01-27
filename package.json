@@ -42,6 +42,7 @@
     "connect-restreamer": "^1.0.0",
     "ember-cli": "0.1.7",
     "ember-cli-6to5": "^0.2.1",
+    "ember-cli-bootstrap-datepicker": "0.3.0",
     "ember-cli-ember-data": "0.1.0",
     "ember-cli-htmlbars": "^0.6.0",
     "ember-cli-ic-ajax": "0.1.1",
