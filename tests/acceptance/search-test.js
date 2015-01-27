@@ -33,7 +33,7 @@ test('search panel contains model search fields', function() {
   visit('/users');
 
   andThen(function() {
-    equal(find('form.search .controls').length, 3);
+    equal(find('form.search .controls').length, 4);
     equal(find('form.search input[name="email"]').length, 1);
   });
 });
@@ -69,6 +69,6 @@ test('autocomplete search', function(){
   Ember.$('.typeahead').typeahead('val', '12');
   click('button[type="submit"]');
   andThen(function(){
-    equal(find('form.search .controls').length, 3);
+    equal(find('form.search .controls').length, 4);
   });
 });
