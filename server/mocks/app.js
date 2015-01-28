@@ -53,7 +53,7 @@ module.exports = function(app) {
   });
 
 
-  var user_category = {id: 1, name: 'test', expired_at: new Date(), zip_code: '123456', description: chance.paragraph({sentences: 10})};
+  var user_category = {id: 1, name: 'test', expired_at: new Date(), zip_code: '123456', description: chance.paragraph({sentences: 10}), is_created: true };
   appRouter.get('/user_categories', function(req, res) {
     res.send({user_categories: [user_category]});
   });
@@ -66,7 +66,7 @@ module.exports = function(app) {
   });
 
   appRouter.put('/user_categories/:id', function(req, res) {
-    res.send({user_category: {id: req.params.id, name: req.body.user_category.name, expired_at: req.body.user_category.expired_at, zip_code: req.body.user_category.zip_code, description: req.body.user_category.description}});
+    res.send({user_category: {id: req.params.id, name: req.body.user_category.name, expired_at: req.body.user_category.expired_at, zip_code: req.body.user_category.zip_code, description: req.body.user_category.description, is_created: req.body.user_category.is_created}});
   });
 
   appRouter.get('/catalogues', function(req, res){

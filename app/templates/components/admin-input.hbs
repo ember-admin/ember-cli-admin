@@ -13,5 +13,13 @@
     {{#if isDate}}
       {{bootstrap-datepicker value=value autoclose=true class="form-control"}}
     {{/if}}
+    {{#if isBoolean}}
+    <label class="radio-inline">
+      {{admin-radio-button selection=value value=true}} Yes
+    </label>
+    <label class="radio-inline">
+      {{admin-radio-button selection=value value=false}} No
+    </label>
+    {{/if}}
   </div>
 </div>
