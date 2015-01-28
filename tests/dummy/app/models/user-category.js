@@ -2,7 +2,10 @@ import DS from 'ember-data';
 var userCategory;
 
 userCategory = DS.Model.extend({
-  name: DS.attr('string')
+  name: DS.attr('string'),
+  zip_code: DS.attr('number'),
+  description: DS.attr('string'),
+  expired_at: DS.attr('date')
 });
 
 export default userCategory;
