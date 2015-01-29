@@ -7,34 +7,32 @@ adminInput = Ember.Component.extend({
   }.property('name', 'model'),
 
   isString: Ember.computed.equal('type', 'string'),
-  _stringType: function(predicat){
-    if(this.get('isString') && predicat.bind(this)()){
+
+  isEmail: function(){
+    if(this.get('isString') && this.get('value').match(/.+@\w+\.\w+/)){
       this.set('isString', false);
       return true;
     }
     return false;
-  },
-  isEmail: function(){
-    var predicat = function(){return this.get('value').match(/.+@\w+\.\w+/);};
-    return this._stringType(predicat);
   }.property('isString'),
   isColor: function(){
-    var predicat = function(){return this.get('value').match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/);};
-    return this._stringType(predicat);
+    if(this.get('isString') && this.get('value').match(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)){
+      this.set('isString', false);
+      return true;
+    }
+    return false;
   }.property('isString'),
   isText: function(){
-    var predicat = function(){return this.get('value').length > 50};
-    return this._stringType(predicat);
+    if(this.get('isString') && this.get('value').length > 50){
+      this.set('isString', false);
+      return true;
+    }
+    return false;
   }.property('isString'),
+
   isNumber: Ember.computed.equal('type', 'number'),
   isBoolean: Ember.computed.equal('type', 'boolean'),
   isDate: Ember.computed.equal('type', 'date'),
-
-  isPlainObject: Ember.computed.equal('type', 'object'),
-  isEmberObject: Ember.computed.equal('type', 'instance'),
-  isObject: function(){
-    return this.get('isPlainObject') || this.get('isEmberObject');
-  }.property('isPlainObject', 'isEmberObject'),
 
   value: function(key, value) {
     if (arguments.length > 1) {
