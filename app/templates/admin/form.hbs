@@ -2,9 +2,12 @@
   <div class="panel panel-default">
     <div class="panel-heading">Base Information</div>
     <div class="panel-body">
-      {{#each attribute in controller.formAttributes}}
-        {{admin-input class="admin-attribute" model=controller.model name=attribute}}
-      {{/each}}
+      <div class="form-horizontal">
+        {{#each attribute in controller.formAttributes}}
+          {{admin-input class="admin-attribute" model=controller.model name=attribute}}
+        {{/each}}
+      </div>
+
     </div>
   </div>
 
