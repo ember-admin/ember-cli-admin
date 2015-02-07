@@ -23,7 +23,7 @@ module('Acceptance: Form', {
     }
 });
 
-test('contains inputs for different field types', function() {
+test('edit page contains inputs for different field types', function() {
     expect(7);
     visit('/user-categories');
 
@@ -37,6 +37,21 @@ test('contains inputs for different field types', function() {
             equal(find('input[type="number"]').length, 1);
             equal(find('input[type="radio"]').length, 2);
             equal(find('#pickdate').length, 1);
+        });
+    });
+
+});
+
+test('new page contains inputs for different field types', function() {
+    expect(3);
+    visit('/user-categories');
+
+    andThen(()=>{
+        click('button[title="New"]');
+        andThen(()=>{
+            equal(find('input[type="text"]').length, 5);
+            equal(find('#pickdate').length, 1);
+            equal(find('input[type="radio"]').length, 2);
         });
     });
 

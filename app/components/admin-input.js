@@ -7,8 +7,9 @@ adminInput = Ember.Component.extend({
         if(Ember.isEmpty(this.get('value'))){
             return transformedAttributes.get(this.get('name'));
         }
-        return Ember.typeOf(this.get('value'));
-    }.property('value'),
+
+        return Ember.typeOf(this.get('model').get(this.get('name')));
+    }.property('name', 'model'),
 
     isString: Ember.computed.equal('type', 'string'),
 
