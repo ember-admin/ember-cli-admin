@@ -13,8 +13,11 @@ module.exports = {
 
     fileMapTokens: function() {
         return {
-            __modelname__: function(options) {
+            __modelName__: function(options) {
                 return inflection.singularize(options.dasherizedModuleName);
+            },
+            __controllerName__: function(options){
+                return inflection.pluralize(options.dasherizedModuleName);
             }
         };
     },
