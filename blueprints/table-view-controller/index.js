@@ -1,3 +1,3 @@
 module.exports = {
-    description: 'Generates tableview controller for specified resource'
+        description: 'Generates tableview controller for specified resource'
 };

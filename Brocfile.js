@@ -13,8 +13,8 @@ app.import('bower_components/chance/chance.js');
 
 var pickFiles = require('broccoli-static-compiler');
 var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
-    srcDir: '/',
-    destDir: '/assets/bootstrap'
+        srcDir: '/',
+        destDir: '/assets/bootstrap'
 });
 
 var compileSass = require('broccoli-sass');

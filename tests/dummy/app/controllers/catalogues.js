@@ -3,7 +3,7 @@ import Ember from 'ember';
 var cataloguesController;
 
 cataloguesController = Ember.ObjectController.extend(TreeViewController, {
-  formAttributes: ['name']
+    formAttributes: ['name']
 });
 
 export default cataloguesController;

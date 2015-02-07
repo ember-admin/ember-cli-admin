@@ -2,112 +2,112 @@
 var Attributes, attributes;
 
 attributes = Attributes = (function() {
-  function Attributes() {}
+    function Attributes() {}
 
-  Attributes.detect = function(modelType) {
-    return this.withId(modelType);
-  };
+    Attributes.detect = function(modelType) {
+        return this.withId(modelType);
+    };
 
-  Attributes.withId = function(modelType) {
-    var attrs;
-    attrs = this.withoutId(modelType);
-    attrs.unshift("id");
-    return attrs;
-  };
+    Attributes.withId = function(modelType) {
+        var attrs;
+        attrs = this.withoutId(modelType);
+        attrs.unshift("id");
+        return attrs;
+    };
 
-  Attributes.forSearch = function(modelType){
-    return this.withoutRelations(modelType);
-  };
+    Attributes.forSearch = function(modelType){
+        return this.withoutRelations(modelType);
+    };
 
-  Attributes.forSort = function(modelType){
-    var attributes = ['id'];
-    attributes.pushObjects(this.withoutRelations(modelType));
-    return attributes;
-  };
+    Attributes.forSort = function(modelType){
+        var attributes = ['id'];
+        attributes.pushObjects(this.withoutRelations(modelType));
+        return attributes;
+    };
 
-  Attributes.withoutRelations = function(modelType){
-    var attributes = [];
-    if(!modelType || !modelType['eachComputedProperty']){
-      return [];
-    }
-    modelType.eachComputedProperty((function(_this) {
-      return function(attribute, meta) {
-        if (meta.isAttribute && _this.systemAttrs(modelType).indexOf(attribute) < 0) {
-          return attributes.push(attribute);
+    Attributes.withoutRelations = function(modelType){
+        var attributes = [];
+        if(!modelType || !modelType['eachComputedProperty']){
+            return [];
         }
-      };
-    })(this));
-    return attributes;
-  };
+        modelType.eachComputedProperty((function(_this) {
+            return function(attribute, meta) {
+                if (meta.isAttribute && _this.systemAttrs(modelType).indexOf(attribute) < 0) {
+                    return attributes.push(attribute);
+                }
+            };
+        })(this));
+        return attributes;
+    };
 
-  Attributes.withoutId = function(modelType) {
-    attributes = [];
-    modelType.eachComputedProperty((function(_this) {
-      return function(attribute, meta) {
-        if (meta.isAttribute && _this.systemAttrs(modelType).indexOf(attribute) < 0) {
-          return attributes.push(attribute);
+    Attributes.withoutId = function(modelType) {
+        attributes = [];
+        modelType.eachComputedProperty((function(_this) {
+            return function(attribute, meta) {
+                if (meta.isAttribute && _this.systemAttrs(modelType).indexOf(attribute) < 0) {
+                    return attributes.push(attribute);
+                }
+            };
+        })(this));
+        this.relations(modelType, attributes, false);
+        return attributes;
+    };
+
+    Attributes.relations = function(modelType, attrs, hasMany) {
+        if (attrs == null) {
+            attrs = [];
         }
-      };
-    })(this));
-    this.relations(modelType, attributes, false);
-    return attributes;
-  };
-
-  Attributes.relations = function(modelType, attrs, hasMany) {
-    if (attrs == null) {
-      attrs = [];
-    }
-    if (hasMany == null) {
-      hasMany = true;
-    }
-    if(!modelType ||!modelType['eachRelationship']){
-      return [];
-    }
-    modelType.eachRelationship((function() {
-      return function(attribute, meta) {
-        if (hasMany) {
-          return attrs.push(attribute);
-        } else {
-          if (meta.kind !== "hasMany") {
-            return attrs.push(attribute);
-          }
+        if (hasMany == null) {
+            hasMany = true;
         }
-      };
-    })(this));
-    return attrs;
-  };
-
-  Attributes.isBelongsTo = function(modelType, property) {
-    var _belongsTo;
-    _belongsTo = false;
-    modelType.eachRelationship((function() {
-      return function(attribute, meta) {
-        if (meta.key === property && meta.kind === "belongsTo") {
-          return _belongsTo = true;
+        if(!modelType ||!modelType['eachRelationship']){
+            return [];
         }
-      };
-    })(this));
-    return _belongsTo;
-  };
+        modelType.eachRelationship((function() {
+            return function(attribute, meta) {
+                if (hasMany) {
+                    return attrs.push(attribute);
+                } else {
+                    if (meta.kind !== "hasMany") {
+                        return attrs.push(attribute);
+                    }
+                }
+            };
+        })(this));
+        return attrs;
+    };
 
-  Attributes.relationForType = function(modelType, relation) {
-    var type;
-    type = void 0;
-    modelType.eachRelationship((function() {
-      return function(attribute, meta) {
-        if (meta.key === relation) {
-          return type = meta.type;
-        }
-      };
-    })(this));
-    return type;
-  };
+    Attributes.isBelongsTo = function(modelType, property) {
+        var _belongsTo;
+        _belongsTo = false;
+        modelType.eachRelationship((function() {
+            return function(attribute, meta) {
+                if (meta.key === property && meta.kind === "belongsTo") {
+                    return _belongsTo = true;
+                }
+            };
+        })(this));
+        return _belongsTo;
+    };
 
-  Attributes.systemAttrs = function() {
-    return ["created_at", "updated_at"];
-  };
+    Attributes.relationForType = function(modelType, relation) {
+        var type;
+        type = void 0;
+        modelType.eachRelationship((function() {
+            return function(attribute, meta) {
+                if (meta.key === relation) {
+                    return type = meta.type;
+                }
+            };
+        })(this));
+        return type;
+    };
 
-  return Attributes;
+    Attributes.systemAttrs = function() {
+        return ["created_at", "updated_at"];
+    };
+
+    return Attributes;
 
 })();
 

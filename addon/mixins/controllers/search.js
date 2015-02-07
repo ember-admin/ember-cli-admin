@@ -11,23 +11,23 @@ var searchMixin;
 
 searchMixin = Ember.Mixin.create({
 
-  isShowSearchForm: true,
+    isShowSearchForm: true,
 
-  searchForm: function () {
-    var search = new SearchLogic().fromModel(this.get('q'), this.get('modelType'));
-    return search;
-  }.property('model', 'q'),
+    searchForm: function () {
+        var search = new SearchLogic().fromModel(this.get('q'), this.get('modelType'));
+        return search;
+    }.property('model', 'q'),
 
-  actions: {
-    search: function () {
-      var query = this.get('searchForm').serialize();
-      this.setProperties({page: 1, q: Ember.$.param(query)});
-    },
+    actions: {
+        search: function () {
+            var query = this.get('searchForm').serialize();
+            this.setProperties({page: 1, q: Ember.$.param(query)});
+        },
 
-    clearSearchForm: function () {
-      this.setProperties({page: 1, q: ''});
+        clearSearchForm: function () {
+            this.setProperties({page: 1, q: ''});
+        }
     }
-  }
 });
 
 export default searchMixin;

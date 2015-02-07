@@ -4,7 +4,7 @@ import BaseControllerMixin from 'ember-cli-admin/mixins/controllers/base';
 var tableViewMixin;
 
 tableViewMixin = Ember.Mixin.create({
-  __table: true
+    __table: true
 });
 
 tableViewMixin.reopen(BaseControllerMixin);

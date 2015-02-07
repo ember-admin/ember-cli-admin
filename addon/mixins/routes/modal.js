@@ -3,45 +3,45 @@ import Ember from 'ember';
 var modalMixin;
 
 modalMixin = Ember.Mixin.create({
-  actions: {
-    openModal: function(item, modalName) {
-      if (modalName == null) {
-        modalName = 'admin.base.confirm-modal';
-      }
-      this.set('controller.modalObject', item);
-      return this.render(modalName, {
-        outlet: "modal",
-        controller: this.get('controller')
-      });
-    },
-    openImagePreview: function(url) {
-      this.set('controller.previewImageUrl', url);
-      return this.render('admin.base.image-preview-modal', {
-        outlet: "modal"
-      });
-    },
-    confirm: function(modal) {
-      var modelObject;
-      modelObject = modal || this.get('controller.modalObject');
-      if (modelObject.get('options').batch) {
-        this.get('controller').send('baseBatchAction', modelObject.get('actionData.action'));
-      } else {
-        if(modelObject.get('options').withOptions){
-          this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('options'));
+    actions: {
+        openModal: function(item, modalName) {
+            if (modalName == null) {
+                modalName = 'admin.base.confirm-modal';
+            }
+            this.set('controller.modalObject', item);
+            return this.render(modalName, {
+                outlet: "modal",
+                controller: this.get('controller')
+            });
+        },
+        openImagePreview: function(url) {
+            this.set('controller.previewImageUrl', url);
+            return this.render('admin.base.image-preview-modal', {
+                outlet: "modal"
+            });
+        },
+        confirm: function(modal) {
+            var modelObject;
+            modelObject = modal || this.get('controller.modalObject');
+            if (modelObject.get('options').batch) {
+                this.get('controller').send('baseBatchAction', modelObject.get('actionData.action'));
+            } else {
+                if(modelObject.get('options').withOptions){
+                    this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('options'));
+                }
+                else{
+                    this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('model'));
+                }
+            }
+            return this.send('closeModal');
+        },
+        closeModal: function() {
+            this.set('controller.modalItem', null);
+            return this.disconnectOutlet({
+                outlet: "modal"
+            });
         }
-        else{
-          this.get('controller').send(modelObject.get('actionData.action'), modelObject.get('model'));
-        }
-      }
-      return this.send('closeModal');
-    },
-    closeModal: function() {
-      this.set('controller.modalItem', null);
-      return this.disconnectOutlet({
-        outlet: "modal"
-      });
     }
-  }
 });
 
 export default modalMixin;

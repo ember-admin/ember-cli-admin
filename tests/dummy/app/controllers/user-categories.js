@@ -4,7 +4,7 @@ var userCategoriesController;
 
 
 userCategoriesController = Ember.ObjectController.extend(TableViewController, {
-  caseType: 'title'
+    caseType: 'title'
 });
 
 export default userCategoriesController;
