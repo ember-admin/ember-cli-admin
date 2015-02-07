@@ -14,12 +14,12 @@ module.exports = {
     beforeInstall: function(options){
         var process = processTextContent.bind(this);
         var entityName = options.entity.name;
-        var navigationStr = '\n\t\t\tthis.navigate("' + inflection.titleize(entityName) + '", { route: "' + entityName + '"  });'
+        var navigationStr = '\n\t\t\tthis.navigate("' + inflection.titleize(entityName) + '", { route: "' + entityName + '" });'
         var routerStr = '\n\tthis.resources("' + entityName + '");'
         process('app/initializers/navigation.js',
             {
                 insert: {
-                    'this.navigate("Dashboard", { route: "dashboard"  });': navigationStr
+                    'this.navigate("Dashboard", { route: "dashboard" });': navigationStr
                 }
             });
         process('app/router.js',
