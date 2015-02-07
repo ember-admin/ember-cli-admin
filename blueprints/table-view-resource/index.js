@@ -13,11 +13,11 @@ module.exports = {
                 return inflection.pluralize(options.dasherizedModuleName);
             }
         };
-    }
+    },
     beforeInstall: function(options){
         var process = processTextContent.bind(this);
         var entityName = options.entity.name;
-        var navigationStr = '\n\t\t\tthis.navigate("' + inflection.titleize(entityName) + '", { route: "' + entityName + '" });'
+        var navigationStr = '\n\t\tthis.navigate("' + inflection.titleize(entityName) + '", { route: "' + entityName + '" });'
         var routerStr = '\n\tthis.resources("' + entityName + '");'
         process('app/initializers/navigation.js',
             {
