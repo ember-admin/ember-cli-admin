@@ -1,3 +1,3 @@
 module.exports = {
-        description: 'Generates tree-view controller.'
+    description: 'Generates tree-view controller.'
 };
