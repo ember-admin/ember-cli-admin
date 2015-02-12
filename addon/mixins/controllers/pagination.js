@@ -5,7 +5,7 @@ var paginationMixin;
 paginationMixin = Ember.Mixin.create({
 
     numberOfPages: (function() {
-        return Math.ceil(this.get('total') / this.get('perPage'));
+        return Math.ceil(this.get('model').get('total') / this.get('perPage'));
     }).property('perPage', 'total', 'model'),
 
     actions: {
