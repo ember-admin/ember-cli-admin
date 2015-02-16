@@ -8,9 +8,9 @@ view = Ember.CollectionView.extend({
         templateName: 'admin/base/tree/collection',
         tagName: 'li',
         attributeBindings: ['liId:data-id'],
-        liId: (function() {
+        liId: function() {
             return this.get('content').id;
-        }).property('content'),
+        }.property('content'),
         item: Ember.computed.alias('content')
     }),
     children: (function() {
