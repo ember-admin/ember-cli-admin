@@ -9,7 +9,9 @@ module.exports = {
         this.addBowerPackagesToProject([
             {name: "bootstrap-sass-official", target: "3.2.0"},
             {name: "typeahead.js", target: "0.10.5"},
-            {name: "jquery-ui-sortable", target: "*"}
+            {name: "jquery-ui-sortable", target: "git://github.com/ryantbrown/jquery-ui-sortable.git"},
+            {name: "jquery-ui-touch-punch", target: "git://github.com/cbier/bower-jquery-ui-touch-punch.git"}
+
         ]);
         return this.addPackagesToProject([
             {name: "ember-cli-map", target: "0.2.2"},
