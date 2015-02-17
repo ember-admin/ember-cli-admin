@@ -69,6 +69,21 @@ module.exports = function(app) {
         res.send({user_category: {id: req.params.id, name: req.body.user_category.name, expired_at: req.body.user_category.expired_at, zip_code: req.body.user_category.zip_code, description: req.body.user_category.description, is_created: req.body.user_category.is_created, email: req.body.user_category.email, color: req.body.user_category.color}});
     });
 
+    var car = {id: 1, title: 'TEST CAR'};
+    appRouter.get('/cars', function(req, res) {
+        res.send({cars: [car]});
+    });
+    appRouter.delete('/cars/:id', function(req, res) {
+        res.send({});
+    });
+
+    appRouter.get('/cars/:id', function(req, res) {
+        res.send({car: car});
+    });
+
+    appRouter.put('/cars/:id', function(req, res) {
+        res.send({car: {id: req.params.id, name: req.body.car.title}});
+    });
     appRouter.get('/catalogues', function(req, res){
         var catalogues = [{id: 1, name: 'Tree #1', parent_id: null, catalogue_ids: [2,3]},
             {id: 2, name: 'Tree #2', parent_id: 1, catalogue_ids: [4]},
