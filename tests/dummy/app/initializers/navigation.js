@@ -15,9 +15,10 @@ initializer = {
             });
             this.navigate("Admin", function() {
                 this.navigate("Users");
-                return this.navigate("User Categories");
+                this.navigate("User Categories");
             });
-            return this.navigate("Catalogues");
+            this.navigate("Catalogues");
+            this.navigate("Cars");
         });
     }
 };
