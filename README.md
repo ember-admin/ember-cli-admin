@@ -17,13 +17,27 @@ npm install ember-cli-admin --save-dev
 
 ##Quick Setup Steps
 
-1.`npm install ember-cli-admin --save-dev`
+First,
 
-2.`ember g ember-cli-admin`
+`ember install:addon ember-cli-admin`
 
-3.`ember g admin-app "My Awesome App Name"`
+Or if you're using Ember CLI 0.1.4 or older:
 
-4.`ember g table-view-resource my-resources`
+```
+npm install ember-cli-admin --save-dev
+ember g ember-cli-admin
+```
+Second,
+
+`ember g admin-app "My Awesome App Name"`
+
+Third,
+
+`ember g table-view-resource my-resources`
+
+That's all!
+
+Also you can see your [wiki](https://github.com/ember-admin/ember-cli-admin/wiki/Manual-installation) if you want more details about installation or just need to do it manually.
 
 ##Blueprints
 
@@ -44,149 +58,8 @@ Ember-Cli-Admin has some useful plugins that you can use to extend default dashb
 
 2. [Ember-Cli-Admin-Languages][6] - adds multilanguage inputs in forms
 
-##Dependencies
+##Features overview
 
-Run ember-cli-admin generator and install dependencies:
-```
-ember g ember-cli-admin
-```
-
-Then in your Brocfile.js add bootstrap fonts:
-```javascript
-// Put the bootstrap fonts where the bootstrap css expects to find them.
-var pickFiles = require('broccoli-static-compiler');
-var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
-    srcDir: '/',
-    destDir: '/assets/bootstrap'
-});
-var mergeTrees = require('broccoli-merge-trees');
-
-module.exports = mergeTrees([app.toTree(), bootstrapFonts]);
-```
-
-Also make sure that your styles in app/styles have proper extensions if an attempt to start the server results in:
-
-```
-app/styles/app.[scss/sass does not exist]
-```
-
-
-##Setup
-
-###In your app.js
-
-
-Add ```AdminResolver```:
-```javascript
-...
-//app/app.js
-import AdminResolver from 'ember-cli-admin/admin-resolver';
-App = Ember.Application.extend({
-  Resolver: AdminResolver
-});
-...
-
-export default App;
-```
-
-###In your router.js
-
-```javascript
-//app/router.js
----
-import MetaRoute from 'ember-cli-admin/dsl/meta-route';
-var Router;
-
-Router = Ember.Router.extend({
-  ...
-});
-
-Router.map(function() {
-  return this.route("dashboard", {path: "/"});
-});
-
-MetaRoute.map(Router, function() {
-  // we'll add routes for our resources here in the next step
-});
-
-export default Router;
-```
-
-###Add admin/index template to your application template:
-```handlebars
-//application.hbs
-{{partial 'admin/index'}}
-```
-
-###Add routes/main.js in our routes:
-```javascript
-//routes/main.js
-import Ember from 'ember';
-import BaseAdminRouteMixin from 'ember-cli-admin/mixins/routes/base';
-
-var mainRoute = Ember.Route.extend(BaseAdminRouteMixin);
-export default mainRoute;
-```
-
-###Now let's set up resources
-
-For example, if we have the following model:
-
-```javascript
-//app/models/user.js
-import DS from 'ember-data';
-
-export default DS.Model.extend({
-  email: DS.attr('string'),
-  name: DS.attr('string'),
-  updated_at: DS.attr('string'),
-  created_at: DS.attr('string')
-});
-
-```
-To add users resource to admin dashboard, just set up users controller like this:
-
-```javascript
-//app/controllers/users.js
-import Ember from 'ember';
-import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
-
-export default Ember.ObjectController.extend(TableViewController);
-
-```
-And add resources to your router:
-
-```javascript
-//app/router.js
-...
-MetaRoute.map(Router, function() {
-  this.resources("users");
-});
-...
-```
-
-You'll also need to add Navigation initializer to set up your navigation bar:
-
-```javascript
-//app/initializers/navigation.js
-
-import Navigation from 'ember-cli-admin/dsl/navigation';
-
-export default {
-  name: 'navigation',
-  initialize: function(container, app) {
-    return Navigation.map(function() {
-        //Dashboard page
-        //You can override this if you don't use dashboard
-      this.navigate("Dashboard", { route: "dashboard" });
-      this.navigate("Admin", function() {
-        return this.navigate("Users");
-      });
-    });
-  }
-};
-
-```
 ###Form fields
 
 You can specify the attributes to use in admin form with ```formAttributes``` property in the controller:
