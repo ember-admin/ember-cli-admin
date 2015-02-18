@@ -36,6 +36,14 @@ These are:
 - **table-view-resource** - generates model, TableViewController and register them in MetaRouter and Navigation;
 - **table-view-resource** - same as table-view-resource, but with TreeViewController and model suited for it;
 
+##Plugins
+
+Ember-Cli-Admin has some useful plugins that you can use to extend default dashboard functionality:
+
+1. [Ember-Cli-Admin-Auth][5] - adds authorization to Ember-Cli-Admin
+
+2. [Ember-Cli-Admin-Languages][6] - adds multilanguage inputs in forms
+
 ##Dependencies
 
 Run ember-cli-admin generator and install dependencies:
@@ -588,3 +596,5 @@ See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-ad
 [2]:https://github.com/activeadmin/activeadmin
 [3]:https://github.com/leschenko/ab_admin
 [4]:https://github.com/ember-admin/ember-cli-map
+[5]:https://github.com/ember-admin/ember-cli-admin-auth
+[6]:https://github.com/ember-admin/ember-cli-admin-languages
