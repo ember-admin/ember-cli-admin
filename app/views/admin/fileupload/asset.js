@@ -3,7 +3,12 @@ import ConfirmationMixin from 'ember-cli-admin/mixins/views/confirmation';
 var assetView;
 
 assetView = Ember.View.extend(ConfirmationMixin, {
-    attributeBindings: ["templateName", 'property'],
+    attributeBindings: ["templateName", 'property', 'data-id'],
+    classNames: ['asset', 'col-md-3'],
+    tagName: 'li',
+    'data-id': function(){
+        return this.get('asset.id');
+    }.property('asset.id'),
     actions: {
         deleteAsset: function() {
             return this._showConfirmation();

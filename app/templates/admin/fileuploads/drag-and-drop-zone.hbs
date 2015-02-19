@@ -1,12 +1,16 @@
 <div class="asset_wrapper">
   {{#if view.single}}
     {{#if view.asset}}
-      {{view 'admin/fileupload/asset' templateNameBinding="view.assetTemplate" asset=view.asset propertyBinding="view.property"}}
+      <div class="row asset_holder">
+        {{view 'admin/fileupload/asset' templateNameBinding="view.assetTemplate" asset=view.asset propertyBinding="view.property"}}
+      </div>
     {{/if}}
   {{else}}
+  <ul id="sortable" class="row asset_holder">
     {{#each asset in view.assets}}
       {{view 'admin/fileupload/asset' templateNameBinding="view.assetTemplate" assetBinding="asset" propertyBinding="view.property"}}
     {{/each}}
+  </ul>
   {{/if}}
     <input type="file" {{action 'selectFile' on='change' target=view}}>
   {{#if view.creating}}

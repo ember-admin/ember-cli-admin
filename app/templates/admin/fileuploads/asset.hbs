@@ -1,4 +1,5 @@
-<div class="asset">
+<a class="thumbnail">
   <img {{bind-attr src="view.asset.thumb_url"}}>
-  <a class="btn btn-danger" {{action "deleteAsset" on="click" target=view}}>x</a>
-</div>
+  <a class="btn btn-danger btn-xs close" {{action "deleteAsset" on="click" target=view}}>x</a>
+</a>
+

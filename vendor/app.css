@@ -5552,4 +5552,22 @@ html, body {
       vertical-align: top;
       margin-left: 10px; }
 
+.thumbnail {
+    position: relative;
+    padding: 0px;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+.close {
+    position:absolute;
+    top:0px;
+    right:-10px;
+}
+.asset_holder li {
+  list-style: none;
+  display: inline;
+}
+
 /*# sourceMappingURL=app.css.map */
