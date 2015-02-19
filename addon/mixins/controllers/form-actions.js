@@ -28,11 +28,10 @@ formActionsMixin = Ember.Mixin.create({
         var model = this.get('model');
         var self = this;
         return model.save().then(function(){
-                if(!Ember.isEmpty(model.get('fileuploads'))){
-                    model.get('fileuploads').forEach(function(fu){
-                        console.log(model.get(fu))
-                        if(Ember.typeOf(model.get(fu)) === 'array') {
-                            console.log("DDDD")
+            if(!Ember.isEmpty(model.get('fileuploads'))){
+                model.get('fileuploads').forEach(function(fu){
+                    if(!Ember.isEmpty(model.get(fu))){
+                        if(model.get(fu).get('length')) {
                            model.get(fu).forEach(function(asset){
                                 asset.save();
                             });
@@ -40,11 +39,12 @@ formActionsMixin = Ember.Mixin.create({
                         else {
                             model.get(fu).save();
                         }
-                    });
-                }
-                if (redirect) {
-                    return self._redirectToTable();
-                }
+                    }
+                });
+            }
+            if (redirect) {
+                return self._redirectToTable();
+            }
         });
     },
     _createModel: function(redirect) {

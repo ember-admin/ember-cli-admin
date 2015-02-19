@@ -25,10 +25,12 @@ dragAndDropZoneView = Ember.View.extend({
         });
         return this.get('single');
     },
-    sortBy: function(){
-        return [this.get('orderProperty')];
-    }.property('orderProperty'),
-    assetsSorted: Ember.computed.sort('assets', 'sortBy'),
+    assetsSorted: function(){
+        if(Ember.isEmpty(this.get('assets'))){
+            return this.get('assets');
+        }
+        return this.get('assets').sortBy(this.get('orderProperty'));
+    }.property('orderProperty', 'assets'),
     single: (function() {
         return Attributes.isBelongsTo(this.get("model").constructor, this.get('property'));
     }).property('model'),
