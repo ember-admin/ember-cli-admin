@@ -104,6 +104,9 @@ appRouter.post('/catalogues', function(req, res){
 //    req.on('data', function(chunk){ console.log(chunk)});
         res.send({avatar: {id: 1, thumb_url: 'http://media-cache-ak0.pinimg.com/236x/0c/e6/7f/0ce67fa7c94da77ab90877e65f3fda87.jpg', url: 'http://www.londra.us/Bristol_Castle.jpg'}});
     });
+    appRouter.put('/avatars/:id', function(req, res) {
+        res.send({avatar: {id: req.params.id, position: req.body.avatar.position, url:req.body.avatar.url, thumb_url:req.body.avatar.thumb_url}});
+    });
 
     app.use('/api', appRouter);
 };
