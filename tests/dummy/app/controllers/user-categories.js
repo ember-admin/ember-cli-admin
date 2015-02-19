@@ -4,7 +4,8 @@ var userCategoriesController;
 
 
 userCategoriesController = Ember.ObjectController.extend(TableViewController, {
-    caseType: 'title'
+    caseType: 'title',
+    sortAssetsBy: 'position'
 });
 
 export default userCategoriesController;

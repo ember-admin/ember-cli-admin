@@ -7,7 +7,7 @@
     {{/if}}
   {{else}}
   <ul id="sortable" class="row asset_holder">
-    {{#each asset in view.assets}}
+    {{#each asset in view.assetsSorted}}
       {{view 'admin/fileupload/asset' templateNameBinding="view.assetTemplate" assetBinding="asset" propertyBinding="view.property"}}
     {{/each}}
   </ul>

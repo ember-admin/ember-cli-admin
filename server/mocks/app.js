@@ -54,7 +54,7 @@ module.exports = function(app) {
 
 
     var user_category = {id: 1, name: 'test', expired_at: new Date(), zip_code: '123456', description: chance.paragraph({sentences: 10}), is_created: true, email: 'foo@bar.com', color: '#AFAFAF', avatar_ids: [1,2] };
-    var avs = [{id: 1, thumb_url: 'http://placehold.it/100x100', url: 'http://placehold.it/350x150'}, {id: 2, thumb_url: 'http://lorempixel.com/100/100/', url: 'http://lorempixel.com/300/200/'}];
+    var avs = [{id: 1, position: 2, thumb_url: 'http://placehold.it/100x100', url: 'http://placehold.it/350x150'}, {id: 2, position: 1, thumb_url: 'http://lorempixel.com/100/100/', url: 'http://lorempixel.com/300/200/'}];
     appRouter.get('/user_categories', function(req, res) {
         res.send({user_categories: [user_category], avatars: avs});
     });

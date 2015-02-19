@@ -8,26 +8,27 @@ dragAndDropZoneView = Ember.View.extend({
     templateName: "admin/fileuploads/drag-and-drop-zone",
     didInsertElement: function() {
         var self = this;
-        this.$('#sortable').sortable();
-        this.$( "#sortable" ).disableSelection();
-        // this.$("#assets-holder").sortable({
-        //   update: function(event, ui) {
-        //     console.log('FFFF')
-        //     var positions = {};
-        //     $(this).find('.asset').each(function(i) {
-        //       positions[$(this).data('id')] = i + 1;
-        //     });
-        //     var assets = this.get('assets');
-        //     Object.keys(positions).forEach(function(id) {
-        //       var target = assets.filter(function(asset) {
-        //         return asset.get('id') === id;
-        //       })[0];
-        //       return target.set('position', positions[id]);
-        //     });
-        //   }
-        // });
+        this.$("#sortable").sortable({
+          update: function(event, ui) {
+            var positions = {};
+            $(this).find('.asset').each(function(i) {
+              positions[$(this).data('id')] = i + 1;
+            });
+            var assets = self.get('assets');
+            Object.keys(positions).forEach(function(id) {
+              var target = assets.filter(function(asset) {
+                return asset.get('id') === id;
+              })[0];
+              return target.set(self.get('orderProperty'), positions[id]);
+            });
+          }
+        });
         return this.get('single');
     },
+    sortBy: function(){
+        return [this.get('orderProperty')];
+    }.property('orderProperty'),
+    assetsSorted: Ember.computed.sort('assets', 'sortBy'),
     single: (function() {
         return Attributes.isBelongsTo(this.get("model").constructor, this.get('property'));
     }).property('model'),

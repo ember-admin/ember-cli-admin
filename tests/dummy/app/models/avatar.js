@@ -5,7 +5,8 @@ var avatar;
 avatar = Asset.extend({
     type: DS.attr('string', {
         defaultValue: "Avatar"
-    })
+    }),
+    position: DS.attr('number')
 });
 
 export default avatar;
