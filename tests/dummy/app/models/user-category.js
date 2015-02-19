@@ -8,8 +8,9 @@ userCategory = DS.Model.extend({
     expired_at: DS.attr('date'),
     is_created: DS.attr('boolean'),
     email: DS.attr('string'),
-    color: DS.attr('string')
-
+    color: DS.attr('string'),
+    avatars: DS.hasMany('avatar'),
+    fileuploads: ["avatars"]
 });
 
 export default userCategory;
