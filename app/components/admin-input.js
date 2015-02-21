@@ -39,12 +39,13 @@ adminInput = Ember.Component.extend({
     isBoolean: Ember.computed.equal('type', 'boolean'),
     isDate: Ember.computed.equal('type', 'date'),
 
-    value: function(key, value) {
-        if (arguments.length > 1) {
-            return this.get('model').set(this.get('name'), value);
-        }
+    value: function() {
         return this.get('model').get(this.get('name'));
-    }.property('name', 'model')
+    }.property('name', 'model'),
+
+    valueObserver: function(){
+        this.get('model').set(this.get('name'), this.get('value'));
+    }.observes('value')
 });
 
 export default adminInput;
