@@ -1,4 +1,4 @@
-<a class="thumbnail" href="#" {{action "openImagePreview" view.asset.url on="click" target="view"}}>
+<a class="thumbnail" href="#" {{action "openImagePreview" view.asset.url on="click"}}>
   <img {{bind-attr src="view.asset.thumb_url"}}>
   <a class="btn btn-danger btn-xs delete-asset" {{action "deleteAsset" on="click" target=view}}>x</a>
 </a>

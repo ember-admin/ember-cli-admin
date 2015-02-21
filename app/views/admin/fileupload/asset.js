@@ -12,9 +12,6 @@ assetView = Ember.View.extend(ConfirmationMixin, {
     actions: {
         deleteAsset: function() {
             return this._showConfirmation();
-        },
-        openImagePreview: function() {
-            return this.get('controller').send('openImagePreview', this.get('asset.url'));
         }
     },
     _createConfirmationObject: function(action) {
