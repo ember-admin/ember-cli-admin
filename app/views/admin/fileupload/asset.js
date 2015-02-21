@@ -4,7 +4,7 @@ var assetView;
 
 assetView = Ember.View.extend(ConfirmationMixin, {
     attributeBindings: ["templateName", 'property', 'data-id'],
-    classNames: ['asset', 'col-md-3'],
+    classNames: ['asset', 'col-md-2', 'col-xs-4', 'col-lg-2'],
     tagName: 'li',
     'data-id': function(){
         return this.get('asset.id');
