@@ -8,7 +8,7 @@ var app = new EmberAddon();
 //app.import('bower_components/ember-forms/dist/globals/main.js');
 //app.import('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js');
 app.import('bower_components/chance/chance.js');
-
+app.import('vendor/images/file-icon.png', { destDir: 'assets/images' });
 // Put the bootstrap fonts in the place that the bootstrap css expects to find them.
 
 var pickFiles = require('broccoli-static-compiler');
@@ -16,16 +16,12 @@ var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/
     srcDir: '/',
     destDir: '/assets/bootstrap'
 });
-var customImages = pickFiles('vendor/images', {
-    srcDir: '/',
-    destDir: '/assets/images'
-});
 
 var compileSass = require('broccoli-sass');
 var mainCss = compileSass(['app/styles'], 'app.scss', 'assets/dummy.css');
 
 var mergeTrees = require('broccoli-merge-trees');
 
-module.exports = mergeTrees([app.toTree(), bootstrapFonts, mainCss, customImages], {
+module.exports = mergeTrees([app.toTree(), bootstrapFonts, mainCss], {
 	overwrite: true
 });
