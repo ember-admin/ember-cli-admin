@@ -39,7 +39,14 @@ assetView = Ember.View.extend(ConfirmationMixin, {
                 return resolve(_this.get('asset'));
             };
         })(this));
-    }).property('asset')
+    }).property('asset'),
+    isImage: function(){
+        var type = this.get('asset.content_type');
+        if(type === 'image/gif' || type === 'image/jpeg' || type === 'image/png' || type === 'image/tiff') {
+            return true;
+        }
+        return false;
+    }.property('asset.content_type')
 });
 
 export default assetView;

@@ -13,8 +13,12 @@ app.import('bower_components/chance/chance.js');
 
 var pickFiles = require('broccoli-static-compiler');
 var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
-        srcDir: '/',
-        destDir: '/assets/bootstrap'
+    srcDir: '/',
+    destDir: '/assets/bootstrap'
+});
+var customImages = pickFiles('vendor/images', {
+    srcDir: '/',
+    destDir: '/assets/images'
 });
 
 var compileSass = require('broccoli-sass');
@@ -22,6 +26,6 @@ var mainCss = compileSass(['app/styles'], 'app.scss', 'assets/dummy.css');
 
 var mergeTrees = require('broccoli-merge-trees');
 
-module.exports = mergeTrees([app.toTree(), bootstrapFonts, mainCss], {
+module.exports = mergeTrees([app.toTree(), bootstrapFonts, mainCss, customImages], {
 	overwrite: true
 });
