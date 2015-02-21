@@ -5560,7 +5560,7 @@ html, body {
 .thumbnail img {
     width: 100%;
 }
-.close {
+.delete-asset {
     position:absolute;
     top:0px;
     right:-10px;

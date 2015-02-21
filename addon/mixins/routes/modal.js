@@ -17,7 +17,8 @@ modalMixin = Ember.Mixin.create({
         openImagePreview: function(url) {
             this.set('controller.previewImageUrl', url);
             return this.render('admin.base.image-preview-modal', {
-                outlet: "modal"
+                outlet: "modal",
+                controller: this.get('controller')
             });
         },
         confirm: function(modal) {
