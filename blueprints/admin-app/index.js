@@ -38,8 +38,7 @@ module.exports = {
         process('Brocfile.js',
             {
                 insert: {
-                    "EmberApp();": "\nvar pickFiles = require('broccoli-static-compiler');\nvar bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {\n\tsrcDir: '/',\n\tdestDir: '/assets/bootstrap'\n});\nvar mergeTrees = require('broccoli-merge-trees');",
-                    "EmberApp();": "\napp.import('vendor/file-icon.png', {destDir: \"/assets/images\"});"
+                    "EmberApp();": "\nvar pickFiles = require('broccoli-static-compiler');\nvar bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {\n\tsrcDir: '/',\n\tdestDir: '/assets/bootstrap'\n});\nvar mergeTrees = require('broccoli-merge-trees');"
                 },
                 replace: {
                     "module.exports = app.toTree();": "module.exports = mergeTrees([app.toTree(), bootstrapFonts]);"
