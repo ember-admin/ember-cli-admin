@@ -25,13 +25,27 @@ formActionsMixin = Ember.Mixin.create({
         return window.history.back();
     },
     _updateModel: function(redirect) {
-        return this.get('model').save().then((function(_this) {
-            return function() {
-                if (redirect) {
-                    return _this._redirectToTable();
-                }
-            };
-        })(this));
+        var model = this.get('model');
+        var self = this;
+        return model.save().then(function(){
+            if(!Ember.isEmpty(model.get('fileuploads'))){
+                model.get('fileuploads').forEach(function(fu){
+                    if(!Ember.isEmpty(model.get(fu))){
+                        if(model.get(fu).get('length')) {
+                           model.get(fu).forEach(function(asset){
+                                asset.save();
+                            });
+                        }
+                        else {
+                            model.get(fu).save();
+                        }
+                    }
+                });
+            }
+            if (redirect) {
+                return self._redirectToTable();
+            }
+        });
     },
     _createModel: function(redirect) {
         return this.get('model').save().then((function(_this) {

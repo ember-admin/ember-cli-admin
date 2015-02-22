@@ -7,8 +7,30 @@ dragAndDropZoneView = Ember.View.extend({
     assetTemplate: "admin/fileuploads/asset",
     templateName: "admin/fileuploads/drag-and-drop-zone",
     didInsertElement: function() {
+        var self = this;
+        this.$("#sortable").sortable({
+          update: function(event, ui) {
+            var positions = {};
+            $(this).find('.asset').each(function(i) {
+              positions[$(this).data('id')] = i + 1;
+            });
+            var assets = self.get('assets');
+            Object.keys(positions).forEach(function(id) {
+              var target = assets.filter(function(asset) {
+                return asset.get('id') === id;
+              })[0];
+              return target.set(self.get('orderProperty'), positions[id]);
+            });
+          }
+        });
         return this.get('single');
     },
+    assetsSorted: function(){
+        if(Ember.isEmpty(this.get('assets'))){
+            return this.get('assets');
+        }
+        return this.get('assets').sortBy(this.get('orderProperty'));
+    }.property('orderProperty', 'assets'),
     single: (function() {
         return Attributes.isBelongsTo(this.get("model").constructor, this.get('property'));
     }).property('model'),

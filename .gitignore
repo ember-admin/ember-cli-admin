@@ -21,3 +21,4 @@ testem.log
 /vendor/*
 !/vendor/app.css
 !/vendor/nested-sortable.js
+!/vendor/fileicon.png

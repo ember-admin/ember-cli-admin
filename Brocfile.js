@@ -8,13 +8,12 @@ var app = new EmberAddon();
 //app.import('bower_components/ember-forms/dist/globals/main.js');
 //app.import('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js');
 app.import('bower_components/chance/chance.js');
-
 // Put the bootstrap fonts in the place that the bootstrap css expects to find them.
 
 var pickFiles = require('broccoli-static-compiler');
 var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
-        srcDir: '/',
-        destDir: '/assets/bootstrap'
+    srcDir: '/',
+    destDir: '/assets/bootstrap'
 });
 
 var compileSass = require('broccoli-sass');

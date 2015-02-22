@@ -41,7 +41,8 @@ adminInput = Ember.Component.extend({
 
     value: function(key, value) {
         if (arguments.length > 1) {
-            return this.get('model').set(this.get('name'), value);
+            this.get('model').set(this.get('name'), value);
+            return value;
         }
         return this.get('model').get(this.get('name'));
     }.property('name', 'model')
