@@ -4,7 +4,6 @@ module.exports = {
     included: function(app) {
         this.app = app;
         app.import('vendor/app.css');
-        app.import('vendor/file-icon.png');
         app.import('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js');
         app.import('bower_components/typeahead.js/dist/bloodhound.min.js');
         app.import('bower_components/typeahead.js/dist/typeahead.jquery.js');

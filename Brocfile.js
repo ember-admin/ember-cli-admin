@@ -9,6 +9,7 @@ var app = new EmberAddon();
 //app.import('bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js');
 app.import('bower_components/chance/chance.js');
 // Put the bootstrap fonts in the place that the bootstrap css expects to find them.
+app.import('vendor/file-icon.png', {destDir: "/assets/images"});
 
 var pickFiles = require('broccoli-static-compiler');
 var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
