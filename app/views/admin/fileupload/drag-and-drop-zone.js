@@ -19,18 +19,19 @@ dragAndDropZoneView = Ember.View.extend({
               var target = assets.filter(function(asset) {
                 return asset.get('id') === id;
               })[0];
-              return target.set(self.get('orderProperty'), positions[id]);
+              target.set(self.get('orderProperty'), positions[id]);
+              return target.save();
             });
           }
         });
         return this.get('single');
     },
     assetsSorted: function(){
-        if(Ember.isEmpty(this.get('assets'))){
+        if(Ember.isEmpty(this.get('assets')) || Ember.isEmpty(this.get('orderProperty'))){
             return this.get('assets');
         }
-        return this.get('assets').sortBy(this.get('orderProperty'));
-    }.property('orderProperty', 'assets'),
+        return this.get('assets').toArray().sortBy(this.get('orderProperty'));
+    }.property('orderProperty', 'assets.length'),
     single: (function() {
         return Attributes.isBelongsTo(this.get("model").constructor, this.get('property'));
     }).property('model'),
