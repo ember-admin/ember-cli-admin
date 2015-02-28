@@ -205,7 +205,8 @@ export default DS.Model.extend({
   avatar:                     DS.belongsTo('avatar'),
   avatars:                    DS.hasMany('avatar', {async: true}),
 
-  fileuploads: ["avatar", "avatars"]
+  fileuploads: [{attributeName: "avatars", isImage: true, orderBy: "position"},
+                {attributeName: "avatar", isImage: true}]
 });
 ```
 Then add an Avatar adapter like this:
