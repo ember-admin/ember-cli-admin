@@ -10,7 +10,7 @@ userCategory = DS.Model.extend({
     email: DS.attr('string'),
     color: DS.attr('string'),
     avatars: DS.hasMany('avatar'),
-    fileuploads: ["avatars"]
+    fileuploads: [{attributeName: "avatars", isImage: true, orderBy: "position"}]
 });
 
 export default userCategory;

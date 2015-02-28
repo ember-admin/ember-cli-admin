@@ -4,7 +4,7 @@
     <div class="panel-body">
       <div class="form-horizontal">
         {{#each attribute in controller.formAttributes}}
-          {{admin-input class="admin-attribute" model=controller.model name=attribute}}
+          {{admin-input class="admin-attribute form-group" model=controller.model name=attribute}}
         {{/each}}
       </div>
 
@@ -14,9 +14,9 @@
   <div class="panel panel-default">
     <div class="panel-heading">File Uploads</div>
     <div class="panel-body">
-      {{#each attribute in controller.fileuploads}}
-        <h4>{{admin-letter-case content=attribute caseType=caseType}}</h4>
-        {{view 'admin/fileupload/drag-and-drop-zone' class="admin-fileupload" model=controller.model property=attribute orderProperty=controller.sortAssetsBy}}
+      {{#each upload in controller.fileuploads}}
+        <h4>{{admin-letter-case content=upload.attributeName caseType=caseType}}</h4>
+        {{view 'admin/fileupload/drag-and-drop-zone' class="admin-fileupload" model=controller.model property=upload.attributeName orderProperty=upload.orderBy isImage=upload.isImage}}
       {{/each}}
     </div>
   </div>
