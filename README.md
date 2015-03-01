@@ -225,6 +225,9 @@ By default, FileuploadAdapterMixin Asset type property is ```Asset```.
 If your backend API expect for different type request parameters property you can specify it in your asset model.
 
 Let's say your API excepts Avatar type to be "Avatar", not "Asset".
+
+Also, you need to define ```content_type``` property in your model. Ember-Cli-admin accepts standart MIME types and guesses how to display your assets based on it.
+
 You can do this by editing your Avatar model like this:
 
 ```javascript
@@ -232,12 +235,14 @@ You can do this by editing your Avatar model like this:
 ...
 
 var avatar = Asset.extend({
-  type: DS.attr('string', {defaultValue: 'Avatar'})
+  type: DS.attr('string', {defaultValue: 'Avatar'}),
+  content_type: DS.attr('string')
 });
 
 ...
 ```
 
+After that you should specify ```sortAssetsBy: 'assetOrderProperty'``` in controller.
 
 ###Set title
 By default, navigation bar title display your application's module prefix. You can change this to any name of you choice by adding 'appName' property to your application config file.

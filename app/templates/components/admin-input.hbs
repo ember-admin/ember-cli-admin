@@ -1,31 +1,29 @@
-<div class="form-group">
-  <label class="col-sm-2 control-label">{{name}}</label>
-  <div class="col-sm-8">
-    {{#if isString}}
-      {{input valueBinding="value" type='text' class="form-control"}}
-    {{/if}}
-    {{#if isEmail}}
-      {{input valueBinding="value" type='email' class="form-control"}}
-    {{/if}}
-    {{#if isColor}}
-      {{input valueBinding="value" type='color' class="form-control"}}
-    {{/if}}
-    {{#if isText}}
-      {{textarea value=value cols="50" rows="10" class="form-control"}}
-    {{/if}}
-    {{#if isNumber}}
-      {{input valueBinding="value" type='number' class="form-control"}}
-    {{/if}}
-    {{#if isDate}}
-      {{bootstrap-datepicker value=value autoclose=true class="form-control" id="pickdate"}}
-    {{/if}}
-    {{#if isBoolean}}
-      <label class="radio-inline">
-        {{admin-radio-button selection=value value=true}} Yes
-      </label>
-      <label class="radio-inline">
-        {{admin-radio-button selection=value value=false}} No
-      </label>
-    {{/if}}
-  </div>
+<label class="col-sm-2 control-label">{{name}}</label>
+<div class="col-sm-8">
+  {{#if isString}}
+    {{input valueBinding="value" type='text' class="form-control"}}
+  {{/if}}
+  {{#if isEmail}}
+    {{input valueBinding="value" type='email' class="form-control"}}
+  {{/if}}
+  {{#if isColor}}
+    {{input valueBinding="value" type='color' class="form-control"}}
+  {{/if}}
+  {{#if isText}}
+    {{textarea value=value cols="50" rows="10" class="form-control"}}
+  {{/if}}
+  {{#if isNumber}}
+    {{input valueBinding="value" type='number' class="form-control"}}
+  {{/if}}
+  {{#if isDate}}
+    {{bootstrap-datepicker value=value autoclose=true class="form-control" id="pickdate"}}
+  {{/if}}
+  {{#if isBoolean}}
+    <label class="radio-inline">
+      {{admin-radio-button selection=value value=true}} Yes
+    </label>
+    <label class="radio-inline">
+      {{admin-radio-button selection=value value=false}} No
+    </label>
+  {{/if}}
 </div>
