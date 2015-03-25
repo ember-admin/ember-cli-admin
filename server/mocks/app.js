@@ -58,6 +58,16 @@ module.exports = function(app) {
     appRouter.get('/user_categories', function(req, res) {
         res.send({user_categories: [user_category], avatars: avs});
     });
+    appRouter.post('/user_categories', function(req, res) {
+        var errors = {};
+        if (req.body.user_category.email === null) {
+          errors.email = ["can't be blank"]; 
+          return res.status(422).json(errors);
+        }
+        else {
+          return res.send({user_categories: [user_category], avatars: avs});
+        }
+    });
     appRouter.delete('/user_categories/:id', function(req, res) {
         res.send({});
     });

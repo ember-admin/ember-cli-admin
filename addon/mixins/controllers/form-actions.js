@@ -31,7 +31,7 @@ formActionsMixin = Ember.Mixin.create({
             if (redirect) {
                 return self._redirectToTable();
             }
-        });
+        }, function(){});
     },
     _createModel: function(redirect) {
         return this.get('model').save().then((function(_this) {
@@ -42,7 +42,7 @@ formActionsMixin = Ember.Mixin.create({
                     return _this.send('edit', _this.get('model'));
                 }
             };
-        })(this));
+        })(this), function(){});
     }
 });
 
