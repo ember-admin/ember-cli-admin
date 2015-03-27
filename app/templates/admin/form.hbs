@@ -4,7 +4,7 @@
     <div class="panel-body">
       <div class="form-horizontal">
         {{#each attribute in controller.formAttributes}}
-          {{admin-input class="admin-attribute form-group" model=controller.model name=attribute}}
+          {{admin-input model=controller.model name=attribute}}
         {{/each}}
       </div>
 

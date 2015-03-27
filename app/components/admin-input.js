@@ -2,6 +2,7 @@ import Ember from 'ember';
 var adminInput;
 
 adminInput = Ember.Component.extend({
+    classNameBindings: [":admin-attribute", ":form-group", "isAnyErrors:has-error"],
     type: function(){
         var transformedAttributes = Ember.get(this.get('model.constructor'), 'transformedAttributes')
         if(Ember.isEmpty(this.get('value'))){
@@ -45,7 +46,12 @@ adminInput = Ember.Component.extend({
             return value;
         }
         return this.get('model').get(this.get('name'));
-    }.property('name', 'model')
+    }.property('name', 'model'),
+    isAnyErrors: Ember.computed.notEmpty('fieldErrors'),
+    fieldErrors: function() {
+        return this.get('model.errors').errorsFor(this.get('name'));      
+    }.property('model', 'model.errors.[]')
+      
 });
 
 export default adminInput;

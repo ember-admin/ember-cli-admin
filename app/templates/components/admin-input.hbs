@@ -2,21 +2,27 @@
 <div class="col-sm-8">
   {{#if isString}}
     {{input valueBinding="value" type='text' class="form-control"}}
+    {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isEmail}}
     {{input valueBinding="value" type='email' class="form-control"}}
+    {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isColor}}
     {{input valueBinding="value" type='color' class="form-control"}}
+    {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isText}}
     {{textarea value=value cols="50" rows="10" class="form-control"}}
+    {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isNumber}}
     {{input valueBinding="value" type='number' class="form-control"}}
+    {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isDate}}
     {{bootstrap-datepicker value=value autoclose=true class="form-control" id="pickdate"}}
+    {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isBoolean}}
     <label class="radio-inline">
@@ -25,5 +31,6 @@
     <label class="radio-inline">
       {{admin-radio-button selection=value value=false}} No
     </label>
+    {{partial 'components/field-errors'}}
   {{/if}}
 </div>
