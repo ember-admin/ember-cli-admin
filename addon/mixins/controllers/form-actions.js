@@ -3,47 +3,47 @@ import Ember from 'ember';
 var formActionsMixin;
 
 formActionsMixin = Ember.Mixin.create({
-    actions: {
-        submit: function(redirect) {
-            if (redirect == null) {
-                redirect = true;
-            }
-            if (this.get('model.id')) {
-                return this._updateModel(redirect);
-            } else {
-                return this._createModel(redirect);
-            }
-        },
-        cancel: function() {
-            if (this.get('model.isDirty')) {
-                this.get('model').rollback();
-            }
-            return this._redirectToTable();
-        }
+  actions: {
+    submit: function(redirect) {
+      if (redirect == null) {
+        redirect = true;
+      }
+      if (this.get('model.id')) {
+        return this._updateModel(redirect);
+      } else {
+        return this._createModel(redirect);
+      }
     },
-    _redirectToTable: function() {
-        return window.history.back();
-    },
-    _updateModel: function(redirect) {
-        var model = this.get('model');
-        var self = this;
-        return model.save().then(function(){
-            if (redirect) {
-                return self._redirectToTable();
-            }
-        }, function(){});
-    },
-    _createModel: function(redirect) {
-        return this.get('model').save().then((function(_this) {
-            return function() {
-                if (redirect) {
-                    return _this._redirectToTable();
-                } else {
-                    return _this.send('edit', _this.get('model'));
-                }
-            };
-        })(this), function(){});
+    cancel: function() {
+      if (this.get('model.isDirty')) {
+        this.get('model').rollback();
+      }
+      return this._redirectToTable();
     }
+  },
+  _redirectToTable: function() {
+    return window.history.back();
+  },
+  _updateModel: function(redirect) {
+    var model = this.get('model');
+    var self = this;
+    return model.save().then(function(){
+      if (redirect) {
+        return self._redirectToTable();
+      }
+    }, function(){});
+  },
+  _createModel: function(redirect) {
+    return this.get('model').save().then((function(_this) {
+      return function() {
+        if (redirect) {
+          return _this._redirectToTable();
+        } else {
+          return _this.send('edit', _this.get('model'));
+        }
+      };
+    })(this), function(){});
+  }
 });
 
 export default formActionsMixin;

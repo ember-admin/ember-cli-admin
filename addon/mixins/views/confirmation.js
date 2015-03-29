@@ -3,22 +3,22 @@ import Ember from 'ember';
 var confirmationMixin;
 
 confirmationMixin = Ember.Mixin.create({
-    _showConfirmation: function(options) {
-        var action;
-        if (options == null) {
-            options = {};
-        }
-        action = this.get('action') || this.get('context');
-        return this.get('controller').send('adminAction', 'openModal', this._createConfirmationObject(action, options));
-    },
-
-    _createConfirmationObject: function(action, options){
-        return Ember.Object.create({
-            actionData: action,
-            model: this.get('model') || this.get('controller.model'),
-            options: options
-        });
+  _showConfirmation: function(options) {
+    var action;
+    if (options == null) {
+      options = {};
     }
+    action = this.get('action') || this.get('context');
+    return this.get('controller').send('adminAction', 'openModal', this._createConfirmationObject(action, options));
+  },
+
+  _createConfirmationObject: function(action, options){
+    return Ember.Object.create({
+      actionData: action,
+      model: this.get('model') || this.get('controller.model'),
+      options: options
+    });
+  }
 });
 
 export default confirmationMixin;

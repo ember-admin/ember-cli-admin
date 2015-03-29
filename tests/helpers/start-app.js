@@ -4,23 +4,23 @@ import Router from '../../router';
 import config from '../../config/environment';
 
 export default function startApp(attrs) {
-    var App;
+  var App;
 
-    var attributes = Ember.merge({}, config.APP);
-    attributes = Ember.merge(attributes, attrs); // use defaults, but you can override;
+  var attributes = Ember.merge({}, config.APP);
+  attributes = Ember.merge(attributes, attrs); // use defaults, but you can override;
 
-    Router.reopen({
-        // Using 'hash' allows us to properly test window.history actions
-        location: 'hash'
-    });
+  Router.reopen({
+    // Using 'hash' allows us to properly test window.history actions
+    location: 'hash'
+  });
 
-    Ember.run(function() {
-        App = Application.create(attributes);
-        App.setupForTesting();
-        App.injectTestHelpers();
-    });
+  Ember.run(function() {
+    App = Application.create(attributes);
+    App.setupForTesting();
+    App.injectTestHelpers();
+  });
 
-    App.reset(); // this shouldn't be needed, i want to be able to "start an app at a specific URL"
+  App.reset(); // this shouldn't be needed, i want to be able to "start an app at a specific URL"
 
-    return App;
+  return App;
 }

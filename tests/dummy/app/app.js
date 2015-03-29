@@ -6,9 +6,9 @@ import config from './config/environment';
 Ember.MODEL_FACTORY_INJECTIONS = true;
 
 var App = Ember.Application.extend({
-    modulePrefix: config.modulePrefix,
-    podModulePrefix: config.podModulePrefix,
-    Resolver: AdminResolver
+  modulePrefix: config.modulePrefix,
+  podModulePrefix: config.podModulePrefix,
+  Resolver: AdminResolver
 });
 
 loadInitializers(App, config.modulePrefix);
