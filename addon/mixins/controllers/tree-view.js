@@ -33,7 +33,7 @@ treeViewMixin = Ember.Mixin.create({
 
       var data = {
         type: 'POST',
-        dataType: 'script',
+        dataType: 'json',
         url: itemObject.get('rebuildUrl'),
         data: properties,
         beforeSend: function (){
