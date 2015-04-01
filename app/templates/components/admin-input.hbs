@@ -1,15 +1,15 @@
 <label class="col-sm-2 control-label">{{name}}</label>
 <div class="col-sm-8">
   {{#if isString}}
-    {{input valueBinding="value" type='text' class="form-control"}}
+    {{input value=value type='text' class="form-control"}}
     {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isEmail}}
-    {{input valueBinding="value" type='email' class="form-control"}}
+    {{input value=value type='email' class="form-control"}}
     {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isColor}}
-    {{input valueBinding="value" type='color' class="form-control"}}
+    {{input value=value type='color' class="form-control"}}
     {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isText}}
@@ -17,7 +17,7 @@
     {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isNumber}}
-    {{input valueBinding="value" type='number' class="form-control"}}
+    {{input value=value type='number' class="form-control"}}
     {{partial 'components/field-errors'}}
   {{/if}}
   {{#if isDate}}

@@ -3,7 +3,7 @@ import Ember from 'ember';
 var userCategoriesController;
 
 
-userCategoriesController = Ember.ObjectController.extend(TableViewController, {
+userCategoriesController = Ember.Controller.extend(TableViewController, {
   caseType: 'title',
   sortAssetsBy: 'position'
 });
