@@ -1,11 +1,12 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
 
 var App, server, users;
 
 module('Acceptance: Sorting', {
-  setup: function() {
+  beforeEach: function() {
     App = startApp();
     server = new Pretender(function() {
       this.get('/api/users', function(request) {
@@ -26,45 +27,45 @@ module('Acceptance: Sorting', {
       });
     });
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(App, 'destroy');
     server.shutdown();
   }
 });
 
 
-test('records in table are sorted by controller sortFields in ascending order', function() {
-  expect(1);
+test('records in table are sorted by controller sortFields in ascending order', function(assert) {
+  assert.expect(1);
 
   visit('/users');
   click('th:contains("id")');
   andThen(function() {
-    equal(find('tbody tr:first td[data-column="id"]:contains("0")').length, 1);
+    assert.equal(find('tbody tr:first td[data-column="id"]:contains("0")').length, 1);
   });
 
 });
 
-test('records in table are sorted by controller sortFields in descending order', function() {
-  expect(1);
+test('records in table are sorted by controller sortFields in descending order', function(assert) {
+  assert.expect(1);
 
   visit('/users');
   click('th:contains("id")');
   click('th:contains("id")');
   andThen(function() {
-    equal(find('tbody tr:first td[data-column="id"]:contains("10")').length, 1);
+    assert.equal(find('tbody tr:first td[data-column="id"]:contains("10")').length, 1);
   });
 
 });
 
 test('switching from sorting by one attribute to another works as expected - records are sorted by the ' +
-     'new selected attribute', function() {
-  expect(1);
+     'new selected attribute', function(assert) {
+  assert.expect(1);
 
   visit('/users');
   click('th:contains("id")');
   click('th:contains("id")');
   click('th:contains("name")');
   andThen(function() {
-    equal(find('tbody tr:first td[data-column="id"]:contains("3")').length, 1);
+    assert.equal(find('tbody tr:first td[data-column="id"]:contains("3")').length, 1);
   });
 });

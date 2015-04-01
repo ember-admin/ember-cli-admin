@@ -8,7 +8,7 @@
                         <div class="clearfix string">
                             <label>{{admin-letter-case content=field.fieldName caseType=caseType}}</label>
                             <div class="controls">
-                                {{input name=field.fieldName valueBinding='field.value' type="text" class="form-control"}}
+                                {{input name=field.fieldName value=field.value type="text" class="form-control"}}
                             </div>
                         </div>
                     {{/if}}
@@ -17,7 +17,7 @@
                             <label>{{admin-letter-case content=field.fieldName caseType=caseType}}</label>
                             <div class="controls">
                                 {{view "select" content=field.numberPredicats value=field.predicat}}
-                                {{input name=field.fieldName valueBinding='field.value' type="number" class="form-control"}}
+                                {{input name=field.fieldName value=field.value type="number" class="form-control"}}
                             </div>
                         </div>
                     {{/if}}
@@ -25,7 +25,7 @@
                         <div class="clearfix string">
                             <label>{{admin-letter-case content=field.fieldName caseType=caseType}}</label>
                             <div class="controls">
-                                {{admin-typeahead url=field.url valueBinding='field.value' name=field.fieldName class="form-control"}}
+                                {{admin-typeahead url=field.url value=field.value name=field.fieldName class="form-control"}}
                             </div>
                         </div>
                     {{/if}}

@@ -1,11 +1,12 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
 
 var App, server, catalogues;
 
 module('Acceptance: Tree View Test', {
-  setup: function() {
+  beforeEach: function() {
     App = startApp();
     server = new Pretender(function() {
       this.get('/api/catalogues', function(request) {
@@ -18,32 +19,32 @@ module('Acceptance: Tree View Test', {
       });
     });
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(App, 'destroy');
     server.shutdown();
   }
 });
 
-test('model tree is displayed', function() {
-  expect(1);
+test('model tree is displayed', function(assert) {
+  assert.expect(1);
 
   visit('/catalogues');
 
   andThen(function() {
-    equal(find('.sortable_tree li:first:contains("1") li:first:contains("2") li:first:contains("4")').length, 1);
+    assert.equal(find('.sortable_tree li:first:contains("1") li:first:contains("2") li:first:contains("4")').length, 1);
   });
 
 });
 
-test('it goes to edit', function() {
-  expect(1);
+test('it goes to edit', function(assert) {
+  assert.expect(1);
 
   visit('/catalogues');
 
   andThen(function() {
     click('button[title="Edit"]:first');
     andThen(()=>{
-      equal(currentRouteName(), 'catalogues.edit');
+      assert.equal(currentRouteName(), 'catalogues.edit');
     });
   });
 });

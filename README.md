@@ -70,7 +70,7 @@ You can specify the attributes to use in admin form with ```formAttributes``` pr
 import Ember from 'ember';
 import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
-export default Ember.ObjectController.extend(TableViewController,{
+export default Ember.Controller.extend(TableViewController,{
   formAttributes: ['email', 'name']
 });
 ```
@@ -84,7 +84,7 @@ You can specify the attributes to use in admin table with the ```tableAttributes
 import Ember from 'ember';
 import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
-export default Ember.ObjectController.extend(TableViewController,{
+export default Ember.Controller.extend(TableViewController,{
   tableAttributes: ['email', 'name']
 });
 ```
@@ -98,7 +98,7 @@ You can customize item actions with ```itemActions``` property in the controller
 import Ember from 'ember';
 import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
-export default Ember.ObjectController.extend(TableViewController,{
+export default Ember.Controller.extend(TableViewController,{
   itemActions: [{title: "Edit",
       "class": "btn btn-small btn-primary",
       action: "edit",
@@ -112,7 +112,7 @@ Or you can add custom actions with ```additionalActions``` property in the contr
 import Ember from 'ember';
 import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
-export default Ember.ObjectController.extend(TableViewController,{
+export default Ember.Controller.extend(TableViewController,{
   additionalActions: [{title: "my action", class: "btn my-action-css", action: "my"}],
   actions: {
     my: function(model){
@@ -145,7 +145,7 @@ You can specify the batch actions with ```batchActions``` property in the contro
 import Ember from 'ember';
 import TableViewController from 'ember-cli-admin/mixins/controllers/table-view';
 
-export default Ember.ObjectController.extend(TableViewController,{
+export default Ember.Controller.extend(TableViewController,{
   batchActions: [{title: "my action", confirm: "Are you sure you to do it", action: "my"}],
   actions: {
     my: function(model){
@@ -374,7 +374,7 @@ Add `TreeViewController` Mixin to your resource controller:
 //app/controllers/catalogues.js
 import TreeViewController from 'ember-cli-admin/mixins/controllers/tree-view';
 
-export default Ember.ObjectController.extend(TreeViewController, {
+export default Ember.Controller.extend(TreeViewController, {
   formAttributes: ['name']
 });
 ```
@@ -436,7 +436,7 @@ For example,
 
   import TableViewController from 'ember-cli-admin/mixins/controllers/table-view'
 
-  export default Ember.ObjectController.extend(TableViewController, {
+  export default Ember.Controller.extend(TableViewController, {
     caseType: 'title'
   });
 ```

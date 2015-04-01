@@ -1,13 +1,14 @@
 /* global chance*/
 
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
 
 var App, server;
 
 module('Acceptance: Form', {
-  setup: function() {
+  beforeEach: function() {
     App = startApp();
     server = new Pretender(function() {
     var user_category = {id: 1, name: 'test', expired_at: new Date(), zip_code: '123456', description: chance.paragraph({sentences: 10}), is_created: true, email: 'foo@bar.com', color: '#AFAFAF' };
@@ -17,41 +18,41 @@ module('Acceptance: Form', {
       });
     });
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(App, 'destroy');
     server.shutdown();
   }
 });
 
-test('edit page contains inputs for different field types', function() {
-  expect(7);
+test('edit page contains inputs for different field types', function(assert) {
+  assert.expect(7);
   visit('/user-categories');
 
   andThen(()=>{
     click('button[title="Edit"]:first');
     andThen(()=>{
-      equal(find('textarea').length, 1);
-      equal(find('input[type="text"]').length, 2);
-      equal(find('input[type="email"]').length, 1);
-      equal(find('input[type="color"]').length, 1);
-      equal(find('input[type="number"]').length, 1);
-      equal(find('input[type="radio"]').length, 2);
-      equal(find('#pickdate').length, 1);
+      assert.equal(find('textarea').length, 1);
+      assert.equal(find('input[type="text"]').length, 2);
+      assert.equal(find('input[type="email"]').length, 1);
+      assert.equal(find('input[type="color"]').length, 1);
+      assert.equal(find('input[type="number"]').length, 1);
+      assert.equal(find('input[type="radio"]').length, 2);
+      assert.equal(find('#pickdate').length, 1);
     });
   });
 
 });
 
-test('new page contains inputs for different field types', function() {
-  expect(3);
+test('new page contains inputs for different field types', function(assert) {
+  assert.expect(3);
   visit('/user-categories');
 
   andThen(()=>{
     click('button[title="New"]');
     andThen(()=>{
-      equal(find('input[type="text"]').length, 5);
-      equal(find('#pickdate').length, 1);
-      equal(find('input[type="radio"]').length, 2);
+      assert.equal(find('input[type="text"]').length, 5);
+      assert.equal(find('#pickdate').length, 1);
+      assert.equal(find('input[type="radio"]').length, 2);
     });
   });
 

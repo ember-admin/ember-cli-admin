@@ -3,8 +3,8 @@ import { test, moduleForComponent } from 'ember-qunit';
 
 moduleForComponent('admin-letter-case');
 
-test('change case', function(){
-  expect(1);
+test('change case', function(assert) {
+  assert.expect(1);
 
   var component = this.subject();
 
@@ -13,5 +13,5 @@ test('change case', function(){
     component.set('caseType','title');
   });
 
-  equal(this.$().text(), 'User Categories');
+  assert.equal(this.$().text(), 'User Categories');
 });

@@ -6,7 +6,7 @@
     </a>
     <ul class="dropdown-menu">
       {{#each action in controller.batchActions}}
-        {{#view 'admin/base/actions/batch-action' contextBinding="action"}}
+        {{#view 'admin/base/actions/batch-action' context=action}}
           <a href="#">{{action.title}}</a>
         {{/view}}
       {{/each}}

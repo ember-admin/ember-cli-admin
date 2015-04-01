@@ -1,11 +1,12 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
 
 var App, server, users;
 
 module('Acceptance: Search', {
-  setup: function() {
+  beforeEach: function() {
     App = startApp();
     server = new Pretender(function() {
       this.get('/api/users', function(request) {
@@ -22,45 +23,45 @@ module('Acceptance: Search', {
       });
     });
   },
-  teardown: function() {
+  afterEach: function() {
     Ember.run(App, 'destroy');
     server.shutdown();
   }
 });
 
-test('search panel contains model search fields', function() {
-  expect(2);
+test('search panel contains model search fields', function(assert) {
+  assert.expect(2);
   visit('/users');
 
   andThen(function() {
-    equal(find('form.search .controls').length, 4);
-    equal(find('form.search input[name="email"]').length, 1);
+    assert.equal(find('form.search .controls').length, 4);
+    assert.equal(find('form.search input[name="email"]').length, 1);
   });
 });
 
-test('search results are shown in table', function() {
-  expect(1);
+test('search results are shown in table', function(assert) {
+  assert.expect(1);
   visit('/users');
   fillIn('input[name="email"]', 'test@example.com');
   click('button[type="submit"]');
 
   andThen(function() {
-    equal(find("tbody tr").length, 1);
+    assert.equal(find("tbody tr").length, 1);
   });
 });
 
-test('search input can be selectable', function() {
-  expect(3);
+test('search input can be selectable', function(assert) {
+  assert.expect(3);
   visit('/users');
 
   andThen(function() {
-    equal(find(".controls select").length, 1);
-    equal(find('.controls select option:first').text(), "Select Name");
-    equal(find('.controls select option:last').text(), "Bar");
+    assert.equal(find(".controls select").length, 1);
+    assert.equal(find('.controls select option:first').text(), "Select Name");
+    assert.equal(find('.controls select option:last').text(), "Bar");
   });
 });
 
-test('autocomplete search', function(){
+test('autocomplete search', function(assert) {
   server.get('api/users/autocomplete', function(request){
     users = [{id: 1, name: 'testuser'}];
     return [200, {"Content-Type": "application/json"}, JSON.stringify(users)];
@@ -69,6 +70,6 @@ test('autocomplete search', function(){
   Ember.$('.typeahead').typeahead('val', '12');
   click('button[type="submit"]');
   andThen(function(){
-    equal(find('form.search .controls').length, 4);
+    assert.equal(find('form.search .controls').length, 4);
   });
 });

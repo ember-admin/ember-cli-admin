@@ -3,7 +3,7 @@ import SearchLogic from 'ember-cli-admin/dsl/search';
 import Ember from 'ember';
 var usersController;
 
-usersController = Ember.ObjectController.extend(TableViewController, {
+usersController = Ember.Controller.extend(TableViewController, {
   sortFields: ['id', 'name'],
   formAttributes: ['email', 'name'],
   searchForm: (function() {
