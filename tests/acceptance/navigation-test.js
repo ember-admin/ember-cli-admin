@@ -1,31 +1,32 @@
 import Ember from 'ember';
+import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 
 var App;
 
 module('Acceptance: Navigation', {
-	setup: function(){
-		App = startApp();
-	},
-	teardown: function(){
-		Ember.run(App, 'destroy');
-	}
+    beforeEach: function(){
+        App = startApp();
+    },
+    afterEach: function(){
+        Ember.run(App, 'destroy');
+    }
 });
 
-test('navigation bar title displays application name', function(){
-	expect(1);
-	visit('/');
+test('navigation bar title displays application name', function(assert) {
+    assert.expect(1);
+    visit('/');
 
-	andThen(function(){
-		equal(find('.navbar-brand').text(), 'Sample App Name');
-	});
+    andThen(function(){
+        assert.equal(find('.navbar-brand').text(), 'Sample App Name');
+    });
 });
 
-test('title link points to destination provided via config file', function(){
-	expect(1);
-	visit('/');
+test('title link points to destination provided via config file', function(assert) {
+    assert.expect(1);
+    visit('/');
 
-	andThen(function(){
-		equal(find('.navbar-brand').attr('href'), '/example/url');
-	});
+    andThen(function(){
+        assert.equal(find('.navbar-brand').attr('href'), '/example/url');
+    });
 });
