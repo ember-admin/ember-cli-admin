@@ -8,10 +8,10 @@ controllerMixin = Ember.Mixin.create({
 
   getOutlet: function(controller, outletName){
     var outlet = "%@/%@".fmt(this._controllerName(controller).decamelize(), outletName);
-    if (this.container.resolve('template:%@'.fmt(outlet))) {
+    if (this.container._registry.resolve('template:%@'.fmt(outlet))) {
       return outlet;
     }
-    if (this.container.resolve("template:admin/%@".fmt(outletName))){
+    if (this.container._registry.resolve("template:admin/%@".fmt(outletName))){
       return "admin/%@".fmt(outletName);
     }
     return "admin/%@".fmt(outletName);
@@ -26,7 +26,7 @@ controllerMixin = Ember.Mixin.create({
     if (name === "dashboard") {
       return "admin/dashboard";
     }
-    if (this.container.resolve('template:'+name) || this.container.resolve('template:'+"admin/%@".fmt(name))) {
+    if (this.container._registry.resolve('template:'+name) || this.container._registry.resolve('template:'+"admin/%@".fmt(name))) {
       return name;
     } else {
       if (this.action && this.action !== "page") {
