@@ -18,18 +18,16 @@ export default Ember.Mixin.create({
       }
       url = "%@?%@".fmt(url, str);
       data.context = adapter;
-      request = new XMLHttpRequest();
-      request.open('POST', url, true);
-      request.setRequestHeader('Content-Type', record.get('content_type'));
-      request.onreadystatechange = (function() {
-        return function() {
-          if (request.readyState === 4 && (request.status === 201 || request.status === 200)) {
-            data = JSON.parse(request.response);
-            return Ember.run(null, resolve, data);
-          }
-        };
-      })(this);
-      return request.send(record.get('file'));
+      
+      return Ember.$.ajax(url,{
+        'data': record.get('file'), //{action:'x',params:['a','b','c']}
+        'type': 'POST',
+        'processData': false,
+        'contentType': record.attr('content_type')
+      }).then(function(data){
+          data = JSON.parse(data);
+          return Ember.run(null, resolve, data);
+      });
     });
   }
 });
