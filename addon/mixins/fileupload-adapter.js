@@ -6,7 +6,7 @@ export default Ember.Mixin.create({
     url = this.buildURL(type.typeKey);
     adapter = this;
     return new Ember.RSVP.Promise(function(resolve) {
-      var data, request, str;
+      var data, str;
       data = {};
       data[type.typeKey] = store.serializerFor(type.typeKey).serialize(record, {
         includeId: true
