@@ -18,14 +18,13 @@ export default Ember.Mixin.create({
       }
       url = "%@?%@".fmt(url, str);
       data.context = adapter;
-      
+
       return Ember.$.ajax(url,{
-        'data': record.get('file'), //{action:'x',params:['a','b','c']}
+        'data': record.get('file'),
         'type': 'POST',
         'processData': false,
         'contentType': record.attr('content_type')
       }).then(function(data){
-          data = JSON.parse(data);
           return Ember.run(null, resolve, data);
       });
     });

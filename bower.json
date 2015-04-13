@@ -21,6 +21,7 @@
     "jquery-ui-touch-punch": "*"
   },
   "resolutions": {
-    "handlebars": ">= 2.0.0 < 3.0.0"
+    "handlebars": ">= 2.0.0 < 3.0.0",
+    "ember": "~1.11.0"
   }
 }
