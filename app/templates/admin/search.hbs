@@ -45,6 +45,14 @@
                             </div>
                         </div>
                     {{/if}}
+                    {{#if field.isBoolean}}
+                        <div class="clearfix string">
+                            <label>{{admin-letter-case content=field.fieldName caseType=caseType}}</label>
+                            <div class="controls">
+                                {{input type="checkbox" checked=field.value placeholder=field.options.placeholder class="form-control"}}
+                            </div>
+                        </div>
+                    {{/if}}
                 {{/each}}
                 <div>
                     <button class="search-button btn btn-success" type="submit">Search</button>
