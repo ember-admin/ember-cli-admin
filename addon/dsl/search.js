@@ -153,6 +153,9 @@ SearchField = Ember.Object.extend({
       case 'date':
         this.date();
         break;
+      case 'boolean':
+        this.boolean();
+        break;
       default:
         throw('search dsl doesnt has default field');
     }
@@ -160,6 +163,10 @@ SearchField = Ember.Object.extend({
 
   numberInput: function(){
     this.set('isNumberInput', true);
+  },
+  
+  boolean: function(){
+    this.set('isBoolean', true);
   },
 
   select: function(){
