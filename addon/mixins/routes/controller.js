@@ -24,7 +24,7 @@ export default  Ember.Mixin.create({
     if (name === "dashboard") {
       return "admin/dashboard";
     }
-    if (this.container.has('template:'+name) || this.container.has('template:'+"admin/%@".fmt(name))) {
+    if (this.container._registry.has('template:'+name) || this.container._registry.has('template:'+"admin/%@".fmt(name))) {
       return name;
     } else {
       if (this.action && this.action !== "page") {
