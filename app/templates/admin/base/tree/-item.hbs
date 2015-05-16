@@ -1,4 +1,4 @@
-<li {{bind-attr data-id=item.id}}>
+<li data-id={{item.id}}>
     <div class="tree-item_wrap">
         <i class="icon-move icon-move glyphicon glyphicon-move"></i>
         <a class="tree-item_link" href="javascript:void(0);">{{item.name}}</a>
@@ -6,7 +6,7 @@
             {{#if controller.itemActions}}
                 {{#each action in controller.itemActions}}
                     {{#view 'admin/base/actions/action' tagName="button" href="#" context=action model=item title=action.title}}
-                        <span {{bind-attr class="action.iconClass"}}></span>
+                        <span class="{{action.iconClass}}"></span>
                     {{/view}}
                 {{/each}}
             {{/if}}
