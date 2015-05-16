@@ -23,40 +23,44 @@ var baseActionsMixin;
 
 baseActionsMixin = Ember.Mixin.create({
 
-  itemActions: [
-    {
-      title: "Edit",
-      "class": "btn btn-small btn-primary",
-      action: "edit",
-      iconClass: "glyphicon glyphicon-pencil"
-    }, {
-      title: "Show",
-      "class": "btn btn-small btn-success",
-      action: "show",
-      iconClass: "glyphicon glyphicon-info-sign"
-    }, {
-      title: "Delete",
-      confirm: "Are you sure you want to delete this?",
-      "class": "btn btn-small btn-danger",
-      action: "destroy",
-      iconClass: "glyphicon glyphicon-trash"
+  itemActions: [{
+    title: "Edit",
+    "class": "btn btn-small btn-primary",
+    action: "edit",
+    iconClass: "glyphicon glyphicon-pencil"
+  }, {
+    title: "Show",
+    "class": "btn btn-small btn-success",
+    action: "show",
+    iconClass: "glyphicon glyphicon-info-sign"
+  }, {
+    title: "Delete",
+    confirm: "Are you sure you want to delete this?",
+    "class": "btn btn-small btn-danger",
+    action: "destroy",
+    iconClass: "glyphicon glyphicon-trash"
+  }],
+  allActions: Ember.computed('actionNew', 'itemActions', {
+    get: function() {
+      return this.get('itemActions').concat([this.get('actionNew')]);
     }
-  ],
-  allActions: function(){
-    return this.get('itemActions').concat([this.get('actionNew')]);
-  }.property('actionNew', 'itemActions'),
-  actionNew: (function() {
-    return {
-      title: "New",
-      "class": "btn btn-primary",
-      action: "new",
-      iconClass: "glyphicon glyphicon-plus"
-    };
-  }).property('model'),
+  }),
+  actionNew: Ember.computed('model', {
+    get: function() {
+      return {
+        title: "New",
+        "class": "btn btn-primary",
+        action: "new",
+        iconClass: "glyphicon glyphicon-plus"
+      };
+    }
+  }),
 
-  breadcrumbsActions: (function() {
-    return this.get('__breadcrumbsActionsArray');
-  }).property('__breadcrumbsActionsArray'),
+  breadcrumbsActions: Ember.computed('__breadcrumbsActionsArray', {
+    get: function() {
+      return this.get('__breadcrumbsActionsArray');
+    }
+  }),
 
   actions: {
     "new": function(model) {
@@ -101,7 +105,7 @@ baseActionsMixin = Ember.Mixin.create({
   },
   _path: function(model, type) {
     if (type) {
-      if (type==='new') {
+      if (type === 'new') {
         return "/%@/%@/%@".fmt(this.get('_name'), type);
       } else {
         return "/%@/%@/%@".fmt(this.get('_name'), model.get('id'), type);

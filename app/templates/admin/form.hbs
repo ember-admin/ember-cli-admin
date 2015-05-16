@@ -16,7 +16,14 @@
     <div class="panel-body">
       {{#each attribute in controller.fileuploads}}
         <h4>{{admin-letter-case content=attribute caseType=caseType}}</h4>
-        {{view 'admin/fileupload/drag-and-drop-zone' class="admin-fileupload" model=controller.model property=attribute orderProperty=controller.sortAssetsBy}}
+        {{admin-drag-and-drop-zone class="admin-fileupload"
+        model=controller.model
+        property=attribute
+        adminAction='adminAction'
+        createAssetAction="createAssetAction"
+        store=controller.store
+        controllerName=controller._name
+        orderProperty=controller.sortAssetsBy}}
       {{/each}}
     </div>
   </div>

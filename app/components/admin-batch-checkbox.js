@@ -1,9 +1,7 @@
 import Ember from 'ember';
-var checkboxBatchView;
-
-checkboxBatchView = Ember.Checkbox.extend({
+export default  Ember.Checkbox.extend({
   selectAll: false,
-  pushItem: (function() {
+  pushItem: Ember.observer('checked', function() {
     if (this.get('selectAll')) {
       return this._selectAllAction();
     }
@@ -12,8 +10,8 @@ checkboxBatchView = Ember.Checkbox.extend({
     } else {
       return this.get('batches').removeObject(this.get('context'));
     }
-  }).observes('checked'),
-  observerForChangeBatchesCollection: (function() {
+  }),
+  observerForChangeBatchesCollection: Ember.observer('batches.@each', function() {
     return Ember.run.later((function(_this) {
       return function() {
         if (_this.get('batches').length === 0 && _this.get('selectAll')) {
@@ -21,7 +19,7 @@ checkboxBatchView = Ember.Checkbox.extend({
         }
       };
     })(this), 300);
-  }).observes('batches.@each'),
+  }),
   _selectAllAction: function() {
     this.set('batches', []);
     if (!this.get('checked')) {
@@ -38,13 +36,15 @@ checkboxBatchView = Ember.Checkbox.extend({
       return this.get('batches').pushObject(item);
     }
   },
-  changeBatchList: (function() {
-    if (this.get('selectAll')) {
-      return;
+  changeBatchList: Ember.computed('batches.[]', {
+    get: function() {
+      if (this.get('selectAll')) {
+        return;
+      }
+      return this.get('batches').indexOf(this.get('context')) >= 0;
     }
-    return this.get('batches').indexOf(this.get('context')) >= 0;
-  }).property('batches.@each'),
-  createObserverOnBatch: (function() {
+  }),
+  createObserverOnBatch: Ember.on('didInsertElement', function() {
     this.get('changeBatchList');
     return this.addObserver("changeBatchList", this, function() {
       if (this.get('selectAll')) {
@@ -56,7 +56,5 @@ checkboxBatchView = Ember.Checkbox.extend({
         return this.set('checked', false);
       }
     });
-  }).on('didInsertElement')
+  })
 });
-
-export default checkboxBatchView;

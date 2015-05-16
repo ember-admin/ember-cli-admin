@@ -1,11 +1,13 @@
 {{#if items}}
-    {{#each item in items}}
-        {{admin-tr-list 
-            item=item 
-            activeTableAttributes=activeTableAttributes 
-            itemActions=itemActions 
-            additionalActions=additionalActions 
+    {{#each items as |item|}}
+        {{admin-tr-list
+            item=item
+            activeTableAttributes=activeTableAttributes
+            allActions=allActions
+            itemActions=itemActions
+            additionalActions=additionalActions
             batches=batches
+            newAction=newAction
             adminAction='adminAction' }}
     {{/each}}
 {{else}}

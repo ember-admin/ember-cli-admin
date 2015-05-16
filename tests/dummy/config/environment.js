@@ -19,6 +19,14 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    contentSecurityPolicy: {
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' use.typekit.net http://connect.facebook.net *.googleapis.com " +
+        "*.gstatic.com *.yandex.ru http://localhost:3000  https://maps.googleapis.com https://maps.gstatic.com",
+      'style-src': "'self' 'unsafe-inline' use.typekit.net *.googleapis.com http://localhost:3000 http://facebook.com",
+      'img-src': "*",
+      'font-src': "'self' *.gstatic.com",
+      'connect-src': "'self' ws://localhost:35729 ws://0.0.0.0:35729 http://localhost:3000",
     }
   };
 

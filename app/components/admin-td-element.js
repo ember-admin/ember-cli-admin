@@ -14,7 +14,7 @@ tdComponent = Ember.Component.extend({
   fileuploads: "thumb_url".w(),
   tagName: "td",
   'data-column': Ember.computed.alias('attributeName'),
-  createObserves: (function() {
+  createObserves: Ember.on('didInsertElement', function() {
     if (this.get('item.fileuploads') && this.get('item.fileuploads').indexOf(this.get('attributeName')) >= 0) {
       this.get('fileuploads').forEach((function(_this) {
         return function(attr) {
@@ -38,33 +38,43 @@ tdComponent = Ember.Component.extend({
     return this.addObserver("item." + (this.get('attributeName')), this, function() {
       return this.notifyPropertyChange("value");
     });
-  }).on('didInsertElement'),
-  value: (function() {
-    var record;
-    record = this.get(this.path());
-    if (!record || (!record['get'] || !record.get('id'))) {
-      return record;
+  }),
+  value: Ember.computed("item", {
+    get: function() {
+      var record;
+      record = this.get(this.path());
+      if (!record || (!record['get'] || !record.get('id'))) {
+        return record;
+      }
+      return this.relation(record, this.get('attributeName'));
     }
-    return this.relation(record, this.get('attributeName'));
-  }).property("item"),
-  image_object: (function() {
-    return this.get("item." + (this.get('attributeName')));
-  }).property('value'),
-  color: (function() {
-    if (this.get('attributeName').match(/color/)) {
-      this.set('text', true);
-      return this.set('style', "color: " + (this.get('_value')) + ";");
+  }),
+  image_object: Ember.computed('value', {
+    get: function() {
+      return this.get("item." + (this.get('attributeName')));
     }
-  }).property('value'),
-  image: (function() {
-    if (this.get('item.fileuploads') && this.get('item.fileuploads').indexOf(this.get('attributeName')) >= 0) {
-      this.set('text', false);
+  }),
+  color: Ember.computed('value', {
+    get: function() {
+      if (this.get('attributeName').match(/color/)) {
+        this.set('text', true);
+        return this.set('style', `color:${this.get('_value')};`.htmlSafe());
+      }
+    }
+  }),
+  image: Ember.computed('value', {
+    get: function() {
+      if (this.get('item.fileuploads') && this.get('item.fileuploads').indexOf(this.get('attributeName')) >= 0) {
+        this.set('text', false);
+        return true;
+      }
+    }
+  }),
+  text: Ember.computed('value', {
+    get: function() {
       return true;
     }
-  }).property('value'),
-  text: (function() {
-    return true;
-  }).property('value'),
+  }),
   path: function() {
     return "item.%@".fmt(this.get('attributeName'));
   },
@@ -98,7 +108,13 @@ tdComponent = Ember.Component.extend({
     openImagePreview: function() {
       return this.sendAction('adminAction', 'openImagePreview', this.get('image_object.url'));
     }
-  }
+  },
+
+  itemActions: Ember.computed('allActions', {
+    get: function(){
+      console.log(this.get('allActions'));
+    }
+  })
 });
 
 export default tdComponent;

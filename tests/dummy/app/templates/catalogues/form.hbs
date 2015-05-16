@@ -10,7 +10,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Catalogue</label>
                         <div class="col-sm-8">
-                            {{view "select" contentBinding="controller.catalogues" selectionBinding="controller.model.parent" optionLabelPath="content.name" optionValuePath="content.id"}}
+                            {{view "select" content=controller.catalogues selection=controller.model.parent optionLabelPath="content.name" optionValuePath="content.id"}}
                         </div>
                     </div>
                 </div>

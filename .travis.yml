@@ -3,14 +3,29 @@ language: node_js
 
 sudo: false
 
+env:
+  - NODE_VERSION=0.12
+
 cache:
   directories:
     - node_modules
+before_install:
+  - "npm config set spin false"
+  - "npm install -g npm@^2"
+  - "npm config set spin false"
+os:
+  - linux
 
 install:
-  - npm install -g bower
+  - test $TRAVIS_OS_NAME = "osx" && brew install nvm && source $(brew --prefix nvm)/nvm.sh || test $TRAVIS_OS_NAME = "linux"
+  - nvm install $NODE_VERSION
+  - node --version
+  - npm --version
+  - git --version
   - npm install
+  - npm install -g bower
+  - npm install -g ember-cli
   - bower install
 
 script:
-  - npm test
+  - ember test

@@ -9,9 +9,11 @@ paginationPerPageView = Ember.Component.extend({
   click: function() {
     return this.sendAction('action', this.get('count'));
   },
-  isActive: (function() {
-    return this.get('perPage') === this.get('count');
-  }).property('perPage')
+  isActive: Ember.computed('perPage', {
+    get: function() {
+      return this.get('perPage') === this.get('count');
+    }
+  })
 });
 
 export default paginationPerPageView;

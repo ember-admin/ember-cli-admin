@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 var user;
 
 user = DS.Model.extend({
@@ -20,26 +21,28 @@ user = DS.Model.extend({
   }),
   fileuploads: ["avatar", "avatars"],
   asGoogleMap: ['lat', 'long', 'zoom'],
-  additionalActions: (function() {
-    var actions;
-    actions = [];
-    if (this.get('is_active')) {
-      actions.pushObject({
-        title: "Toggle Active",
-        "class": "btn btn-small btn-warning",
-        action: "toggleActive",
-        iconClass: "glyphicon glyphicon-remove"
-      });
-    } else {
-      actions.pushObject({
-        title: "Toggle Active",
-        "class": "btn btn-small btn-green",
-        action: "toggleActive",
-        iconClass: "glyphicon glyphicon-ok"
-      });
+  additionalActions: Ember.computed('is_active', {
+    get: function() {
+      var actions;
+      actions = [];
+      if (this.get('is_active')) {
+        actions.pushObject({
+          title: "Toggle Active",
+          "class": "btn btn-small btn-warning",
+          action: "toggleActive",
+          iconClass: "glyphicon glyphicon-remove"
+        });
+      } else {
+        actions.pushObject({
+          title: "Toggle Active",
+          "class": "btn btn-small btn-green",
+          action: "toggleActive",
+          iconClass: "glyphicon glyphicon-ok"
+        });
+      }
+      return actions;
     }
-    return actions;
-  }).property('is_active')
+  })
 });
 
 export default user;

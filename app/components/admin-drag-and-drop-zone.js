@@ -1,60 +1,74 @@
 import Ember from 'ember';
 import Attributes from 'ember-cli-admin/dsl/attributes';
-var dragAndDropZoneView;
-
-dragAndDropZoneView = Ember.View.extend({
+export default Ember.Component.extend({
   attributeBindings: ["property", "assetTemplate"],
-  assetTemplate: "admin/fileuploads/asset",
-  templateName: "admin/fileuploads/drag-and-drop-zone",
+
   didInsertElement: function() {
     var self = this;
     this.$("#sortable").sortable({
-     update: function(event, ui) {
-      var positions = {};
-      $(this).find('.asset').each(function(i) {
-       positions[$(this).data('id')] = i + 1;
-      });
-      var assets = self.get('assets');
-      Object.keys(positions).forEach(function(id) {
-       var target = assets.filter(function(asset) {
-        return asset.get('id') === id;
-       })[0];
-       target.set(self.get('orderProperty'), positions[id]);
-       return target.save();
-      });
-     }
+      update: function(event, ui) {
+        var positions = {};
+        $(this).find('.asset').each(function(i) {
+          positions[$(this).data('id')] = i + 1;
+        });
+        var assets = self.get('assets');
+        Object.keys(positions).forEach(function(id) {
+          var target = assets.filter(function(asset) {
+            return asset.get('id') === id;
+          })[0];
+          target.set(self.get('orderProperty'), positions[id]);
+          return target.save();
+        });
+      }
     });
     return this.get('single');
   },
-  assetsSorted: function(){
-    if(Ember.isEmpty(this.get('assets')) || Ember.isEmpty(this.get('orderProperty'))){
-      return this.get('assets');
+  assetsSorted: Ember.computed('orderProperty', 'assets.length', {
+    get: function() {
+      if (Ember.isEmpty(this.get('assets')) || Ember.isEmpty(this.get('orderProperty'))) {
+        return this.get('assets');
+      }
+      return this.get('assets').toArray().sortBy(this.get('orderProperty'));
     }
-    return this.get('assets').toArray().sortBy(this.get('orderProperty'));
-  }.property('orderProperty', 'assets.length'),
-  single: (function() {
-    return Attributes.isBelongsTo(this.get("model").constructor, this.get('property'));
-  }).property('model'),
-  assets: (function() {
-    Ember.defineProperty(this, "_assets", Ember.computed(function() {
-      return this.get("model." + (this.get('property')));
-    }).property("model." + (this.get('property'))));
-    return this.get('_assets');
-  }).property('_assets'),
-  asset: (function() {
-    Ember.defineProperty(this, "_asset", Ember.computed(function() {
-      return this.get("model." + (this.get('property')));
-    }).property("model." + (this.get('property')) + ".isLoaded"));
-    return this.get('_asset');
-  }).property('_asset'),
-  assetRSVP: (function() {
-    return new Ember.RSVP.Promise((function(_this) {
-      return function(resolve) {
-        return resolve(_this.get('asset'));
-      };
-    })(this));
-  }).property('asset'),
+  }),
+  single: Ember.computed('model', {
+    get: function() {
+      return Attributes.isBelongsTo(this.get("model").constructor, this.get('property'));
+    }
+  }),
+  assets: Ember.computed('_assets', {
+    get: function() {
+      Ember.defineProperty(this, "_assets", Ember.computed("model." + this.get('property'), {
+        get: function(){
+          return this.get("model." + (this.get('property')));
+        }
+      }));
+      return this.get('_assets');
+    }
+  }),
+  asset: Ember.computed('_asset', {
+    get: function() {
+      Ember.defineProperty(this, "_asset", Ember.computed("model." + this.get('property') + ".isLoaded", {
+        get: function() {
+          return this.get("model." + (this.get('property')));
+        }
+      }));
+      return this.get('_asset');
+    }
+  }),
+  assetRSVP: Ember.computed('asset', {
+    get: function() {
+      return new Ember.RSVP.Promise((function(_this) {
+        return function(resolve) {
+          return resolve(_this.get('asset'));
+        };
+      })(this));
+    }
+  }),
   actions: {
+    adminAction: function(actionName, options){
+        this.sendAction(this.get('adminAction'), actionName, options)
+    },
     selectFile: function() {
       var file, files, _i, _len, _results;
       files = event.target.files;
@@ -114,15 +128,15 @@ dragAndDropZoneView = Ember.View.extend({
   },
   _createAsset: function(params, file) {
     var asset, store;
-    store = this.get('controller.store');
+    store = this.get('store');
     asset = store.createRecord(Ember.String.singularize(this.get('property')), $.extend({}, params));
     asset.set('file', file);
-    return this.get('controller').send("createAsset", asset, this.get('property'), this);
+    return this.sendAction(this.get("createAssetAction"), asset, this.get('property'), this);
   },
   _params: function(file) {
     var params;
     params = {
-      assetable_type: Ember.String.singularize(this.get('controller._name')).classify(),
+      assetable_type: Ember.String.singularize(this.get('controllerName')).classify(),
       content_type: file.type,
       original_filename: file.name,
       is_main: true
@@ -139,5 +153,3 @@ dragAndDropZoneView = Ember.View.extend({
     return this.$().find("input[type=file]").val('');
   }
 });
-
-export default dragAndDropZoneView;

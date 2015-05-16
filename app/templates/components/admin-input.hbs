@@ -1,36 +1,38 @@
-<label class="col-sm-2 control-label">{{name}}</label>
-<div class="col-sm-8">
-  {{#if isString}}
-    {{input value=value type='text' class="form-control"}}
-    {{partial 'components/field-errors'}}
-  {{/if}}
-  {{#if isEmail}}
-    {{input value=value type='email' class="form-control"}}
-    {{partial 'components/field-errors'}}
-  {{/if}}
-  {{#if isColor}}
-    {{input value=value type='color' class="form-control"}}
-    {{partial 'components/field-errors'}}
-  {{/if}}
-  {{#if isText}}
-    {{textarea value=value cols="50" rows="10" class="form-control"}}
-    {{partial 'components/field-errors'}}
-  {{/if}}
-  {{#if isNumber}}
-    {{input value=value type='number' class="form-control"}}
-    {{partial 'components/field-errors'}}
-  {{/if}}
-  {{#if isDate}}
-    {{bootstrap-datepicker value=value autoclose=true class="form-control" id="pickdate"}}
-    {{partial 'components/field-errors'}}
-  {{/if}}
-  {{#if isBoolean}}
-    <label class="radio-inline">
-      {{admin-radio-button selection=value value=true}} Yes
-    </label>
-    <label class="radio-inline">
-      {{admin-radio-button selection=value value=false}} No
-    </label>
-    {{partial 'components/field-errors'}}
-  {{/if}}
+<div class="row">
+  <label class="col-sm-1 col-md-1 col-xs-1 col-lg-1 control-label">{{name}}</label>
+  <div class="col-sm-8 col-md-8 col-xs-8 col-lg-8">
+    {{#if isString}}
+      {{input value=value type='text' class="form-control"}}
+      {{partial 'components/field-errors'}}
+    {{/if}}
+    {{#if isEmail}}
+      {{input value=value type='email' class="form-control"}}
+      {{partial 'components/field-errors'}}
+    {{/if}}
+    {{#if isColor}}
+      {{input value=value type='color' class="form-control"}}
+      {{partial 'components/field-errors'}}
+    {{/if}}
+    {{#if isText}}
+      {{textarea value=value cols="50" rows="10" class="form-control"}}
+      {{partial 'components/field-errors'}}
+    {{/if}}
+    {{#if isNumber}}
+      {{input value=value type='number' class="form-control"}}
+      {{partial 'components/field-errors'}}
+    {{/if}}
+    {{#if isDate}}
+      {{bootstrap-datepicker value=value autoclose=true class="form-control" id="pickdate"}}
+      {{partial 'components/field-errors'}}
+    {{/if}}
+    {{#if isBoolean}}
+      <label class="radio-inline">
+        {{admin-radio-button selection=value value=true}} Yes
+      </label>
+      <label class="radio-inline">
+        {{admin-radio-button selection=value value=false}} No
+      </label>
+      {{partial 'components/field-errors'}}
+    {{/if}}
+  </div>
 </div>
