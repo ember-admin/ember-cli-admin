@@ -3,11 +3,12 @@ import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
 
-var App, server, users;
+var App, server, users, windowHistoryBack;
 
 module('Acceptance: Resource Actions', {
   beforeEach: function() {
     App = startApp();
+    windowHistoryBack = window.history.back;
     server = new Pretender(function() {
       this.put('/api/users/:id', function(request){
         return [200, {"Content-Type": "application/json"}, JSON.stringify({user: {id: request.params.id, email: 'test@example.com', name: 'Test User'}}    )];
@@ -29,6 +30,7 @@ module('Acceptance: Resource Actions', {
     });
   },
   afterEach: function() {
+    window.history.back = windowHistoryBack;
     Ember.run(App, 'destroy');
     server.shutdown();
   }
@@ -104,17 +106,11 @@ test('model formFields are shown on resource show page', function(assert) {
 });
 
 test('model properties are saved and the previous visited route is transitioned to when we click "Submit" on the edit page', function(assert) {
+  window.history.back = function() {
+    assert.ok(true, "it goes back based on browser history");
+  };
   visit('/users/1/show');
   click('button[title="Edit"]');
   fillIn('input:first', "test@ex.co");
-  assert.ok(true);
   click('button:contains("Submit")');
-  andThen(function(){
-    // Ember seems to fulfill previous promise a bit too early,
-    // not accounting for the process of reloading the page via
-    // window.history.back()
-    Ember.run.later(function(){
-      assert.equal(find(".panel-heading:contains('Show')").length, 1);
-    }, 700);
-  });
 });
