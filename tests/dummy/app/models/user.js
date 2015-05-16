@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 var user;
 
 user = DS.Model.extend({
