@@ -5,7 +5,7 @@ export default Ember.Component.extend(ConfirmationMixin, {
   classNameBindings: ["class"],
   attributeBindings: ["title"],
   "class": Ember.computed('action', {
-    get() {
+    get: function() {
       return this.get('action.class');
     }
   }),
@@ -26,7 +26,7 @@ export default Ember.Component.extend(ConfirmationMixin, {
     }
   },
   action: Ember.computed('actionName', {
-    get() {
+    get: function() {
       if (this.get('breadcrumbAction')) {
         switch (this.get('breadcrumbAction')) {
           case "New":
@@ -46,7 +46,7 @@ export default Ember.Component.extend(ConfirmationMixin, {
     }
   }),
   title: Ember.computed('action', {
-    get() {
+    get: function() {
       return this.get('action.title');
     }
   }),
