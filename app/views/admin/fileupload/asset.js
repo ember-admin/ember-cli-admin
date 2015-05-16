@@ -1,8 +1,7 @@
 import Ember from 'ember';
 import ConfirmationMixin from 'ember-cli-admin/mixins/views/confirmation';
-var assetView;
 
-assetView = Ember.View.extend(ConfirmationMixin, {
+export default Ember.View.extend(ConfirmationMixin, {
   attributeBindings: ["templateName", 'property', 'data-id'],
   classNames: ['asset', 'col-md-2', 'col-xs-4', 'col-lg-2'],
   tagName: 'li',
@@ -56,5 +55,3 @@ assetView = Ember.View.extend(ConfirmationMixin, {
     }
   })
 });
-
-export default assetView;
