@@ -7,7 +7,7 @@ usersController = Ember.Controller.extend(TableViewController, {
   sortFields: ['id', 'name'],
   formAttributes: ['email', 'name'],
   searchForm: Ember.computed('q', {
-    get(){
+    get: function(){
       return new SearchLogic().form(this.get('q'), function() {
         this.input('email');
         this.input('name', {type: 'select', selectContent: ["Foo", "Bar"], prompt: 'Select Name'});

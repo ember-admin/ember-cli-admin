@@ -9,7 +9,7 @@ typeaheadComponent = Ember.TextField.extend({
   highlight: true,
   minLength: 1,
   ajax: Ember.computed({
-    get() {
+    get: function() {
       var session;
       session = JSON.parse(localStorage.getItem('ember_simple_auth:session'));
       if (!session) {
@@ -23,7 +23,7 @@ typeaheadComponent = Ember.TextField.extend({
     }
   }),
   bloodhound: Ember.computed({
-    get() {
+    get: function() {
       var self, states;
       self = this;
       states = new Bloodhound({

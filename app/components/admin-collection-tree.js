@@ -9,14 +9,14 @@ view = Ember.CollectionView.extend({
     tagName: 'li',
     attributeBindings: ['liId:data-id'],
     liId: Ember.computed('content', {
-      get() {
+      get: function() {
         return this.get('content').id;
       }
     }),
     item: Ember.computed.alias('content')
   }),
   children: Ember.computed('content', {
-    get() {
+    get: function() {
       return this.get('content');
     }
   }),

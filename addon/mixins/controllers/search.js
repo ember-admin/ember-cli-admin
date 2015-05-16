@@ -14,7 +14,7 @@ searchMixin = Ember.Mixin.create({
   isShowSearchForm: true,
 
   searchForm: Ember.computed('model', 'q', {
-    get() {
+    get: function() {
       var search = new SearchLogic().fromModel(this.get('q'), this.get('modelType'));
       return search;
     }

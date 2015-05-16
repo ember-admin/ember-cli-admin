@@ -6,7 +6,7 @@ var sortMixin;
 sortMixin = Ember.Mixin.create({
 
   sortFields: Ember.computed({
-    get() {
+    get: function() {
       return Attributes.forSort(this.get('modelType'));
     }
   }),

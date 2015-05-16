@@ -27,7 +27,7 @@ dragAndDropZoneView = Ember.View.extend({
     return this.get('single');
   },
   assetsSorted: Ember.computed('orderProperty', 'assets.length', {
-    get() {
+    get: function() {
       if (Ember.isEmpty(this.get('assets')) || Ember.isEmpty(this.get('orderProperty'))) {
         return this.get('assets');
       }
@@ -35,14 +35,14 @@ dragAndDropZoneView = Ember.View.extend({
     }
   }),
   single: Ember.computed('model', {
-    get() {
+    get: function() {
       return Attributes.isBelongsTo(this.get("model").constructor, this.get('property'));
     }
   }),
   assets: Ember.computed('_assets', {
-    get() {
+    get: function() {
       Ember.defineProperty(this, "_assets", Ember.computed("model." + this.get('property'), {
-        get(){
+        get: function(){
           return this.get("model." + (this.get('property')));
         }
       }));
@@ -50,9 +50,9 @@ dragAndDropZoneView = Ember.View.extend({
     }
   }),
   asset: Ember.computed('_asset', {
-    get() {
+    get: function() {
       Ember.defineProperty(this, "_asset", Ember.computed("model." + this.get('property') + ".isLoaded", {
-        get() {
+        get: function() {
           return this.get("model." + (this.get('property')));
         }
       }));
@@ -60,7 +60,7 @@ dragAndDropZoneView = Ember.View.extend({
     }
   }),
   assetRSVP: Ember.computed('asset', {
-    get() {
+    get: function() {
       return new Ember.RSVP.Promise((function(_this) {
         return function(resolve) {
           return resolve(_this.get('asset'));

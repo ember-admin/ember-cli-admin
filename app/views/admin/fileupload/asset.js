@@ -7,7 +7,7 @@ assetView = Ember.View.extend(ConfirmationMixin, {
   classNames: ['asset', 'col-md-2', 'col-xs-4', 'col-lg-2'],
   tagName: 'li',
   'data-id': Ember.computed('asset.id', {
-    get() {
+    get: function() {
       return this.get('asset.id');
     }
   }),
@@ -29,7 +29,7 @@ assetView = Ember.View.extend(ConfirmationMixin, {
     });
   },
   action: Ember.computed({
-    get() {
+    get: function() {
       return {
         title: 'Delete',
         confirm: "Are you sure you want to delete this?",
@@ -38,7 +38,7 @@ assetView = Ember.View.extend(ConfirmationMixin, {
     }
   }),
   assetRSVP: Ember.computed('asset', {
-    get() {
+    get: function() {
       return new Ember.RSVP.Promise((function(_this) {
         return function(resolve) {
           return resolve(_this.get('asset'));
@@ -47,7 +47,7 @@ assetView = Ember.View.extend(ConfirmationMixin, {
     }
   }),
   isImage: Ember.computed('asset.content_type', {
-    get() {
+    get: function() {
       var type = this.get('asset.content_type');
       if (type === 'image/gif' || type === 'image/jpeg' || type === 'image/png' || type === 'image/tiff') {
         return true;

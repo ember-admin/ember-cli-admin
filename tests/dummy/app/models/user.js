@@ -22,7 +22,7 @@ user = DS.Model.extend({
   fileuploads: ["avatar", "avatars"],
   asGoogleMap: ['lat', 'long', 'zoom'],
   additionalActions: Ember.computed('is_active', {
-    get() {
+    get: function() {
       var actions;
       actions = [];
       if (this.get('is_active')) {

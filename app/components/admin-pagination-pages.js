@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   numberOfPagesBinding: "content.numberOfPages",
 
   pageItems: Ember.computed("currentPage", "numberOfPages", {
-    get() {
+    get: function() {
       var currentPage = +(this.get("currentPage"));
       var totalPages = +(this.get("numberOfPages"));
 
@@ -56,7 +56,7 @@ export default Ember.Component.extend({
   }),
 
   canStepForward: Ember.computed("currentPage", "numberOfPages", {
-    get() {
+    get: function() {
       var page = +(this.get("currentPage"));
       var totalPages = +(this.get("numberOfPages"));
       return page < totalPages;
@@ -64,14 +64,14 @@ export default Ember.Component.extend({
   }),
 
   canStepBackward: Ember.computed("currentPage", {
-    get() {
+    get: function() {
       var page = +(this.get("currentPage"));
       return page > 1;
     }
   }),
 
   onePage: Ember.computed('numberOfPages', {
-    get() {
+    get: function() {
       var totalPages = +(this.get("numberOfPages"));
       return totalPages === 1;
     }

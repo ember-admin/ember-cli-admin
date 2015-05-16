@@ -40,7 +40,7 @@ tdComponent = Ember.Component.extend({
     });
   }),
   value: Ember.computed("item", {
-    get() {
+    get: function() {
       var record;
       record = this.get(this.path());
       if (!record || (!record['get'] || !record.get('id'))) {
@@ -50,12 +50,12 @@ tdComponent = Ember.Component.extend({
     }
   }),
   image_object: Ember.computed('value', {
-    get() {
+    get: function() {
       return this.get("item." + (this.get('attributeName')));
     }
   }),
   color: Ember.computed('value', {
-    get() {
+    get: function() {
       if (this.get('attributeName').match(/color/)) {
         this.set('text', true);
         return this.set('style', `color:${this.get('_value')};`.htmlSafe());
@@ -63,7 +63,7 @@ tdComponent = Ember.Component.extend({
     }
   }),
   image: Ember.computed('value', {
-    get() {
+    get: function() {
       if (this.get('item.fileuploads') && this.get('item.fileuploads').indexOf(this.get('attributeName')) >= 0) {
         this.set('text', false);
         return true;
@@ -71,7 +71,7 @@ tdComponent = Ember.Component.extend({
     }
   }),
   text: Ember.computed('value', {
-    get() {
+    get: function() {
       return true;
     }
   }),

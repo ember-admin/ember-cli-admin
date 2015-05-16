@@ -5,12 +5,12 @@ textInputView = Ember.TextField.extend({
   classNames: ["form-control"],
   attributeBindings: ["value", "readonly"],
   readonly: Ember.computed({
-    get() {
+    get: function() {
       return this.get('attributeName') === 'id';
     }
   }),
   value: Ember.computed('context', 'attributeName', {
-    get() {
+    get: function() {
       return this.get(this.path());
     }
   }),

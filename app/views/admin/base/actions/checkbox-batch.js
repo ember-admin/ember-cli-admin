@@ -39,7 +39,7 @@ checkboxBatchView = Ember.Checkbox.extend({
     }
   },
   changeBatchList: Ember.computed('batches.[]', {
-    get() {
+    get: function() {
       if (this.get('selectAll')) {
         return;
       }

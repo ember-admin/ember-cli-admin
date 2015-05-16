@@ -8,13 +8,13 @@ treeViewMixin = Ember.Mixin.create({
   perPage: 100000,
 
   catalogues: Ember.computed({
-    get() {
+    get: function() {
       return this.get('store').find('catalogue', {});
     }
   }),
 
   roots: Ember.computed('model.items.[]', {
-    get() {
+    get: function() {
       if (!this.get('model.items')) {
         return [];
       }

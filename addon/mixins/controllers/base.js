@@ -16,7 +16,7 @@ var baseMixin;
 
 baseMixin = Ember.Mixin.create({
   decorator: Ember.computed('model', {
-    get() {
+    get: function() {
       if (this.get('model')) {
         return BaseDecorator.create({
           model: this.get('model')
@@ -25,7 +25,7 @@ baseMixin = Ember.Mixin.create({
     }
   }),
   _name: Ember.computed({
-    get() {
+    get: function() {
       return this._debugContainerKey.split(":")[1].replace(/(\/[Ss]how)|(\/[Ee]dit)|(\/[Nn]ew)/, '');
     }
   })

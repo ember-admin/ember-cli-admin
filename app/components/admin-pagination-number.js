@@ -7,7 +7,7 @@ paginationNumberView = Ember.Component.extend({
   classNameBindings: ["isActive:active"],
   href: '#',
   isActive: Ember.computed('page', {
-    get() {
+    get: function () {
       return this.get('page') === this.get('number');
     }
   }),

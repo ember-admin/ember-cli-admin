@@ -6,7 +6,7 @@ actionView = Ember.View.extend(ConfirmationMixin, {
   classNameBindings: ["class"],
   attributeBindings: ["title"],
   "class": Ember.computed('action', {
-    get() {
+    get: function() {
       return this.get('action.class');
     }
   }),
@@ -28,7 +28,7 @@ actionView = Ember.View.extend(ConfirmationMixin, {
     }
   },
   action: Ember.computed('context', {
-    get() {
+    get: function() {
       if (this.get('breadcrumbAction')) {
         switch (this.get('breadcrumbAction')) {
           case "New":
@@ -48,7 +48,7 @@ actionView = Ember.View.extend(ConfirmationMixin, {
     }
   }),
   title: Ember.computed('action', {
-    get() {
+    get: function() {
       return this.get('action.title');
     }
   }),

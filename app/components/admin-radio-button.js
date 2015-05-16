@@ -8,7 +8,7 @@ export default Ember.Component.extend({
     this.set("selection", this.get('value'));
   },
   checked: Ember.computed('selection', {
-    get() {
+    get: function() {
       return this.get("value") == this.get("selection");
     }
   })

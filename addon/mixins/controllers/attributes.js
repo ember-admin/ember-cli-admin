@@ -5,19 +5,19 @@ var attributesMixin;
 
 attributesMixin = Ember.Mixin.create({
   formAttributes: Ember.computed('modelAttributes.@each', {
-    get() {
+    get: function() {
       return Attributes.withoutId(this.get("model").constructor);
     }
   }),
 
   tableAttributes: Ember.computed('modelAttributes.@each', {
-    get() {
+    get: function() {
       return this.get('modelAttributes');
     }
   }),
 
   fileuploads: Ember.computed('model.fileuploads', {
-    get() {
+    get: function() {
       if (this.get('model.fileuploads')) {
         return this.get('model.fileuploads');
       }
@@ -25,7 +25,7 @@ attributesMixin = Ember.Mixin.create({
   }),
 
   activeTableAttributes: Ember.computed({
-    get() {
+    get: function() {
       var type = this.toString().match(/:([^:]+)/)[1];
       var hiddenAttributes = this.tableSettingsStore.get(type) || [];
       var attributes = this.get('tableAttributes');

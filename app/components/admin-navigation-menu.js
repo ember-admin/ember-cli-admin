@@ -5,7 +5,7 @@ navigationMenu = Ember.Component.extend({
   tagName: "li",
   classNameBindings: ["isActive:active"],
   isActive: Ember.computed('content', 'content.children', 'origContext.activeMenu', {
-    get() {
+    get: function() {
       if (this.get('content.route') === this.get('origContext.activeMenu')) {
         return true;
       }
@@ -13,7 +13,7 @@ navigationMenu = Ember.Component.extend({
     }
   }),
   url: Ember.computed('content.route', {
-    get() {
+    get: function() {
       return "/#%@".fmt(this.get('content.route'));
     }
   }),

@@ -41,12 +41,12 @@ baseActionsMixin = Ember.Mixin.create({
     iconClass: "glyphicon glyphicon-trash"
   }],
   allActions: Ember.computed('actionNew', 'itemActions', {
-    get() {
+    get: function() {
       return this.get('itemActions').concat([this.get('actionNew')]);
     }
   }),
   actionNew: Ember.computed('model', {
-    get() {
+    get: function() {
       return {
         title: "New",
         "class": "btn btn-primary",
@@ -57,7 +57,7 @@ baseActionsMixin = Ember.Mixin.create({
   }),
 
   breadcrumbsActions: Ember.computed('__breadcrumbsActionsArray', {
-    get() {
+    get: function() {
       return this.get('__breadcrumbsActionsArray');
     }
   }),
