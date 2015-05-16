@@ -3,7 +3,7 @@
   "dependencies": {
     "jquery": "^1.11.1",
     "ember": "1.13.0-beta.1",
-    "ember-data": "1.0.0-beta.16",
+    "ember-data": "1.0.0-beta.17",
     "ember-resolver": "~0.1.12",
     "loader.js": "stefanpenner/loader.js#3.2.0",
     "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.3",

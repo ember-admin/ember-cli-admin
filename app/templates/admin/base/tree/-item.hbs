@@ -4,10 +4,15 @@
         <a class="tree-item_link" href="javascript:void(0);">{{item.name}}</a>
         <div class="controls">
             {{#if controller.itemActions}}
-                {{#each action in controller.itemActions}}
-                    {{#view 'admin/base/actions/action' tagName="button" href="#" context=action model=item title=action.title}}
-                        <span class="{{action.iconClass}}"></span>
-                    {{/view}}
+                {{#each controller.itemActions as |action|}}
+                    {{admin-action
+                    tagName="button"
+                    actionName=action
+                    model=item
+                    title=action.title
+                    adminAction='adminAction'
+                    newAction=controller.newAction
+                    allActions=controller.allActions}}
                 {{/each}}
             {{/if}}
             {{partial "admin/base/actions/addition-actions"}}

@@ -8,14 +8,14 @@ confirmationMixin = Ember.Mixin.create({
     if (options == null) {
       options = {};
     }
-    action = this.get('action') || this.get('context');
-    return this.get('controller').send('adminAction', 'openModal', this._createConfirmationObject(action, options));
+    action = this.get('action') || this.get('actionName');
+    return this.sendAction(this.get('adminAction'), 'openModal', this._createConfirmationObject(action, options));
   },
 
   _createConfirmationObject: function(action, options){
     return Ember.Object.create({
       actionData: action,
-      model: this.get('model') || this.get('controller.model'),
+      model: this.get('model'),
       options: options
     });
   }

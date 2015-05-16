@@ -2,6 +2,7 @@
     <div class="col-md-9">
         {{partial "admin/base/actions/batch"}}
         {{partial "admin/base/table-settings"}}
+
         <table class="table-view">
             {{admin-table-head
                 activeTableAttributes=controller.activeTableAttributes
@@ -16,10 +17,12 @@
             {{admin-table-body
                 items=controller.model.items
                 activeTableAttributes=controller.activeTableAttributes
+                allActions=controller.allActions
                 itemActions=controller.itemActions
                 additionalActions=controller.additionalActions
                 batches=controller.__batches
                 adminAction='adminAction'
+                actionNew=controller.actionNew
             }}
         </table>
     </div>

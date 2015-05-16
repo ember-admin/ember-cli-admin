@@ -1,13 +1,23 @@
-{{#each action in additionalActions}}
-  {{#view 'admin/base/actions/action' tagName="button" href="#" context=action model=view.item title=action.title}}
-    <span class="{{action.iconClass}}"></span>
-  {{/view}}
+{{#each additionalActions as |action|}}
+    {{admin-action
+    tagName="button"
+    actionName=action
+    model=item
+    title=action.title
+    adminAction='adminAction'
+    newAction=newAction
+    itemActions=itemActions}}
 {{/each}}
 
-{{#if view.item.additionalActions}}
-    {{#each action in view.item.additionalActions}}
-        {{#view 'admin/base/actions/action' tagName="button" href="#" context=action model=view.item title=action.title}}
-            <span class="{{action.iconClass}}"></span>
-        {{/view}}
+{{#if item.additionalActions}}
+    {{#each item.additionalActions as |action|}}
+        {{admin-action
+        tagName="button"
+        actionName=action
+        model=item
+        title=action.title
+        adminAction='adminAction'
+        newAction=newAction
+        itemActions=itemActions}}
     {{/each}}
 {{/if}}

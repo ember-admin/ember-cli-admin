@@ -108,7 +108,13 @@ tdComponent = Ember.Component.extend({
     openImagePreview: function() {
       return this.sendAction('adminAction', 'openImagePreview', this.get('image_object.url'));
     }
-  }
+  },
+
+  itemActions: Ember.computed('allActions', {
+    get: function(){
+      console.log(this.get('allActions'));
+    }
+  })
 });
 
 export default tdComponent;
