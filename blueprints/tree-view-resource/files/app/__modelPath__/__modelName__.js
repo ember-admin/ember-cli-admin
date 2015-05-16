@@ -8,8 +8,10 @@ export default DS.Model.extend({
 
   children: Ember.computed.alias('<%= camelizedModuleName %>'),
 
-  rebuildUrl: function(){
+  rebuildUrl: Ember.computed({
+    get() {
      return '/api/v1/<%= camelizedModuleName %>';
-  }.property()
+    }
+  })
 
 });

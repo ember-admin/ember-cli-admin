@@ -41,19 +41,21 @@ dragAndDropZoneView = Ember.View.extend({
   }),
   assets: Ember.computed('_assets', {
     get() {
-      Ember.defineProperty(this, "_assets", Ember.computed(function() {
-        return this.get("model." + (this.get('property')));
-      }).property("model." + (this.get('property'))));
+      Ember.defineProperty(this, "_assets", Ember.computed("model." + this.get('property'), {
+        get(){
+          return this.get("model." + (this.get('property')));
+        }
+      }));
       return this.get('_assets');
     }
   }),
   asset: Ember.computed('_asset', {
     get() {
-      Ember.defineProperty(this, "_asset", Ember.computed({
+      Ember.defineProperty(this, "_asset", Ember.computed("model." + this.get('property') + ".isLoaded", {
         get() {
           return this.get("model." + (this.get('property')));
         }
-      }).property("model." + (this.get('property')) + ".isLoaded"));
+      }));
       return this.get('_asset');
     }
   }),
