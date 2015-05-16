@@ -6,10 +6,10 @@ export default  Ember.Mixin.create({
 
   getOutlet: function(controller, outletName){
     var outlet = "%@/%@".fmt(this._controllerName(controller).decamelize(), outletName);
-    if (this.container.has('template:%@'.fmt(outlet))) {
+    if (this.container._registry.has('template:%@'.fmt(outlet))) {
       return outlet;
     }
-    if (this.container.has("template:admin/%@".fmt(outletName))){
+    if (this.container._registry.has("template:admin/%@".fmt(outletName))){
       return "admin/%@".fmt(outletName);
     }
     return "admin/%@".fmt(outletName);

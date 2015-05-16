@@ -58,7 +58,7 @@ tdComponent = Ember.Component.extend({
     get() {
       if (this.get('attributeName').match(/color/)) {
         this.set('text', true);
-        return this.set('style', "color: " + (this.get('_value')) + ";");
+        return this.set('style', `color:${this.get('_value')};`.htmlSafe());
       }
     }
   }),
