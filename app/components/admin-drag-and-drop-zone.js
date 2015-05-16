@@ -1,11 +1,8 @@
 import Ember from 'ember';
 import Attributes from 'ember-cli-admin/dsl/attributes';
-var dragAndDropZoneView;
-
-dragAndDropZoneView = Ember.View.extend({
+export default Ember.Component.extend({
   attributeBindings: ["property", "assetTemplate"],
-  assetTemplate: "admin/fileuploads/asset",
-  templateName: "admin/fileuploads/drag-and-drop-zone",
+
   didInsertElement: function() {
     var self = this;
     this.$("#sortable").sortable({
@@ -69,6 +66,9 @@ dragAndDropZoneView = Ember.View.extend({
     }
   }),
   actions: {
+    adminAction: function(actionName, options){
+        this.sendAction(this.get('adminAction'), actionName, options)
+    },
     selectFile: function() {
       var file, files, _i, _len, _results;
       files = event.target.files;
@@ -128,15 +128,15 @@ dragAndDropZoneView = Ember.View.extend({
   },
   _createAsset: function(params, file) {
     var asset, store;
-    store = this.get('controller.store');
+    store = this.get('store');
     asset = store.createRecord(Ember.String.singularize(this.get('property')), $.extend({}, params));
     asset.set('file', file);
-    return this.get('controller').send("createAsset", asset, this.get('property'), this);
+    return this.sendAction(this.get("createAssetAction"), asset, this.get('property'), this);
   },
   _params: function(file) {
     var params;
     params = {
-      assetable_type: Ember.String.singularize(this.get('controller._name')).classify(),
+      assetable_type: Ember.String.singularize(this.get('controllerName')).classify(),
       content_type: file.type,
       original_filename: file.name,
       is_main: true
@@ -153,5 +153,3 @@ dragAndDropZoneView = Ember.View.extend({
     return this.$().find("input[type=file]").val('');
   }
 });
-
-export default dragAndDropZoneView;

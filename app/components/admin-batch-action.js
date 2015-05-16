@@ -1,15 +1,13 @@
 import Ember from 'ember';
 import ConfirmationMixin from 'ember-cli-admin/mixins/views/confirmation';
-var batchActionView;
-
-batchActionView = Ember.View.extend(ConfirmationMixin, {
+export default Ember.Component.extend(ConfirmationMixin, {
   tagName: "li",
   click: function(event) {
     event.preventDefault();
-    if (this.get('controller.__batches.length') < 1) {
+    if (this.get('__batches.length') < 1) {
       return;
     }
-    if (this.get('context.confirm')) {
+    if (this.get('action.confirm')) {
       return this._showConfirmation({
         batch: true
       });
@@ -18,8 +16,6 @@ batchActionView = Ember.View.extend(ConfirmationMixin, {
     }
   },
   _batchAction: function() {
-    return this.get('controller').send("baseBatchAction", this.get('context.action'));
+    return this.sendAction(this.get('baseBatchAction'), this.get('action.action'));
   }
 });
-
-export default batchActionView;
