@@ -23,6 +23,7 @@ install:
   - npm --version
   - git --version
   - npm install
+  - bower install
 
 script:
-  - npm test
+  - ember test
