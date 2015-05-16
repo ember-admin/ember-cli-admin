@@ -1,7 +1,5 @@
 import Ember from 'ember';
-var checkboxBatchView;
-
-checkboxBatchView = Ember.Checkbox.extend({
+export default  Ember.Checkbox.extend({
   selectAll: false,
   pushItem: Ember.observer('checked', function() {
     if (this.get('selectAll')) {
@@ -60,5 +58,3 @@ checkboxBatchView = Ember.Checkbox.extend({
     });
   })
 });
-
-export default checkboxBatchView;

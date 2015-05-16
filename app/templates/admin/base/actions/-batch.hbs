@@ -5,10 +5,8 @@
       <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      {{#each action in controller.batchActions}}
-        {{#view 'admin/base/actions/batch-action' context=action}}
-          <a href="#">{{action.title}}</a>
-        {{/view}}
+      {{#each controller.batchActions as |action|}}
+        {{admin-batch-action action=action adminAction="adminAction" baseBatchAction="baseBatchAction" batches=controller.__batches}}
       {{/each}}
     </ul>
   {{/if}}
