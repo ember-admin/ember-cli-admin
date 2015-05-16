@@ -1,7 +1,6 @@
 import Ember from 'ember';
-var textInputView;
 
-textInputView = Ember.TextField.extend({
+export default Ember.TextField.extend({
   classNames: ["form-control"],
   attributeBindings: ["value", "readonly"],
   readonly: Ember.computed({
@@ -21,5 +20,3 @@ textInputView = Ember.TextField.extend({
     return this.get('context').set(this.get('attributeName'), this.get('value'));
   }
 });
-
-export default textInputView;
