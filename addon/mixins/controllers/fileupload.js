@@ -9,7 +9,7 @@ var fileUploadMixin;
 
 fileUploadMixin = Ember.Mixin.create({
   actions: {
-    createAsset: function(asset, property, view) {
+    createAssetAction: function(asset, property, view) {
       return asset.save().then((function(_this) {
         return function() {
           view.set('creating', false);

@@ -12,6 +12,9 @@ export default Ember.Component.extend(ConfirmationMixin, {
   actions: {
     deleteAsset: function() {
       return this._showConfirmation();
+    },
+    openImagePreview: function(url){
+      this.sendAction(this.get('adminAction'), 'openImagePreview', url);
     }
   },
   _createConfirmationObject: function(action) {

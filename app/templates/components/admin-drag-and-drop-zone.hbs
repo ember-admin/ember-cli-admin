@@ -1,19 +1,19 @@
 <div class="asset_wrapper">
-  {{#if view.single}}
-    {{#if view.asset}}
+  {{#if single}}
+    {{#if asset}}
       <div class="row asset_holder">
-          {{admin-asset asset=view.asset property=view.property adminAction="adminAction"}}
+          {{admin-asset asset=asset property=property adminAction="adminAction"}}
       </div>
     {{/if}}
   {{else}}
   <ul id="sortable" class="row asset_holder">
-    {{#each view.assetsSorted as |asset|}}
-      {{admin-asset asset=view.asset property=view.property adminAction="adminAction"}}
+    {{#each assetsSorted as |asset|}}
+      {{admin-asset asset=asset property=property adminAction="adminAction"}}
     {{/each}}
   </ul>
   {{/if}}
     <input type="file" {{action 'selectFile' on='change' target=view}}>
-  {{#if view.creating}}
+  {{#if creating}}
       <span class="glyphicon glyphicon-refresh glyphicon-refresh"></span>
   {{/if}}
 </div>
