@@ -2,13 +2,13 @@
   {{#if view.single}}
     {{#if view.asset}}
       <div class="row asset_holder">
-        {{view 'admin/fileupload/asset' templateName=view.assetTemplate asset=view.asset property=view.property}}
+          {{admin-asset asset=view.asset property=view.property adminAction="adminAction"}}
       </div>
     {{/if}}
   {{else}}
   <ul id="sortable" class="row asset_holder">
-    {{#each asset in view.assetsSorted}}
-      {{view 'admin/fileupload/asset' templateName=view.assetTemplate asset=asset property=view.property}}
+    {{#each view.assetsSorted as |asset|}}
+      {{admin-asset asset=view.asset property=view.property adminAction="adminAction"}}
     {{/each}}
   </ul>
   {{/if}}

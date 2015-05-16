@@ -1,5 +1,5 @@
-{{#if view.isImage}}
-  <a class="thumbnail" href="#" {{action "openImagePreview" view.asset.url on="click"}}>
+{{#if isImage}}
+  <a class="thumbnail" href="#" {{action "openImagePreview" asset.url on="click"}}>
     <img src="{{view.asset.thumb_url}}">
     <a class="btn btn-danger btn-xs delete-asset" {{action "deleteAsset" on="click" target=view}}>x</a>
   </a>
@@ -9,7 +9,6 @@
     <a class="btn btn-danger btn-xs delete-asset" {{action "deleteAsset" on="click" target=view}}>x</a>
   </a>
   <div class="caption">
-    <h5>{{view.asset.original_filename}}</h5>
+    <h5>{{asset.original_filename}}</h5>
   </div>
 {{/if}}
-

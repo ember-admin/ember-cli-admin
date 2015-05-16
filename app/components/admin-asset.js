@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import ConfirmationMixin from 'ember-cli-admin/mixins/views/confirmation';
-
-export default Ember.View.extend(ConfirmationMixin, {
+export default Ember.Component.extend(ConfirmationMixin, {
   attributeBindings: ["templateName", 'property', 'data-id'],
   classNames: ['asset', 'col-md-2', 'col-xs-4', 'col-lg-2'],
   tagName: 'li',
