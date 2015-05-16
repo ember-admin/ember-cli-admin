@@ -9,51 +9,63 @@ dragAndDropZoneView = Ember.View.extend({
   didInsertElement: function() {
     var self = this;
     this.$("#sortable").sortable({
-     update: function(event, ui) {
-      var positions = {};
-      $(this).find('.asset').each(function(i) {
-       positions[$(this).data('id')] = i + 1;
-      });
-      var assets = self.get('assets');
-      Object.keys(positions).forEach(function(id) {
-       var target = assets.filter(function(asset) {
-        return asset.get('id') === id;
-       })[0];
-       target.set(self.get('orderProperty'), positions[id]);
-       return target.save();
-      });
-     }
+      update: function(event, ui) {
+        var positions = {};
+        $(this).find('.asset').each(function(i) {
+          positions[$(this).data('id')] = i + 1;
+        });
+        var assets = self.get('assets');
+        Object.keys(positions).forEach(function(id) {
+          var target = assets.filter(function(asset) {
+            return asset.get('id') === id;
+          })[0];
+          target.set(self.get('orderProperty'), positions[id]);
+          return target.save();
+        });
+      }
     });
     return this.get('single');
   },
-  assetsSorted: function(){
-    if(Ember.isEmpty(this.get('assets')) || Ember.isEmpty(this.get('orderProperty'))){
-      return this.get('assets');
+  assetsSorted: Ember.computed('orderProperty', 'assets.length', {
+    get() {
+      if (Ember.isEmpty(this.get('assets')) || Ember.isEmpty(this.get('orderProperty'))) {
+        return this.get('assets');
+      }
+      return this.get('assets').toArray().sortBy(this.get('orderProperty'));
     }
-    return this.get('assets').toArray().sortBy(this.get('orderProperty'));
-  }.property('orderProperty', 'assets.length'),
-  single: (function() {
-    return Attributes.isBelongsTo(this.get("model").constructor, this.get('property'));
-  }).property('model'),
-  assets: (function() {
-    Ember.defineProperty(this, "_assets", Ember.computed(function() {
-      return this.get("model." + (this.get('property')));
-    }).property("model." + (this.get('property'))));
-    return this.get('_assets');
-  }).property('_assets'),
-  asset: (function() {
-    Ember.defineProperty(this, "_asset", Ember.computed(function() {
-      return this.get("model." + (this.get('property')));
-    }).property("model." + (this.get('property')) + ".isLoaded"));
-    return this.get('_asset');
-  }).property('_asset'),
-  assetRSVP: (function() {
-    return new Ember.RSVP.Promise((function(_this) {
-      return function(resolve) {
-        return resolve(_this.get('asset'));
-      };
-    })(this));
-  }).property('asset'),
+  }),
+  single: Ember.computed('model', {
+    get() {
+      return Attributes.isBelongsTo(this.get("model").constructor, this.get('property'));
+    }
+  }),
+  assets: Ember.computed('_assets', {
+    get() {
+      Ember.defineProperty(this, "_assets", Ember.computed(function() {
+        return this.get("model." + (this.get('property')));
+      }).property("model." + (this.get('property'))));
+      return this.get('_assets');
+    }
+  }),
+  asset: Ember.computed('_asset', {
+    get() {
+      Ember.defineProperty(this, "_asset", Ember.computed({
+        get() {
+          return this.get("model." + (this.get('property')));
+        }
+      }).property("model." + (this.get('property')) + ".isLoaded"));
+      return this.get('_asset');
+    }
+  }),
+  assetRSVP: Ember.computed('asset', {
+    get() {
+      return new Ember.RSVP.Promise((function(_this) {
+        return function(resolve) {
+          return resolve(_this.get('asset'));
+        };
+      })(this));
+    }
+  }),
   actions: {
     selectFile: function() {
       var file, files, _i, _len, _results;

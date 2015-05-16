@@ -7,23 +7,27 @@ treeViewMixin = Ember.Mixin.create({
   __tree: true,
   perPage: 100000,
 
-  catalogues: function(){
-    return this.get('store').find('catalogue', {});
-  }.property(),
-
-  roots: function(){
-    if(!this.get('model.items')){
-      return [];
+  catalogues: Ember.computed({
+    get() {
+      return this.get('store').find('catalogue', {});
     }
-    return this.get('model.items').filter(function(item){
-      return Ember.isEmpty(item.get('parent_id'));
-    });
-  }.property('model.items.[]'),
+  }),
+
+  roots: Ember.computed('model.items.[]', {
+    get() {
+      if (!this.get('model.items')) {
+        return [];
+      }
+      return this.get('model.items').filter(function(item) {
+        return Ember.isEmpty(item.get('parent_id'));
+      });
+    }
+  }),
 
 
   actions: {
 
-    rebuild: function(itemObject, prevId, nextId, parentId){
+    rebuild: function(itemObject, prevId, nextId, parentId) {
       var properties = {
         parent_id: parentId,
         prev_id: prevId,
@@ -36,7 +40,7 @@ treeViewMixin = Ember.Mixin.create({
         dataType: 'json',
         url: itemObject.get('rebuildUrl'),
         data: properties,
-        beforeSend: function (){
+        beforeSend: function() {
           Ember.$('.sortable_tree i.handle').hide();
         },
         success: function() {

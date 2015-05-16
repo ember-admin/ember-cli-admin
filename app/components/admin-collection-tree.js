@@ -8,15 +8,19 @@ view = Ember.CollectionView.extend({
     templateName: 'admin/base/tree/collection',
     tagName: 'li',
     attributeBindings: ['liId:data-id'],
-    liId: function() {
-      return this.get('content').id;
-    }.property('content'),
+    liId: Ember.computed('content', {
+      get() {
+        return this.get('content').id;
+      }
+    }),
     item: Ember.computed.alias('content')
   }),
-  children: (function() {
-    return this.get('content');
-  }).property('content'),
-  initSortable: (function() {
+  children: Ember.computed('content', {
+    get() {
+      return this.get('content');
+    }
+  }),
+  initSortable: Ember.on('didInsertElement', function() {
     var self;
     this.$().nestedSortable({
       handle: 'div',
@@ -26,12 +30,12 @@ view = Ember.CollectionView.extend({
       placeholder: 'placeholder'
     });
     self = this;
-    return this.$().on('sortupdate', (function(_this) {
+    return Ember.on('sortupdate', (function(_this) {
       return function(event, ui) {
         return self.rebuild.call(self, event, ui);
       };
-    })(this));
-  }).on('didInsertElement'),
+    })(this), this.$());
+  }),
   rebuild: function(event, ui) {
     var item, itemId, itemObject, nextId, parentId, prevId;
     item = ui.item;

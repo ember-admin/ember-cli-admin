@@ -5,9 +5,11 @@ var actionView;
 actionView = Ember.View.extend(ConfirmationMixin, {
   classNameBindings: ["class"],
   attributeBindings: ["title"],
-  "class": (function() {
-    return this.get('action.class');
-  }).property('action'),
+  "class": Ember.computed('action', {
+    get() {
+      return this.get('action.class');
+    }
+  }),
   click: function() {
     var model;
     model = this.get('model') || this.get('controller.model');
@@ -25,27 +27,31 @@ actionView = Ember.View.extend(ConfirmationMixin, {
       return this._super();
     }
   },
-  action: (function() {
-    if (this.get('breadcrumbAction')) {
-      switch (this.get('breadcrumbAction')) {
-        case "New":
-          return this.get('controller.actionNew');
-        case "Edit":
-          return this._findAction('Edit');
-        case "Destroy":
-          return this._findAction('Delete');
-        case "Show":
-          return this._findAction('Show');
-        default:
-          return "";
+  action: Ember.computed('context', {
+    get() {
+      if (this.get('breadcrumbAction')) {
+        switch (this.get('breadcrumbAction')) {
+          case "New":
+            return this.get('controller.actionNew');
+          case "Edit":
+            return this._findAction('Edit');
+          case "Destroy":
+            return this._findAction('Delete');
+          case "Show":
+            return this._findAction('Show');
+          default:
+            return "";
+        }
+      } else {
+        return this.get('context');
       }
-    } else {
-      return this.get('context');
     }
-  }).property('context'),
-  title: (function() {
-    return this.get('action.title');
-  }).property('action'),
+  }),
+  title: Ember.computed('action', {
+    get() {
+      return this.get('action.title');
+    }
+  }),
   _findAction: function(title) {
     return this.get('controller.itemActions').find(function(action) {
       return action.title === title;

@@ -8,42 +8,46 @@ typeaheadComponent = Ember.TextField.extend({
   hint: true,
   highlight: true,
   minLength: 1,
-  ajax: (function() {
-    var session;
-    session = JSON.parse(localStorage.getItem('ember_simple_auth:session'));
-    if (!session) {
-      return {};
+  ajax: Ember.computed({
+    get() {
+      var session;
+      session = JSON.parse(localStorage.getItem('ember_simple_auth:session'));
+      if (!session) {
+        return {};
+      }
+      return {
+        headers: {
+          'Authorization': 'Token user_token="%@", user_email="%@"'.fmt(session.user_token, session.user_email)
+        }
+      };
     }
-    return {
-      headers: {
-        'Authorization': 'Token user_token="%@", user_email="%@"'.fmt(session.user_token, session.user_email)
-      }
-    };
-  }).property(),
-  bloodhound: (function() {
-    var self, states;
-    self = this;
-    states = new Bloodhound({
-      datumTokenizer: Bloodhound.tokenizers.obj.whitespace("value"),
-      queryTokenizer: Bloodhound.tokenizers.whitespace,
-      prefetch: false,
-      remote: {
-        url: '%@?q=%QUERY'.fmt(self.get('url')),
-        ajax: this.get('ajax')
-      }
-    });
-    states.initialize();
-    return states;
-  }).property(),
-  initComponent: (function() {
+  }),
+  bloodhound: Ember.computed({
+    get() {
+      var self, states;
+      self = this;
+      states = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace("value"),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: false,
+        remote: {
+          url: '%@?q=%QUERY'.fmt(self.get('url')),
+          ajax: this.get('ajax')
+        }
+      });
+      states.initialize();
+      return states;
+    }
+  }),
+  initComponent: Ember.on('didInsertElement', function() {
     return this.$().typeahead(this.getProperties(['hint', 'highlight', 'minLength']), {
       displayKey: this.get('displayKey'),
       source: this.get('bloodhound').ttAdapter()
     });
-  }).on('didInsertElement'),
-  destroyComponent: (function() {
+  }),
+  destroyComponent: Ember.on('willDestroyElement', function() {
     return this.$().typeahead('destroy');
-  }).on('willDestroyElement')
+  })
 });
 
 export default typeaheadComponent;

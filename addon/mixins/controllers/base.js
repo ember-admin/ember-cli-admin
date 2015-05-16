@@ -15,16 +15,20 @@ import SidebarMixin from 'ember-cli-admin/mixins/controllers/sidebar';
 var baseMixin;
 
 baseMixin = Ember.Mixin.create({
-  decorator: (function() {
-    if (this.get('model')) {
-      return BaseDecorator.create({
-        model: this.get('model')
-      });
+  decorator: Ember.computed('model', {
+    get() {
+      if (this.get('model')) {
+        return BaseDecorator.create({
+          model: this.get('model')
+        });
+      }
     }
-  }).property('model'),
-  _name: (function() {
-    return this._debugContainerKey.split(":")[1].replace(/(\/[Ss]how)|(\/[Ee]dit)|(\/[Nn]ew)/, '');
-  }).property()
+  }),
+  _name: Ember.computed({
+    get() {
+      return this._debugContainerKey.split(":")[1].replace(/(\/[Ss]how)|(\/[Ee]dit)|(\/[Nn]ew)/, '');
+    }
+  })
 });
 
 baseMixin.reopen(BaseActionsMixin, FileUploadMixin, AttributesMixin, QueryParams, PaginationMixin, BatchActionsMixin,

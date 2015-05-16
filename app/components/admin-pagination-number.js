@@ -6,9 +6,11 @@ paginationNumberView = Ember.Component.extend({
   tagName: "a",
   classNameBindings: ["isActive:active"],
   href: '#',
-  isActive: (function() {
-    return this.get('page') === this.get('number');
-  }).property('page'),
+  isActive: Ember.computed('page', {
+    get() {
+      return this.get('page') === this.get('number');
+    }
+  }),
   click: function(e) {
     e.preventDefault();
     if (this.get('number') !== '...') {
