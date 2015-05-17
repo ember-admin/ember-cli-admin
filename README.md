@@ -316,7 +316,7 @@ You can also provide your own search form template:
 #app/templates/admin/search.hbs
 ...
 ```
-More options for autocomplete check in `app/components/admin-typeahead.coffee`
+More options for autocomplete check in `app/components/admin-typeahead.js`
 
 ##Sorting
 
