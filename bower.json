@@ -13,11 +13,13 @@
     "ember-qunit-notifications": "0.0.7",
     "qunit": "~1.17.0",
     "pretender": "0.1.0",
-    "bootstrap-sass-official": "3.2.0",
-    "typeahead.js": "twitter/typeahead.js#0.10.5",
+    "bootstrap-datepicker": "~1.4.0"
+  },
+  "devDependencies": {
+    "bootstrap-sass-official": "~3.3.4",
+    "typeahead.js": "~0.11.1",
     "jquery-ui-sortable": "*",
-    "bootstrap-datepicker": "~1.3.1",
-    "chance": "~0.7.3",
-    "jquery-ui-touch-punch": "*"
+    "jquery-ui-touch-punch": "*",
+    "chance": "~0.7.5"
   }
 }
