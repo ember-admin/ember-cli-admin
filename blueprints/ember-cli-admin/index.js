@@ -17,6 +17,8 @@ module.exports = {
       {name: "ember-cli-map", target: "0.2.2"},
       {name: "ember-cli-bootstrap-datepicker", target: "0.3.0"},
       {name: "broccoli-merge-trees", target: "0.1.4"},
+
+      // fixme ember-cli-sass
       {name: "broccoli-sass", target: "^0.6.2"},
       {name: "broccoli-static-compiler", target: "0.1.4"}
     ]);

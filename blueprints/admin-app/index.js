@@ -20,12 +20,10 @@ module.exports = {
       });
     process('app/router.js',
       {
-        replace: {
-          "Router.map(function() {": "Router.map(function() {\n\treturn this.route(\"dashboard\", {path: \"/\"});"
-        },
         insert: {
+          "Router.map(function() {": "\nthis.route(\"dashboard\", {path: \"/\"});",
           "import config from './config/environment';": "\nimport MetaRoute from 'ember-cli-admin/dsl/meta-route';",
-          "Router.map(function() {\n\treturn this.route(\"dashboard\", {path: \"/\"});\n});\n": "\nMetaRoute.map(Router, function() {\n});"
+          "export default Router;" : "\nMetaRoute.map(Router, function() {\n});\n\texport default Router;"
         }
       });
     var appName = "\n\t\t\tappName: '" + options.entity.name + "',";

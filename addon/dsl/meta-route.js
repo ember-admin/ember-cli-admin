@@ -4,7 +4,14 @@ var MetaRoute, metaRouteClass;
 metaRouteClass = MetaRoute = (function() {
   function MetaRoute() {}
 
-  MetaRoute.map = function(router, callback) {
+  MetaRoute.map = function(router, options, callback) {
+    if (arguments.length === 2 && typeof options === "function") {
+      callback = options;
+      options = {path: '/backend'};
+    }
+
+    this.path_prefix = options.path;
+
     this.router = router;
     return callback.call(new metaRouteClass());
   };
@@ -14,7 +21,7 @@ metaRouteClass = MetaRoute = (function() {
     self = this;
     return metaRouteClass.router.map(function() {
       this.route(name, {
-        path: "/" + name
+        path: self.path_prefix + "/" + name
       });
       this.route("" + name + ".edit", {
         path: self._action_edit_path(name)
@@ -29,15 +36,15 @@ metaRouteClass = MetaRoute = (function() {
   };
 
   MetaRoute.prototype._action_show_path = function(name) {
-    return "/" + name + "/:id/show";
+    return this.path_prefix + "/" + name + "/:id/show";
   };
 
   MetaRoute.prototype._action_edit_path = function(name) {
-    return "/" + name + "/:id/edit";
+    return this.path_prefix + "/" + name + "/:id/edit";
   };
 
   MetaRoute.prototype._new_path = function(name) {
-    return "/" + name + "/new";
+    return this.path_prefix + "/" + name + "/new";
   };
 
   return MetaRoute;
