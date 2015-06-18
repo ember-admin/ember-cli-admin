@@ -104,15 +104,21 @@ baseActionsMixin = Ember.Mixin.create({
     })(this));
   },
   _path: function(model, type) {
+    var result = null;
     if (type) {
       if (type === 'new') {
-        return "/%@/%@/%@".fmt(this.get('_name'), type);
+        result = "/%@/%@/%@".fmt(this.get('_name'), type);
       } else {
-        return "/%@/%@/%@".fmt(this.get('_name'), model.get('id'), type);
+        result = "/%@/%@/%@".fmt(this.get('_name'), model.get('id'), type);
       }
     } else {
-      return "/%@/%@".fmt(this.get('_name'), model);
+      result = "/%@/%@".fmt(this.get('_name'), model);
     }
+
+    //fixme
+    result =  "/backend" + result;
+
+    return result;
   }
 });
 

@@ -7,10 +7,11 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route("dashboard", {path: "/"});
+  this.route("home", {path: "/"});
 });
 
 MetaRoute.map(Router, function() {
+  this.route("dashboard", {path: "/"});
   this.resources("users");
   this.resources("cars");
   this.resources("user-categories");

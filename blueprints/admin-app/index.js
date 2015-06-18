@@ -21,9 +21,8 @@ module.exports = {
     process('app/router.js',
       {
         insert: {
-          "Router.map(function() {": "\nthis.route(\"dashboard\", {path: \"/\"});",
           "import config from './config/environment';": "\nimport MetaRoute from 'ember-cli-admin/dsl/meta-route';",
-          "export default Router;" : "\nMetaRoute.map(Router, function() {\n});\n\texport default Router;"
+          "export default Router;" : "\nMetaRoute.map(Router, function() {\nthis.route(\"dashboard\", {path: \"/\"});});\n\texport default Router;"
         }
       });
     var appName = "\n\t\t\tappName: '" + options.entity.name + "',";
