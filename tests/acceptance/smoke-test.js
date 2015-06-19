@@ -41,7 +41,7 @@ test('navbar contains links to dashboard and resources', function(assert) {
 
 test('pods can be resolved', function(assert) {
   assert.expect(1);
-  visit('/cars');
+  visit('/backend/cars');
   andThen(function() {
     assert.equal(find("tbody tr").length, 1);
   });

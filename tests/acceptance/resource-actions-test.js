@@ -38,7 +38,7 @@ module('Acceptance: Resource Actions', {
 
 test('resource table is displayed', function(assert) {
   assert.expect(1);
-  visit('/users');
+  visit('/backend/users');
   andThen(function() {
     assert.equal(find("tbody tr").length, 25);
   });
@@ -46,7 +46,7 @@ test('resource table is displayed', function(assert) {
 
 test('breadcrumbs contains "New" action button', function(assert) {
   assert.expect(1);
-  visit('/users');
+  visit('/backend/users');
 
   andThen(function() {
     assert.equal(find(".breadcrumb-action button").length, 1);
@@ -55,7 +55,7 @@ test('breadcrumbs contains "New" action button', function(assert) {
 
 test('resource index page contains link to resource edit page', function(assert) {
   assert.expect(1);
-  visit('/users');
+  visit('/backend/users');
 
   click('tbody tr:first button[title="Edit"]');
 
@@ -66,7 +66,7 @@ test('resource index page contains link to resource edit page', function(assert)
 
 test('resource index page contains link to resource show page', function(assert) {
   assert.expect(1);
-  visit('/users');
+  visit('/backend/users');
 
   click('tbody tr:first button[title="Show"]');
 
@@ -77,7 +77,7 @@ test('resource index page contains link to resource show page', function(assert)
 
 test('resource index page contains link to resource delete action', function(assert) {
   assert.expect(1);
-  visit('/users');
+  visit('/backend/users');
 
   andThen(function() {
     assert.equal(find('tbody tr:first button[title="Delete"]').length, 1);
@@ -87,7 +87,7 @@ test('resource index page contains link to resource delete action', function(ass
 test('model gets deleted via modal that we open by clicking on the table delete button', function(assert) {
   assert.expect(1);
 
-  visit('/users');
+  visit('/backend/users');
 
   click('tbody tr:first button[title="Delete"]');
   click('button:contains("Confirm")');
@@ -97,7 +97,7 @@ test('model gets deleted via modal that we open by clicking on the table delete 
 });
 
 test('model formFields are shown on resource show page', function(assert) {
-  visit('/users/1/show');
+  visit('/backend/users/1/show');
   andThen(function() {
     assert.equal(find('tbody td').length, 2);
     assert.equal(find("td:contains('test@example.com')").length, 1);
@@ -109,7 +109,7 @@ test('model properties are saved and the previous visited route is transitioned 
   window.history.back = function() {
     assert.ok(true, "it goes back based on browser history");
   };
-  visit('/users/1/show');
+  visit('/backend/users/1/show');
   click('button[title="Edit"]');
   fillIn('input:first', "test@ex.co");
   click('button:contains("Submit")');

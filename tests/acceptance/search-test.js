@@ -31,7 +31,7 @@ module('Acceptance: Search', {
 
 test('search panel contains model search fields', function(assert) {
   assert.expect(2);
-  visit('/users');
+  visit('/backend/users');
 
   andThen(function() {
     assert.equal(find('form.search .controls').length, 4);
@@ -41,7 +41,7 @@ test('search panel contains model search fields', function(assert) {
 
 test('search results are shown in table', function(assert) {
   assert.expect(1);
-  visit('/users');
+  visit('/backend/users');
   fillIn('input[name="email"]', 'test@example.com');
   click('button[type="submit"]');
 
@@ -52,7 +52,7 @@ test('search results are shown in table', function(assert) {
 
 test('search input can be selectable', function(assert) {
   assert.expect(3);
-  visit('/users');
+  visit('/backend/users');
 
   andThen(function() {
     assert.equal(find(".controls select").length, 1);
@@ -66,7 +66,7 @@ test('autocomplete search', function(assert) {
     users = [{id: 1, name: 'testuser'}];
     return [200, {"Content-Type": "application/json"}, JSON.stringify(users)];
   });
-  visit('/users');
+  visit('/backend/users');
   Ember.$('.typeahead').typeahead('val', '12');
   click('button[type="submit"]');
   andThen(function(){
