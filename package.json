@@ -48,7 +48,7 @@
     "ember-cli-htmlbars": "0.7.4",
     "ember-cli-ic-ajax": "0.1.1",
     "ember-cli-inject-live-reload": "^1.3.0",
-    "ember-cli-map": "0.3.5",
+    "ember-cli-map": "git://github.com/ember-admin/ember-cli-map.git",
     "ember-cli-pretender": "^0.3.1",
     "ember-cli-qunit": "0.3.13",
     "ember-cli-sass": "4.0.0-beta.7",
