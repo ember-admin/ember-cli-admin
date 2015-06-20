@@ -51,6 +51,7 @@
     "ember-cli-map": "0.3.5",
     "ember-cli-pretender": "^0.3.1",
     "ember-cli-qunit": "0.3.13",
+    "ember-cli-sass": "4.0.0-beta.7",
     "ember-cli-uglify": "1.0.1",
     "ember-data": "1.0.0-beta.17",
     "ember-export-application-global": "^1.0.2",

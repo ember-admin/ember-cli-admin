@@ -23,7 +23,7 @@ module('Acceptance: Smoke Test', {
 
 test('root displays dashboard', function(assert) {
   assert.expect(1);
-  visit('/');
+  visit('/backend');
   andThen(()=>{
     assert.equal(find("h1:contains('Dashboard')").length, 1);
   });
@@ -32,7 +32,7 @@ test('root displays dashboard', function(assert) {
 
 test('navbar contains links to dashboard and resources', function(assert) {
   assert.expect(2);
-  visit('/');
+  visit('/backend');
   andThen(()=>{
     assert.equal(find(".navbar a:contains('Users')").length, 1);
     assert.equal(find(".navbar a:contains('Dashboard')").length, 1);
