@@ -7,7 +7,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route("home", {path: "/"});
+
 });
 
 MetaRoute.map(Router, function() {

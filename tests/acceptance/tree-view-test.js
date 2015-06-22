@@ -28,7 +28,7 @@ module('Acceptance: Tree View Test', {
 test('model tree is displayed', function(assert) {
   assert.expect(1);
 
-  visit('/backend/catalogues');
+  visit('/catalogues');
 
   andThen(function() {
     assert.equal(find('.sortable_tree li:first:contains("1") li:first:contains("2") li:first:contains("4")').length, 1);
@@ -39,7 +39,7 @@ test('model tree is displayed', function(assert) {
 test('it goes to edit', function(assert) {
   assert.expect(1);
 
-  visit('/backend/catalogues');
+  visit('/catalogues');
 
   andThen(function() {
     click('button[title="Edit"]:first');

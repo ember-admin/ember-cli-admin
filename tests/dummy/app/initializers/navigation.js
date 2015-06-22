@@ -5,11 +5,6 @@ initializer = {
   name: 'navigation',
   initialize: function() {
     return Navigation.map(function() {
-
-      this.navigate("Home", {
-        route: "home"
-      });
-
       /*
        Dashboard page
        You can owerride this if you don't use dashboard

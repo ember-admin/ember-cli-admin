@@ -37,7 +37,7 @@ module('Acceptance: Sorting', {
 test('records in table are sorted by controller sortFields in ascending order', function(assert) {
   assert.expect(1);
 
-  visit('/backend/users');
+  visit('/users');
   click('th:contains("id")');
   andThen(function() {
     assert.equal(find('tbody tr:first td[data-column="id"]:contains("0")').length, 1);
@@ -48,7 +48,7 @@ test('records in table are sorted by controller sortFields in ascending order', 
 test('records in table are sorted by controller sortFields in descending order', function(assert) {
   assert.expect(1);
 
-  visit('/backend/users');
+  visit('/users');
   click('th:contains("id")');
   click('th:contains("id")');
   andThen(function() {
@@ -61,7 +61,7 @@ test('switching from sorting by one attribute to another works as expected - rec
      'new selected attribute', function(assert) {
   assert.expect(1);
 
-  visit('/backend/users');
+  visit('/users');
   click('th:contains("id")');
   click('th:contains("id")');
   click('th:contains("name")');

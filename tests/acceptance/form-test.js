@@ -26,7 +26,7 @@ module('Acceptance: Form', {
 
 test('edit page contains inputs for different field types', function(assert) {
   assert.expect(7);
-  visit('/backend/user-categories');
+  visit('/user-categories');
 
   andThen(()=>{
     click('button[title="Edit"]:first');
@@ -45,7 +45,7 @@ test('edit page contains inputs for different field types', function(assert) {
 
 test('new page contains inputs for different field types', function(assert) {
   assert.expect(3);
-  visit('/backend/user-categories');
+  visit('/user-categories');
 
   andThen(()=>{
     click('button[title="New"]');
