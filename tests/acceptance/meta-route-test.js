@@ -5,43 +5,46 @@ import Router from '../../router';
 import Pretender from 'pretender';
 import MetaRoute from 'ember-cli-admin/dsl/meta-route';
 
-var App, server, users;
+var App, server, users, router;
 
 module('Acceptance: Meta route Test', {
-    beforeEach: function() {
-        MetaRoute.map(Router, {path: "/admin"}, function() {
-            this.route("dashboard", {path: "/"});
+    beforeEach: function () {
+        MetaRoute.map(Router, {path: "/admin"}, function () {
             this.resources("users");
+            this.route("dashboard", {path: "/"});
         });
 
         App = startApp();
 
-        server = new Pretender(function() {
-            this.get('/api/users', function(request) {
+        server = new Pretender(function () {
+            this.get('/api/users', function (request) {
                 users = [];
                 for (var i = 0; i < 25; i++) {
                     users.push({id: i, name: 'testuser'});
                 }
                 users[0].email = 'test@example.com';
-                return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 40}})];
-            });
-
-            this.get('/api/users/:id', function(request){
-                return [200, {"Content-Type": "application/json"}, JSON.stringify({user: {id: request.params.id, email: 'test@example.com', name: 'Test User'}})];
+                return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta: {total: 40}})];
             });
         });
     },
-    afterEach: function() {
+    afterEach: function () {
+        MetaRoute.map(Router, function() {
+            this.route("dashboard", {path: "/"});
+            this.resources("users");
+            this.resources("cars");
+            this.resources("user-categories");
+            this.resources("catalogues");
+        });
+
         Ember.run(App, 'destroy');
         server.shutdown();
     }
 });
 
-test('/admin/users is displayed', function(assert) {
+test('/admin/users is displayed', function (assert) {
     assert.expect(1);
     visit('/admin/users');
-    console.log(currentURL());
-    andThen(function() {
+    andThen(function () {
         assert.equal(find("tbody tr").length, 25);
     });
 });
