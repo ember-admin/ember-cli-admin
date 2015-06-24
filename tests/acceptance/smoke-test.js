@@ -25,10 +25,9 @@ test('root displays dashboard', function(assert) {
   assert.expect(1);
   visit('/');
   andThen(()=>{
-    assert.equal(find("h1:contains('Dashboard')").length, 1);
+    assert.equal(currentRouteName(), "index");
   });
 });
-
 
 test('navbar contains links to dashboard and resources', function(assert) {
   assert.expect(2);

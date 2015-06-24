@@ -64,10 +64,10 @@ baseActionsMixin = Ember.Mixin.create({
 
   actions: {
     "new": function(model) {
-      return this.transitionToRoute(this._path(model, "new"));
+      return this._transitionToMetaRoute(model, "new");
     },
     edit: function(model) {
-      return this.transitionToRoute(this._path(model, "edit"));
+      return this._transitionToMetaRoute(model, "edit");
     },
     update: function(model) {
       return model.save();
@@ -88,13 +88,13 @@ baseActionsMixin = Ember.Mixin.create({
       }
     },
     show: function(model) {
-      var path = this._path(model, "show");
-      return this.transitionToRoute(path);
+      return this._transitionToMetaRoute(model, "show");
     },
     adminAction: function(adminActionName, item) {
       this.send(adminActionName, item);
     }
   },
+
   _destroyItem: function(model) {
     model.deleteRecord();
     return model.save().then((function(_this) {
@@ -103,16 +103,21 @@ baseActionsMixin = Ember.Mixin.create({
       };
     })(this));
   },
-  _path: function(model, type) {
-    if (type) {
-      if (type === 'new') {
-        return "/%@/%@/%@".fmt(this.get('_name'), type);
-      } else {
-        return "/%@/%@/%@".fmt(this.get('_name'), model.get('id'), type);
+
+  _transitionToMetaRoute: function(model, type) {
+    var result = null;
+
+    if (type){
+      result = "%@.%@".fmt(this.get('_name'), type);
+
+      if (type === 'new'){
+        return this.transitionToRoute(result);
+      }else{
+        return this.transitionToRoute(result, model.get('id'));
       }
-    } else {
-      return "/%@/%@".fmt(this.get('_name'), model);
     }
+
+    return this.transitionToRoute("/%@/%@".fmt(this.get('_name'), model));
   }
 });
 

@@ -5,10 +5,9 @@ initializer = {
   name: 'navigation',
   initialize: function() {
     return Navigation.map(function() {
-
       /*
-        Dashboard page
-        You can owerride this if you don't use dashboard
+       Dashboard page
+       You can owerride this if you don't use dashboard
        */
       this.navigate("Dashboard", {
         route: "dashboard"
