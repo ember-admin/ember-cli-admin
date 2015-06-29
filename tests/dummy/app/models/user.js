@@ -15,7 +15,7 @@ user = DS.Model.extend({
   is_active: DS.attr('boolean', {
     defaultValue: false
   }),
-  avatar: DS.belongsTo('avatar'),
+  avatar: DS.belongsTo('avatar', { async: false }),
   avatars: DS.hasMany('avatar', {
     async: true
   }),

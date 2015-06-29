@@ -4,7 +4,7 @@ var paginationMixin;
 
 paginationMixin = Ember.Mixin.create({
   pagination: function(modelName, params) {
-    return this.store.find(modelName, params);
+    return this.store.query(modelName, params);
   }
 });
 

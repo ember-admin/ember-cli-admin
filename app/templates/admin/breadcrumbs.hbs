@@ -1,5 +1,5 @@
 <ul class="breadcrumb">
-  {{#each breadcrumb in controller}}
+  {{#each content as |breadcrumb|}}
     {{#if breadcrumb.active}}
       <li class="{{breadcrumb.class}}">{{admin-letter-case content=breadcrumb.name caseType=caseType}}</li>
     {{else}}

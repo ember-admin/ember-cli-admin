@@ -1,9 +1,9 @@
-{{#each controller.breadcrumbsActions as |action|}}
+{{#each breadcrumbsActions as |action|}}
   {{#if action}}
     <div class="breadcrumb-action">
         {{admin-action
         tagName="button"
-        model=controller.model
+        model=model
         breadcrumbAction=action
         adminAction='adminAction'
         newAction=newAction

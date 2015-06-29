@@ -1,12 +1,12 @@
 <div class="btn-group batch-actions">
-  {{#if controller.batchActions}}
+  {{#if batchActions}}
     <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
       batch actions
       <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      {{#each controller.batchActions as |action|}}
-        {{admin-batch-action action=action adminAction="adminAction" baseBatchAction="baseBatchAction" batches=controller.__batches}}
+      {{#each batchActions as |action|}}
+        {{admin-batch-action action=action adminAction="adminAction" baseBatchAction="baseBatchAction" batches=__batches}}
       {{/each}}
     </ul>
   {{/if}}

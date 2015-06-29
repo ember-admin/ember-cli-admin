@@ -1,5 +1,6 @@
 import Ember from 'ember';
 export default  Ember.Checkbox.extend({
+  isComponentFactory: true,
   selectAll: false,
   pushItem: Ember.observer('checked', function() {
     if (this.get('selectAll')) {

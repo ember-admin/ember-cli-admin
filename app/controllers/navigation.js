@@ -3,7 +3,7 @@ import config from '../config/environment';
 import Navigation from 'ember-cli-admin/dsl/navigation';
 var navigationController;
 
-navigationController = Ember.ArrayController.extend({
+navigationController = Ember.Controller.extend({
   activeMenu: "dashboard",
   model: Navigation.content,
   titleLinksTo: config.EmberENV.titleLinksTo || '/#/',

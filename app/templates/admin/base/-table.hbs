@@ -5,28 +5,28 @@
 
         <table class="table-view">
             {{admin-table-head
-                activeTableAttributes=controller.activeTableAttributes
-                sortFields=controller.sortFields
-                orderAscending=controller.orderAscending
-                sort=controller.sort
+                activeTableAttributes=activeTableAttributes
+                sortFields=sortFields
+                orderAscending=orderAscending
+                sort=sort
                 action='sort'
-                batches=controller.__batches
-                items=controller.model.items
+                batches=__batches
+                items=model.items
                 caseType=caseType
             }}
             {{admin-table-body
-                items=controller.model.items
-                activeTableAttributes=controller.activeTableAttributes
-                allActions=controller.allActions
-                itemActions=controller.itemActions
-                additionalActions=controller.additionalActions
-                batches=controller.__batches
+                items=model.items
+                activeTableAttributes=activeTableAttributes
+                allActions=allActions
+                itemActions=itemActions
+                additionalActions=additionalActions
+                batches=__batches
                 adminAction='adminAction'
-                actionNew=controller.actionNew
+                actionNew=actionNew
             }}
         </table>
     </div>
-    {{#if controller.isShowSearchForm}}
+    {{#if isShowSearchForm}}
         <div class="col-md-3">
             {{outlet 'search'}}
             {{outlet 'sidebar'}}

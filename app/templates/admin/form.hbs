@@ -3,8 +3,8 @@
     <div class="panel-heading">Base Information</div>
     <div class="panel-body">
       <div class="form-horizontal">
-        {{#each attribute in controller.formAttributes}}
-          {{admin-input model=controller.model name=attribute}}
+        {{#each formAttributes as |attribute|}}
+          {{admin-input model=model name=attribute}}
         {{/each}}
       </div>
 
@@ -14,25 +14,25 @@
   <div class="panel panel-default">
     <div class="panel-heading">File Uploads</div>
     <div class="panel-body">
-      {{#each attribute in controller.fileuploads}}
+      {{#each fileuploads as |attribute|}}
         <h4>{{admin-letter-case content=attribute caseType=caseType}}</h4>
         {{admin-drag-and-drop-zone class="admin-fileupload"
-        model=controller.model
+        model=model
         property=attribute
         adminAction='adminAction'
         createAssetAction="createAssetAction"
-        store=controller.store
-        controllerName=controller._name
-        orderProperty=controller.sortAssetsBy}}
+        store=store
+        controllerName=_name
+        orderProperty=sortAssetsBy}}
       {{/each}}
     </div>
   </div>
 
-  {{#if controller.model.asGoogleMap}}
+  {{#if model.asGoogleMap}}
     <div class="panel panel-default">
       <div class="panel-heading">Map</div>
       <div class="panel-body">
-          {{google-map model=controller.model}}
+          {{google-map model=model}}
       </div>
     </div>
   {{/if}}

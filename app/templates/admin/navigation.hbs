@@ -1,8 +1,8 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
-  <a class="navbar-brand" href="{{controller.titleLinksTo}}">{{controller.siteTitle}}</a>
+  <a class="navbar-brand" href="{{titleLinksTo}}">{{siteTitle}}</a>
   <ul class="nav navbar-nav">
-    {{#each navigation in controller}}
-      {{partial "admin/navigation/item"}}
-    {{/each}}
+      {{#each content as |navigation|}}
+          {{partial "admin/navigation/item"}}
+      {{/each}}
   </ul>
 </div>

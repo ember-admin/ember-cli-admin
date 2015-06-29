@@ -7,10 +7,10 @@
       </div>
       <div class="modal-body">
         <ul>
-          {{#each attr in controller.tableAttributes}}
+          {{#each tableAttributes as |attr|}}
             <div>
               {{admin-show-column-in-table content=this attribute=attr}}
-              <label>{{admin-letter-case content=attr caseType=controller.caseType}}</label>
+              <label>{{admin-letter-case content=attr caseType=caseType}}</label>
             </div>
           {{/each}}
         </ul>

@@ -3,16 +3,16 @@
         <i class="icon-move icon-move glyphicon glyphicon-move"></i>
         <a class="tree-item_link" href="javascript:void(0);">{{item.name}}</a>
         <div class="controls">
-            {{#if controller.itemActions}}
-                {{#each controller.itemActions as |action|}}
+            {{#if itemActions}}
+                {{#each itemActions as |action|}}
                     {{admin-action
                     tagName="button"
                     actionName=action
                     model=item
                     title=action.title
                     adminAction='adminAction'
-                    newAction=controller.newAction
-                    allActions=controller.allActions}}
+                    newAction=newAction
+                    allActions=allActions}}
                 {{/each}}
             {{/if}}
             {{partial "admin/base/actions/addition-actions"}}

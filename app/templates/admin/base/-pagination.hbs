@@ -1,7 +1,7 @@
 <div class="btn-group per-page">
-{{#admin-pagination-per-page count=25 action="changePerPage" perPage=controller.perPage}}25{{/admin-pagination-per-page}}
-{{#admin-pagination-per-page count=50 action="changePerPage" perPage=controller.perPage}}50{{/admin-pagination-per-page}}
-{{#admin-pagination-per-page count=100 action="changePerPage" perPage=controller.perPage}}100{{/admin-pagination-per-page}}
+{{#admin-pagination-per-page count=25 action="changePerPage" perPage=perPage}}25{{/admin-pagination-per-page}}
+{{#admin-pagination-per-page count=50 action="changePerPage" perPage=perPage}}50{{/admin-pagination-per-page}}
+{{#admin-pagination-per-page count=100 action="changePerPage" perPage=perPage}}100{{/admin-pagination-per-page}}
 </div>
 
 {{admin-pagination-pages content=this}}

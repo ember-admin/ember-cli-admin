@@ -5,9 +5,9 @@
     <table class="table table-striped">
       <thead><tr><th>Name</th><th>Value</th></tr></thead>
       <tbody>
-        {{#each attribute in controller.formAttributes}}
+        {{#each formAttributes as |attribute|}}
           <tr>
-            <th>{{admin-letter-case content=attribute caseType=controller.caseType}}</th>
+            <th>{{admin-letter-case content=attribute caseType=caseType}}</th>
             {{admin-td-element attributeName=attribute item=model}}
           </tr>
         {{/each}}

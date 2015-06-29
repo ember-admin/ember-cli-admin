@@ -9,7 +9,7 @@ userCategory = DS.Model.extend({
   is_created: DS.attr('boolean'),
   email: DS.attr('string'),
   color: DS.attr('string'),
-  avatars: DS.hasMany('avatar'),
+  avatars: DS.hasMany('avatar', {async: false}),
   fileuploads: ["avatars"]
 });
 

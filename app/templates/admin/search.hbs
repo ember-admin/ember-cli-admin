@@ -3,7 +3,7 @@
         <div class="panel-heading">Search</div>
         <div class="panel-body">
             <form class="search" {{action 'search' on="submit"}}>
-                {{#each field in controller.searchForm.fields}}
+                {{#each searchForm.fields as |field|}}
                     {{#if field.isInput}}
                         <div class="clearfix string">
                             <label>{{admin-letter-case content=field.fieldName caseType=caseType}}</label>

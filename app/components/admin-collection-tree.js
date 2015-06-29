@@ -2,10 +2,11 @@ import Ember from 'ember';
 var view;
 
 view = Ember.CollectionView.extend({
+  isComponentFactory: true,
   classNames: ['sortable_tree', 'nested_set', 'ui-sortable'],
   tagName: 'ol',
-  itemViewClass: Ember.View.extend({
-    templateName: 'admin/base/tree/collection',
+  itemViewClass: Ember.Component.extend({
+    layoutName: 'admin/base/tree/collection',
     tagName: 'li',
     attributeBindings: ['liId:data-id'],
     liId: Ember.computed('content', {
