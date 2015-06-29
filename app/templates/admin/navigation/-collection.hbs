@@ -5,7 +5,7 @@
   </a>
 
   <ul class="dropdown-menu">
-    {{#each navigation in navigation.children}}
+    {{#each navigation.children as |navigation|}}
       {{partial "admin/navigation/item"}}
     {{/each}}
   </ul>

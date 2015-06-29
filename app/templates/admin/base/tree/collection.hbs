@@ -20,7 +20,7 @@
     </div>
     {{#if content.children}}
       <ol>
-        {{#each item in content.children}}
+        {{#each content.children as |item|}}
           {{partial 'admin/base/tree/item'}}
         {{/each}}
       </ol>

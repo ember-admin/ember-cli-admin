@@ -1,7 +1,7 @@
 <td class="checkbox-list">
     {{admin-batch-checkbox context=item batches=batches}}
 </td>
-{{#each attributeName in activeTableAttributes}}
+{{#each activeTableAttributes as |attributeName|}}
     {{admin-td-element
     attributeName=attributeName
     item=item

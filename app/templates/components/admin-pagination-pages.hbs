@@ -11,7 +11,7 @@
           </li>
       {{/if}}
 
-      {{#each item in pageItems}}
+      {{#each pageItems as |item|}}
         {{#if item.current}}
             <li class="active page-number">
                 <a>{{item.title}}</a>
