@@ -16,7 +16,7 @@
                         <div class="clearfix string">
                             <label>{{admin-letter-case content=field.fieldName caseType=caseType}}</label>
                             <div class="controls">
-                                {{view "select" content=field.numberPredicats value=field.predicat}}
+                                {{admin-select content=field.numberPredicats selectedValue=field.predicat}}
                                 {{input name=field.fieldName value=field.value type="number" class="form-control"}}
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="clearfix string">
                             <label>{{admin-letter-case content=field.fieldName caseType=caseType}}</label>
                             <div class="controls">
-                                {{view "select" content=field.options.selectContent value=field.value prompt=field.options.prompt class="form-control"}}
+                                {{admin-select content=field.options.selectContent selectedValue=field.value prompt=field.options.prompt class="form-control"}}
                             </div>
                         </div>
                     {{/if}}

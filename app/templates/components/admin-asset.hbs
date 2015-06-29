@@ -1,12 +1,12 @@
 {{#if isImage}}
   <a class="thumbnail" href="#">
-    <img src="{{view.asset.thumb_url}}" {{action "openImagePreview" asset.url on="click"}}>
-    <a class="btn btn-danger btn-xs delete-asset" {{action "deleteAsset" on="click" target=view}}>x</a>
+    <img src="{{asset.thumb_url}}" {{action "openImagePreview" asset.url on="click"}}>
+    <a class="btn btn-danger btn-xs delete-asset" {{action "deleteAsset" on="click"}}>x</a>
   </a>
 {{else}}
   <a class="thumbnail">
     <img src="/assets/images/fileicon.png">
-    <a class="btn btn-danger btn-xs delete-asset" {{action "deleteAsset" on="click" target=view}}>x</a>
+    <a class="btn btn-danger btn-xs delete-asset" {{action "deleteAsset" on="click"}}>x</a>
   </a>
   <div class="caption">
     <h5>{{asset.original_filename}}</h5>

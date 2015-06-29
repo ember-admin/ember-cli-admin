@@ -9,6 +9,7 @@ usersController = Ember.Controller.extend(TableViewController, {
   searchForm: Ember.computed('q', {
     get: function(){
       return new SearchLogic().form(this.get('q'), function() {
+        this.input('id', {type: 'number'});
         this.input('email');
         this.input('name', {type: 'select', selectContent: ["Foo", "Bar"], prompt: 'Select Name'});
         this.input('birthdate', {type: 'date', placeholder: "Select birthdate", format: "dd MM, yyyy"});
