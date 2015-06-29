@@ -1,21 +1,8 @@
 import Ember from 'ember';
-var view;
 
-view = Ember.CollectionView.extend({
-  isComponentFactory: true,
+export default Ember.Component.extend({
   classNames: ['sortable_tree', 'nested_set', 'ui-sortable'],
   tagName: 'ol',
-  itemViewClass: Ember.Component.extend({
-    layoutName: 'admin/base/tree/collection',
-    tagName: 'li',
-    attributeBindings: ['liId:data-id'],
-    liId: Ember.computed('content', {
-      get: function() {
-        return this.get('content').id;
-      }
-    }),
-    item: Ember.computed.alias('content')
-  }),
   children: Ember.computed('content', {
     get: function() {
       return this.get('content');
@@ -31,11 +18,9 @@ view = Ember.CollectionView.extend({
       placeholder: 'placeholder'
     });
     self = this;
-    return Ember.on('sortupdate', (function(_this) {
-      return function(event, ui) {
-        return self.rebuild.call(self, event, ui);
-      };
-    })(this), this.$());
+    return this.$().on('sortupdate', function(event, ui) {
+      return self.rebuild.call(self, event, ui);
+    });
   }),
   rebuild: function(event, ui) {
     var item, itemId, itemObject, nextId, parentId, prevId;
@@ -44,13 +29,16 @@ view = Ember.CollectionView.extend({
     prevId = item.prev().data('id');
     nextId = item.next().data('id');
     parentId = item.parent().parent().data('id');
-    itemObject = this.get('controller.model.items').find((function(_this) {
-      return function(item) {
-        return item.id.toString() === itemId.toString();
-      };
-    })(this));
-    return this.get('controller').send('rebuild', itemObject, prevId, nextId, parentId);
-  }
-});
+    itemObject = this.get('items').find(function(item) {
+      return item.id.toString() === itemId.toString();
+    });
+    this.sendAction(this.get('rebuildAction'), itemObject, prevId, nextId, parentId);
+  },
 
-export default view;
+  actions:{
+    adminAction: function(adminActionName, item){
+      this.sendAction(this.get('adminAction'), adminActionName, item);
+    }
+  }
+
+});

@@ -1,28 +1,26 @@
-{{#with view.content as |content|}}
-    <div class="tree-item_wrap">
-      <i class="icon-move icon-move glyphicon glyphicon-move"></i>
-      <a class="tree-item_link" href="javascript:void(0);">{{content.name}}</a>
-      <div class="controls">
-        {{#if itemActions}}
-            {{#each itemActions as |action|}}
-                {{admin-action
-                tagName="button"
-                actionName=action
-                model=content
-                title=action.title
-                adminAction='adminAction'
-                newAction=newAction
-                allActions=allActions}}
-            {{/each}}
-        {{/if}}
-        {{partial "admin/base/actions/addition-actions"}}
-      </div>
-    </div>
-    {{#if content.children}}
-      <ol>
-        {{#each content.children as |item|}}
-          {{partial 'admin/base/tree/item'}}
+<div class="tree-item_wrap">
+  <i class="icon-move icon-move glyphicon glyphicon-move"></i>
+  <a class="tree-item_link" href="javascript:void(0);">{{item.name}}</a>
+  <div class="controls">
+    {{#if itemActions}}
+        {{#each itemActions as |action|}}
+            {{admin-action
+            tagName="button"
+            actionName=action
+            model=item
+            title=action.title
+            adminAction='adminAction'
+            newAction=newAction
+            allActions=allActions}}
         {{/each}}
-      </ol>
     {{/if}}
-{{/with}}
+    {{partial "admin/base/actions/addition-actions"}}
+  </div>
+</div>
+{{#if item.children}}
+  <ol>
+    {{#each item.children as |item|}}
+      {{partial 'admin/base/tree/item'}}
+    {{/each}}
+  </ol>
+{{/if}}

@@ -27,7 +27,7 @@ treeViewMixin = Ember.Mixin.create({
 
   actions: {
 
-    rebuild: function(itemObject, prevId, nextId, parentId) {
+    rebuildAction: function(itemObject, prevId, nextId, parentId) {
       var properties = {
         parent_id: parentId,
         prev_id: prevId,
