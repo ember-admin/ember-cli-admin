@@ -26,11 +26,13 @@
             }}
         </table>
     </div>
-    {{#if isShowSearchForm}}
-        <div class="col-md-3">
+    <div class="col-md-3">
+        {{#if isShowSearchForm}}
             {{outlet 'search'}}
+        {{/if}}
+        {{#if isShowSidebar}}
             {{outlet 'sidebar'}}
-        </div>
-    {{/if}}
+        {{/if}}
+    </div>
 </div>
 {{partial "admin/base/pagination"}}
