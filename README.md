@@ -301,6 +301,7 @@ In your resource controller, you can specify search attributes that appear in th
 ```javascript
 //app/controllers/users.js
 ...
+isShowSearchForm: true,
 searchForm: (function() {
   return new SearchLogic().form(this.get('q'), function() {
     this.input('email');
