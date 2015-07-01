@@ -1,4 +1,4 @@
-import Mirage, {faker} from 'ember-cli-mirage';
+import Mirage, { faker } from 'ember-cli-mirage';
 
 export default Mirage.Factory.extend({
   name: faker.company.bsNoun(),
@@ -9,6 +9,6 @@ export default Mirage.Factory.extend({
   color: faker.internet.color(),
   description: faker.lorem.sentences(10),
   avatar_ids: function() {
-    return [1,2];
+    return [1, 2];
   },
 });

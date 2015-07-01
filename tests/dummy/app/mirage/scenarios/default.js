@@ -4,4 +4,4 @@ export default function(server) {
   server.createList('car', 20);
   server.createList('user_category', 2);
   server.createList('catalogue', 5);
-}
+};
