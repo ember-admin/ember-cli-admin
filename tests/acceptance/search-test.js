@@ -34,7 +34,7 @@ test('search panel contains model search fields', function(assert) {
   visit('/users');
 
   andThen(function() {
-    assert.equal(find('form.search .controls').length, 4);
+    assert.equal(find('form.search .controls').length, 5);
     assert.equal(find('form.search input[name="email"]').length, 1);
   });
 });
@@ -55,9 +55,9 @@ test('search input can be selectable', function(assert) {
   visit('/users');
 
   andThen(function() {
-    assert.equal(find(".controls select").length, 1);
-    assert.equal(find('.controls select option:first').text(), "Select Name");
-    assert.equal(find('.controls select option:last').text(), "Bar");
+    assert.equal(find(".controls select").length, 2);
+    assert.equal(find('.controls select:last option:first').text(), "Select Name");
+    assert.equal(Ember.$.trim(find('.controls select:last option:last').text()), "Bar");
   });
 });
 
@@ -70,6 +70,6 @@ test('autocomplete search', function(assert) {
   Ember.$('.typeahead').typeahead('val', '12');
   click('button[type="submit"]');
   andThen(function(){
-    assert.equal(find('form.search .controls').length, 4);
+    assert.equal(find('form.search .controls').length, 5);
   });
 });

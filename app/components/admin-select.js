@@ -8,12 +8,17 @@ export default Ember.Component.extend({
     change() {
       const changeAction = this.get('action');
       const selectedEl = this.$('select')[0];
-      const selectedIndex = selectedEl.selectedIndex;
+      let selectedIndex = selectedEl.selectedIndex;
+      if (this.get('prompt')){
+        selectedIndex = selectedIndex - 1;
+      }
       const content = this.get('content');
       const selectedValue = content[selectedIndex];
-      this.set('selectedValue', selectedValue);
-      if (changeAction){
-        changeAction(selectedValue);
+      if (selectedValue){
+        this.set('selectedValue', selectedValue);
+        if (changeAction){
+          changeAction(selectedValue);
+        }
       }
     }
   }
