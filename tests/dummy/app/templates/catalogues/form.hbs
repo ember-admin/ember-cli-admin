@@ -3,14 +3,14 @@
         <div class="panel-heading">Base Information</div>
         <div class="panel-body">
             <div class="form-horizontal">
-               {{#each attribute in controller.formAttributes}}
-                    {{admin-input class="admin-attribute" model=controller.model name=attribute}}
+               {{#each formAttributes as |attribute|}}
+                    {{admin-input class="admin-attribute" model=model name=attribute}}
                 {{/each}}
                 <div class="admin-attribute">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Catalogue</label>
                         <div class="col-sm-8">
-                            {{view "select" content=controller.catalogues selection=controller.model.parent optionLabelPath="content.name" optionValuePath="content.id"}}
+                            {{admin-select content=catalogues selectedValue=model.parent optionLabelPath="content.name" optionValuePath="content.id"}}
                         </div>
                     </div>
                 </div>
