@@ -5,9 +5,9 @@ export default Mirage.Factory.extend({
   lat: faker.address.latitude(),
   long: faker.address.longitude(),
   email: faker.internet.email(),
-  zoom: faker.helpers.randomNumber(),
+  zoom: 3,
   birthdate: faker.date.past(),
   avatar_id: function(i) {
-    return i;
+    return i + 1;
   }
 });

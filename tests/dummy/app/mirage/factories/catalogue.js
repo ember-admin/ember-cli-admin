@@ -1,10 +1,11 @@
-import Mirage, {faker} from 'ember-cli-mirage';
+import Mirage from 'ember-cli-mirage';
 
 export default Mirage.Factory.extend({
   name: function(i) {
     return "Tree #" + i;
   },
   parent_id: function(i) {
+    i = i + 1;
     let pId = i - 1;
     if (pId < 1) {
       pId = null;     
@@ -12,6 +13,7 @@ export default Mirage.Factory.extend({
     return pId; 
   },
   catalogue_ids: function(i) {
+    i = i + 1;
     if (i === 4 || i === 5) {
       return [];
     }

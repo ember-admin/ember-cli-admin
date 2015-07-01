@@ -33,7 +33,7 @@ export default function() {
         usersArray.reverse();
       }
     }
-    avatarsArray = avatars.slice((page - 1) * perPage, page * perPage);
+    let avatarsArray = avatars.slice((page - 1) * perPage, page * perPage);
     return {
       users: usersArray,
       meta: {
@@ -46,11 +46,15 @@ export default function() {
   this.get('/users/autocomplete', 'users');
 
   this.del('/users/:id', 'user')
-  this.get('/users/:id', 'user');
+  this.get('/users/:id', function(db, req) {
+    let user = db.users.find(req.params.id);
+    let avatar = db.avatars.find(req.params.id);
+    return {user: user, avatars: [avatar]};
+  });
   this.put('/users/:id', 'user');
   this.post('/users', 'user');
 
-  this.get('/user_catedories', ['users', 'avatars']);
+  this.get('/user_categories', ['user_categories', 'avatars']);
   this.post('/user_categories', function(db, req) {
     var errors = {};
     let user_categories = db.user_categories;
