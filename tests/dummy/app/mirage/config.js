@@ -13,7 +13,7 @@ export default function() {
           total: 1
         },
         avatars: [avatars[0]]
-      }
+      };
     }
     var perPage = +req.queryParams.perPage;
     var page = +req.queryParams.page;
@@ -23,7 +23,7 @@ export default function() {
       usersArray.sort(function(prev, next) {
         if (prev[sort] < next[sort]) {
           return -1;
-        } else if (prev[sort] == next[sort]) {
+        } else if (prev[sort] === next[sort]) {
           return 0;
         } else {
           return 1;
@@ -45,7 +45,7 @@ export default function() {
 
   this.get('/users/autocomplete', 'users');
 
-  this.del('/users/:id', 'user')
+  this.del('/users/:id', 'user');
   this.get('/users/:id', function(db, req) {
     let user = db.users.find(req.params.id);
     let avatar = db.avatars.find(req.params.id);

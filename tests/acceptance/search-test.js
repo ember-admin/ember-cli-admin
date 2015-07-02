@@ -3,29 +3,32 @@ import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
 
-var App, server, users;
+var App, users;
 
 module('Acceptance: Search', {
   beforeEach: function() {
     App = startApp();
-    server = new Pretender(function() {
-      this.get('/api/users', function(request) {
-        if (request.queryParams.q) {
-          users = [{id: 1, name: 'testuser'}];
-          return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
-        }
-        users = [];
-        for (var i = 0; i < 25; i++) {
-          users.push({id: i, name: 'testuser'});
-        }
-        users[0].email = 'test@example.com';
-        return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 40}})];
-      });
-    });
+
+    server.createList('avatar', 25);
+    users = server.createList('user', 25);
+    // server = new Pretender(function() {
+    //   this.get('/api/users', function(request) {
+    //     if (request.queryParams.q) {
+    //       users = [{id: 1, name: 'testuser'}];
+    //       return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
+    //     }
+    //     users = [];
+    //     for (var i = 0; i < 25; i++) {
+    //       users.push({id: i, name: 'testuser'});
+    //     }
+    //     users[0].email = 'test@example.com';
+    //     return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 40}})];
+    //   });
+    // });
   },
   afterEach: function() {
     Ember.run(App, 'destroy');
-    server.shutdown();
+    // server.shutdown();
   }
 });
 

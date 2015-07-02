@@ -2,6 +2,7 @@ import Mirage from 'ember-cli-mirage';
 
 export default Mirage.Factory.extend({
   name: function(i) {
+    i = i + 1;
     return "Tree #" + i;
   },
   parent_id: function(i) {
