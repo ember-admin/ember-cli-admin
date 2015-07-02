@@ -12,10 +12,21 @@ export default Ember.Component.extend({
   layout: layout,
 
   attributeBindings: ["style", 'data-column'],
+
   relations: "name title".w(),
   fileuploads: "thumb_url".w(),
+
   tagName: "td",
+
   'data-column': Ember.computed.alias('attributeName'),
+
+  style: Ember.computed('_style', {
+    get() {
+      let style = Ember.getWithDefault(this, '_style', "");  
+      return style.htmlSafe();
+    }
+  }),
+
   createObserves: Ember.on('didInsertElement', function() {
     if (this.get('item.fileuploads') && this.get('item.fileuploads').indexOf(this.get('attributeName')) >= 0) {
       this.get('fileuploads').forEach((function(_this) {
@@ -60,7 +71,7 @@ export default Ember.Component.extend({
     get: function() {
       if (this.get('attributeName').match(/color/)) {
         this.set('text', true);
-        return this.set('style', `color:${this.get('_value')};`.htmlSafe());
+        return this.set('_style', `color:${this.get('_value')};`);
       }
     }
   }),
