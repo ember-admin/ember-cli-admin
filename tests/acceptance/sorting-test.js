@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import {module, test} from 'qunit';
+import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 // import Pretender from 'pretender';
 
@@ -42,36 +42,42 @@ test('records in table are sorted by controller sortFields in ascending order', 
   assert.expect(1);
 
   visit('/users');
+
   click('th:contains("id")');
-  // stop();
+
   andThen(function() {
     assert.equal(find('tbody tr:first td[data-column="id"]:contains("1")').length, 1);
   });
-
 });
 
 test('records in table are sorted by controller sortFields in descending order', function(assert) {
   assert.expect(1);
 
   visit('/users');
+
   click('th:contains("id")');
   click('th:contains("id")');
+
   andThen(function() {
     assert.equal(find('tbody tr:first td[data-column="id"]:contains("5")').length, 1);
   });
-
 });
 
 test('switching from sorting by one attribute to another works as expected - records are sorted by the ' +
-     'new selected attribute', function(assert) {
-  assert.expect(1);
+  'new selected attribute',
+  function(assert) {
+    assert.expect(1);
 
-  visit('/users');
-  click('th:contains("id")');
-  click('th:contains("id")');
-  click('th:contains("name")');
-  stop()
-  andThen(function() {
-    assert.equal(find('tbody tr:first td[data-column="id"]:contains("3")').length, 1);
+    let user = users[2];
+    user.name = 'Aaron';
+
+    visit('/users');
+
+    click('th:contains("id")');
+    click('th:contains("id")');
+    click('th:contains("name")');
+
+    andThen(function() {
+      assert.equal(find('tbody tr:first td[data-column="id"]:contains("3")').length, 1);
+    });
   });
-});
