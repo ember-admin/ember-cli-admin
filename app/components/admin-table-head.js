@@ -1,10 +1,1 @@
-import Ember from 'ember';
-
-export default Ember.Component.extend({
-  tagName: "thead",
-  actions: {
-    sort: function(attributeName){
-      this.sendAction('action', attributeName);
-    }
-  }
-});
+export { default } from 'ember-cli-admin/components/admin-table-head';

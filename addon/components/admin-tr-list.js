@@ -1,4 +1,14 @@
-import AdminTrList from '../../app/components/admin-tr-list';
+import Ember from 'ember';
+import layout from '../templates/components/admin-tr-list';
 
-export default AdminTrList;
+export default Ember.Component.extend({
+  layout: layout,
 
+  tagName: "tr",
+
+  actions: {
+    adminAction: function(adminActionName, model) {
+      this.sendAction('adminAction', adminActionName, model);
+    }
+  }
+});

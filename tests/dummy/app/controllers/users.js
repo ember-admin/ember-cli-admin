@@ -4,6 +4,7 @@ import Ember from 'ember';
 var usersController;
 
 usersController = Ember.Controller.extend(TableViewController, {
+  shit: 'SSHIIEEE',
   sortFields: ['id', 'name'],
   formAttributes: ['email', 'name'],
   searchForm: Ember.computed('q', {
