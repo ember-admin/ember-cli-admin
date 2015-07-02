@@ -1,4 +1,10 @@
-import AdminTableBody from '../../app/components/admin-table-body';
+import Ember from 'ember';
 
-export default AdminTableBody;
-
+export default Ember.Component.extend({
+  tagName: "tbody",
+  actions: {
+    adminAction: function(adminActionName, model) {
+      this.sendAction('adminAction', adminActionName, model);
+    }
+  }
+});

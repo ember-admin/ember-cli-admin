@@ -1,4 +1,10 @@
-import AdminTableHead from '../../app/components/admin-table-head';
+import Ember from 'ember';
 
-export default AdminTableHead;
-
+export default Ember.Component.extend({
+  tagName: "thead",
+  actions: {
+    sort: function(attributeName){
+      this.sendAction('action', attributeName);
+    }
+  }
+});

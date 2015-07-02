@@ -1,4 +1,17 @@
-import AdminShowColumn from '../../app/components/admin-show-column-in-table';
+import Ember from 'ember';
 
-export default AdminShowColumn;
+export default Ember.Checkbox.extend({
+  isComponentFactory: true,
+  isChecked: Ember.on('init', function() {
+    var attr = this.get('attribute');
+    var isChecked = Ember.tryInvoke(this.get('content'), 'isActive', [attr]);
+    this.set('checked', isChecked);
+  }),
 
+  click: function(e) {
+    var attr = this.get('attribute');
+    Ember.tryInvoke(this.get('content'), 'isActive', [attr,
+      this.get('checked')
+    ]);
+  }
+});
