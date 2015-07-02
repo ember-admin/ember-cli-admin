@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
-// import Pretender from 'pretender';
 
 var App;
 
@@ -10,16 +9,9 @@ module('Acceptance: Smoke Test', {
     App = startApp();
 
     server.createList('car', 1);
-    // server = new Pretender(function() {
-    //   this.get('/api/cars', function(request) {
-    //     var car = {id:1, title: 'TEST CAR'};
-    //     return [200, {"Content-Type": "application/json"}, JSON.stringify({cars: [car], meta:{total: 1}})];
-    //   });
-    // });
   },
   afterEach: function() {
     Ember.run(App, 'destroy');
-    // server.shutdown();
   }
 });
 

@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
-// import Pretender from 'pretender';
 
 var App, users;
 
@@ -11,29 +10,9 @@ module('Acceptance: Sorting', {
 
     server.createList('avatar', 5);
     users = server.createList('user', 5);
-
-    // server = new Pretender(function() {
-    //   this.get('/api/users', function(request) {
-    //     if (request.queryParams.sort === "id" && request.queryParams.orderAscending === "true") {
-    //       users = [{id: 0, name: 'testuser'}];
-    //       return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
-    //     }
-    //     if (request.queryParams.sort === "id" && request.queryParams.orderAscending !== "true") {
-    //       users = [{id: 10, name: 'testuser'}];
-    //       return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
-    //     }
-    //     if (request.queryParams.sort === "name") {
-    //       users = [{id: 3, name: 'testuser'}];
-    //       return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
-    //     }
-    //     users = [{id: 1, name: 'testuser'}];
-    //     return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 1}})];
-    //   });
-    // });
   },
   afterEach: function() {
     Ember.run(App, 'destroy');
-    // server.shutdown();
   }
 });
 

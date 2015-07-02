@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
-// import Pretender from 'pretender';
 
 var App, users, windowHistoryBack;
 
@@ -12,30 +11,10 @@ module('Acceptance: Resource Actions', {
 
     server.createList('avatar', 25);
     users = server.createList('user', 25);
-    // server = new Pretender(function() {
-    //   this.put('/api/users/:id', function(request){
-    //     return [200, {"Content-Type": "application/json"}, JSON.stringify({user: {id: request.params.id, email: 'test@example.com', name: 'Test User'}}    )];
-    //   });
-    //   this.get('/api/users', function(request) {
-    //     users = [];
-    //     for (var i = 0; i < 25; i++) {
-    //       users.push({id: i, name: 'testuser'});
-    //     }
-    //     users[0].email = 'test@example.com';
-    //     return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 40}})];
-    //   });
-    //   this.delete('/api/users/:id', function(request) {
-    //     return [200, {"Content-Type": "application/json"}, JSON.stringify({})];
-    //   });
-    //   this.get('/api/users/:id', function(request){
-    //     return [200, {"Content-Type": "application/json"}, JSON.stringify({user: {id: request.params.id, email: 'test@example.com', name: 'Test User'}})];
-    //   });
-    // });
   },
   afterEach: function() {
     window.history.back = windowHistoryBack;
     Ember.run(App, 'destroy');
-    // server.shutdown();
   }
 });
 
