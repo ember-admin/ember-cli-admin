@@ -33,33 +33,26 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "body-parser": "^1.2.0",
-    "broccoli-asset-rev": "^2.0.0",
+    "broccoli-asset-rev": "^2.0.2",
     "broccoli-concat": "0.0.12",
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-static-compiler": "^0.2.1",
-    "connect-restreamer": "^1.0.0",
     "ember-cli": "^0.2.7",
-    "ember-cli-app-version": "0.3.2",
+    "ember-cli-app-version": "0.3.3",
     "ember-cli-babel": "^5.0.0",
     "ember-cli-bootstrap-datepicker": "0.5.3",
     "ember-cli-content-security-policy": "0.4.0",
     "ember-cli-dependency-checker": "^1.0.0",
-    "ember-cli-htmlbars": "0.7.4",
+    "ember-cli-htmlbars": "0.7.9",
     "ember-cli-ic-ajax": "0.1.1",
     "ember-cli-inject-live-reload": "^1.3.0",
     "ember-cli-map": "git://github.com/ember-admin/ember-cli-map.git",
-    "ember-cli-pretender": "^0.3.1",
+    "ember-cli-mirage": "0.1.5",
     "ember-cli-qunit": "0.3.13",
     "ember-cli-sass": "4.0.0-beta.7",
     "ember-cli-uglify": "1.0.1",
     "ember-data": "1.13.4",
     "ember-export-application-global": "^1.0.2",
-    "ember-watson": "^0.5.0",
-    "express": "^4.8.5",
-    "glob": "4.4.0"
-  },
-  "dependencies": {
-    "chance": "^0.7.3"
+    "ember-watson": "^0.5.0"
   }
 }

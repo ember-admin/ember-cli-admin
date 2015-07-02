@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Object.extend({
     persistence: window.localStorage,
+    isServiceFactory: true,
 
     namespace: 'table-settings-store',
 

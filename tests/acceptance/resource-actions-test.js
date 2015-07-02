@@ -1,38 +1,20 @@
 import Ember from 'ember';
 import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
-import Pretender from 'pretender';
 
-var App, server, users, windowHistoryBack;
+var App, users, windowHistoryBack;
 
 module('Acceptance: Resource Actions', {
   beforeEach: function() {
     App = startApp();
     windowHistoryBack = window.history.back;
-    server = new Pretender(function() {
-      this.put('/api/users/:id', function(request){
-        return [200, {"Content-Type": "application/json"}, JSON.stringify({user: {id: request.params.id, email: 'test@example.com', name: 'Test User'}}    )];
-      });
-      this.get('/api/users', function(request) {
-        users = [];
-        for (var i = 0; i < 25; i++) {
-          users.push({id: i, name: 'testuser'});
-        }
-        users[0].email = 'test@example.com';
-        return [200, {"Content-Type": "application/json"}, JSON.stringify({users: users, meta:{total: 40}})];
-      });
-      this.delete('/api/users/:id', function(request) {
-        return [200, {"Content-Type": "application/json"}, JSON.stringify({})];
-      });
-      this.get('/api/users/:id', function(request){
-        return [200, {"Content-Type": "application/json"}, JSON.stringify({user: {id: request.params.id, email: 'test@example.com', name: 'Test User'}})];
-      });
-    });
+
+    server.createList('avatar', 25);
+    users = server.createList('user', 25);
   },
   afterEach: function() {
     window.history.back = windowHistoryBack;
     Ember.run(App, 'destroy');
-    server.shutdown();
   }
 });
 
@@ -97,11 +79,16 @@ test('model gets deleted via modal that we open by clicking on the table delete 
 });
 
 test('model formFields are shown on resource show page', function(assert) {
+  assert.expect(3);
+
+  let firstUser = users[0];
+
   visit('/users/1/show');
+
   andThen(function() {
     assert.equal(find('tbody td').length, 2);
-    assert.equal(find("td:contains('test@example.com')").length, 1);
-    assert.equal(find("td:contains('Test User')").length, 1);
+    assert.equal(find("td[data-column='email']").text().trim(), users[0].email);
+    assert.equal(find("td[data-column='name']").text().trim(), users[0].name);
   });
 });
 
