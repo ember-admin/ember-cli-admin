@@ -17,39 +17,39 @@ export default Ember.Component.extend({
 
       var noSkipDistance = 5;
 
-      for (var i = currentPage - 1; i > 0;) {
-        if (currentPage - i < noSkipDistance || i == 1) {
+      for (let i = currentPage - 1; i > 0;) {
+        if (currentPage - i < noSkipDistance || i === 1) {
           res.unshift({
             title: i,
             page: i
           });
           i--;
         } else {
-          var offset = i - currentPage;
+          let offset = i - currentPage;
           res.unshift({
             title: offset,
             page: i
           });
           i = Math.max(currentPage + offset * 10, 1);
         }
-      };
+      }
 
-      for (var i = currentPage + 1; i <= totalPages;) {
-        if (i - currentPage < noSkipDistance || i == totalPages) {
+      for (let i = currentPage + 1; i <= totalPages;) {
+        if (i - currentPage < noSkipDistance || i === totalPages) {
           res.push({
             title: i,
             page: i
           });
           i++;
         } else {
-          var offset = i - currentPage;
+          let offset = i - currentPage;
           res.push({
             title: '+' + offset,
             page: i
           });
           i = Math.min(currentPage + offset * 10, totalPages);
         }
-      };
+      }
 
       return res;
     }

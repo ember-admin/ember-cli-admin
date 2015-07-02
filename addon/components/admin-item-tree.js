@@ -1,4 +1,5 @@
 import Ember from 'ember';
+
 export default Ember.Component.extend({
   layoutName: 'admin/base/tree/collection',
   tagName: 'li',
@@ -11,8 +12,8 @@ export default Ember.Component.extend({
 
   model: Ember.computed.alias('item'),
 
-  actions:{
-    adminAction: function(adminActionName, item){
+  actions: {
+    adminAction: function(adminActionName, item) {
       this.sendAction(this.get('adminAction'), adminActionName, item);
     }
   }

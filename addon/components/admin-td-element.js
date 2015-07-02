@@ -85,22 +85,18 @@ tdComponent = Ember.Component.extend({
     }
     value = "";
     if (this.get('item.fileuploads') && this.get('item.fileuploads').indexOf(this.get('attributeName')) >= 0) {
-      this.get('fileuploads').forEach((function(_this) {
-        return function(attr) {
+      this.get('fileuploads').forEach(attr => {
           if (record.get(attr)) {
             return value = record.get(attr);
           }
-        };
-      })(this));
+      });
     }
     if (Attributes.relations(this.get('item').constructor).indexOf(this.get('attributeName')) >= 0) {
-      this.get('relations').forEach((function(_this) {
-        return function(attr) {
+      this.get('relations').forEach(attr => {
           if (record.get(attr)) {
             return value = record.get(attr);
           }
-        };
-      })(this));
+      });
     }
     return value;
   },

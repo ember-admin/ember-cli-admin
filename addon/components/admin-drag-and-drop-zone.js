@@ -1,12 +1,15 @@
 import Ember from 'ember';
 import Attributes from 'ember-cli-admin/dsl/attributes';
+
+const { $ } = Ember;
+
 export default Ember.Component.extend({
   attributeBindings: ["property", "assetTemplate"],
 
   didInsertElement: function() {
     var self = this;
     this.$("#sortable").sortable({
-      update: function(event, ui) {
+      update: function() {
         var positions = {};
         $(this).find('.asset').each(function(i) {
           positions[$(this).data('id')] = i + 1;
@@ -67,7 +70,7 @@ export default Ember.Component.extend({
   }),
   actions: {
     adminAction: function(actionName, options){
-        this.sendAction(this.get('adminAction'), actionName, options)
+        this.sendAction(this.get('adminAction'), actionName, options);
     },
     selectFile: function() {
       var file, files, _i, _len, _results;

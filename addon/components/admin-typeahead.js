@@ -1,7 +1,7 @@
+/*global Bloodhound*/
 import Ember from 'ember';
-var typeaheadComponent;
 
-typeaheadComponent = Ember.TextField.extend({
+export default Ember.TextField.extend({
   classNames: ['typeahead'],
   tagName: 'input',
   displayKey: 'value',
@@ -49,5 +49,3 @@ typeaheadComponent = Ember.TextField.extend({
     return this.$().typeahead('destroy');
   })
 });
-
-export default typeaheadComponent;

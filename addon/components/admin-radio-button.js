@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   },
   checked: Ember.computed('selection', {
     get: function() {
-      return this.get("value") == this.get("selection");
+      return this.get("value") === this.get("selection");
     }
   })
 });

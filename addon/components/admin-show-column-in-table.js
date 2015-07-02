@@ -8,7 +8,7 @@ export default Ember.Checkbox.extend({
     this.set('checked', isChecked);
   }),
 
-  click: function(e) {
+  click: function() {
     var attr = this.get('attribute');
     Ember.tryInvoke(this.get('content'), 'isActive', [attr,
       this.get('checked')
