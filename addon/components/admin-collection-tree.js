@@ -1,6 +1,9 @@
 import Ember from 'ember';
+import layout from '../templates/components/admin-collection-tree';
 
 export default Ember.Component.extend({
+  layout: layout,
+
   classNames: ['sortable_tree', 'nested_set', 'ui-sortable'],
   tagName: 'ol',
   children: Ember.computed('content', {
@@ -40,5 +43,4 @@ export default Ember.Component.extend({
       this.sendAction(this.get('adminAction'), adminActionName, item);
     }
   }
-
 });

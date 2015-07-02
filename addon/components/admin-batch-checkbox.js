@@ -1,6 +1,9 @@
 import Ember from 'ember';
+import layout from '../templates/components/admin-batch-action';
 
 export default  Ember.Checkbox.extend({
+  layout: layout,
+
   isComponentFactory: true,
   selectAll: false,
   pushItem: Ember.observer('checked', function() {

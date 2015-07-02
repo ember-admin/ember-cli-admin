@@ -1,7 +1,10 @@
 import Ember from 'ember';
 import ConfirmationMixin from 'ember-cli-admin/mixins/views/confirmation';
+import layout from '../templates/components/admin-action';
 
 export default Ember.Component.extend(ConfirmationMixin, {
+  layout: layout,
+
   classNameBindings: ["class"],
   attributeBindings: ["title"],
   "class": Ember.computed('action', {

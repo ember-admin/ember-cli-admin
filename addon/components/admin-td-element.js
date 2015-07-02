@@ -6,9 +6,11 @@ if you have own image property you should change fileuploads property
 
 import Ember from 'ember';
 import Attributes from 'ember-cli-admin/dsl/attributes';
-var tdComponent;
+import layout from '../templates/components/admin-td-element';
 
-tdComponent = Ember.Component.extend({
+export default Ember.Component.extend({
+  layout: layout,
+
   attributeBindings: ["style", 'data-column'],
   relations: "name title".w(),
   fileuploads: "thumb_url".w(),
@@ -112,5 +114,3 @@ tdComponent = Ember.Component.extend({
     }
   })
 });
-
-export default tdComponent;

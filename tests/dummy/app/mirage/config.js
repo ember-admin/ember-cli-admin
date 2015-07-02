@@ -69,7 +69,11 @@ export default function() {
       };
     }
   });
-  this.get('/user_categories/:id', ['user_category', 'avatar']);
+  this.get('/user_categories/:id', function(db, req) {
+    let userCategory = db.user_categories.find(req.params.id);
+    let avatars = db.avatars.slice(0, 2);
+    return {user_category: userCategory, avatars: avatars};
+  });
   this.del('/user_categories/:id', 'user_category');
   this.put('/user_categories/:id', 'user_category');
 

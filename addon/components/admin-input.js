@@ -1,6 +1,9 @@
 import Ember from 'ember';
+import layout from '../templates/components/admin-input';
 
 export default Ember.Component.extend({
+  layout: layout,
+
   classNameBindings: [":admin-attribute", ":form-group", "isAnyErrors:has-error"],
   type: Ember.computed('name', 'model', {
     get: function() {

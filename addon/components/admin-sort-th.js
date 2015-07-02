@@ -1,8 +1,11 @@
 import Ember from 'ember';
-var adminSortThView;
+import layout from '../templates/components/admin-sort-th';
 
-adminSortThView = Ember.Component.extend({
+export default Ember.Component.extend({
+  layout: layout,
+
   tagName: "th",
+
   isOrderAscending: Ember.computed.bool('orderAscending'),
   isCurrentSortAttribute: Ember.computed('sort', 'attributeName', {
     get: function() {
@@ -18,5 +21,3 @@ adminSortThView = Ember.Component.extend({
     return this.sendAction('action', this.get('attributeName'));
   }
 });
-
-export default adminSortThView;

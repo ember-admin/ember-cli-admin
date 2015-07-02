@@ -1,6 +1,10 @@
 import Ember from 'ember';
 import ConfirmationMixin from 'ember-cli-admin/mixins/views/confirmation';
+import layout from '../templates/components/admin-batch-action';
+
 export default Ember.Component.extend(ConfirmationMixin, {
+  layout: layout,
+
   tagName: "li",
   click: function(event) {
     event.preventDefault();

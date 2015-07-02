@@ -1,9 +1,13 @@
 import Ember from 'ember';
-var navigationMenu;
+import layout from '../templates/components/admin-navigation-menu';
 
-navigationMenu = Ember.Component.extend({
+export default Ember.Component.extend({
+  layout: layout,
+
   tagName: "li",
+
   classNameBindings: ["isActive:active"],
+
   isActive: Ember.computed('content', 'content.children', 'origContext.activeMenu', {
     get: function() {
       if (this.get('content.route') === this.get('origContext.activeMenu')) {
@@ -33,5 +37,3 @@ navigationMenu = Ember.Component.extend({
     return hasChild;
   }
 });
-
-export default navigationMenu;

@@ -1,13 +1,18 @@
 /*global Bloodhound*/
 import Ember from 'ember';
+import layout from '../templates/components/admin-typeahead';
 
 export default Ember.TextField.extend({
-  classNames: ['typeahead'],
+  layout: layout,
+
   tagName: 'input',
+
+  classNames: ['typeahead'],
   displayKey: 'value',
   hint: true,
   highlight: true,
   minLength: 1,
+
   ajax: Ember.computed({
     get: function() {
       var session;

@@ -1,11 +1,15 @@
 import Ember from 'ember';
-var paginationPerPageView;
+import layout from '../templates/components/admin-pagination-per-page';
 
-paginationPerPageView = Ember.Component.extend({
+export default Ember.Component.extend({
+  layout: layout,
+
   tagName: "button",
+
   classNames: ["btn btn-default"],
   attributeBindings: ["type"],
   classNameBindings: ["isActive:active"],
+
   click: function() {
     return this.sendAction('action', this.get('count'));
   },
@@ -15,5 +19,3 @@ paginationPerPageView = Ember.Component.extend({
     }
   })
 });
-
-export default paginationPerPageView;

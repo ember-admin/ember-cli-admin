@@ -1,9 +1,12 @@
 import Ember from 'ember';
 import Attributes from 'ember-cli-admin/dsl/attributes';
+import layout from '../templates/components/admin-drag-and-drop-zone';
 
 const { $ } = Ember;
 
 export default Ember.Component.extend({
+  layout: layout,
+
   attributeBindings: ["property", "assetTemplate"],
 
   didInsertElement: function() {

@@ -1,7 +1,9 @@
 import Ember from 'ember';
-var paginationNumberView;
+import layout from '../templates/components/admin-pagination-number';
 
-paginationNumberView = Ember.Component.extend({
+export default Ember.Component.extend({
+  layout: layout,
+
   attributeBindings: ["href"],
   tagName: "a",
   classNameBindings: ["isActive:active"],
@@ -19,5 +21,3 @@ paginationNumberView = Ember.Component.extend({
     }
   }
 });
-
-export default paginationNumberView;

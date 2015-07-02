@@ -1,6 +1,9 @@
 import Ember from "ember";
+import layout from '../templates/components/admin-select';
 
 export default Ember.Component.extend({
+  layout: layout,
+
   content: [],
   selectedValue: null,
 
