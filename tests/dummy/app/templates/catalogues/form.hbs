@@ -10,7 +10,13 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Catalogue</label>
                         <div class="col-sm-8">
-                            {{admin-select content=catalogues selectedValue=model.parent optionLabelPath="content.name" optionValuePath="content.id"}}
+                            {{#admin-select content=catalogues selectedValue=model.parent prompt="Select parent" as |select|}}
+                              {{#each select.content as |item|}}
+                                <option value={{item.id}} selected={{is-equal item selectedValue}}>
+                                  {{item.name}}
+                                </option>
+                              {{/each}}
+                            {{/admin-select}}
                         </div>
                     </div>
                 </div>
