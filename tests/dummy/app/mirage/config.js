@@ -84,6 +84,7 @@ export default function() {
   this.post('/cars', 'car');
 
   this.get('/catalogues', 'catalogues');
+  this.get('/catalogues/:id', 'catalogue');
   this.post('/catalogues', 'catalogue');
 
   this.put('/avatars/:id', 'avatar');
