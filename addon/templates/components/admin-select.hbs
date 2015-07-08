@@ -1,10 +1,14 @@
 <select {{action 'change' on='change'}}>
-    {{#if prompt}}
-        <option>{{prompt}}</option>
-    {{/if}}
-  {{#each content key="@index" as |item|}}
-    <option value="{{item}}" selected={{is-equal item selectedValue}}>
-      {{item}}
-    </option>
-  {{/each}}
+  {{#if prompt}}
+      <option>{{prompt}}</option>
+  {{/if}}
+  {{#if hasBlock}}
+    {{yield this}}
+  {{else}}
+    {{#each content as |item|}}
+      <option value={{item}} selected={{is-equal item selectedValue}}>
+        {{item}}
+      </option>
+    {{/each}}
+  {{/if}}
 </select>
