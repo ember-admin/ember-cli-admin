@@ -18,11 +18,11 @@ module.exports = {
       name: 'ember-beta',
       dependencies: {
         'ember': 'components/ember#beta',
-        'ember-data': 'components/ember-data#canary'
+        'ember-data': 'components/ember-data#beta'
       },
       resolutions: {
         'ember': 'beta',
-        'ember-data': 'canary'
+        'ember-data': 'beta'
       }
     },
     {

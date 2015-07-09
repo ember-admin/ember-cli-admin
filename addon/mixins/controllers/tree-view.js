@@ -9,7 +9,7 @@ treeViewMixin = Ember.Mixin.create({
 
   catalogues: Ember.computed({
     get: function() {
-      return this.get('store').find('catalogue', {});
+      return this.get('store').query('catalogue', {});
     }
   }),
 
@@ -24,9 +24,7 @@ treeViewMixin = Ember.Mixin.create({
     }
   }),
 
-
   actions: {
-
     rebuildAction: function(itemObject, prevId, nextId, parentId) {
       var properties = {
         parent_id: parentId,
