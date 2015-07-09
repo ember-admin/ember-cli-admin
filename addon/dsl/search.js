@@ -8,20 +8,20 @@ var SearchClass = (function() {
   function Search() {
   }
 
-  Search.prototype.fields = [];
-  Search.prototype.model  = [];
+  Search.prototype.fields = Ember.A();
+  Search.prototype.model  = Ember.A();
 
   Search.prototype.form = function(searchParams, callback) {
-    this.fields = [];
+    this.fields = Ember.A();
     this.queryParams = this.deserializer(searchParams);
     callback.call(this);
     return this;
   };
 
   Search.prototype.fromModel = function(searchParams, model, attributes){
-    this.fields = [];
+    this.fields = Ember.A();
     this.queryParams = this.deserializer(searchParams);
-    var fields = Ember.$.extend({}, attributes).fields;
+    var fields = Ember.merge({}, attributes).fields;
     if(!fields){
       fields = Attributes.forSearch(model);
     }

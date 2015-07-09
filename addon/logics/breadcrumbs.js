@@ -7,7 +7,7 @@ breadcrumbs = Ember.Object.extend();
 breadcrumbs.reopenClass({
   setup: function(action, controller, model, breadcrumbsController) {
     var content, name, obj;
-    content = [];
+    content = Ember.A();
     content.pushObject(this._dashboard());
     obj = this._controllerLink(controller.get('breadcrumbName') || controller.get('_name'), controller.get('_name'));
     content.pushObject(obj);

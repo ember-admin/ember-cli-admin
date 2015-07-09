@@ -26,14 +26,14 @@ user = DS.Model.extend({
       var actions;
       actions = [];
       if (this.get('is_active')) {
-        actions.pushObject({
+        actions.push({
           title: "Toggle Active",
           "class": "btn btn-small btn-warning",
           action: "toggleActive",
           iconClass: "glyphicon glyphicon-remove"
         });
       } else {
-        actions.pushObject({
+        actions.push({
           title: "Toggle Active",
           "class": "btn btn-small btn-green",
           action: "toggleActive",

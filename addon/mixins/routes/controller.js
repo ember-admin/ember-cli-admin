@@ -5,30 +5,30 @@ import SiteTitle from 'ember-cli-admin/logics/site-title';
 export default  Ember.Mixin.create({
 
   getOutlet: function(controller, outletName){
-    var outlet = "%@/%@".fmt(this._controllerName(controller).decamelize(), outletName);
-    if (this.container._registry.has('template:%@'.fmt(outlet))) {
+    var outlet = `${Ember.String.decamelize(this._controllerName(controller))}/${outletName}`;
+    if (this.container._registry.has(`template:${outlet}`)) {
       return outlet;
     }
-    if (this.container._registry.has("template:admin/%@".fmt(outletName))){
-      return "admin/%@".fmt(outletName);
+    if (this.container._registry.has(`template:admin/${outletName}`)){
+      return `admin/${outletName}`;
     }
-    return "admin/%@".fmt(outletName);
+    return `admin/${outletName}`;
   },
 
   _getControllerTemplate: function(controller) {
     var name;
     name = this._controllerName(controller);
     if (this.action) {
-      name = "%@/%@".fmt(name, this.action);
+      name = `${name}/${this.action}`;
     }
     if (name === "dashboard") {
       return "admin/dashboard";
     }
-    if (this.container._registry.has('template:'+name) || this.container._registry.has('template:'+"admin/%@".fmt(name))) {
+    if (this.container._registry.has('template:'+name) || this.container._registry.has(`template:${name}`)) {
       return name;
     } else {
       if (this.action && this.action !== "page") {
-        return "admin/%@".fmt(this.action);
+        return `admin/${this.action}`;
       } else {
         return "admin/main";
       }

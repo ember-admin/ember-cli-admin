@@ -16,7 +16,7 @@ export default Ember.Mixin.create({
       } else {
         str = Ember.$.param(data[type.typeKey]);
       }
-      url = "%@?%@".fmt(url, str);
+      url = `${url}?${str}`;
       data.context = adapter;
 
       return Ember.$.ajax(url,{
