@@ -119,6 +119,7 @@ export default Ember.Component.extend({
     }
   },
 
+  //TODO: Do we need this?
   itemActions: Ember.computed('allActions', {
     get: function(){
       console.log(this.get('allActions'));

@@ -42,7 +42,8 @@ baseActionsMixin = Ember.Mixin.create({
   }],
   allActions: Ember.computed('actionNew', 'itemActions', {
     get: function() {
-      return this.get('itemActions').concat([this.get('actionNew')]);
+      let allActions = this.get('itemActions').concat([this.get('actionNew')]);
+      return Ember.A(allActions);
     }
   }),
   actionNew: Ember.computed('model', {
