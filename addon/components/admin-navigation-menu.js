@@ -18,7 +18,7 @@ export default Ember.Component.extend({
   }),
   url: Ember.computed('content.route', {
     get: function() {
-      return "/#%@".fmt(this.get('content.route'));
+      return `/#${this.get('content.route')}`;
     }
   }),
   _hasChild: function() {

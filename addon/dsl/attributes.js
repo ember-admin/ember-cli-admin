@@ -26,9 +26,9 @@ attributes = Attributes = (function() {
   };
 
   Attributes.withoutRelations = function(modelType){
-    var attributes = [];
+    var attributes = Ember.A();
     if(!modelType || !modelType['eachComputedProperty']){
-      return [];
+      return Ember.A();
     }
     modelType.eachComputedProperty((function(_this) {
       return function(attribute, meta) {
@@ -41,7 +41,7 @@ attributes = Attributes = (function() {
   };
 
   Attributes.withoutId = function(modelType) {
-    attributes = [];
+    attributes = Ember.A();
     modelType.eachComputedProperty((function(_this) {
       return function(attribute, meta) {
         if (meta.isAttribute && _this.systemAttrs(modelType).indexOf(attribute) < 0) {
@@ -55,13 +55,13 @@ attributes = Attributes = (function() {
 
   Attributes.relations = function(modelType, attrs, hasMany) {
     if (attrs == null) {
-      attrs = [];
+      attrs = Ember.A();
     }
     if (hasMany == null) {
       hasMany = true;
     }
     if(!modelType ||!modelType['eachRelationship']){
-      return [];
+      return Ember.A();
     }
     modelType.eachRelationship((function() {
       return function(attribute, meta) {

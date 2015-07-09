@@ -13,8 +13,8 @@ export default Ember.Component.extend({
 
   attributeBindings: ["style", 'data-column'],
 
-  relations: "name title".w(),
-  fileuploads: "thumb_url".w(),
+  relations: ["name", "title"],
+  fileuploads: ["thumb_url"],
 
   tagName: "td",
 
@@ -23,7 +23,7 @@ export default Ember.Component.extend({
   style: Ember.computed('_style', {
     get() {
       let style = Ember.getWithDefault(this, '_style', "");  
-      return style.htmlSafe();
+      return Ember.String.htmlSafe(style);
     }
   }),
 
@@ -89,7 +89,7 @@ export default Ember.Component.extend({
     }
   }),
   path: function() {
-    return "item.%@".fmt(this.get('attributeName'));
+    return `item.${this.get('attributeName')}`;
   },
   relation: function(record) {
     var value;

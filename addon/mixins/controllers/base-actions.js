@@ -107,17 +107,17 @@ baseActionsMixin = Ember.Mixin.create({
   _transitionToMetaRoute: function(model, type) {
     var result = null;
 
-    if (type){
-      result = "%@.%@".fmt(this.get('_name'), type);
+    if (type) {
+      result = `${this.get('_name')}.${type}`;
 
-      if (type === 'new'){
+      if (type === 'new') {
         return this.transitionToRoute(result);
-      }else{
+      } else {
         return this.transitionToRoute(result, model.get('id'));
       }
     }
 
-    return this.transitionToRoute("/%@/%@".fmt(this.get('_name'), model));
+    return this.transitionToRoute(`/${this.get('_name')}/${model}`);
   }
 });
 

@@ -22,7 +22,7 @@ var batchCheckbox = Ember.Checkbox.extend({
     })(this), 300);
   }),
   _selectAllAction: function() {
-    this.set('batches', []);
+    this.set('batches', Ember.A());
     if (!this.get('checked')) {
       return;
     }
