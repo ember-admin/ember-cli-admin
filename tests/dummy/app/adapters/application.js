@@ -1,8 +1,5 @@
-import DS from 'ember-data';
-var adapter;
+import ActiveModelAdapter from 'active-model-adapter';
 
-adapter = DS.ActiveModelAdapter.extend({
+export default ActiveModelAdapter.extend({
   namespace: 'api'
 });
-
-export default adapter;
