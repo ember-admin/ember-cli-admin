@@ -10,7 +10,7 @@ export default Ember.Mixin.create({
   actions: {
     baseBatchAction(action) {
       this.get('__batches').forEach(model => {
-        return _this.send(action, model, true);
+        return this.send(action, model, true);
       });
       return this.set('__batches', Ember.A());
     }

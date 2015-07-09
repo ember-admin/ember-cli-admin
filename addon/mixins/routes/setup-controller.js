@@ -8,7 +8,6 @@ export default Ember.Mixin.create({
     if (model) {
       this._setModel(controller, model);
       type = model.type || model.constructor;
-      console.log('DJSKDJSKDJKSJDKJKSJD', model)
       controller.set('modelAttributes', Attributes.detect(type));
       controller.set('modelType', type);
       return controller.set('batches', Ember.A());
