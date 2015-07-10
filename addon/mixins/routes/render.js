@@ -3,7 +3,6 @@ var renderMixin;
 
 renderMixin = Ember.Mixin.create({
   renderTemplate: function(controller, model) {
-    this._super.apply(this, arguments);
     this._setActiveRoute(controller);
     this._setupBreadscrumbs(controller, model);
     this.render(this._getControllerTemplate(controller), {
