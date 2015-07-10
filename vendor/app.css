@@ -5584,8 +5584,16 @@ html, body {
 
 .loading-indicator {
     color: white;
-    display: flex;
     margin: 0 auto;
+}
+
+.loading-text {
+  font-size: 1.3vmax;
+}
+
+.error-indicator {
+  color: white;
+  margin: 0 auto;
 }
 
 .spinner {
@@ -5617,5 +5625,21 @@ html, body {
   }
 }
 
+.error-header {
+  font-size: 3vmax;
+  display: block;
+  width: 100%;
+}
+
+.red {
+  color: red;
+}
+
+.error-footer {
+  display: block;
+  width: 100%;
+  margin-top: 5rem;
+  color: #d2d2d2;
+}
 
 /*# sourceMappingURL=app.css.map */
