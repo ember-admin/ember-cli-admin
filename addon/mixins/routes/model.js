@@ -18,7 +18,7 @@ modelMixin = Ember.Mixin.create({
       this._setAction(options.action);
     }
     if (!this.container.lookupFactory('model:' + this.modelName)) {
-      if (this.modelName.match(/index/) || this.modelName.match(/application/)) {
+      if (this.modelName.match(/dashboard/) || this.modelName.match(/index/) || this.modelName.match(/application/)) {
         return;
       }
       return Ember.RSVP.reject('No model was found');

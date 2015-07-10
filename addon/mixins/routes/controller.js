@@ -26,7 +26,6 @@ export default Ember.Mixin.create({
         return "admin/loading";
       }
       if (this._isError(name)) {
-        console.log('SPDSDPODPOSPD')
         return "admin/error";
       }
     }
