@@ -7,7 +7,6 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-
 });
 
 MetaRoute.map(Router, function() {
