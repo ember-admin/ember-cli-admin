@@ -27,9 +27,10 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "author": "Alex Opak <opak.alexandr@gmail.com>",
+  "author": "Alex Opak <opak.alexandr@gmail.com> (https://github.com/OpakAlex)",
   "contributors": [
-    "Valeria Leshchenko <valeria.leshchenko@gmail.com>"
+    "Igor Kurinnoy <kurinnoyi@gmail.com> (https://github.com/igorrKurr)",
+    "Valeria Leshchenko <valeria.leshchenko@gmail.com> (https://github.com/ValeriaLeshchenko)"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -38,7 +39,7 @@
     "broccoli-concat": "0.0.12",
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-static-compiler": "^0.2.1",
-    "ember-cli": "^0.2.7",
+    "ember-cli": "1.13.1",
     "ember-cli-app-version": "0.3.3",
     "ember-cli-bootstrap-datepicker": "0.5.3",
     "ember-cli-content-security-policy": "0.4.0",
