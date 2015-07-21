@@ -20,6 +20,10 @@ npm install ember-cli-admin --save-dev
 
 ### Install
 
+Run `ember install ember-cli-admin`
+
+Or if you're using Ember CLI between 0.2.2 and 0.1.4:
+
 Run `ember install:addon ember-cli-admin`
 
 Or if you're using Ember CLI 0.1.4 or older:
