@@ -11,7 +11,7 @@ module.exports = {
       {name: "ember-cli-sass", target: "^4.0.0"}
     ]).then(function() {
       return self.addBowerPackagesToProject([
-        {name: "bootstrap-sass-official", target: "3.2.0"},
+        {name: "bootstrap-sass-official", target: "3.3.4"},
         {name: "bootstrap-datepicker", target: "~1.4.0"},
         {name: "typeahead.js", target: "0.10.5"},
         {name: "jquery-ui-sortable", target: "*"},

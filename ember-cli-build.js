@@ -8,12 +8,13 @@ module.exports = function(defaults) {
     // Add options here
   });
 
-  var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
-    srcDir: '/',
-    destDir: '/assets/bootstrap'
-  });
+  // var bootstrapFonts = pickFiles('bower_components/bootstrap-sass-official/assets/fonts/bootstrap', {
+  //   srcDir: '/',
+  //   destDir: '/assets/bootstrap'
+  // });
 
-  return mergeTrees([app.toTree(), bootstrapFonts], {
-    overwrite: true
-  });
+  // return mergeTrees([app.toTree(), bootstrapFonts], {
+  //   overwrite: true
+  // });
+  return app.toTree();
 };
