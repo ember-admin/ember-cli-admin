@@ -20,7 +20,7 @@ module.exports = {
     var bootstrapFonts = path.join(this.app.bowerDirectory, '/bootstrap-sass-official/assets/fonts/bootstrap');
     var bootstrapFontsTree = new Funnel(this.treeGenerator(bootstrapFonts), {
       srcDir: '/',
-      destDir: '/public/assets/bootstrap'
+      destDir: '/fonts/bootstrap'
     });
 
     return bootstrapFontsTree;
