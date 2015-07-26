@@ -1,6 +1,6 @@
 var inflection = require('ember-cli/node_modules/inflection');
-var processTextContent = require('ember-cli-admin/lib/proccess-text-content').processTextContent;
 var path = require('path');
+var chalk = require('ember-cli/node_modules/chalk');
 
 module.exports = {
   description: 'Generates tableview resource',
@@ -13,7 +13,7 @@ module.exports = {
         }
         return inflection.singularize(options.dasherizedModuleName);
       },
-      __controllerName__: function(options){
+      __controllerName__: function(options) {
         if (options.pod) {
           return "controller";
         }
@@ -21,7 +21,7 @@ module.exports = {
       },
       __controllerPath__: function(options) {
         if (options.pod) {
-          return path.join(options.podPath,  inflection.pluralize(options.dasherizedModuleName));
+          return path.join(options.podPath, inflection.pluralize(options.dasherizedModuleName));
         }
         return 'controllers';
       },
@@ -30,25 +30,39 @@ module.exports = {
           return path.join(options.podPath, inflection.singularize(options.dasherizedModuleName));
         }
         return 'models';
+      },
+      __root__: function(options) {
+        if (options.inRepoAddon) {
+          return path.join('lib', options.inRepoAddon, 'addon');
+        }
+
+        if (options.inDummy) {
+          return path.join('tests', 'dummy', 'app');
+        }
+
+        if (options.inAddon) {
+          return 'addon';
+        }
+
+        return 'app';
       }
     };
   },
-  beforeInstall: function(options){
-    var process = processTextContent.bind(this);
+  afterInstall: function(options) {
     var entityName = options.entity.name;
-    var navigationStr = '\n\t\tthis.navigate("' + inflection.titleize(entityName) + '", { route: "' + entityName + '" });'
-    var routerStr = '\n\tthis.resources("' + entityName + '");'
-    process('app/initializers/navigation.js',
-      {
-        insert: {
-          'this.navigate("Dashboard", { route: "dashboard" });': navigationStr
-        }
+    var navigationStr = '\n  this.navigate("' + inflection.titleize(entityName) + '", { route: "' + entityName + '" });'
+    var routerStr = '\n  this.resources("' + entityName + '");'
+
+    var self = this;
+
+    return this.insertIntoFile('app/navigation.js', navigationStr, {
+      after: '});'
+    }).then(function() {
+      return self.insertIntoFile('app/router.js', routerStr, {
+        after: 'MetaRoute.map(Router, function() {'
       });
-    process('app/router.js',
-      {
-        insert: {
-          'MetaRoute.map(Router, function() {': routerStr
-        }
-      });
+    }).then(function() {
+      self._writeStatusToUI(chalk.green, '[ember-cli-admin] add table-view-resource', entityName);
+    });
   }
 };
