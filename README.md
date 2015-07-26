@@ -10,12 +10,6 @@ Ember-cli-admin is a powerful admin dashboard for ember-cli projects that is bui
 
 [Ember-cli-admin example](http://rails.ember-admin.com/#/products)
 
-##Installation
-
-```
-npm install ember-cli-admin --save-dev
-```
-
 ## Quick Setup Steps
 
 ### Install
@@ -172,12 +166,6 @@ export default DS.Model.extend({
   asGoogleMap: ['lat', 'long', 'zoom']
 
 });
-```
-
-And don't forget to add Google Maps to your ```index.html```
-```
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key={your API key}&libraries=places">
-  </script>
 ```
 
 For more info see [ember-cli-map README][4].
