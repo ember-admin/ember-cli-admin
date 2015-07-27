@@ -45,7 +45,7 @@ These are:
 - **table-view-controller** - generates TableViewController;
 - **tree-view-controller** - generates TreeViewController;
 - **table-view-resource** - generates model, TableViewController and register them in MetaRouter and Navigation;
-- **table-view-resource** - same as table-view-resource, but with TreeViewController and model suited for it;
+- **tree-view-resource** - same as table-view-resource, but with TreeViewController and model suited for it;
 
 ##Plugins
 
