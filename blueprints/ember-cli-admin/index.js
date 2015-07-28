@@ -4,11 +4,9 @@ module.exports = {
   afterInstall: function() {
     var self = this;
     return this.addPackagesToProject([
-      {name: "ember-cli-map", target: "0.2.2"},
+      {name: "ember-cli-map", target: "0.4.2"},
       {name: "ember-cli-bootstrap-datepicker", target: "0.4.0"},
-      {name: "broccoli-merge-trees", target: "0.1.4"},
-      {name: "broccoli-static-compiler", target: "0.1.4"},
-      {name: "ember-cli-sass", target: "^4.0.0"}
+      {name: "ember-cli-sass", target: "4.0.0-beta.5"}
     ]).then(function() {
       return self.addBowerPackagesToProject([
         {name: "bootstrap-sass-official", target: "3.3.4"},

@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-admin",
   "version": "0.6.2",
-  "description": "powerful admin dashboard for ember-cli projects, more in http://ember-admin.com",
+  "description": "Powerful admin dashboard for ember-cli projects, more in http://ember-admin.com",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -12,6 +12,10 @@
     "test": "ember try:testall"
   },
   "repository": "https://github.com/ember-admin/ember-cli-admin",
+  "bugs": {
+    "url": "https://github.com/ember-admin/ember-cli-admin/issues"
+  },
+  "homepage": "http://ember-admin.com",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -25,7 +29,8 @@
     "bootstrap-admin"
   ],
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "http://rails.ember-admin.com/"
   },
   "author": "Alex Opak <opak.alexandr@gmail.com> (https://github.com/OpakAlex)",
   "contributors": [
@@ -47,7 +52,7 @@
     "ember-cli-dependency-checker": "^1.0.0",
     "ember-cli-ic-ajax": "0.1.1",
     "ember-cli-inject-live-reload": "^1.3.0",
-    "ember-cli-map": "0.4.1",
+    "ember-cli-map": "0.4.2",
     "ember-cli-mirage": "0.1.5",
     "ember-cli-qunit": "0.3.15",
     "ember-cli-sass": "4.0.0-beta.5",
