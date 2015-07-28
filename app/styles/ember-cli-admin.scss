@@ -43,13 +43,13 @@
 }
 
 .breadcrumb > li:before{
-  content: "-"; // Unicode space added since inline-block means non-collapsing white-space
+  content: "/ " !important; // Unicode space added since inline-block means non-collapsing white-space
   padding: 0 5px;
   color: #000;
 }
 
 .breadcrumb > li.first:before {
-  content: " ";
+  content: " " !important;
 }
 
 .breadcrumb li.active{

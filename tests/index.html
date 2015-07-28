@@ -13,27 +13,8 @@
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/dummy.css">
     <link rel="stylesheet" href="assets/test-support.css">
-    <style>
-      #ember-testing-container {
-        position: absolute;
-        background: white;
-        bottom: 0;
-        right: 0;
-        width: 640px;
-        height: 384px;
-        overflow: auto;
-        z-index: 9999;
-        border: 1px solid #ccc;
-      }
-      #ember-testing {
-        zoom: 50%;
-      }
-    </style>
   </head>
   <body>
-    <div id="qunit"></div>
-    <div id="qunit-fixture"></div>
-
     {{content-for 'body'}}
     {{content-for 'test-body'}}
     <script src="assets/vendor.js"></script>
@@ -41,7 +22,7 @@
     <script src="assets/dummy.js"></script>
     <script src="testem.js"></script>
     <script src="assets/test-loader.js"></script>
-    <script src="http://api-maps.yandex.ru/2.0/?load=package.standard&lang=ru-Ru"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyCqyf1CwoH9VU6XNYBmIXZSRsMQ0BJUOrw&libraries=places"></script>
+    {{content-for 'body-footer'}}
+    {{content-for 'test-body-footer'}}
   </body>
 </html>
