@@ -86,7 +86,7 @@ test('model formFields are shown on resource show page', function(assert) {
   visit('/users/1/show');
 
   andThen(function() {
-    assert.equal(find('tbody td').length, 2);
+    assert.equal(find('tbody td').length, 9);
     assert.equal(find("td[data-column='email']").text().trim(), users[0].email);
     assert.equal(find("td[data-column='name']").text().trim(), users[0].name);
   });
