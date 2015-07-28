@@ -6,7 +6,7 @@ module.exports = {
 
   included: function(app) {
     this.app = app;
-
+    app.import(app.bowerDirectory + '/bootstrap-sass-official/assets/javascripts/bootstrap.js');
     app.import('vendor/fileicon.png', { destDir: 'assets/images' });
     app.import(app.bowerDirectory + '/typeahead.js/dist/bloodhound.min.js');
     app.import(app.bowerDirectory + '/typeahead.js/dist/typeahead.jquery.js');
