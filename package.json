@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-admin",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "Powerful admin dashboard for ember-cli projects, more in http://ember-admin.com",
   "directories": {
     "doc": "doc",
