@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-admin",
-  "version": "0.5.3",
+  "version": "0.6.2",
   "description": "powerful admin dashboard for ember-cli projects, more in http://ember-admin.com",
   "directories": {
     "doc": "doc",
@@ -27,18 +27,20 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "author": "Alex Opak <opak.alexandr@gmail.com>",
+  "author": "Alex Opak <opak.alexandr@gmail.com> (https://github.com/OpakAlex)",
   "contributors": [
-    "Valeria Leshchenko <valeria.leshchenko@gmail.com>"
+    "Igor Kurinnoy <kurinnoyi@gmail.com> (https://github.com/igorrKurr)",
+    "Valeria Leshchenko <valeria.leshchenko@gmail.com> (https://github.com/ValeriaLeshchenko)"
   ],
   "license": "MIT",
   "devDependencies": {
     "active-model-adapter": "1.13.3",
     "broccoli-asset-rev": "^2.0.2",
     "broccoli-concat": "0.0.12",
+    "broccoli-funnel": "^0.2.3",
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-static-compiler": "^0.2.1",
-    "ember-cli": "^0.2.7",
+    "ember-cli": "1.13.1",
     "ember-cli-app-version": "0.3.3",
     "ember-cli-bootstrap-datepicker": "0.5.3",
     "ember-cli-content-security-policy": "0.4.0",
@@ -48,9 +50,11 @@
     "ember-cli-map": "0.4.1",
     "ember-cli-mirage": "0.1.5",
     "ember-cli-qunit": "0.3.15",
-    "ember-cli-sass": "4.0.0-beta.7",
+    "ember-cli-sass": "4.0.0-beta.5",
     "ember-cli-uglify": "1.0.1",
     "ember-data": "1.13.4",
+    "ember-disable-prototype-extensions": "^1.0.0",
+    "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
     "ember-try": "0.0.7",
     "ember-watson": "^0.5.0"

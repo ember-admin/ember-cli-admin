@@ -11,10 +11,6 @@ Router.map(function() {
 
 MetaRoute.map(Router, function() {
   this.route("dashboard", {path: "/"});
-  this.resources("users");
-  this.resources("cars");
-  this.resources("user-categories");
-  this.resources("catalogues");
 });
 
 export default Router;

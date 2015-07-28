@@ -10,17 +10,15 @@ Ember-cli-admin is a powerful admin dashboard for ember-cli projects that is bui
 
 [Ember-cli-admin example](http://rails.ember-admin.com/#/products)
 
-##Installation
+## Quick Setup Steps
 
-```
-npm install ember-cli-admin --save-dev
-```
+### Install
 
-##Quick Setup Steps
+Run `ember install ember-cli-admin`
 
-First,
+Or if you're using Ember CLI between 0.2.2 and 0.1.4:
 
-`ember install:addon ember-cli-admin`
+Run `ember install:addon ember-cli-admin`
 
 Or if you're using Ember CLI 0.1.4 or older:
 
@@ -28,13 +26,11 @@ Or if you're using Ember CLI 0.1.4 or older:
 npm install ember-cli-admin --save-dev
 ember g ember-cli-admin
 ```
-Second,
 
-`ember g admin-app "My Awesome App Name"`
+### Generate
 
-Third,
-
-`ember g table-view-resource my-resources`
+1. Run `ember g admin-app "My Awesome App Name"`
+2. Run `ember g table-view-resource my-resources`
 
 That's all!
 
@@ -49,7 +45,7 @@ These are:
 - **table-view-controller** - generates TableViewController;
 - **tree-view-controller** - generates TreeViewController;
 - **table-view-resource** - generates model, TableViewController and register them in MetaRouter and Navigation;
-- **table-view-resource** - same as table-view-resource, but with TreeViewController and model suited for it;
+- **tree-view-resource** - same as table-view-resource, but with TreeViewController and model suited for it;
 
 ##Plugins
 
@@ -170,12 +166,6 @@ export default DS.Model.extend({
   asGoogleMap: ['lat', 'long', 'zoom']
 
 });
-```
-
-And don't forget to add Google Maps to your ```index.html```
-```
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key={your API key}&libraries=places">
-  </script>
 ```
 
 For more info see [ember-cli-map README][4].

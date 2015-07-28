@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   }),
   isInSortFields: Ember.computed('sortFields', 'attributeName', {
     get: function() {
-      return this.get('sortFields').contains(this.get('attributeName'));
+      return Ember.A(this.get('sortFields')).contains(this.get('attributeName'));
     }
   }),
   click: function() {

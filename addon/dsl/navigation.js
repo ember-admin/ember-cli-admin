@@ -34,6 +34,9 @@ params:
  */
 import Ember from 'ember';
 
+const { Object: EmberObject, String: EmberString, merge } = Ember;
+const { dasherize } = EmberString;
+
 export default class Navigation {
   constructor(container, parentId) {
     this.parentId = parentId;
@@ -59,10 +62,10 @@ export default class Navigation {
       navigateObject.parentId = this.parentId;
     }
     if (options && typeof options !== 'function') {
-      navigateObject = Ember.$.extend(navigateObject, options);
+      navigateObject = merge(navigateObject, options);
     }
     this._makeRoute(navigateObject);
-    emberObject = Ember.Object.create(navigateObject);
+    emberObject = EmberObject.create(navigateObject);
     this.container.push(emberObject);
     if (typeof options === 'function') {
       callback = options;
@@ -79,7 +82,7 @@ export default class Navigation {
       options = {};
     }
     if (options.route === void 0) {
-      return options.route = options.title.dasherize();
+      return options.route = dasherize(options.title);
     }
   }
 

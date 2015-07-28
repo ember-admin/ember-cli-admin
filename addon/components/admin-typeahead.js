@@ -13,6 +13,7 @@ export default Ember.TextField.extend({
   highlight: true,
   minLength: 1,
 
+  //TODO: We need more customizable solution here
   ajax: Ember.computed({
     get: function() {
       var session;
@@ -22,7 +23,7 @@ export default Ember.TextField.extend({
       }
       return {
         headers: {
-          'Authorization': 'Token user_token="%@", user_email="%@"'.fmt(session.user_token, session.user_email)
+          'Authorization': `Token user_token="${session.user_token}", user_email="${session.user_email}"`
         }
       };
     }
@@ -36,7 +37,7 @@ export default Ember.TextField.extend({
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: false,
         remote: {
-          url: '%@?q=%QUERY'.fmt(self.get('url')),
+          url: `${self.get('url')}?q=%QUERY`,
           ajax: this.get('ajax')
         }
       });

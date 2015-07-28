@@ -18,87 +18,90 @@
 
 var MetaRoute, metaRouteClass;
 
-metaRouteClass = MetaRoute = (function () {
-    function MetaRoute() {
+metaRouteClass = MetaRoute = (function() {
+  function MetaRoute() {}
+
+  MetaRoute.map = function(router, options, callback) {
+    if (arguments.length === 2 && typeof options === "function") {
+      callback = options;
+      options = {};
     }
 
-    MetaRoute.map = function (router, options, callback) {
-        if (arguments.length === 2 && typeof options === "function") {
-            callback = options;
-            options = {};
-        }
+    this.router = router;
+    this.path_prefix = options.path || "";
 
-        this.router = router;
-        this.path_prefix = options.path || "";
+    return callback.call(new metaRouteClass());
+  };
 
-        return callback.call(new metaRouteClass());
+  MetaRoute.prototype.resources = function(name) {
+    var self;
+    self = this;
+
+    return metaRouteClass.router.map(function() {
+
+      this.route(name, {
+        path: metaRouteClass.path_prefix + "/" + name
+      });
+      this.route("" + name + ".edit", {
+        path: self._action_edit_path(name)
+      });
+      this.route("" + name + ".show", {
+        path: self._action_show_path(name)
+      });
+      return this.route("" + name + ".new", {
+        path: self._new_path(name)
+      });
+    });
+  };
+
+  MetaRoute.prototype.route = function(name, options, callback) {
+    var _isEmptyObject = function(obj) {
+      var name;
+      for (name in obj) {
+        return false;
+      }
+      return true;
     };
 
-    MetaRoute.prototype.resources = function (name) {
-        var self;
-        self = this;
+    if (arguments.length === 2 && typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
 
-        return metaRouteClass.router.map(function () {
+    if (arguments.length === 1) {
+      options = {};
+    }
 
-            this.route(name, {
-                path: metaRouteClass.path_prefix + "/" + name
-            });
-            this.route("" + name + ".edit", {
-                path: self._action_edit_path(name)
-            });
-            this.route("" + name + ".show", {
-                path: self._action_show_path(name)
-            });
-            return this.route("" + name + ".new", {
-                path: self._new_path(name)
-            });
-        });
-    };
-
-    MetaRoute.prototype.route = function (name, options, callback) {
-        var _isEmptyObject = function (obj) {
-            var name;
-            for (name in obj) {
-                return false;
-            }
-            return true;
+    if (_isEmptyObject(options)) {
+      options = {
+        path: metaRouteClass.path_prefix + "/" + name
+      };
+    } else {
+      if (!!options.path) {
+        options = {
+          path: metaRouteClass.path_prefix + "/" + options.path
         };
+      }
+    }
 
-        if (arguments.length === 2 && typeof options === 'function') {
-            callback = options;
-            options = {};
-        }
+    return metaRouteClass.router.map(function() {
+      this.route(name, options, callback);
+    });
+  };
 
-        if (arguments.length === 1) {
-            options = {};
-        }
+  MetaRoute.prototype._action_show_path = function(name) {
+    return metaRouteClass.path_prefix + "/" + name + "/:id/show";
+  };
 
-        if (_isEmptyObject(options)) {
-            options = {path: metaRouteClass.path_prefix + "/" + name};
-        } else {
-            if (!!options.path) {
-                options = {path: metaRouteClass.path_prefix + "/" + options.path};
-            }
-        }
+  MetaRoute.prototype._action_edit_path = function(name) {
+    return metaRouteClass.path_prefix + "/" + name + "/:id/edit";
+  };
 
-        return metaRouteClass.router.map(function () {
-            this.route(name, options, callback);
-        });
-    };
+  MetaRoute.prototype._new_path = function(name) {
+    return metaRouteClass.path_prefix + "/" + name + "/new";
+  };
 
-    MetaRoute.prototype._action_show_path = function (name) {
-        return metaRouteClass.path_prefix + "/" + name + "/:id/show";
-    };
-
-    MetaRoute.prototype._action_edit_path = function (name) {
-        return metaRouteClass.path_prefix + "/" + name + "/:id/edit";
-    };
-
-    MetaRoute.prototype._new_path = function (name) {
-        return metaRouteClass.path_prefix + "/" + name + "/new";
-    };
-
-    return MetaRoute;
+  return MetaRoute;
 
 })();
 
