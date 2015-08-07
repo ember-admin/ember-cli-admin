@@ -7,6 +7,12 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    /**
+    Used for redirection from dashboard to the setted route. Optional property.
+    @property redirectFromDashboardTo
+    @type {string}
+    **/
+    redirectFromDashboardTo : 'users',
     EmberENV: {
       appName: 'Sample App Name',
       titleLinksTo: '/example/url',
