@@ -7,10 +7,15 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    /**
+    Used for redirection from dashboard to the setted route. Optional property.
+    @property redirectFromDashboardTo
+    @type {string}
+    **/
+    redirectFromDashboardTo : 'users',
     EmberENV: {
       appName: 'Sample App Name',
       titleLinksTo: '/example/url',
-      redirectFromDashboardTo : 'users', //route name
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
