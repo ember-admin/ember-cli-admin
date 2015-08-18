@@ -44,7 +44,7 @@
     "broccoli-concat": "0.0.12",
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-static-compiler": "^0.2.1",
-    "ember-cli": "1.13.1",
+    "ember-cli": "1.13.8",
     "ember-cli-app-version": "0.3.3",
     "ember-cli-bootstrap-datepicker": "0.5.3",
     "ember-cli-content-security-policy": "0.4.0",
