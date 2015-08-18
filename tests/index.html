@@ -22,6 +22,14 @@
     <script src="assets/dummy.js"></script>
     <script src="testem.js"></script>
     <script src="assets/test-loader.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      Function.prototype.bind = Function.prototype.bind || function (thisp) {
+          var fn = this;
+          return function () {
+              return fn.apply(thisp, arguments);
+          };
+      }; 
+    </script>
     {{content-for 'body-footer'}}
     {{content-for 'test-body-footer'}}
   </body>

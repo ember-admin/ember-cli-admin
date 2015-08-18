@@ -2,19 +2,19 @@ import Ember from 'ember';
 import Attributes from 'ember-cli-admin/dsl/attributes';
 
 export default Ember.Mixin.create({
-  formAttributes: Ember.computed('modelAttributes.@each', {
+  formAttributes: Ember.computed('modelAttributes.[]', {
     get: function() {
       return Attributes.withoutId(this.get("model").constructor);
     }
   }),
 
-  showAttributes: Ember.computed('modelAttributes.@each', {
+  showAttributes: Ember.computed('modelAttributes.[]', {
     get: function(){
       return Attributes.withoutId(this.get("model").constructor);
     }
   }),
 
-  tableAttributes: Ember.computed('modelAttributes.@each', {
+  tableAttributes: Ember.computed('modelAttributes.[]', {
     get: function() {
       return this.get('modelAttributes');
     }
