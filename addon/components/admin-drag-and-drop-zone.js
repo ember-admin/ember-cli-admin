@@ -142,7 +142,7 @@ export default Ember.Component.extend({
   _params: function(file) {
     var params;
     params = {
-      assetable_type: Ember.String.singularize(this.get('controllerName')).classify(),
+      assetable_type: Ember.String.classify(Ember.String.singularize(this.get('controllerName'))),
       content_type: file.type,
       original_filename: file.name,
       is_main: true

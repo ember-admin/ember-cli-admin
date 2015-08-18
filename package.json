@@ -42,7 +42,6 @@
     "active-model-adapter": "1.13.3",
     "broccoli-asset-rev": "^2.0.2",
     "broccoli-concat": "0.0.12",
-    "broccoli-funnel": "^0.2.3",
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-static-compiler": "^0.2.1",
     "ember-cli": "1.13.1",
@@ -66,6 +65,7 @@
   },
   "dependencies": {
     "ember-cli-babel": "^5.0.0",
+    "broccoli-funnel": "^0.2.3",
     "ember-cli-htmlbars": "0.7.9"
   }
 }
