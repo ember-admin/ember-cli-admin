@@ -12,7 +12,7 @@ var batchCheckbox = Ember.Checkbox.extend({
       return this.get('batches').removeObject(this.get('context'));
     }
   }),
-  observerForChangeBatchesCollection: Ember.observer('batches.@each', function() {
+  observerForChangeBatchesCollection: Ember.observer('batches.[]', function() {
     return Ember.run.later((function(_this) {
       return function() {
         if (_this.get('batches').length === 0 && _this.get('selectAll')) {

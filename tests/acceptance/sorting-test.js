@@ -47,8 +47,8 @@ test('switching from sorting by one attribute to another works as expected - rec
   function(assert) {
     assert.expect(1);
 
-    let user = users[2];
-    user.name = 'Aaron';
+    let user = server.create('user', {id: 3, name: 'Aaron'});
+    let avatar = server.create('avatar', {id: 6});
 
     visit('/users');
 
@@ -59,4 +59,4 @@ test('switching from sorting by one attribute to another works as expected - rec
     andThen(function() {
       assert.equal(find('tbody tr:first td[data-column="id"]:contains("3")').length, 1);
     });
-  });
+});
