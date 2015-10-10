@@ -5,10 +5,10 @@ import SiteTitle from 'ember-cli-admin/logics/site-title';
 export default Ember.Mixin.create({
   getOutlet: function(controller, outletName) {
     var outlet = `${Ember.String.decamelize(this._controllerName(controller))}/${outletName}`;
-    if (this.container._registry.has(`template:${outlet}`)) {
+    if (this.container.registry.has(`template:${outlet}`)) {
       return outlet;
     }
-    if (this.container._registry.has(`template:admin/${outletName}`)) {
+    if (this.container.registry.has(`template:admin/${outletName}`)) {
       return `admin/${outletName}`;
     }
     return `admin/${outletName}`;
@@ -19,7 +19,7 @@ export default Ember.Mixin.create({
     name = this._controllerName(controller);
 
     if (this._isLoading(name) || this._isError(name)) {
-      if (this.container._registry.has(`template:${name}`)) {
+      if (this.container.registry.has(`template:${name}`)) {
         return name;
       }
       if (this._isLoading(name)) {
@@ -35,7 +35,7 @@ export default Ember.Mixin.create({
     if (name === "dashboard") {
       return "admin/dashboard";
     }
-    if (this.container._registry.has(`template:${name}`)) {
+    if (this.container.registry.has(`template:${name}`)) {
       return name;
     } else {
       if (this.action && this.action !== "page") {
