@@ -5,13 +5,20 @@ import SiteTitle from 'ember-cli-admin/logics/site-title';
 export default Ember.Mixin.create({
   getOutlet: function(controller, outletName) {
     var outlet = `${Ember.String.decamelize(this._controllerName(controller))}/${outletName}`;
-    if (this.container.registry.has(`template:${outlet}`)) {
+    if (this._getRegistry().has(`template:${outlet}`)) {
       return outlet;
     }
-    if (this.container.registry.has(`template:admin/${outletName}`)) {
+    if (this._getRegistry().has(`template:admin/${outletName}`)) {
       return `admin/${outletName}`;
     }
     return `admin/${outletName}`;
+  },
+
+  _getRegistry() {
+    if (this.container._registry) {
+      return this.container._registry;
+    }
+    return this.container.registry;
   },
 
   _getControllerTemplate: function(controller) {
@@ -19,7 +26,7 @@ export default Ember.Mixin.create({
     name = this._controllerName(controller);
 
     if (this._isLoading(name) || this._isError(name)) {
-      if (this.container.registry.has(`template:${name}`)) {
+      if (this._getRegistry().has(`template:${name}`)) {
         return name;
       }
       if (this._isLoading(name)) {
@@ -35,7 +42,7 @@ export default Ember.Mixin.create({
     if (name === "dashboard") {
       return "admin/dashboard";
     }
-    if (this.container.registry.has(`template:${name}`)) {
+    if (this._getRegistry().has(`template:${name}`)) {
       return name;
     } else {
       if (this.action && this.action !== "page") {
