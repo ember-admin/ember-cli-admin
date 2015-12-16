@@ -4,8 +4,8 @@ import layout from '../templates/components/admin-pagination-pages';
 export default Ember.Component.extend({
   layout: layout,
 
-  currentPageBinding: "content.page",
-  numberOfPagesBinding: "content.numberOfPages",
+  currentPage: Ember.computed.alias("content.page"),
+  numberOfPages: Ember.computed.alias("content.numberOfPages"),
 
   pageItems: Ember.computed("currentPage", "numberOfPages", {
     get: function() {
