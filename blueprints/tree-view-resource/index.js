@@ -1,5 +1,5 @@
-var inflection = require('ember-cli/node_modules/inflection');
-var chalk = require('ember-cli/node_modules/chalk');
+var inflection = require('inflection');
+var chalk = require('chalk');
 var path = require('path');
 
 module.exports = {
