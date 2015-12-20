@@ -1,6 +1,6 @@
-var inflection = require('ember-cli/node_modules/inflection');
+var inflection = require('inflection');
 var path = require('path');
-var chalk = require('ember-cli/node_modules/chalk');
+var chalk = require('chalk');
 
 module.exports = {
   description: 'Generates tableview resource',
