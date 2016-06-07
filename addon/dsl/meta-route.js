@@ -16,9 +16,9 @@
  @class MetaRoute
  */
 
-var MetaRoute, metaRouteClass;
+var MetaRoute, MetaRouteClass;
 
-metaRouteClass = MetaRoute = (function() {
+MetaRouteClass = MetaRoute = (function() {
   function MetaRoute() {}
 
   MetaRoute.map = function(router, options, callback) {
@@ -30,17 +30,17 @@ metaRouteClass = MetaRoute = (function() {
     this.router = router;
     this.path_prefix = options.path || "";
 
-    return callback.call(new metaRouteClass());
+    return callback.call(new MetaRouteClass());
   };
 
   MetaRoute.prototype.resources = function(name) {
     var self;
     self = this;
 
-    return metaRouteClass.router.map(function() {
+    return MetaRouteClass.router.map(function() {
 
       this.route(name, {
-        path: metaRouteClass.path_prefix + "/" + name
+        path: MetaRouteClass.path_prefix + "/" + name
       });
       this.route("" + name + ".edit", {
         path: self._action_edit_path(name)
@@ -74,35 +74,35 @@ metaRouteClass = MetaRoute = (function() {
 
     if (_isEmptyObject(options)) {
       options = {
-        path: metaRouteClass.path_prefix + "/" + name
+        path: MetaRouteClass.path_prefix + "/" + name
       };
     } else {
       if (!!options.path) {
         options = {
-          path: metaRouteClass.path_prefix + "/" + options.path
+          path: MetaRouteClass.path_prefix + "/" + options.path
         };
       }
     }
 
-    return metaRouteClass.router.map(function() {
+    return MetaRouteClass.router.map(function() {
       this.route(name, options, callback);
     });
   };
 
   MetaRoute.prototype._action_show_path = function(name) {
-    return metaRouteClass.path_prefix + "/" + name + "/:id/show";
+    return MetaRouteClass.path_prefix + "/" + name + "/:id/show";
   };
 
   MetaRoute.prototype._action_edit_path = function(name) {
-    return metaRouteClass.path_prefix + "/" + name + "/:id/edit";
+    return MetaRouteClass.path_prefix + "/" + name + "/:id/edit";
   };
 
   MetaRoute.prototype._new_path = function(name) {
-    return metaRouteClass.path_prefix + "/" + name + "/new";
+    return MetaRouteClass.path_prefix + "/" + name + "/new";
   };
 
   return MetaRoute;
 
 })();
 
-export default metaRouteClass;
+export default MetaRouteClass;

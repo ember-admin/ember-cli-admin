@@ -11,7 +11,8 @@ cache:
     - node_modules
 before_install:
   - "npm config set spin false"
-  - "npm install -g npm@^2"
+  - "npm config set registry http://registry.npmjs.org/"
+  - "npm install -g npm@latest"
   - "npm config set spin false"
 os:
   - linux
