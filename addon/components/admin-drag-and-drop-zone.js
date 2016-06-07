@@ -75,9 +75,13 @@ export default Ember.Component.extend({
     adminAction: function(actionName, options){
         this.sendAction(this.get('adminAction'), actionName, options);
     },
-    selectFile: function() {
+    selectFile: function(event) {
       var file, files, _i, _len, _results;
-      files = event.target.files;
+      if (!event) {
+        files = this.$('#filesource').get(0).files;
+      } else {
+        files = event.target.files;
+      }
       _results = [];
       for (_i = 0, _len = files.length; _i < _len; _i++) {
         file = files[_i];

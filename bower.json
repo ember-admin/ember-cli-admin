@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-admin",
   "dependencies": {
-    "jquery": "^1.11.1",
+    "jquery": "2.1.0",
     "ember": "2.1.0",
     "ember-data": "2.1.0",
     "ember-resolver": "~0.1.12",

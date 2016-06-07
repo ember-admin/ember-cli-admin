@@ -1,31 +1,51 @@
 import Ember from 'ember';
 
-export default Ember.Mixin.create({
-  createRecord: function(store, type, record) {
-    var adapter, url;
-    url = this.buildURL(type.typeKey);
-    adapter = this;
-    return new Ember.RSVP.Promise(function(resolve) {
-      var data, str;
+const {
+  Mixin,
+  RSVP,
+  Inflector,
+  $,
+  isEmpty,
+  merge,
+  run
+} = Ember;
+
+export default Mixin.create({
+  createRecord: function(store, type, snapshot) {
+    let url;
+    url = this.buildURL(type.modelName, null, snapshot, 'createRecord');
+    return new RSVP.Promise((resolve, reject) => {
+      let data, str;
       data = {};
-      data[type.typeKey] = store.serializerFor(type.typeKey).serialize(record, {
+      store.serializerFor(type.modelName).serializeIntoHash(data, type, snapshot, {
         includeId: true
       });
-      if (record["_excludeParams"]) {
-        str = Ember.$.param(record._excludeParams(data[type.typeKey]));
+      const serializedType = Inflector.inflector.singularize(this.pathForType(type.modelName));
+      if (snapshot["_excludeParams"]) {
+        str = $.param(snapshot._excludeParams(data[serializedType]));
       } else {
-        str = Ember.$.param(data[type.typeKey]);
+        str = $.param(data[serializedType]);
       }
       url = `${url}?${str}`;
-      data.context = adapter;
+      data.context = this;
 
-      return Ember.$.ajax(url,{
-        'data': record.get('file'),
+      const ajaxOptions = this.ajaxOptions();
+      let params = {
+        'data': snapshot.record.get('file'),
         'type': 'POST',
         'processData': false,
-        'contentType': record.attr('content_type')
-      }).then(function(data){
-          return Ember.run(null, resolve, data);
+        'contentType': snapshot.attr('content_type')
+      };
+
+      if (!isEmpty(ajaxOptions)) {
+        params = merge(ajaxOptions, params);
+      }
+
+      return $.ajax(url, params).then(function(data){
+        run(null, resolve, data);
+      }, function(jqXHR) {
+        jqXHR.then = null;
+        run(null, reject, jqXHR);
       });
     });
   }
