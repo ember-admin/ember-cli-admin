@@ -2,8 +2,8 @@
   "name": "ember-cli-admin",
   "dependencies": {
     "jquery": "2.1.0",
-    "ember": "2.1.0",
-    "ember-data": "2.1.0",
+    "ember": "2.4.5",
+    "ember-data": "2.4.3",
     "ember-resolver": "~0.1.12",
     "loader.js": "stefanpenner/loader.js#3.2.1",
     "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.3",

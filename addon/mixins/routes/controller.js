@@ -2,23 +2,25 @@ import Ember from 'ember';
 import Breadcrumbs from 'ember-cli-admin/logics/breadcrumbs';
 import SiteTitle from 'ember-cli-admin/logics/site-title';
 
+const { getOwner } = Ember;
+
 export default Ember.Mixin.create({
   getOutlet: function(controller, outletName) {
     var outlet = `${Ember.String.decamelize(this._controllerName(controller))}/${outletName}`;
-    if (this._getRegistry().has(`template:${outlet}`)) {
+    if (this._getRegistry().hasRegistration(`template:${outlet}`)) {
       return outlet;
     }
-    if (this._getRegistry().has(`template:admin/${outletName}`)) {
+    if (this._getRegistry().hasRegistration(`template:admin/${outletName}`)) {
       return `admin/${outletName}`;
     }
     return `admin/${outletName}`;
   },
 
   _getRegistry() {
-    if (this.container._registry) {
-      return this.container._registry;
+    if (getOwner(this)) {
+      return getOwner(this);
     }
-    return this.container.registry;
+    return getOwner(this);
   },
 
   _getControllerTemplate: function(controller) {
@@ -26,7 +28,7 @@ export default Ember.Mixin.create({
     name = this._controllerName(controller);
 
     if (this._isLoading(name) || this._isError(name)) {
-      if (this._getRegistry().has(`template:${name}`)) {
+      if (this._getRegistry().hasRegistration(`template:${name}`)) {
         return name;
       }
       if (this._isLoading(name)) {
@@ -42,7 +44,7 @@ export default Ember.Mixin.create({
     if (name === "dashboard") {
       return "admin/dashboard";
     }
-    if (this._getRegistry().has(`template:${name}`)) {
+    if (this._getRegistry().hasRegistration(`template:${name}`)) {
       return name;
     } else {
       if (this.action && this.action !== "page") {

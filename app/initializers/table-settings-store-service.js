@@ -1,4 +1,4 @@
-export function initialize(container, application) {
+export function initialize(application) {
     application.inject('controller', 'tableSettingsStore',
       'service:table-settings-store');
 };
