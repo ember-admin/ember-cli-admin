@@ -164,7 +164,7 @@ SearchField = Ember.Object.extend({
   numberInput: function(){
     this.set('isNumberInput', true);
   },
-  
+
   boolean: function(){
     this.set('isBoolean', true);
   },
@@ -182,16 +182,19 @@ SearchField = Ember.Object.extend({
   },
 
   serialize: function(){
-    var serialzied;
+    var serialized;
     switch(this.get('options').type){
       case 'number':
-        serialzied = {value: this.get('value'), predicat: this.get('predicat')};
+        serialized = {value: this.get('value'), predicat: this.get('predicat')};
+        break;
+      case 'boolean':
+        serialized = {value: this.get('value'), predicat: 'eq' };
         break;
       default:
-        serialzied = {value: this.get('value')};
+        serialized = {value: this.get('value')};
         break;
     }
-    return serialzied;
+    return serialized;
   }
 });
 
