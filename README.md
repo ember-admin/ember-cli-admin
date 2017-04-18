@@ -1,4 +1,4 @@
-#Ember-Cli-Admin
+# Ember-Cli-Admin
 
 [![Build Status](https://travis-ci.org/ember-admin/ember-cli-admin.svg?branch=master)](https://travis-ci.org/ember-admin/ember-cli-admin)
 [![npm version](https://badge.fury.io/js/ember-cli-admin.svg)](http://badge.fury.io/js/ember-cli-admin)
@@ -6,7 +6,7 @@
 
 Ember-cli-admin is a powerful admin dashboard for ember-cli projects that is built on ideas of [ActiveAdmin][2] and [AbAdmin][3].
 
-##See example
+## See example
 
 [Ember-cli-admin example](http://rails.ember-admin.com/#/products)
 
@@ -36,7 +36,7 @@ That's all!
 
 Also you can see your [wiki](https://github.com/ember-admin/ember-cli-admin/wiki/Manual-installation) if you want more details about installation or just need to do it manually.
 
-##Blueprints
+## Blueprints
 
 [Ember-Cli-Admin](https://github.com/ember-admin/ember-cli-admin) provides some default blueprints.
 
@@ -47,7 +47,7 @@ These are:
 - **table-view-resource** - generates model, TableViewController and register them in MetaRouter and Navigation;
 - **tree-view-resource** - same as table-view-resource, but with TreeViewController and model suited for it;
 
-##Plugins
+## Plugins
 
 Ember-Cli-Admin has some useful plugins that you can use to extend default dashboard functionality:
 
@@ -55,9 +55,9 @@ Ember-Cli-Admin has some useful plugins that you can use to extend default dashb
 
 2. [Ember-Cli-Admin-Languages][6] - adds multilanguage inputs in forms
 
-##Features overview
+## Features overview
 
-###Form fields
+### Form fields
 
 You can specify the attributes to use in admin form with ```formAttributes``` property in the controller:
 
@@ -71,7 +71,7 @@ export default Ember.Controller.extend(TableViewController,{
 });
 ```
 
-###Table fields
+### Table fields
 
 You can specify the attributes to use in admin table with the ```tableAttributes``` property in the controller:
 
@@ -85,7 +85,7 @@ export default Ember.Controller.extend(TableViewController,{
 });
 ```
 
-###Item Actions
+### Item Actions
 
 You can customize item actions with ```itemActions``` property in the controller:
 
@@ -134,7 +134,7 @@ additionalActions: function(){
   }.property('is_active')
 ```
 
-###Batch Actions
+### Batch Actions
 You can specify the batch actions with ```batchActions``` property in the controller:
 ```javascript
 //app/controllers/users.js
@@ -150,7 +150,7 @@ export default Ember.Controller.extend(TableViewController,{
   }
 });
 ```
-###Ember-cli-admin also uses [ember-cli-map][4]
+### Ember-cli-admin also uses [ember-cli-map][4]
 
 We currently support ```google-map``` component which can be added to your resource form with the following simple setup
 
@@ -170,7 +170,7 @@ export default DS.Model.extend({
 
 For more info see [ember-cli-map README][4].
 
-###Fileuploads
+### Fileuploads
 
 Say, our user has one main avatar and/or many avatar pictures.
 
@@ -235,7 +235,7 @@ var avatar = Asset.extend({
 
 After that you should specify ```sortAssetsBy: 'assetOrderProperty'``` in controller.
 
-###Set title
+### Set title
 By default, navigation bar title display your application's module prefix. You can change this to any name of you choice by adding 'appName' property to your application config file.
 
 Here you can also change where the title link actually points to via 'titleLinksTo' property. If this property is not set, it will point to the root URL by default.
@@ -256,11 +256,11 @@ var ENV = {
 
 That's it!
 
-##Customize Templates
+## Customize Templates
 
 You can also provide your own template for the show, edit and new actions. These can override the global defaults as well as for specific resources.
 
-###Global Overrides
+### Global Overrides
 
 Put your template in the `app/templates/admin` directory. For example:
 ```
@@ -270,7 +270,7 @@ Put your template in the `app/templates/admin` directory. For example:
 #app/templates/admin/form.hbs
 ```
 
-###Resource Specific Override
+### Resource Specific Override
 
 Put your template in `app/templates/[controllerName]` directory. For users resource:
 ```
@@ -281,7 +281,7 @@ Put your template in `app/templates/[controllerName]` directory. For users resou
 
 If you have `admin/new.hbs` and `users/new.hbs` templates, the latter will be used for your users resource, and the first for all the other resources.
 
-##Searching
+## Searching
 
 All model attributes, except of relations, are searchable in **search form** on resource index page.
 For now, we render text inputs for all attributes. This will be fixed in future.
@@ -309,7 +309,7 @@ You can also provide your own search form template:
 ```
 More options for autocomplete check in `app/components/admin-typeahead.js`
 
-##Sorting
+## Sorting
 
 You can sort records on resource index page by attributes in ascending or descending order.
 To specify fields for sorting, add `sortFields` property in your resource controller:
@@ -321,7 +321,7 @@ import SearchLogic from 'ember-cli-admin/dsl/search'
 ...
 ```
 
-##Sidebar
+## Sidebar
 You can put sidebar for each resource:
 ```javascript
 //app/controllers/users.js
@@ -337,7 +337,7 @@ You can also provide your own sidebar template:
 ...
 ```
 
-###Nested Tree View
+### Nested Tree View
 You can display **nested trees** of records in Ember-Cli-Admin.
 They are implemented following the [nested set model pattern](http://en.wikipedia.org/wiki/Nested_set_model).
 
@@ -370,12 +370,12 @@ export default Ember.Controller.extend(TreeViewController, {
 });
 ```
 
-##Show/hide table column
+## Show/hide table column
 You can chose what table columns to display via table settings icon next to the 'Batch actions' button in the table header.
 
 Each controller has its own set of table settings that persist via browser local storage.
 
-##Integration with [elasticsearch](http://www.elasticsearch.org/)
+## Integration with [elasticsearch](http://www.elasticsearch.org/)
 Now you can integrate admin with elasticsearch server. You need use [elasticsearch adapter](https://github.com/api-hogs/ember-data-elasticsearch-kit/blob/master/dist/ember-data-elasticsearch-kit.js) download into vendor and import it to app.
 Then you need turn CORS in elasticsearch, and create resource route:
 ```javascript
@@ -414,7 +414,7 @@ Then you need turn CORS in elasticsearch, and create resource route:
   });
 ```
 
-##Change case for text in table, breadcrumbs, searchbar, etc.
+## Change case for text in table, breadcrumbs, searchbar, etc.
 
 You can change how text is dispayed in table, breadcrumbs, searchbar, etc.
 
@@ -454,10 +454,10 @@ var ENV = {
   ...
   }
 ```
-##Contribution
+## Contribution
 See our wiki pages on [contributing](https://github.com/ember-admin/ember-cli-admin/wiki/Contributing) and [the roadmap](https://github.com/ember-admin/ember-cli-admin/wiki/Roadmap).
 
-##License
+## License
 
 
 [Licensed under MIT license] [1]
